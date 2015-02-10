@@ -1,0 +1,50 @@
+﻿@using Tesis.ViewModels
+@model LoginViewModel
+@{
+	Layout = "~/Views/Shared/_LoginLayout.cshtml";
+	ViewBag.Title = "Inicio de Sesión";
+}
+@section Styles{
+	@Styles.Render("~/plugins/iCheckStyles")
+}
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+	<div class="row">
+		<div class="col-md-12 col-md-pull-1 col-xs-pull-1">
+			<h1 class="logo-name">TEG</h1>
+		</div>
+		<div class="col-md-12">
+			<h3>Bienvenido al TEG de Jonathan González y Javier Gutierrez</h3>
+			<p>Inicie Sesión para ingresar.</p>
+			@Html.Flash()
+			@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t" }))
+			{
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<div class="form-group">
+					@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+					@Html.TextBoxFor(m => m.Email, new { @class = "form-control required", @placeholder = "Correo Electrónico", aria_required = true, aria_invalid = true })
+				</div>
+				<div class="form-group">
+					@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control required", @placeholder = "Contraseña" })
+				</div>
+				<div>
+					<label> <input id="rememberMe" name="rememberMe" type="checkbox" class="i-checks"> ¿Recordar Sesión? </label>
+					<button type="submit" class="btn btn-primary block full-width m-b">Iniciar Sesión</button>
+				</div>
+			}
+		</div>
+		<p class="m-t"> <small>Tesis &copy; 2015</small> </p>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/plugins/iCheck")
+	<script>
+		$(document).ready(function () {
+			$('.i-checks').iCheck({
+				checkboxClass: 'icheckbox_square-green',
+				radioClass: 'iradio_square-green',
+			});
+		});
+	</script>
+}

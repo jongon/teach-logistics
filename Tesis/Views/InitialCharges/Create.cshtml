@@ -1,0 +1,318 @@
+﻿@model Tesis.ViewModels.InitialChargeViewModel
+
+@section Styles{
+	@Styles.Render("~/plugins/iCheckStyles")
+	@Styles.Render("~/plugins/wizardStepsStyles")
+	@Styles.Render("~/plugins/jasnyBootstrapStyles")
+	<link href="~/Content/app/initialCharge.css" rel="stylesheet" />
+}
+@{
+	ViewBag.Title = "Create";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Caso de estudio</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Lista", "Index")
+			</li>
+			<li class="active">
+				<strong>Crear</strong>
+			</li>
+		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-primary" })
+		</div>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>Carga Inicial</h5>
+					<div class="ibox-tools">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="fa fa-wrench"></i>
+						</a>
+					</div>
+				</div>
+				<div class="ibox-content">
+					<h2>Caso de estudio</h2>
+					<p>Por favor siga los pasos para crear su caso de estudio.</p>
+
+					<form id="form" action="#" class="wizard-big">
+						<h1>Escoja Semestre y sección</h1>
+						<fieldset>
+							<div class="row">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Semestre y sección</label>
+									<div class="col-sm-10">
+										<select class="form-control m-b" name="account">
+											<option>option 1</option>
+											<option>option 2</option>
+											<option>option 3</option>
+											<option>option 4</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="text-center">
+										<div style="margin-top: 20px">
+											<i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+						<h1>Tipo de Carga de Datos</h1>
+						<fieldset>
+							<h2>Seleccione la manera de cargar sus datos</h2>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-sm-10">
+										<div class="radio i-checks">
+											<label>
+												<input type="radio" checked value="xml" name="InitialChargeType">
+												<i></i> Archivo Xml
+											</label>
+										</div>
+										<div class="radio i-checks">
+											<label>
+												<input type="radio" value="charge" name="InitialChargeType">
+												<i></i> Formulario
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+						<h1>Xml</h1>
+						<fieldset>
+							<h2>Cargue su archivo Xml</h2>
+							<div class="wrapper wrapper-content animated fadeIn">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="ibox float-e-margins">
+											<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+												<div class="form-control" data-trigger="fileinput">
+													<i class="fa fa-file fileinput-exists"></i> <span class="fileinput-filename"></span>
+												</div>
+												<span class="input-group-addon btn btn-default btn-file">
+													<span class="fileinput-new">Seleccionar archivo</span>
+													<span class="fileinput-exists">Cambiar</span>
+													<input type="file" name="myfile" id="myfile" onchange="return isXml(this)" />
+												</span>
+												<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+						<h1>Formulario de Carga</h1>
+						<fieldset>
+							<h2>Cargue su archivo Xml</h2>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="form-group">
+										@Html.LabelFor(model => model.ProductId)
+										@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "single-line" })
+										@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })										
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.Demand)									
+										@Html.EditorFor(model => model.Demand)
+										@Html.ValidationMessageFor(model => model.Demand)									
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.Stddev)
+										@Html.EditorFor(model => model.Stddev)
+										@Html.ValidationMessageFor(model => model.Stddev)
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.Price)
+										@Html.TextBoxFor(model => model.Price, new { @class = "text-box single-line" })
+										@Html.ValidationMessageFor(model => model.Price)									
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.PreparationCost)					
+										@Html.TextBoxFor(model => model.PreparationCost, new { @class = "text-box single-line" })
+										@Html.ValidationMessageFor(model => model.PreparationCost)										
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.AnnualMaintenanceCost)										
+										@Html.EditorFor(model => model.AnnualMaintenanceCost)
+										@Html.ValidationMessageFor(model => model.AnnualMaintenanceCost)										
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.PreparationTime)
+										@Html.TextBoxFor(model => model.PreparationTime, new { @class = "text-box single-line" })
+										@Html.ValidationMessageFor(model => model.PreparationTime)					
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.FillTime)		
+										@Html.TextBoxFor(model => model.FillTime, new { @class = "text-box single-line" })
+										@Html.ValidationMessageFor(model => model.FillTime)
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.DeliveryTime)		
+										@Html.TextBoxFor(model => model.DeliveryTime, new { @class = "text-box single-line" })
+										@Html.ValidationMessageFor(model => model.DeliveryTime)
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.SecurityStock)									
+										@Html.EditorFor(model => model.SecurityStock)
+										@Html.ValidationMessageFor(model => model.SecurityStock)			
+									</div>
+
+									<div class="form-group">
+										@Html.LabelFor(model => model.InitialStock)									
+										@Html.TextBoxFor(model => model.InitialStock, new { @class = "text-box single-line" })
+										@Html.ValidationMessageFor(model => model.InitialStock)				
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	@*<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Create InitialCharge</h5>
+				</div>
+				<div class="ibox-content">
+
+					@using (Html.BeginForm("Create", "InitialCharges", FormMethod.Post, new { @class = "form-horizontal" }))
+					{
+						@Html.AntiForgeryToken()
+						@Html.ValidationSummary(true)
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "single-line" })
+								@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.Demand, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.Demand)
+								@Html.ValidationMessageFor(model => model.Demand)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.Stddev, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.Stddev)
+								@Html.ValidationMessageFor(model => model.Stddev)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBoxFor(model => model.Price, new { @class = "text-box single-line" })
+								@Html.ValidationMessageFor(model => model.Price)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.PreparationCost, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBoxFor(model => model.PreparationCost, new { @class = "text-box single-line" })
+								@Html.ValidationMessageFor(model => model.PreparationCost)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.AnnualMaintenanceCost, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.AnnualMaintenanceCost)
+								@Html.ValidationMessageFor(model => model.AnnualMaintenanceCost)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.PreparationTime, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBoxFor(model => model.PreparationTime, new { @class = "text-box single-line" })
+								@Html.ValidationMessageFor(model => model.PreparationTime)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.FillTime, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBoxFor(model => model.FillTime, new { @class = "text-box single-line" })
+								@Html.ValidationMessageFor(model => model.FillTime)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.DeliveryTime, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBoxFor(model => model.DeliveryTime, new { @class = "text-box single-line" })	
+								@Html.ValidationMessageFor(model => model.DeliveryTime)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.SecurityStock, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.SecurityStock)
+								@Html.ValidationMessageFor(model => model.SecurityStock)
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(model => model.InitialStock, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBoxFor(model => model.InitialStock, new { @class = "text-box single-line" })
+								@Html.ValidationMessageFor(model => model.InitialStock)
+							</div>
+						</div>
+		
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-10">
+								<input type="submit" value="Create" class="btn btn-primary" />
+								@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>*@
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/plugins/wizardSteps")
+	@Scripts.Render("~/plugins/iCheck")
+	@Scripts.Render("~/plugins/jasnyBootstrap")
+	<script src="~/Scripts/app/initialCharge.js"></script>
+}

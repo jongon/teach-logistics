@@ -1,0 +1,72 @@
+﻿@model Tesis.Models.Group
+
+@{
+	ViewBag.Title = "Detalles";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Details</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Detalles</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Detalles del grupo</h5>
+				</div>
+				<div class="ibox-content">
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.Name)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Name)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Score)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Score)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Position)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Position)
+						</dd>
+					</dl>
+					@Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+					@Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-white" })
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
