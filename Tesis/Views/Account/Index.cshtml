@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Tesis.ViewModels.ApplicationUserViewModel>
+﻿@model IEnumerable<Tesis.Models.User>
 
 @section styles{
 	@Styles.Render("~/plugins/dataTablesStyles")
@@ -41,7 +41,7 @@
 								<th>@Html.DisplayNameFor(model => model.LastName)</th>
 								<th>@Html.DisplayNameFor(model => model.IdCard)</th>
 								<th>@Html.DisplayNameFor(model => model.Roles)</th>
-								<th>@Html.DisplayName("Semestre")</th>
+								<th>@Html.DisplayNameFor(model => model.Section.Semester)</th>
 								<th>@Html.DisplayNameFor(model => model.Section)</th>
 								<th>@Html.DisplayName("Acciones")</th>
 							</tr>
@@ -54,7 +54,7 @@
 								<th>@Html.DisplayNameFor(model => model.LastName)</th>
 								<th>@Html.DisplayNameFor(model => model.IdCard)</th>
 								<th>@Html.DisplayNameFor(model => model.Roles)</th>
-								<th>@Html.DisplayName("Semestre")</th>
+								<th>@Html.DisplayNameFor(model => model.Section.Semester)</th>
 								<th>@Html.DisplayNameFor(model => model.Section)</th>
 								<th>@Html.DisplayName("Acciones")</th>
 							</tr>

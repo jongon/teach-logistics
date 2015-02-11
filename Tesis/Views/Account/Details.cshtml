@@ -1,4 +1,4 @@
-﻿@model Tesis.ViewModels.ApplicationUserViewModel
+﻿@model Tesis.Models.User
 
 @{
     ViewBag.Title = "Detalle";
@@ -69,21 +69,23 @@
               <text>@role</text>
             }
             </dd>
-            <dt>
-              @Html.DisplayNameFor(model => model.Section.Semester)
-            </dt>
+            @if (Model.Section != null) {
+              <dt>
+                @Html.DisplayNameFor(model => model.Section.Semester)
+              </dt>
 
-            <dd>
-              @Html.DisplayFor(model => model.Section.Semester.Description)
-            </dd>
+              <dd>
+                @Html.DisplayFor(model => model.Section.Semester.Description)
+              </dd>
 
-            <dt>
-              @Html.DisplayNameFor(model => model.Section)
-            </dt>
+              <dt>
+                @Html.DisplayNameFor(model => model.Section)
+              </dt>
 
-            <dd>
-              @Html.DisplayFor(model => model.Section.Number)
-            </dd>
+              <dd>
+                @Html.DisplayFor(model => model.Section.Number)
+              </dd>
+            }						
           </dl>
           @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary"})
           @Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-white"})

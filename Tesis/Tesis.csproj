@@ -228,10 +228,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
-    <Compile Include="Metadatas\SemesterMetadata.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CaseStudy.cs" />
-    <Compile Include="Models\CustomValidations.cs" />
+    <Compile Include="UtilityCode\CustomValidations.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\InitialCharge.cs" />
     <Compile Include="Models\Product.cs" />
@@ -246,6 +245,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\InitialChargeViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\SectionViewModel.cs" />
@@ -591,10 +591,6 @@
     <Content Include="Scripts\angularjs\angular.min.js.map" />
     <None Include="Scripts\jquery\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\app\initialCharge.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery\jquery-2.1.3.min.map" />

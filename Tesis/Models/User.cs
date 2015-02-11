@@ -35,8 +35,8 @@ namespace Tesis.Models
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números permitidos")]
         public virtual string IdCard { get; set; }
 
-        [Required(ErrorMessage = "Este Campo es requerido")]
         [DisplayName("Activación")]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public override bool EmailConfirmed { get; set; }
 
         [DisplayName("Sección")]

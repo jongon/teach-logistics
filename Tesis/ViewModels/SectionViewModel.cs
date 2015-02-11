@@ -16,8 +16,6 @@ namespace Tesis.ViewModels
 
         public Guid Id { get; set; }
 
-        public string SemesterDescription { get; set; }
-
         [Required(ErrorMessage = "Este campo es requerido")]
         [DisplayName("Número")]
         public string Number { get; set; }

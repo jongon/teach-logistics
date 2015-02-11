@@ -65,42 +65,40 @@ namespace Tesis.Controllers
         {
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
             ViewBag.Roles = RoleManager.Roles.ToList();
-            var users = UserManager.Users.Select(x => new ApplicationUserViewModel
-            {
-                Id = x.Id,
-                Email = x.Email,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                Section = x.Section,
-                IdCard = x.IdCard,
-                Roles = x.Roles
-            }).ToList();
+            var users = UserManager.Users.ToList();
             return View(users);
         }
 
         [AllowAnonymous]
-        public async Task<JsonResult> GetUsers(string text)
+        public async Task<JsonResult> GetUsersBySection(string UserName, string SectionId)
         {
+            if (String.IsNullOrEmpty(SectionId))
+            {
+                return Json("Error");
+            }
             var users = await UserManager.Users.Where(
-                x => x.FirstName.Contains(text) || 
-                x.LastName.Contains(text) || 
-                x.Email.Contains(text))
+                x => x.FirstName.Contains(UserName) || 
+                x.LastName.Contains(UserName) || 
+                x.Email.Contains(UserName) &&
+                x.SectionId.ToString().Equals(SectionId))
                 .Select(
                     c => new { 
                         Id = c.Id,
-                        UserName = c.FirstName + " " + c.LastName 
+                        UserName = c.FirstName + " " + c.LastName,
+                        FirstName = c.FirstName,
+                        LastName = c.LastName
                     })
                 .ToListAsync();
             return Json(users, JsonRequestBehavior.AllowGet);
         }
-        public async Task<ActionResult> Details(Guid? Id)
+        public async Task<ActionResult> Details(string Id)
         {
             if (Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = await UserManager.Users.Where(x => x.Id.Equals(Id.ToString())).FirstOrDefaultAsync();
+            var user = await UserManager.Users.Where(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
 
             if (user == null)
             {
@@ -108,32 +106,33 @@ namespace Tesis.Controllers
             }
             else
             {
-                var userViewModel = new ApplicationUserViewModel
+                var userModel = new User
                 {
                     Id = user.Id,
                     Email = user.Email,
                     IdCard = user.IdCard,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
+                    Section = (user.Section == null) ? null : user.Section
                 };
                 ViewBag.Roles = UserManager.GetRoles(user.Id);
-                return View(userViewModel);
+                return View(userModel);
             }
         }
 
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var user = UserManager.Users.Where(x => x.Id == id.ToString()).FirstOrDefault();
+            var user = UserManager.Users.Where(x => x.Id.Equals(id)).FirstOrDefault();
             if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Roles = UserManager.GetRoles(user.Id.ToString());
+            ViewBag.Roles = UserManager.GetRoles(user.Id);
             EditUserViewModel editedUser = new EditUserViewModel
             {
                 Id = user.Id,
@@ -144,27 +143,28 @@ namespace Tesis.Controllers
                 EmailConfirmed = user.EmailConfirmed,
                 Password = "",
                 ConfirmPassword = "",
-                SectionId = user.SectionId,
-                SemesterId = user.Section.SemesterId
+                SectionId = (user.SectionId == null) ? null : user.SectionId,
+                SemesterId = (user.SectionId == null) ? Guid.Empty : user.Section.SemesterId
             };
             return View(editedUser);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id, Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SectionId, EmailConfirmed")] EditUserViewModel User)
+        public async Task<ActionResult> Edit([Bind(Include = "Id, Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SectionId, SemesterId, EmailConfirmed")] EditUserViewModel User)
         {
             var rolesUser = UserManager.GetRoles(User.Id);
             if (!rolesUser.Contains("Estudiante"))
             {
                 ModelState.Remove("SectionId");
                 ModelState.Remove("SemesterId");
-                if (User.SectionId == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
-                }
             }
-            if (User.Password.Equals("") && User.Password.Equals(""))
+            else if (User.SectionId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
+            }
+
+            if (String.IsNullOrEmpty(User.Password) && String.IsNullOrEmpty(User.ConfirmPassword))
             {
                 ModelState.Remove("Password");
                 ModelState.Remove("ConfirmPassword");
@@ -188,7 +188,7 @@ namespace Tesis.Controllers
                     }
                     await UserManager.UpdateAsync(user);
                     Flash.Success("OK", "Usuario editado exitosamente");
-                    return View();
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
@@ -201,27 +201,26 @@ namespace Tesis.Controllers
             return View(User);
         }
 
-        public async Task<ActionResult> Delete(Guid? Id)
+        public async Task<ActionResult> Delete(string Id)
         {
             if (Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            string cadena = Id.ToString();
-            var user = await UserManager.FindByIdAsync(cadena);
+            var user = await UserManager.FindByIdAsync(Id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Roles = UserManager.GetRoles(user.Id.ToString());
+            ViewBag.Roles = UserManager.GetRoles(user.Id);
             return View(user);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmation(Guid? Id)
+        public async Task<ActionResult> DeleteConfirmation(string Id)
         {
-            var user = await UserManager.FindByIdAsync(Id.ToString());
+            var user = await UserManager.FindByIdAsync(Id);
             if (user != null)
             {
                 await UserManager.DeleteAsync(user);
@@ -237,7 +236,12 @@ namespace Tesis.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if (!AuthenticationManager.User.Identity.IsAuthenticated)
+                return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: /Account/Login

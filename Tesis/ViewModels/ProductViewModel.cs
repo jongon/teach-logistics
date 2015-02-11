@@ -9,6 +9,8 @@ namespace Tesis.ViewModels
 {
     public class ProductViewModel
     {
+        public Guid Id { get; set; }
+
         [DisplayName("Número")]
         [Required(ErrorMessage = "Este campo es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números enteros permitidos")]

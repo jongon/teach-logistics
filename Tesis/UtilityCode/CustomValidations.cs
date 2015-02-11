@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using Tesis.DAL;
 using Tesis.Models;
+using Tesis.ViewModels;
 
 namespace Tesis
 {
     public class UniqueUser : ValidationAttribute 
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         public UniqueUser(): base("{0} se encuentra registrado en el sistema")
         {
 
@@ -21,7 +23,29 @@ namespace Tesis
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            User user = db.Users.Where(x => x.UserName.Equals((string)value) || x.IdCard.Equals((string)value)).FirstOrDefault();
+            string id = null;
+            if (validationContext.ObjectInstance is EditUserViewModel)
+            {
+                EditUserViewModel userEdit = (EditUserViewModel)validationContext.ObjectInstance;
+                id = userEdit.Id;
+                
+            }
+            else if (validationContext.ObjectInstance is ConfirmationViewModel)
+            {
+                ConfirmationViewModel userEdit = (ConfirmationViewModel)validationContext.ObjectInstance;
+                id = userEdit.Id;
+            }
+
+            User user;
+            if (String.IsNullOrEmpty(id))
+            {
+                user = db.Users.Where(x => x.UserName.Equals((string)value) || x.IdCard.Equals((string)value)).FirstOrDefault();
+            }
+            else
+            {
+                user = db.Users.Where(x => (x.UserName.Equals((string)value) || x.IdCard.Equals((string)value)) && !x.Id.Equals(id)).FirstOrDefault();
+            }
+
             if (user == null)
             {
                 return ValidationResult.Success;

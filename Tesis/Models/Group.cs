@@ -26,6 +26,8 @@ namespace Tesis.Models
         
         [DisplayName("Sección")]
         public virtual Section Section { get; set; }
+
+        [DisplayName("Integrantes")]
         public ICollection<User> Users { get; set; }
     }
 }

@@ -23,8 +23,6 @@ namespace Tesis.Models
 
         public int Distance { get; set; }
 
-        [StringLength(128)]
-
         public virtual ICollection<InitialCharge> InitialCharges { get; set; }
     }
 }

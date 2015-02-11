@@ -60,11 +60,12 @@ namespace Tesis.ViewModels
 
     public class ConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Campo {0} es requerido")]
         public string Id { get; set; }
 
         [DisplayName("Email")]
         [Required(ErrorMessage = "El {0} es requerido")]
+        [UniqueUser(ErrorMessage = "Ya existe este email registrado")]
         [EmailAddress(ErrorMessage = "{0} inválido")]
         public string Email { get; set; }
 
@@ -78,6 +79,7 @@ namespace Tesis.ViewModels
 
         [DisplayName("Cédula")]
         [Required(ErrorMessage = "La {0} es requerida")]
+        [UniqueUser(ErrorMessage = "Ya existe esta cédula registrada")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números permitidos")]
         public virtual string IdCard { get; set; }
 
@@ -95,8 +97,6 @@ namespace Tesis.ViewModels
 
     public class EditUserViewModel : ConfirmationViewModel
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         [Required(ErrorMessage = "Este Campo es requerido")]
         [DisplayName("Activación")]
         public virtual bool EmailConfirmed { get; set; }
@@ -108,24 +108,5 @@ namespace Tesis.ViewModels
         [Required(ErrorMessage = "Sección Este Campo es requerido")]
         [DisplayName("Sección")]
         public Guid? SectionId { get; set; }
-    }
-
-    public class ApplicationUserViewModel {
-
-        [DisplayName("Id")]
-        public string Id { get; set; }
-        [DisplayName("Email")]
-        public string Email { get; set; }
-        [DisplayName("Nombre")]
-        public string FirstName { get; set; }
-        [DisplayName("Apellido")]
-        public string LastName { get; set; }
-        [DisplayName("Cédula")]
-        public string IdCard { get; set; }
-        [DisplayName("Sección")]
-        public Section Section { get; set; }
-        [DisplayName("Roles")]
-        public ICollection<IdentityUserRole> Roles { get; set; }
-
     }
 }
