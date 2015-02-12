@@ -7,6 +7,7 @@
 	@Styles.Render("~/Content/kendo")
 	@Styles.Render("~/bundles/bootstrapStyles")
 	@Styles.Render("~/Content/font-awesome")
+	@Styles.Render("~/plugins/dataTablesStyles")
 	@*<!-- Add local styles, mostly for plugins css file -->*@
 	@if (IsSectionDefined("Styles"))
 	{
@@ -43,6 +44,7 @@
 	@Scripts.Render("~/plugins/slimScroll")
 	@Scripts.Render("~/bundles/inspinia")
 	@Scripts.Render("~/plugins/pace")
+	@Scripts.Render("~/plugins/dataTables")
 	@*<!-- Skin config script - only for demo purpose-->*@
 	@*@Scripts.Render("~/bundles/skinConfig")*@
 	<!-- Handler for local scripts -->

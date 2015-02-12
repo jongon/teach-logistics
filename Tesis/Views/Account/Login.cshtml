@@ -39,12 +39,5 @@
 </div>
 @section Scripts {
 	@Scripts.Render("~/plugins/iCheck")
-	<script>
-		$(document).ready(function () {
-			$('.i-checks').iCheck({
-				checkboxClass: 'icheckbox_square-green',
-				radioClass: 'iradio_square-green',
-			});
-		});
-	</script>
+	@Scripts.Render("~/bundles/Account/login")
 }

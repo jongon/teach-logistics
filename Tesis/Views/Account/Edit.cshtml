@@ -163,18 +163,5 @@
 </div>
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
-	<script>
-		function filterSections() {
-			return {
-				SemesterId: $("#SemesterId").val()
-			};
-		}
-	</script>
-	<script>
-		$.validator.setDefaults({
-			ignore: ""
-		});
-		$("#Password").removeAttr("data-val-required");
-		$("#ConfirmPassword").removeAttr("data-val-required");
-	</script>
+	@Scripts.Render("~/bundles/Account/edit")
 }

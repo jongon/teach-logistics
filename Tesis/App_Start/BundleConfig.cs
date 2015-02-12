@@ -275,6 +275,24 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/plugins/summernote").Include(
                       "~/Scripts/plugins/summernote/summernote.min.js"));
 
+
+            //Application Scripts
+
+            //Account
+            bundles.Add(new ScriptBundle("~/bundles/Account/index").Include(
+                    "~/Scripts/app/Account/index.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account/edit").Include(
+                    "~/Scripts/app/Account/edit.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account/login").Include(
+                    "~/Scripts/app/Account/login.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account/register").Include(
+                    "~/Scripts/app/Account/register.js"));
+
+            //Sections
+
             bundles.Add(new ScriptBundle("~/add/initialCharge").Include(
                 "~/scripts/app/initialCharge.js"));
 

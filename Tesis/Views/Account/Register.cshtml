@@ -133,15 +133,5 @@
 </div>
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
-	<script>
-	function filterSections() {
-		return {
-			SemesterId: $("#SemesterId").val()
-		};
-	}
-
-	$.validator.setDefaults({
-		ignore: ""
-	});
-	</script>
+	@Scripts.Render("~/bundles/Account/register")
 }
