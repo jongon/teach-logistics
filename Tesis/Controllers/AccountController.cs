@@ -77,9 +77,9 @@ namespace Tesis.Controllers
                 return Json("Error");
             }
             var users = await UserManager.Users.Where(
-                x => x.FirstName.Contains(UserName) || 
+                x => (x.FirstName.Contains(UserName) || 
                 x.LastName.Contains(UserName) || 
-                x.Email.Contains(UserName) &&
+                x.Email.Contains(UserName)) &&
                 x.SectionId.ToString().Equals(SectionId))
                 .Select(
                     c => new { 
@@ -91,6 +91,7 @@ namespace Tesis.Controllers
                 .ToListAsync();
             return Json(users, JsonRequestBehavior.AllowGet);
         }
+
         public async Task<ActionResult> Details(string Id)
         {
             if (Id == null)

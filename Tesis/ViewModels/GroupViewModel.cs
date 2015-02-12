@@ -4,12 +4,15 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages.Html;
 using Tesis.Models;
 
 namespace Tesis.ViewModels
 {
     public class GroupViewModel
     {
+        public Guid Id { get; set; }
+
         [DisplayName("Nombre")]
         [Required(ErrorMessage = "Este campo es requerido")]
         [StringLength(50, ErrorMessage = "No puede exceder los {1} caracteres.")]
@@ -18,12 +21,16 @@ namespace Tesis.ViewModels
         [DisplayName("Sección")]
         [Required(ErrorMessage = "Este campo es requerido")]
         public Guid SectionId { get; set; }
-
-        [DisplayName("Sección")]
-        public virtual Section Section { get; set; }
+        
+        [DisplayName("Semestre")]
+        [Required(ErrorMessage = "Este campo es requerido")]
+        public Guid SemesterId { get; set; }
 
         [Required(ErrorMessage = "{0} es campo requerido")]
         [DisplayName("Integrantes")]
-        public ICollection<User> Users { get; set; }
+        public IEnumerable<string> Users { get; set; }
+
+        [DisplayName("Buscar Integrantes")]
+        public string UserAutoComplete { get; set; }
     }
 }

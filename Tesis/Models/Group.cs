@@ -9,6 +9,10 @@ namespace Tesis.Models
 
     public partial class Group
     {
+        public Group()
+        {
+            Users = new HashSet<User>();
+        }
         public Guid Id { get; set; }
 
         [Required]

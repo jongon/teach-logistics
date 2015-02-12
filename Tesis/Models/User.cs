@@ -44,6 +44,10 @@ namespace Tesis.Models
 
         public virtual Guid? SectionId { get; set; }
 
+        public virtual Group Group { get; set; }
+
+        public virtual Guid? GroupId { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

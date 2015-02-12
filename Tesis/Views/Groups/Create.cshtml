@@ -1,4 +1,4 @@
-﻿@model Tesis.Models.Group
+﻿@model Tesis.ViewModels.GroupViewModel
 
 @{
 	ViewBag.Title = "Crear";
@@ -24,6 +24,7 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
@@ -32,14 +33,14 @@
 				</div>
 				<div class="ibox-content">
 
-					@using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { @class = "form-horizontal", rule = "form" }))
+					@using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { @class = "form-horizontal", Id = "Group", rule = "form" }))
 					{
 						@Html.AntiForgeryToken()
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 						<div class="form-group">
 							@Html.Label("Semestre", new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
-								@(Html.Kendo().DropDownListFor(model => model.Section.SemesterId)
+								@(Html.Kendo().DropDownListFor(model => model.SemesterId)
 											.Name("SemesterId")
 											.OptionLabel("Seleccione el semestre...")
 											.DataTextField("Description")
@@ -54,7 +55,7 @@
 											.Events(e => { e.Change("onSemesterChange"); })											
 											.Value((ViewBag.SemesterId != null) ? ViewBag.SemesterId : "")
 								)
-								@Html.ValidationMessageFor(model => model.Section.SemesterId, "", new { @class = "text-danger" })
+								@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
@@ -97,7 +98,7 @@
 
 						<div class="hr-line-dashed"></div>
 						<div class="form-group">
-							@Html.Label("Integrantes", new { @class = "control-label col-md-2" })
+							@Html.Label("Buscar Integrantes", new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
 								@(Html.Kendo().AutoComplete()
 											.Name("UserAutoComplete")
@@ -130,6 +131,7 @@
 									@Html.ListBoxFor(model => model.Users, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
 								</div>
 							</div>
+							@Html.ValidationMessageFor(model => model.Users, "", new { @class = "text-danger" })
 						</div>									
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">

@@ -9,10 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using Tesis.Models;
 using Tesis.DAL;
+using Tesis.ViewModels;
+using MvcFlash.Core;
+using MvcFlash.Core.Extensions;
 
 namespace Tesis.Controllers
 {
-    public class GroupsController : Controller
+    public class GroupsController : BaseController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -49,14 +52,33 @@ namespace Tesis.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Name,SectionId")] Group group)
+        public async Task<ActionResult> Create([Bind(Include="Name,SectionId,SemesterId,Users")] GroupViewModel group)
         {
             if (ModelState.IsValid)
             {
-                group.Id = Guid.NewGuid();
-                db.Groups.Add(group);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (!(group.Users.Count() == db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
+                {
+                    Flash.Error("Error", "Ha ocurrido un error creando el grupo, revise que el usuario no tenga un grupo asignado");
+                    return View(group);
+                }
+
+                try
+                {
+                    List<User> users = await db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
+                    group.Id = Guid.NewGuid();
+                    db.Groups.Add(new Group { Id = group.Id, Name = group.Name, Score = "0", Users = users, SectionId = group.SectionId });
+                    await db.SaveChangesAsync();
+                    Flash.Success("Ok", "Grupo creado exitosamente");
+                    ViewBag.SemesterId = group.SemesterId.ToString();
+                    ViewBag.SectionId = group.SectionId.ToString();
+                    ModelState.Clear();
+                    return View();
+                }
+                catch (Exception e)
+                {
+                    Flash.Error("Error", e.ToString());
+                    return View(group);
+                } 
             }
             return View(group);
         }

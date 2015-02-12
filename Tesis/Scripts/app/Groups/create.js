@@ -75,6 +75,11 @@ $('#Users option:selected').each(function () {
     $(this).remove();
 });
 
+$("#Group").submit(function (event) {
+    $('#Users option').prop('selected', true);
+    return;
+});
+
 $(document).ready(function () {
     onSectionChange();
 })
