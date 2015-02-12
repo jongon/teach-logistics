@@ -89,7 +89,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
-								@Html.EditorFor(model => model.Email)
+								@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" }})
 								@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
-								@Html.EditorFor(model => model.FirstName)
+								@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @placeholder = "Nombre" }})
 								@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -107,7 +107,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
-								@Html.EditorFor(model => model.LastName)
+								@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @placeholder = "Apellido" }})
 								@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -116,7 +116,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.IdCard, new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
-								@Html.EditorFor(model => model.IdCard)
+								@Html.EditorFor(model => model.IdCard, new { htmlAttributes = new { @placeholder = "Cédula" }})
 								@Html.ValidationMessageFor(model => model.IdCard, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -125,7 +125,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.Password, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+								@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @placeholder = "Contraseña" }})
 								@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -134,7 +134,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.ConfirmPassword, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+								@Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @placeholder = "Confirmar Contraseña" }})
 								@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -155,7 +155,7 @@
 								@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
 							</div>
 						</div>
-															}
+					}
 				</div>
 			</div>
 		</div>

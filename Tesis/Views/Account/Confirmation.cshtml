@@ -28,7 +28,7 @@
 						<div class="form-group">
 							@Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+								@Html.EditorFor(m => m.FirstName, new { placeholder = "Nombre" })
 								@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -36,7 +36,7 @@
 						<div class="form-group">
 							@Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+								@Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @placeholder = "Apellido" }})
 								@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -44,7 +44,7 @@
 						<div class="form-group">
 							@Html.LabelFor(m => m.IdCard, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.TextBoxFor(m => m.IdCard, new { @class = "form-control" })
+								@Html.EditorFor(m => m.IdCard, new { htmlAttributes = new { @placeholder = "Cédula" }})
 								@Html.ValidationMessageFor(m => m.IdCard, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 						<div class="form-group">
 							@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+								@Html.EditorFor(m => m.Email, new { htmlAttributes = new { @placeholder = "Email" } })
 								@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 						<div class="form-group">
 							@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+								@Html.EditorFor(m => m.Password, new { htmlAttributes = new { @placeholder = "Contraseña" } })
 								@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
 							</div>
 						</div>
@@ -68,7 +68,7 @@
 						<div class="form-group">
 							@Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
 							<div class="col-md-10">
-								@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+								@Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @placeholder = "Confirmar Contraseña" }})
 								@Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
 							</div>
 						</div>
