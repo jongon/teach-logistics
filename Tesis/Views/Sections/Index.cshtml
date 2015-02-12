@@ -58,29 +58,5 @@
 </div>
 @section Scripts {
 	@Scripts.Render("~/plugins/nestable")
-	<script>
-		$(document).ready(function () {
-			// activate Nestable for list 1
-			$('#nestable').nestable({
-				group: 0
-			});
-			$('#nestable').nestable('collapseAll');
-		});
-
-		//$(".dd").on("click", function (event) { // click event
-		//	event.preventDefault();
-		//	window.location = $(this).attr("href");
-		//	return false;
-		//});
-
-		$(".dd-nodrag").on("mousedown", function (event) { // mousedown prevent nestable click
-			event.preventDefault();
-			return false;
-		});
-
-		//$(".dd-nodrag").on("click", function (event) { // click event
-		//	event.preventDefault();
-		//	return false;
-		//});
-	</script>
+	@Scripts.Render("~/bundles/Sections/index")
 }

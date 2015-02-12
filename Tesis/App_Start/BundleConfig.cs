@@ -292,7 +292,14 @@ namespace Tesis
                     "~/Scripts/app/Account/register.js"));
 
             //Sections
+            bundles.Add(new ScriptBundle("~/bundles/Sections/index").Include(
+                    "~/Scripts/app/Sections/index.js"));
 
+            //Groups
+            bundles.Add(new ScriptBundle("~/bundles/Groups/create").Include(
+                    "~/Scripts/app/Groups/create.js"));
+
+            //Initial Charge
             bundles.Add(new ScriptBundle("~/add/initialCharge").Include(
                 "~/scripts/app/initialCharge.js"));
 
