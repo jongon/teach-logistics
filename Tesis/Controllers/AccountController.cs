@@ -69,7 +69,6 @@ namespace Tesis.Controllers
             return View(users);
         }
 
-        [AllowAnonymous]
         public async Task<JsonResult> GetUsersBySection(string UserName, string SectionId)
         {
             if (String.IsNullOrEmpty(SectionId))

@@ -50,6 +50,15 @@
 						<dd>
 							@Html.DisplayFor(model => model.Position)
 						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Users)
+						</dt>
+						<dd>
+						@foreach (var user in Model.Users)
+						{
+								<text>@user.FirstName @user.LastName - Email: @user.UserName</text>@:<br />			
+						}
+						</dd>
 					</dl>
 					@Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
 					@Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-white" })

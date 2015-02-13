@@ -103,15 +103,37 @@ namespace Tesis.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Name,Score,Position")] Group group)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Name,SectionId,SemesterId,Users")] GroupViewModel group)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(group).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    Group currentGroup = db.Groups.Where(x => x.Id == group.Id).FirstOrDefault();
+                    foreach (var user in currentGroup.Users)
+                    {
+                        user.Group = null;
+                    }
+
+                    if (!(group.Users.Count() == db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
+                    {
+                        Flash.Error("Error", "Ha ocurrido un error creando el grupo, revise que el usuario no tenga un grupo asignado");
+                        return View(group);
+                    }
+                    currentGroup.Users = await db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
+                    db.Entry(currentGroup).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    Flash.Success("Ok", "Grupo ha sido editado satisfactoriamente");
+                    return RedirectToAction("Index");
+                }
+                Flash.Error("Error", "Ha ocurrido un error intentando editar el usuario");
+                return View(group);
             }
-            return View(group);
+            catch (Exception)
+            {
+                Flash.Error("Error", "Ha ocurrido un error intentando editar el usuario");
+                return View(group);
+            }
         }
 
         // GET: /Groups/Delete/5
@@ -135,9 +157,22 @@ namespace Tesis.Controllers
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
             Group group = await db.Groups.FindAsync(id);
-            db.Groups.Remove(group);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            foreach (var user in group.Users)
+            {
+                user.Group = null;
+            }
+            try
+            {
+                db.Groups.Remove(group);
+                await db.SaveChangesAsync();
+                Flash.Success("Ok", "Grupo ha sido eliminado correctamente");
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                Flash.Error("Error", "Ha ocurrido un error eliminando el grupo");
+                return View(group);
+            }
         }
 
         protected override void Dispose(bool disposing)
