@@ -23,64 +23,92 @@
 					</div>
 				</div>
 				<div class="ibox-content">
-					<table class="table table-striped">
-						<tr>
-							<th>
-								@Html.DisplayNameFor(model => model.Name)
-							</th>
-							<th>
-								@Html.DisplayNameFor(model => model.Score)
-							</th>
-							<th>
-								@Html.DisplayNameFor(model => model.Position)
-							</th>
-							<th>
-								@Html.DisplayNameFor(model => model.Section.Semester)
-							</th>
-							<th>
-								@Html.DisplayNameFor(model => model.Section)
-							</th>
-							<th>
-								@Html.DisplayName("Acción")
-							</th>
-						</tr>
-
-						@foreach (var item in Model)
-						{
+					<table id ="groups" class="table table-striped table-bordered table-hover">
+						<thead>
 							<tr>
-								<td>
-									@Html.DisplayFor(modelItem => item.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Score)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Position)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Section.Semester.Description)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Section.Number)
-								</td>
-								<td>
-									<button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="top"
-											data-content="
-												@foreach (var user in item.Users) {
-													<text>@user.FirstName @user.LastName (@user.UserName)</text>
-												}												
-												">
-											Integrantes
-									</button>
-									@Html.ActionLink("Details", "Detalles", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
-									@Html.ActionLink("Edit", "Editar", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
-									@Html.ActionLink("Delete", "Eliminar", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
-								</td>
+								<th>
+									@Html.DisplayNameFor(model => model.Name)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Score)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Position)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Section.Semester)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Section)
+								</th>
+								<th>
+									@Html.DisplayName("Acción")
+								</th>
 							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>
+									@Html.DisplayNameFor(model => model.Name)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Score)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Position)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Section.Semester)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Section)
+								</th>
+								<th>
+									@Html.DisplayName("Acción")
+								</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => item.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Score)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Position)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Section.Semester.Description)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Section.Number)
+									</td>
+									<td>
+										<button type="button" class="btn btn-default btn-sm" data-container="body" data-toggle="popover" data-placement="top"
+											data-content="
+											@foreach (var user in item.Users) { 
+												<text> @user.FirstName @user.LastName (@user.UserName) </text>
+												@:&#013;											 										
+											}">
+											Integrantes
+										</button>
+										@Html.ActionLink("Details", "Detalles", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+										@Html.ActionLink("Edit", "Editar", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+										@Html.ActionLink("Delete", "Eliminar", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+									</td>
+								</tr>
 						}
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@section Scripts{
+	@Scripts.Render("~/bundles/Groups/index")
+}

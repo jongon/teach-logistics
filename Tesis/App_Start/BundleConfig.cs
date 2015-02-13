@@ -291,6 +291,10 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Account/register").Include(
                     "~/Scripts/app/Account/register.js"));
 
+            //Semesters
+            bundles.Add(new ScriptBundle("~/bundles/Semesters/index").Include(
+                    "~/Scripts/app/Semesters/index.js"));
+
             //Sections
             bundles.Add(new ScriptBundle("~/bundles/Sections/index").Include(
                     "~/Scripts/app/Sections/index.js"));
@@ -298,6 +302,9 @@ namespace Tesis
             //Groups
             bundles.Add(new ScriptBundle("~/bundles/Groups/create").Include(
                     "~/Scripts/app/Groups/create.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Groups/index").Include(
+                     "~/Scripts/app/Groups/index.js"));
 
             //Initial Charge
             bundles.Add(new ScriptBundle("~/add/initialCharge").Include(
