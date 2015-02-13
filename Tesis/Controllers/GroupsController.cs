@@ -95,7 +95,15 @@ namespace Tesis.Controllers
             {
                 return HttpNotFound();
             }
-            return View(group);
+            GroupViewModel groupViewModel = new GroupViewModel
+            {
+                Id = group.Id,
+                Name = group.Name,
+                SectionId = group.SectionId,
+                SemesterId = group.Section.SemesterId,
+            };
+            ViewBag.Users = new MultiSelectList(group.Users.Select(x => new { Value = x.Id,  Text = x.FirstName + " " + x.LastName }), "Value", "Text");
+            return View(groupViewModel);
         }
 
         // POST: /Groups/Edit/5

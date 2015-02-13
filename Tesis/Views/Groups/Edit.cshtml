@@ -129,7 +129,7 @@
 							@Html.LabelFor(model => model.Users, new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
 								<div class="col-lg-4 m-l-n">
-									@Html.ListBoxFor(model => model.Users, Enumerable.Empty<SelectListItem>(), new { @class = "form-control" })
+									@Html.ListBoxFor(model => model.Users, (MultiSelectList)ViewBag.Users, new { @class = "form-control" })
 								</div>
 							</div>
 							@Html.ValidationMessageFor(model => model.Users, "", new { @class = "text-danger" })
