@@ -35,94 +35,82 @@
 			<div class="ibox">
 				<div class="ibox-title">
 					<h5>Carga Inicial</h5>
-					<div class="ibox-tools">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="fa fa-wrench"></i>
-						</a>
-					</div>
 				</div>
 				<div class="ibox-content">
 					<h2>Caso de estudio</h2>
 					<p>Por favor siga los pasos para crear su caso de estudio.</p>
-
 					<form id="form" action="#" class="wizard-big">
 						<h1>Escoja Semestre y sección</h1>
 						<fieldset>
-							<div class="row">
+							<h2>Escoja Semestre y sección</h2>
+							<div class="col-md-12">
 								<div class="form-group">
-									@Html.Label("Semestre", new { @class = "control-label col-md-2" })
-									<div class="col-sm-10">
-										@(Html.Kendo().DropDownListFor(model => model.SemesterId)
-											.Name("SemesterId")
-											.OptionLabel("Seleccione el semestre...")
-											.DataTextField("Description")
-											.DataValueField("Id")
-											.DataSource(source =>
-											{
-												source.Read(read =>
-												{
-													read.Action("IndexJson", "Semesters");
-												});
-											})
-											.Value((ViewBag.SemesterId != null) ? ViewBag.SemesterId : "")
-										)
-										@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
-									</div>
+									@Html.LabelFor(model => model.SemesterId, new { @class = "control-label col-md-2" })
+									@(Html.Kendo().DropDownListFor(model => model.SemesterId)
+																					.Name("SemesterId")
+																					.OptionLabel("Seleccione el semestre...")
+																					.DataTextField("Description")
+																					.DataValueField("Id")
+																					.HtmlAttributes(new { @class = "col-md-offset-0 col-xs-offset-1"})																						
+																					.DataSource(source =>
+																					{
+																						source.Read(read =>
+																						{
+																							read.Action("IndexJson", "Semesters");
+																						});
+																					})
+									)
+									@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
 								</div>
+							</div>
 
+							<div class="col-md-12">
 								<div class="form-group">
-									@Html.Label("Sección", new { @class = "control-label col-md-2" })
-									<div class="col-sm-10">
-										@(Html.Kendo().DropDownListFor(model => model.SectionId)
-											.Name("SectionId")
-											.OptionLabel("Seleccione la sección...")
-											.DataTextField("Number")
-											.DataValueField("Id")
-											.DataSource(source =>
-											{
-												source.Read(read =>
-												{
-													read.Action("GetSectionsBySemester", "Sections")
-													.Data("filterSections");
-												})
-												.ServerFiltering(true);
-											})
-											.Value((ViewBag.SectionId != null) ? ViewBag.SectionId : "")
-											.Enable(false)
-											.AutoBind(false)
-											.CascadeFrom("SemesterId")
-										)
-										@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
-									</div>
+									@Html.LabelFor(model => model.SectionId, new { @class = "control-label col-md-2" })
+									@(Html.Kendo().DropDownListFor(model => model.SectionId)
+																					.Name("SectionId")
+																					.OptionLabel("Seleccione la sección...")
+																					.DataTextField("Number")
+																					.DataValueField("Id")
+																					.HtmlAttributes(new { @class = "col-md-offset-0 col-xs-offset-1"})																						
+																					.DataSource(source =>
+																					{
+																						source.Read(read =>
+																						{
+																							read.Action("GetSectionsBySemester", "Sections")
+																							.Data("filterSections");
+																						})
+																						.ServerFiltering(true);
+																					})
+																					.Enable(false)
+																					.AutoBind(false)
+																					.CascadeFrom("SemesterId")
+									)
+									@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
 								</div>
-								<div class="col-lg-4">
-									<div class="text-center">
-										<div style="margin-top: 20px">
-											<i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
-										</div>
-									</div>
-								</div>
+							</div>
+							<div class="col-lg-12">
+								<b>Nota:</b>
+								<p>De no seleccionar Semestre y sección posteriormente tendrá que asignar este caso de estudio a uno</p>
 							</div>
 						</fieldset>
 
 						<h1>Tipo de Carga de Datos</h1>
 						<fieldset>
 							<h2>Seleccione la manera de cargar sus datos</h2>
-							<div class="row">
-								<div class="form-group">
-									<div class="col-sm-10">
-										<div class="radio i-checks">
-											<label>
-												<input type="radio" checked value="xml" name="InitialChargeType">
-												<i></i> Archivo Xml
-											</label>
-										</div>
-										<div class="radio i-checks">
-											<label>
-												<input type="radio" value="charge" name="InitialChargeType">
-												<i></i> Formulario
-											</label>
-										</div>
+							<div class="form-group">
+								<div class="col-sm-10">
+									<div class="radio i-checks">
+										<label>
+											<input type="radio" checked value="xml" name="InitialChargeType">
+											<i></i> Archivo Xml
+										</label>
+									</div>
+									<div class="radio i-checks">
+										<label>
+											<input type="radio" value="charge" name="InitialChargeType">
+											<i></i> Formulario
+										</label>
 									</div>
 								</div>
 							</div>
@@ -155,73 +143,71 @@
 						<h1>Formulario de Carga</h1>
 						<fieldset>
 							<h2>Cargue su archivo Xml</h2>
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="form-group">
-										@Html.LabelFor(model => model.ProductId)
-										@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "single-line" })
-										@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })										
-									</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									@Html.LabelFor(model => model.ProductId)
+									@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "single-line" })
+									@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })										
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.Demand)									
-										@Html.EditorFor(model => model.Demand)
-										@Html.ValidationMessageFor(model => model.Demand)									
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.Demand)									
+									@Html.EditorFor(model => model.Demand)
+									@Html.ValidationMessageFor(model => model.Demand)									
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.Stddev)
-										@Html.EditorFor(model => model.Stddev)
-										@Html.ValidationMessageFor(model => model.Stddev)
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.Stddev)
+									@Html.EditorFor(model => model.Stddev)
+									@Html.ValidationMessageFor(model => model.Stddev)
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.Price)
-										@Html.TextBoxFor(model => model.Price, new { @class = "text-box single-line" })
-										@Html.ValidationMessageFor(model => model.Price)									
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.Price)
+									@Html.TextBoxFor(model => model.Price, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.Price)									
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.PreparationCost)					
-										@Html.TextBoxFor(model => model.PreparationCost, new { @class = "text-box single-line" })
-										@Html.ValidationMessageFor(model => model.PreparationCost)										
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.PreparationCost)					
+									@Html.TextBoxFor(model => model.PreparationCost, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.PreparationCost)										
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.AnnualMaintenanceCost)										
-										@Html.EditorFor(model => model.AnnualMaintenanceCost)
-										@Html.ValidationMessageFor(model => model.AnnualMaintenanceCost)										
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.AnnualMaintenanceCost)										
+									@Html.EditorFor(model => model.AnnualMaintenanceCost)
+									@Html.ValidationMessageFor(model => model.AnnualMaintenanceCost)										
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.PreparationTime)
-										@Html.TextBoxFor(model => model.PreparationTime, new { @class = "text-box single-line" })
-										@Html.ValidationMessageFor(model => model.PreparationTime)					
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.PreparationTime)
+									@Html.TextBoxFor(model => model.PreparationTime, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.PreparationTime)					
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.FillTime)		
-										@Html.TextBoxFor(model => model.FillTime, new { @class = "text-box single-line" })
-										@Html.ValidationMessageFor(model => model.FillTime)
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.FillTime)		
+									@Html.TextBoxFor(model => model.FillTime, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.FillTime)
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.DeliveryTime)		
-										@Html.TextBoxFor(model => model.DeliveryTime, new { @class = "text-box single-line" })
-										@Html.ValidationMessageFor(model => model.DeliveryTime)
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.DeliveryTime)		
+									@Html.TextBoxFor(model => model.DeliveryTime, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.DeliveryTime)
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.SecurityStock)									
-										@Html.EditorFor(model => model.SecurityStock)
-										@Html.ValidationMessageFor(model => model.SecurityStock)			
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.SecurityStock)									
+									@Html.EditorFor(model => model.SecurityStock)
+									@Html.ValidationMessageFor(model => model.SecurityStock)			
+								</div>
 
-									<div class="form-group">
-										@Html.LabelFor(model => model.InitialStock)									
-										@Html.TextBoxFor(model => model.InitialStock, new { @class = "text-box single-line" })
-										@Html.ValidationMessageFor(model => model.InitialStock)				
-									</div>
+								<div class="form-group">
+									@Html.LabelFor(model => model.InitialStock)									
+									@Html.TextBoxFor(model => model.InitialStock, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.InitialStock)				
 								</div>
 							</div>
 						</fieldset>

@@ -24,7 +24,7 @@ function InitialCharge() {
 }
 
 function resizeJquerySteps() {
-    $('.wizard .content').animate({ height: $('.body.current').outerHeight() }, "slow");
+    $('.wizard .content').animate({ height: $('.body.current').outerHeight() }, "fast");
 }
 
 $(document).ready(function () {
@@ -52,9 +52,7 @@ $(document).ready(function () {
 
             var form = $(this);
 
-            // Clean up if user went backward before
-            if (currentIndex < newIndex)
-            {
+            if (currentIndex < newIndex) {
                 // To remove error styles
                 $(".body:eq(" + newIndex + ") label.error", form).remove();
                 $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
@@ -63,11 +61,17 @@ $(document).ready(function () {
             // Disable validation on fields that are disabled or hidden.
             form.validate().settings.ignore = ":disabled,:hidden";
 
-            if (currentIndex == 0 && form.valid()) {
-                var sectionId = $("#sectionId").val();
+            //if (currentIndex == 0 && form.valid()) {
+            //    var sectionId = $("#sectionId").val();
 
+            //}
+
+            if (currentIndex == 2) {
+                var selected = ($("input:radio[name*= 'InitialChargeType']:checked").val());
+                if (selected == 'xml') {
+                    //Cargar el formulario
+                }
             }
-
             // Start validation; Prevent going forward if false
             return form.valid();
         },
@@ -78,17 +82,20 @@ $(document).ready(function () {
             if (currentIndex === 2) {
                 $("#form .actions a[href='#next']").text('Finalizar');
                 var selected = ($("input:radio[name*= 'InitialChargeType']:checked").val());
-                if (selected === "xml") {
-                    //Cargar el formulario
-                } else if (priorIndex > currentIndex && selected === "charge") {
+                if (priorIndex > currentIndex && selected === "charge") {
                     $(this).steps("previous");
                 } else if (selected === "charge") {
                     $(this).steps("next");
                 }
             } else if (currentIndex == 3) {
-                $("#form .actions li[class='disabled']").css("display", "block");
-                $("#form .actions li[class='disabled']").removeClass('disabled');
-                $("#form .actions a[href='#next']").text('Siguiente');
+                var selected = ($("input:radio[name*= 'InitialChargeType']:checked").val());
+                if (selected == "xml") {
+                    $(this).steps("previous");
+                } else {
+                    $("#form .actions li[class='disabled']").css("display", "block");
+                    $("#form .actions li[class='disabled']").removeClass('disabled');
+                    $("#form .actions a[href='#next']").text('Siguiente');
+                }
             } else {
                 $("#form .actions a[href='#next']").text('Siguiente');
             }
