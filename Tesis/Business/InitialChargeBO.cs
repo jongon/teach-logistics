@@ -12,7 +12,7 @@ namespace Tesis.Business
     {
         public const byte WEEKS = 12;
         public InitialCharge InitialCharge { get; set; }
-        public InitialChargeBO(InitialChargeViewModel initialCharge)
+        public InitialChargeBO(CaseStudyViewModel initialCharge)
         {
             this.InitialCharge = new InitialCharge();
             this.InitialCharge.Id = Guid.NewGuid();

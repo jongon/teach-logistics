@@ -1,0 +1,113 @@
+﻿@*<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>Create InitialCharge</h5>
+					</div>
+					<div class="ibox-content">
+
+						@using (Html.BeginForm("Create", "InitialCharges", FormMethod.Post, new { @class = "form-horizontal" }))
+						{
+							@Html.AntiForgeryToken()
+							@Html.ValidationSummary(true)
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "single-line" })
+									@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Demand, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Demand)
+									@Html.ValidationMessageFor(model => model.Demand)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Stddev, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.Stddev)
+									@Html.ValidationMessageFor(model => model.Stddev)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextBoxFor(model => model.Price, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.Price)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.PreparationCost, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextBoxFor(model => model.PreparationCost, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.PreparationCost)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.AnnualMaintenanceCost, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.AnnualMaintenanceCost)
+									@Html.ValidationMessageFor(model => model.AnnualMaintenanceCost)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.PreparationTime, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextBoxFor(model => model.PreparationTime, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.PreparationTime)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.FillTime, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextBoxFor(model => model.FillTime, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.FillTime)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.DeliveryTime, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextBoxFor(model => model.DeliveryTime, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.DeliveryTime)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.SecurityStock, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.SecurityStock)
+									@Html.ValidationMessageFor(model => model.SecurityStock)
+								</div>
+							</div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.InitialStock, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.TextBoxFor(model => model.InitialStock, new { @class = "text-box single-line" })
+									@Html.ValidationMessageFor(model => model.InitialStock)
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-10">
+									<input type="submit" value="Create" class="btn btn-primary" />
+									@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>*@

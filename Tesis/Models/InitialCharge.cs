@@ -60,14 +60,10 @@ namespace Tesis.Models
 
         public Guid ProductId { get; set; }
 
-        public Guid SectionId { get; set; }
-
         public Guid CaseStudyId { get; set; }
 
         public virtual CaseStudy CaseStudy { get; set; }
 
         public virtual Product Product { get; set; }
-
-        public virtual Section Section { get; set; }
     }
 }

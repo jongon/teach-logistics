@@ -1,4 +1,14 @@
-﻿//Definición de clase de carga Inicial
+﻿function filterSections() {
+    return {
+        SemesterId: $("#SemesterId").val()
+    };
+}
+
+$.validator.setDefaults({
+    ignore: ""
+});
+
+//Definición de clase de carga Inicial
 function InitialCharge() {
     this.productId;
     this.demand;

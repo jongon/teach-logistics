@@ -310,8 +310,11 @@ namespace Tesis
                      "~/Scripts/app/Groups/index.js"));
 
             //Initial Charge
-            bundles.Add(new ScriptBundle("~/add/initialCharge").Include(
-                "~/scripts/app/initialCharge.js"));
+            bundles.Add(new ScriptBundle("~/bundles/CaseStudies/create").Include(
+                "~/Scripts/app/CaseStudies/create.js"));
+
+            bundles.Add(new StyleBundle("~/app/CaseStudies").Include(
+                "~/Content/app/initialCharges.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

@@ -16,7 +16,7 @@ using Tesis.DAL;
 
 namespace Tesis.Controllers
 {
-    public class InitialChargesController : Controller
+    public class CaseStudiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -44,17 +44,16 @@ namespace Tesis.Controllers
         // GET: /InitialCharges/Create
         public ActionResult Create()
         {
-            //Traerme las secciones y semestres
-            //db.Sections.Where(x => x.InitialCharges == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
-            //InitialChargeViewModel initialCharge = new InitialChargeViewModel();
-            //ViewBag.Products = initialCharge.Products;
+            db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
+            CaseStudyViewModel caseStudy = new CaseStudyViewModel();
+            ViewBag.Products = caseStudy.Products;
             return View();
         }
 
         // POST: /InitialCharges/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,PreparationTime,FillTime,DeliveryTime,SecurityStock,InitialStock,ProductId")] InitialChargeViewModel initialCharge)
+        public async Task<ActionResult> Create([Bind(Include="Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,PreparationTime,FillTime,DeliveryTime,SecurityStock,InitialStock,ProductId")] CaseStudyViewModel initialCharge)
         {
             if (ModelState.IsValid)
             {

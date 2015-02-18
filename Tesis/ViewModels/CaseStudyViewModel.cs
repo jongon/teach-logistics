@@ -10,7 +10,7 @@ using Tesis.Models;
 
 namespace Tesis.ViewModels
 {
-    public class InitialChargeViewModel
+    public class CaseStudyViewModel
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -73,6 +73,14 @@ namespace Tesis.ViewModels
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números enteros permitidos")]
         [Range(0, Int32.MaxValue, ErrorMessage = "Solo números enteros permitidos")]
         public int InitialStock { get; set; }
+
+        [DisplayName("Sección")]
+        [Required(ErrorMessage = "Este campo es requerido")]
+        public Guid SectionId { get; set; }
+
+        [DisplayName("Semestre")]
+        [Required(ErrorMessage = "Este campo es requerido")]
+        public Guid SemesterId { get; set; }
 
         [DisplayName("Producto")]
         [Required(ErrorMessage = "Este Campo es requerido")]
