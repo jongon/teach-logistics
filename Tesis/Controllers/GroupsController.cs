@@ -122,7 +122,7 @@ namespace Tesis.Controllers
                     {
                         user.Group = null;
                     }
-
+                    db.SaveChanges();
                     if (!(group.Users.Count() == db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
                     {
                         Flash.Error("Error", "Ha ocurrido un error creando el grupo, revise que el usuario no tenga un grupo asignado");

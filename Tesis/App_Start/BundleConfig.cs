@@ -303,7 +303,7 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Groups/create").Include(
                     "~/Scripts/app/Groups/create.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Groups/create").Include(
+            bundles.Add(new ScriptBundle("~/bundles/Groups/edit").Include(
                     "~/Scripts/app/Groups/edit.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Groups/index").Include(

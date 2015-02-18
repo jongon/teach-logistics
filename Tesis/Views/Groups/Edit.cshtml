@@ -33,7 +33,7 @@
 				</div>
 				<div class="ibox-content">
 
-					@using (Html.BeginForm("Create", "Groups", FormMethod.Post, new { @class = "form-horizontal", Id = "Group", rule = "form" }))
+					@using (Html.BeginForm("Edit", "Groups", FormMethod.Post, new { @class = "form-horizontal", Id = "Group", rule = "form" }))
 					{
 						@Html.AntiForgeryToken()
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -54,7 +54,7 @@
 																		});
 																	})
 																	.Events(e => { e.Change("onSemesterChange"); })
-																	.Value((ViewBag.SemesterId != null) ? ViewBag.SemesterId : "")
+																	.Value(Model.SemesterId.ToString())
 								)
 								@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
 							</div>
@@ -79,7 +79,7 @@
 																		.ServerFiltering(true);
 																	})
 																	.Events(e => { e.Change("onSectionChange"); })
-																	.Value((ViewBag.SectionId != null) ? ViewBag.SectionId : "")
+																	.Value(Model.SectionId.ToString())
 																	.Enable(false)
 																	.AutoBind(false)
 																	.CascadeFrom("SemesterId")
