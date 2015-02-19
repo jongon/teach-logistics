@@ -16,7 +16,7 @@ using Tesis.DAL;
 
 namespace Tesis.Controllers
 {
-    public class CaseStudiesController : Controller
+    public class CaseStudiesController : BaseController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
