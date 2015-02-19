@@ -12,6 +12,7 @@ namespace Tesis.ViewModels
         public Guid Id { get; set; }
 
         [DisplayName("Número")]
+        [DataType(DataType.Text)]
         [Required(ErrorMessage = "Este campo es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números enteros permitidos")]
         [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
@@ -28,6 +29,7 @@ namespace Tesis.ViewModels
         public string City { get; set; }
 
         [DisplayName("Distancia (Km's)")]
+        [DataType(DataType.Text)]
         [Required(ErrorMessage = "Este campo es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números enteros permitidos")]
         [Range(0, Int32.MaxValue, ErrorMessage = "Solo números enteros permitidos")]

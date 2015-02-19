@@ -316,6 +316,10 @@ namespace Tesis
             bundles.Add(new StyleBundle("~/app/CaseStudies").Include(
                 "~/Content/app/initialCharges.css"));
 
+            //Products
+            bundles.Add(new ScriptBundle("~/bundles/Products/index").Include(
+                "~/Scripts/app/Products/index.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

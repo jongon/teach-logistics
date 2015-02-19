@@ -67,9 +67,9 @@ $(document).ready(function () {
             //}
 
             if (currentIndex == 2) {
-                var selected = ($("input:radio[name*= 'InitialChargeType']:checked").val());
+                var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
                 if (selected == 'xml') {
-                    //Cargar el formulario
+                    //Cargar el form
                 }
             }
             // Start validation; Prevent going forward if false
@@ -81,14 +81,14 @@ $(document).ready(function () {
             // Suppress (skip) "Warning" step if the user is old enough.
             if (currentIndex === 2) {
                 $("#form .actions a[href='#next']").text('Finalizar');
-                var selected = ($("input:radio[name*= 'InitialChargeType']:checked").val());
-                if (priorIndex > currentIndex && selected === "charge") {
+                var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
+                if (priorIndex > currentIndex && selected === "form") {
                     $(this).steps("previous");
-                } else if (selected === "charge") {
+                } else if (selected === "form") {
                     $(this).steps("next");
                 }
             } else if (currentIndex == 3) {
-                var selected = ($("input:radio[name*= 'InitialChargeType']:checked").val());
+                var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
                 if (selected == "xml") {
                     $(this).steps("previous");
                 } else {
@@ -152,8 +152,12 @@ $(document).ready(function () {
 
 function isXml(input) {
     var value = input.value;
-    var res = value.substr(value.lastIndexOf('.')).toLowerCase() == '.xml';
+    var str = value.substr(value.lastIndexOf('.')).toLowerCase();
+    var res = str == '.xml';
     if (!res) {
+        if (str !== '') {
+            alert("El archivo debe tener XML");
+        }
         input.value = "";
     }
     return res;

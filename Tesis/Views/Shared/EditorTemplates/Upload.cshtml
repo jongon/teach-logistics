@@ -1,0 +1,16 @@
+﻿@model object
+@{
+	var htmlAttributesDefault = new
+	{
+		type = "file"
+	};
+
+	var htmlAttributesAux = ViewData["htmlAttributes"] ?? new { };
+
+	var htmlAttributes = new RouteValueDictionary(htmlAttributesDefault);
+		foreach (var item in new RouteValueDictionary(htmlAttributesAux))
+		{
+			htmlAttributes[item.Key] = item.Value;
+		}
+}
+@Html.TextBoxFor(model => model, htmlAttributes)

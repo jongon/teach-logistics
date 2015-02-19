@@ -47,6 +47,7 @@ namespace Tesis.Controllers
             db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
             CaseStudyViewModel caseStudy = new CaseStudyViewModel();
             ViewBag.Products = caseStudy.Products;
+            ViewBag.ChargeTypes = caseStudy.ChargeTypes;
             return View();
         }
 

@@ -92,5 +92,25 @@ namespace Tesis.ViewModels
             }
             set { }
         }
+
+        [DisplayName("Tipo de carga")]
+        [Required(ErrorMessage = "Debe seleccionar un tipo de carga")]
+        public string ChargeTypeName { get; set; }
+
+        public SelectList ChargeTypes
+        {
+            get
+            {
+                return new SelectList(new Dictionary<string,string>() {
+                    { "xml", "Archivo Xml"},
+                    { "form", "Formulario"}
+                }, "Key", "Value");
+            }
+            set { }
+        }
+
+        [DataType(DataType.Upload)]
+        [Required(ErrorMessage = "El Archivo Xml es requerido")]
+        public HttpPostedFileBase XmlUpload { get; set; }
     }
 }
