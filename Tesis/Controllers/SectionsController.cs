@@ -145,16 +145,22 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            Section section = await db.Sections.FindAsync(id);
-            if (section != null)
+            try
             {
-                db.Sections.Remove(section);
-                await db.SaveChangesAsync();
-                Flash.Success("Ok!", "Sección eliminada exitosamente");
+                Section section = await db.Sections.FindAsync(id);
+                if (section != null)
+                {
+                    db.Sections.Remove(section);
+                    await db.SaveChangesAsync();
+                    Flash.Success("Ok!", "Sección eliminada exitosamente");
+                    return RedirectToAction("Index");
+                }
+                Flash.Error("Error", "No se ha podido eliminar la sección");
+                return View(section);
+            } catch(Exception) {
+                Flash.Error("Error", "No se ha podido eliminar la sección, puede tener relaciones");
                 return RedirectToAction("Index");
             }
-            Flash.Error("Error", "No se ha podido eliminar la sección");
-            return View(section);
         }
 
         protected override void Dispose(bool disposing)

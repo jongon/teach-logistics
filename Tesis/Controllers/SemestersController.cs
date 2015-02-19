@@ -129,16 +129,24 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            Semester semester = await db.Semesters.FindAsync(id);
-            if (semester != null)
+            try
             {
-                db.Semesters.Remove(semester);
-                await db.SaveChangesAsync();
-                Flash.Success("OK", "El semestre ha sido eliminado exitosamente");
+                Semester semester = await db.Semesters.FindAsync(id);
+                if (semester != null)
+                {
+                    db.Semesters.Remove(semester);
+                    await db.SaveChangesAsync();
+                    Flash.Success("OK", "El semestre ha sido eliminado exitosamente");
+                    return RedirectToAction("Index");
+                }
+                Flash.Error("Error", "Ha ocurrido un error eliminando el semestre");
+                return RedirectToAction("Delete", id);
+            }
+            catch (Exception)
+            {
+                Flash.Error("Error", "Ha ocurrido un error eliminando el semestre, puede tener relaciones");
                 return RedirectToAction("Index");
             }
-            Flash.Error("Error", "Ha ocurrido un error eliminando el semestre");
-            return RedirectToAction("Delete", id);
         }
 
         protected override void Dispose(bool disposing)

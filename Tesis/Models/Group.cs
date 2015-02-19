@@ -15,7 +15,6 @@ namespace Tesis.Models
         }
         public Guid Id { get; set; }
 
-        [Required]
         [DisplayName("Nombre")]
         public string Name { get; set; }
 

@@ -32,7 +32,7 @@ namespace Tesis.ViewModels
         [Range(0, 99999, ErrorMessage = "Solo entero positivo de máx. 5 dígitos")]
         public int Price { get; set; }
 
-        [DisplayName("Costo De Preparación/Transmitir")]
+        [DisplayName("Costo De Preparación / Transmitir")]
         [Required(ErrorMessage = "El campo Costo Preparación es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
         [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
@@ -75,11 +75,9 @@ namespace Tesis.ViewModels
         public int InitialStock { get; set; }
 
         [DisplayName("Sección")]
-        [Required(ErrorMessage = "Este campo es requerido")]
         public Guid SectionId { get; set; }
 
         [DisplayName("Semestre")]
-        [Required(ErrorMessage = "Este campo es requerido")]
         public Guid SemesterId { get; set; }
 
         [DisplayName("Producto")]

@@ -18,8 +18,6 @@ namespace Tesis.Models
 
         public Guid Id { get; set; }
 
-        [DisplayName("Nombre")]
-        [Required(ErrorMessage = "Este campo es requerido")]
         public string Name { get; set; }
 
         public DateTime Created { get; set; }

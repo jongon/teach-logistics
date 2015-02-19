@@ -35,6 +35,7 @@ namespace Tesis.DAL
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
+            modelBuilder.Entity<Semester>().HasMany(x => x.Sections).WithOptional().HasForeignKey(e => e.SemesterId).WillCascadeOnDelete(false);
             //modelBuilder.Entity<Product>().ToTable("Products");
             ////modelBuilder.Entity<Section>().ToTable("Sections");
             //modelBuilder.Entity<Semester>().ToTable("Semesters");

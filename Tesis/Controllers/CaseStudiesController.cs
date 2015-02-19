@@ -68,6 +68,12 @@ namespace Tesis.Controllers
             return View(initialCharge);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateWithXml()
+        {
+            return View();
+        }
         // GET: /InitialCharges/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
