@@ -129,7 +129,8 @@ namespace Tesis.ViewModels
         public string Name { get; set;}
         [XmlAttribute]
         public string Section { get; set; }
- 
+
+        [XmlElement("InitialCharge")]
         public List<InitialChargeXml> InitialCharges { get; set;}
     }
 
