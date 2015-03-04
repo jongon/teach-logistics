@@ -1,0 +1,53 @@
+﻿@model Tesis.ViewModels.CreateByXmlViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateByXml</title>
+</head>
+<body>
+    
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>CreateByXml CreateByXmlViewModel</h5>
+                    </div>
+                    <div class="ibox-content">
+    
+            @using (Html.BeginForm("CreateByXml", "CaseStudies", FormMethod.Post,	new { enctype = "multipart/form-data" })) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+              <div>
+                @Html.LabelFor(m => m.XmlUpload)
+                @Html.EditorFor(m => m.XmlUpload)
+              </div>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                </div>
+            </div>
+        </div>
+    }
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+     
+</body>
+</html>

@@ -211,7 +211,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\InitialChargeBO.cs" />
-    <Compile Include="Business\InitialChargeXml.cs" />
+    <Compile Include="Business\CaseStudyXmlBL.cs" />
     <Compile Include="Business\ProductBO.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -245,6 +245,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CreateByXmlViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\CaseStudyViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
@@ -1812,6 +1813,7 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\CaseStudies\View.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
+    <Content Include="Views\CaseStudies\CreateByXml.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

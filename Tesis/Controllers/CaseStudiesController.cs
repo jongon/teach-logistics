@@ -13,6 +13,7 @@ using Tesis.Business;
 using System.Collections;
 using Tesis.Models;
 using Tesis.DAL;
+using System.IO;
 
 namespace Tesis.Controllers
 {
@@ -70,17 +71,26 @@ namespace Tesis.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateByXml()
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateByXml(CreateByXmlViewModel model)
         {
-            return null;
+            if (model.XmlUpload != null && model.XmlUpload.ContentLength > 0)
+            {
+                var uploadDir = "~/App_Data/uploads";
+                var imagePath = Path.Combine(Server.MapPath(uploadDir), model.XmlUpload.FileName);
+                var imageUrl = Path.Combine(uploadDir, model.XmlUpload.FileName);
+                CaseStudyXmlBL caseStudyXml= new CaseStudyXmlBL();
+                CaseStudyXml caseStudy = caseStudyXml.Deserealize(model.XmlUpload);
+                model.XmlUpload.SaveAs(imagePath);
+            }
+            return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateWithXml()
+        public ActionResult CreateByXml()
         {
             return View();
         }
+
         // GET: /InitialCharges/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
