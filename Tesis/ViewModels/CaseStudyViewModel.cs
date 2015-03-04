@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using Tesis.DAL;
 using Tesis.Models;
 
@@ -112,5 +113,56 @@ namespace Tesis.ViewModels
         [DataType(DataType.Upload)]
         [Required(ErrorMessage = "El Archivo Xml es requerido")]
         public HttpPostedFileBase XmlUpload { get; set; }
+    }
+
+    [XmlRoot("CaseStudy")]
+    public class CaseStudyXml {
+
+        public CaseStudyXml()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
+
+        [XmlAttribute]
+        public string Name { get; set;}
+        [XmlAttribute]
+        public string Section { get; set; }
+ 
+        public List<InitialChargeXml> InitialCharges { get; set;}
+    }
+
+    [XmlRoot("InitialCharge")]
+    public class InitialChargeXml
+    {
+        public InitialChargeXml()
+        {
+            this.Id = Guid.NewGuid();
+        } 
+
+        public Guid Id { get; set; }
+
+        public short Demand { get; set; }
+
+        public short Stddev { get; set; }
+
+        public int Price { get; set; }
+
+        public int PreparationCost { get; set; }
+
+        public double AnnualMaintenanceCost { get; set; }
+
+        public byte PreparationTime { get; set; }
+
+        public byte FillTime { get; set; }
+
+        public byte DeliveryTime { get; set; }
+
+        public short SecurityStock { get; set; }
+
+        public int InitialStock { get; set; }
+
+        public string Product { get; set; }
     }
 }

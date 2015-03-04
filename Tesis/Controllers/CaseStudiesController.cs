@@ -70,6 +70,12 @@ namespace Tesis.Controllers
         }
 
         [HttpPost]
+        public ActionResult CreateByXml()
+        {
+            return null;
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateWithXml()
         {
