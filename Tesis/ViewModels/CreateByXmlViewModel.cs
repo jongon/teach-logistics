@@ -9,6 +9,7 @@ namespace Tesis.ViewModels
     public class CreateByXmlViewModel
     {
         [DataType(DataType.Upload)]
+        [Required]
         public HttpPostedFileBase XmlUpload { get; set; }
     }
 }

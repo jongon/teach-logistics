@@ -76,12 +76,7 @@ namespace Tesis.Controllers
         {
             if (model.XmlUpload != null && model.XmlUpload.ContentLength > 0)
             {
-                var uploadDir = "~/App_Data/uploads";
-                var imagePath = Path.Combine(Server.MapPath(uploadDir), model.XmlUpload.FileName);
-                var imageUrl = Path.Combine(uploadDir, model.XmlUpload.FileName);
-                CaseStudyXmlBL caseStudyXml= new CaseStudyXmlBL();
-                CaseStudyXml caseStudy = caseStudyXml.Deserealize(model.XmlUpload);
-                model.XmlUpload.SaveAs(imagePath);
+                CaseStudyXml caseStudy = CaseStudyXmlBL.Deserealize(model.XmlUpload.InputStream);
             }
             return View();
         }

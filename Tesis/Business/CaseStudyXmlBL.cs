@@ -4,21 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Xml.Serialization;
-using Tesis.ViewModels;
+using Tesis.Models;
 
 namespace Tesis.Business
 {
     public class CaseStudyXmlBL
     {
-        public CaseStudyXml Deserealize(HttpPostedFileBase file)
+        public static CaseStudyXml Deserealize(Stream file)
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(CaseStudyXml));
-            //TextReader reader = new StreamReader(@"C:\Xml.xml");
-            TextReader reader = new StreamReader(file.InputStream);
+            TextReader reader = new StreamReader(file);
             object obj = deserializer.Deserialize(reader);
-            CaseStudyXml XmlData = (CaseStudyXml)obj;
+            CaseStudyXml CaseStudyXmlData = (CaseStudyXml)obj;
             reader.Close();
-            return XmlData;
+            return CaseStudyXmlData;
         }
     }
 }

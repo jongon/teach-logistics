@@ -16,16 +16,11 @@ namespace Tesis.Models
             InitialCharges = new HashSet<InitialCharge>();
             Sections = new HashSet<Section>();
         }
-
         public Guid Id { get; set; }
-
-        [XmlAttribute]
+        [XmlAttribute("Name")]
         public string Name { get; set; }
-
         public DateTime Created { get; set; }
-
         public virtual ICollection<Section> Sections { get; set; }
-
         public virtual ICollection<InitialCharge> InitialCharges { get; set; }
     }
 }
