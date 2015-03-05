@@ -16,6 +16,7 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
@@ -79,9 +80,9 @@
 									@Html.DisplayFor(modelItem => item.Distance)
 								</td>
 								<td>
-									@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
-									@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
-									@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+									@Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+									@Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+									@Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
 								</td>
 							</tr>
 							}

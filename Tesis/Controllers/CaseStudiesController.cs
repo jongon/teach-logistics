@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MvcFlash.Core;
+using MvcFlash.Core.Extensions;
 using Tesis;
 using Tesis.ViewModels;
 using Tesis.Business;
@@ -74,9 +76,21 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateByXml(CreateByXmlViewModel model)
         {
-            if (model.XmlUpload != null && model.XmlUpload.ContentLength > 0)
+            if (ModelState.IsValid)
             {
-                CaseStudyXml caseStudy = CaseStudyXmlBL.Deserealize(model.XmlUpload.InputStream);
+                try
+                {
+                    CaseStudyXmlBL caseStudyBL = new CaseStudyXmlBL();
+                    CaseStudyXml caseStudyXml = caseStudyBL.Deserealize(model.XmlUpload.InputStream);
+                    CaseStudy caseStudy = caseStudyBL.XmlToModel(caseStudyXml);
+                    db.CaseStudies.Add(caseStudy);
+                    db.SaveChanges();
+                    Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
+                }
+                catch (Exception)
+                {
+                    Flash.Error("Ok", "El Archivo Xml no ha podido ser cargado, revise que esté correctamente formado y tenga todos los campos llenos");
+                }
             }
             return View();
         }

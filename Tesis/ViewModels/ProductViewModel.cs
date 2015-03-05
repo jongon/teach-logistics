@@ -9,18 +9,18 @@ namespace Tesis.ViewModels
 {
     public class ProductViewModel
     {
-        public Guid Id { get; set; }
-
         [DisplayName("Número")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Este campo es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números enteros permitidos")]
         [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
+        [UniqueProductNumber]
         public int Number { get; set; }
 
         [DisplayName("Nombre")]
         [Required(ErrorMessage = "Este campo es requerido")]
         [StringLength(50, ErrorMessage = "No puede exceder los {1} caracteres.")]
+        [UniqueProductName]
         public string Name { get; set; }
 
         [DisplayName("Ciudad")]

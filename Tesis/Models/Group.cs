@@ -7,6 +7,7 @@ namespace Tesis.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [DisplayName("Grupo")]
     public partial class Group
     {
         public Group()

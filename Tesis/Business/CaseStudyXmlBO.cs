@@ -11,16 +11,9 @@ namespace Tesis.Business
     {
         [XmlAttribute]
         public string Name { get; set; }
-        [XmlElement("Section")]
-        public List<SectionXml> Sections { get; set; }
 
         [XmlElement("InitialCharge")]
         public List<InitialChargeXml> InitialCharges { get; set; }
-    }
-
-    public class SectionXml
-    {
-        public string Number { get; set; }
     }
 
     public class InitialChargeXml

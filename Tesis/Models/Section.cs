@@ -8,6 +8,7 @@ namespace Tesis.Models
     using System.Data.Entity.Spatial;
     using System.Xml.Serialization;
 
+    [DisplayName("Sección")]
     public partial class Section
     {
         public Section()
@@ -24,13 +25,17 @@ namespace Tesis.Models
         public Guid SemesterId { get; set; }
 
         public Guid? CaseStudyId { get; set; }
-
+        
+        [DisplayName("Caso de Estudio")]
         public CaseStudy CaseStudy { get; set; }
 
+        [DisplayName("Grupos")]
         public virtual ICollection<Group> Groups { get; set; }
 
+        [DisplayName("Semestre")]
         public virtual Semester Semester { get; set; }
 
+        [DisplayName("Integrantes")]
         public virtual ICollection<User> Users { get; set; }
     }
 }

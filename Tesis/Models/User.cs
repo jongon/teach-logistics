@@ -14,29 +14,21 @@ namespace Tesis.Models
     public partial class User : IdentityUser
     {
         [DisplayName("Usuario")]
-        [Required(ErrorMessage = "El {0} es requerido")]
         public override string UserName { get; set; }
 
         [DisplayName("Email")]
-        [Required(ErrorMessage = "El {0} es requerido")]
-        [EmailAddress(ErrorMessage = "{0} inválido")]
         public override string Email { get; set; }
 
         [DisplayName("Nombre")]
-        [Required(ErrorMessage = "El {0} es requerido")]
         public virtual string FirstName { get; set; }
 
         [DisplayName("Apellido")]
-        [Required(ErrorMessage = "El {0} es requerido")]
         public virtual string LastName { get; set; }
 
         [DisplayName("Cédula")]
-        [Required(ErrorMessage = "La {0} es requerida")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números permitidos")]
         public virtual string IdCard { get; set; }
 
         [DisplayName("Activación")]
-        [Required(ErrorMessage = "Este Campo es requerido")]
         public override bool EmailConfirmed { get; set; }
 
         [DisplayName("Sección")]
@@ -44,6 +36,7 @@ namespace Tesis.Models
 
         public virtual Guid? SectionId { get; set; }
 
+        [DisplayName("Grupo")]
         public virtual Group Group { get; set; }
 
         public virtual Guid? GroupId { get; set; }

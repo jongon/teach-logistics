@@ -79,4 +79,56 @@ namespace Tesis
             }
         }
     }
+
+    public class UniqueProductName : ValidationAttribute
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public UniqueProductName()
+            : base("{0} de producto se encuentra registrado en el sistema")
+        {
+
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            Product product;
+            product = db.Products.Where(x => x.Name == value.ToString()).FirstOrDefault();
+            if (product == null)
+            {
+                return ValidationResult.Success;
+            }
+            else
+            {
+                var errorMessage = FormatErrorMessage(validationContext.DisplayName);
+                return new ValidationResult(errorMessage);
+            }
+        }
+    }
+
+    public class UniqueProductNumber : ValidationAttribute
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public UniqueProductNumber()
+            : base("{0} de producto se encuentra registrado en el sistema")
+        {
+
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            Product product;
+            product = db.Products.Where(x => x.Number == (int)value).FirstOrDefault();
+            if (product == null)
+            {
+                return ValidationResult.Success;
+            }
+            else
+            {
+                var errorMessage = FormatErrorMessage(validationContext.DisplayName);
+                return new ValidationResult(errorMessage);
+            }
+        }
+    }
 }

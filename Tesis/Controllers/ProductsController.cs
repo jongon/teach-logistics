@@ -14,6 +14,8 @@ using MvcFlash.Core;
 using MvcFlash.Core.Extensions;
 using Tesis.Models;
 using Tesis.DAL;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace Tesis.Controllers
 {
@@ -31,31 +33,32 @@ namespace Tesis.Controllers
         // POST: /Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Number,Name,City,Distance")] ProductViewModel product, string option = null)
+        public async Task<ActionResult> Create(string products)
         {
-            if (ModelState.IsValid)
-            {
-                try
+            try {
+                List<ProductViewModel> productsList = (List<ProductViewModel>)JsonConvert.DeserializeObject(products, typeof(List<ProductViewModel>));
+                foreach (var productViewModel in productsList)
                 {
-                    ProductBO productBO = new ProductBO(product);
-                    db.Products.Add(productBO.Product);
-                    await db.SaveChangesAsync();
-                    Flash.Success("El Producto se ha agregado correctamente");
-                    if (option == null)
-                        return RedirectToAction("Index");
-                    else if (option.Equals("add"))
-                    {
-                        return View();
+                    if (TryValidateModel(productViewModel)) {
+                        Product product = new Product { 
+                            Id = Guid.NewGuid(),
+                            Name = productViewModel.Name,
+                            City = productViewModel.City,
+                            Distance = productViewModel.Distance,
+                            Number = productViewModel.Number
+                        };
+                        db.Products.Add(product);
+                    } else {
+                        throw new Exception();
                     }
                 }
-                catch (Exception ex)
-                {
-                    Flash.Error("Ha Ocurrido un error al agregar el producto, Error del servidor: " + ex.ToString());
-                    return View(product);
-                }
+                await db.SaveChangesAsync();
+                Flash.Success("Los Productos se han agregado correctamente");
+                return RedirectToAction("Index");
+            } catch (Exception) {
+                Flash.Error("Ha Ocurrido un error al agregar el producto, revise los campos");
+                return View();
             }
-            Flash.Error("Ha Ocurrido un error al agregar el producto, revise los campos");
-            return View(product);
         }
 
         // GET: /Products/

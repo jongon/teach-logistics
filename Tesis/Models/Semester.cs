@@ -17,8 +17,10 @@ namespace Tesis.Models
 
         public Guid Id { get; set; }
 
+        [DisplayName("Descripción")]
         public string Description { get; set; }
 
+        [DisplayName("Secciones")]
         public virtual ICollection<Section> Sections { get; set; }
     }
 }
