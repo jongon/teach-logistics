@@ -323,6 +323,8 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Products/create").Include(
                 "~/Scripts/app/Products/create.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Products/edit").Include(
+                "~/Scripts/app/Products/edit.js"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

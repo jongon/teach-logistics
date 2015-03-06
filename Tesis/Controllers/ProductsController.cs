@@ -35,6 +35,7 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(string products)
         {
+            int errors = 0;
             try {
                 List<ProductViewModel> productsList = (List<ProductViewModel>)JsonConvert.DeserializeObject(products, typeof(List<ProductViewModel>));
                 foreach (var productViewModel in productsList)
@@ -48,13 +49,18 @@ namespace Tesis.Controllers
                             Number = productViewModel.Number
                         };
                         db.Products.Add(product);
+                        await db.SaveChangesAsync();
                     } else {
-                        throw new Exception();
+                        errors++;
                     }
                 }
-                await db.SaveChangesAsync();
-                Flash.Success("Los Productos se han agregado correctamente");
-                return RedirectToAction("Index");
+                if (errors <= 0) {
+                    Flash.Success("Los Productos se han agregado correctamente");
+                    return RedirectToAction("Index");
+                } else {
+                    Flash.Error("Error", errors + " productos no puedieron ser agregados");
+                    return RedirectToAction("Index");
+                }
             } catch (Exception) {
                 Flash.Error("Ha Ocurrido un error al agregar el producto, revise los campos");
                 return View();
@@ -65,6 +71,51 @@ namespace Tesis.Controllers
         public async Task<ActionResult> Index()
         {
             return View(await db.Products.ToListAsync());
+        }
+
+        public JsonResult ExistsProductNumber(string number)
+        {
+            bool result = false;
+            int numberProduct = Convert.ToInt32(number);
+            try
+            {
+                Product product = db.Products.Where(x => x.Number == numberProduct).FirstOrDefault();
+                if (product != null)
+                {
+                    result = false;
+                }
+                else
+                {
+                    result = true;
+                }
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ExistsProductName(string name)
+        {
+            bool result = false;
+            try
+            {
+                Product product = db.Products.Where(x => x.Name == name).FirstOrDefault();
+                if (product != null)
+                {
+                    result = false;
+                }
+                else
+                {
+                    result = true;
+                }
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: /Products/Details/5
@@ -82,7 +133,6 @@ namespace Tesis.Controllers
             return View(product);
         }
 
-
         // GET: /Products/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
@@ -95,7 +145,15 @@ namespace Tesis.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            ProductViewModelEdit productViewModel = new ProductViewModelEdit
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Number = product.Number,
+                City = product.City,
+                Distance = product.Distance
+            };
+            return View(productViewModel);
         }
 
         // POST: /Products/Edit/5
@@ -103,15 +161,34 @@ namespace Tesis.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Number,Name,City,Distance")] Product product)
+        public async Task<ActionResult> Edit([Bind(Include="Id,Number,Name,City,Distance")] ProductViewModelEdit productViewModel)
         {
+            Product product = db.Products.Where(x => x.Number == productViewModel.Number && x.Name == productViewModel.Name).FirstOrDefault();
+            if (product == null)
+            {
+                product = db.Products.Where(x => x.Number == productViewModel.Number || x.Name == productViewModel.Name).FirstOrDefault();
+                if (product != null)
+                {
+                    Flash.Error("Error", "El usuario no puede ser editado con esos valores");
+                    return View(productViewModel);
+                }
+            }
             if (ModelState.IsValid)
             {
+                product = new Product
+                {
+                    Id = productViewModel.Id,
+                    Number = productViewModel.Number,
+                    Name = productViewModel.Name,
+                    City = productViewModel.City,
+                    Distance = productViewModel.Distance
+                };
                 db.Entry(product).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                Flash.Success("Ok", "El producto ha sido editado exitosamente");
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(productViewModel);
         }
 
         // GET: /Products/Delete/5

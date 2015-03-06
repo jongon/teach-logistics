@@ -8,7 +8,6 @@
 var products = [];
 
 $('#next').click(function () {
-    $('#form').validate();
     if ($('#form').valid()) {
         products.push(new productViewModel());
         $('#Number').val('');
