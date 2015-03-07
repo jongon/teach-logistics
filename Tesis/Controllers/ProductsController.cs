@@ -163,19 +163,15 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include="Id,Number,Name,City,Distance")] ProductViewModelEdit productViewModel)
         {
-            Product product = db.Products.Where(x => x.Number == productViewModel.Number && x.Name == productViewModel.Name).FirstOrDefault();
-            if (product == null)
+            List<Product> duplicatedProducts = db.Products.Where(x => (x.Number == productViewModel.Number || x.Name == productViewModel.Name) && (x.Id != productViewModel.Id)).ToList();
+            if (duplicatedProducts.Count() > 0)
             {
-                product = db.Products.Where(x => x.Number == productViewModel.Number || x.Name == productViewModel.Name).FirstOrDefault();
-                if (product != null)
-                {
-                    Flash.Error("Error", "El usuario no puede ser editado con esos valores");
-                    return View(productViewModel);
-                }
+                Flash.Error("Error", "El usuario no puede ser editado con esos valores, se encuentran duplicados");
+                return View(productViewModel);
             }
             if (ModelState.IsValid)
             {
-                product = new Product
+                Product product = new Product
                 {
                     Id = productViewModel.Id,
                     Number = productViewModel.Number,
@@ -183,10 +179,17 @@ namespace Tesis.Controllers
                     City = productViewModel.City,
                     Distance = productViewModel.Distance
                 };
-                db.Entry(product).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                Flash.Success("Ok", "El producto ha sido editado exitosamente");
-                return RedirectToAction("Index");
+                if (TryUpdateModel(product))
+                {
+                    await db.SaveChangesAsync();
+                    Flash.Success("Ok", "El producto ha sido editado exitosamente");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Flash.Error("Error", "El usuario no puede ser editado");
+                    return View(productViewModel);
+                }
             }
             return View(productViewModel);
         }
@@ -212,9 +215,17 @@ namespace Tesis.Controllers
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
             Product product = await db.Products.FindAsync(id);
-            db.Products.Remove(product);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try{
+                db.Products.Remove(product);
+                await db.SaveChangesAsync();
+                Flash.Success("Ok", "Producto eliminado satisfactoriamente");
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                Flash.Error("Error", "Producto no puede ser eliminado, revise que no tenga relaciones");
+                return View(product);
+            }
         }
 
         protected override void Dispose(bool disposing)
