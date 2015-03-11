@@ -39,7 +39,7 @@
 				<div class="ibox-content">
 					<h2>Caso de estudio</h2>
 					<p>Por favor siga los pasos para crear su caso de estudio.</p>
-					<form id="form" action="#" class="wizard-big">
+					@using (Html.BeginForm("Create", "CaseStudies", FormMethod.Post, new { @class = "wizard-big", role = "form", id = "form" })) {
 						<h1>Elija Semestre y sección</h1>
 						@*Form para elegir la sección y semestre*@
 						<fieldset>
@@ -275,7 +275,7 @@
 								</div>
 							</div>
 						</fieldset>
-					</form>
+					 }
 				</div>
 			</div>
 		</div>
