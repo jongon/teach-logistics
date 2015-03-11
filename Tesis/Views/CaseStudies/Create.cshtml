@@ -4,7 +4,7 @@
 	@Styles.Render("~/plugins/iCheckStyles")
 	@Styles.Render("~/plugins/wizardStepsStyles")
 	@Styles.Render("~/plugins/jasnyBootstrapStyles")
-	@Styles.Render("~/app/InitialCharges")
+	@Styles.Render("~/app/CaseStudies")
 }
 @{
 	ViewBag.Title = "Crear";
@@ -135,7 +135,7 @@
 										<span class="input-group-addon btn btn-default btn-file">
 											<span class="fileinput-new">Seleccionar archivo</span>
 											<span class="fileinput-exists">Cambiar</span>
-											@Html.EditorFor(model => model.XmlUpload, new { htmlAttributes = new { @id = "myfile", @onchange = "return isXml(this)" } })
+											@Html.EditorFor(model => model.XmlUpload, new { htmlAttributes = new { @onchange = "return isXml(this)" } })
 										</span>
 										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
 									</div>
@@ -206,7 +206,7 @@
 								<div class="form-group">
 									@Html.LabelFor(model => model.WeeklyMaintenanceCost, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
-										@Html.EditorFor(model => model.WeeklyMaintenanceCost, new { htmlAttributes = new { @placeholder = "Costo Anual de Mantener el Inventario" } })
+										@Html.EditorFor(model => model.WeeklyMaintenanceCost, new { htmlAttributes = new { @placeholder = "Costo Semanal de Mantener el Inventario" } })
 										@Html.ValidationMessageFor(model => model.WeeklyMaintenanceCost, "", new { @class = "text-danger" })
 									</div>
 								</div>
@@ -215,7 +215,7 @@
 								<div class="form-group">
 									@Html.LabelFor(model => model.PurchaseOrderRecharge, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
-										@Html.EditorFor(model => model.PurchaseOrderRecharge, new { htmlAttributes = new { @placeholder = "Costo Anual de Mantener el Inventario" } })
+										@Html.EditorFor(model => model.PurchaseOrderRecharge, new { htmlAttributes = new { @placeholder = "Recargo por orden de compra" } })
 										@Html.ValidationMessageFor(model => model.PurchaseOrderRecharge, "", new { @class = "text-danger" })
 									</div>
 								</div>
@@ -224,7 +224,7 @@
 								<div class="form-group">
 									@Html.LabelFor(model => model.CourierCharges, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
-										@Html.EditorFor(model => model.CourierCharges, new { htmlAttributes = new { @placeholder = "Costo Anual de Mantener el Inventario" } })
+										@Html.EditorFor(model => model.CourierCharges, new { htmlAttributes = new { @placeholder = "Recargo por uso de courier" } })
 										@Html.ValidationMessageFor(model => model.CourierCharges, "", new { @class = "text-danger" })
 									</div>
 								</div>

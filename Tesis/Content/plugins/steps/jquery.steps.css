@@ -11,6 +11,7 @@
 }
 
 .wizard a,
+.wizard input[type="submit"]
 .tabcontrol a
 {
     outline: 0;
@@ -85,7 +86,7 @@
 
 .wizard > .steps a,
 .wizard > .steps a:hover,
-.wizard > .steps a:active
+.wizard > .steps a:active 
 {
     display: block;
     width: auto;
@@ -249,7 +250,8 @@
 
 .wizard > .actions a,
 .wizard > .actions a:hover,
-.wizard > .actions a:active
+.wizard > .actions a:active,
+.wizard > .actions input[type="submit"]
 {
     background: #1AB394;
     color: #fff;
@@ -278,7 +280,9 @@
 {
 }
 
-
+.wizard .wizard-btn {
+    height: 31px;
+}
 
 /*
     Tabcontrol

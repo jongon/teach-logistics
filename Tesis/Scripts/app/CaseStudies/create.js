@@ -1,9 +1,4 @@
-﻿//El estilo de radio button
-$('.i-checks').iCheck({
-    checkboxClass: 'icheckbox_square-green',
-    radioClass: 'iradio_square-green',
-});
-
+﻿
 //Selects de KendoUI
 function filterSections() {
     return {
@@ -31,6 +26,23 @@ function InitialCharge() {
     this.initialStock;
 }
 
+function disableFormValidation() {
+    $('#ProductId').rules('remove', 'required');
+    $('#Demand').rules('remove', 'required');
+    $('#Stddev').rules('remove', 'required');
+    $('#Price').rules('remove', 'required');
+    $('#PreparationCost').rules('remove', 'required');
+    $('#AnnualMaintenanceCost').rules('remove', 'required');
+    $('#WeeklyMaintenanceCost').rules('remove', 'required');
+    $('#PurchaseOrderRecharge').rules('remove', 'required');
+    $('#CourierCharges').rules('remove', 'required');
+    $('#PreparationTime').rules('remove', 'required');
+    $('#PreparationTime').rules('remove', 'required');
+    $('#DeliveryTime').rules('remove', 'required');
+    $('#SecurityStock').rules('remove', 'required');
+    $('#InitialStock').rules('remove', 'required');
+}
+
 function resizeJquerySteps() {
     $('.wizard .content').animate({ height: $('.body.current').outerHeight() }, "fast");
 }
@@ -46,109 +58,112 @@ var stepsSettings = {
     cancel: "Cancelar"
 };
 
-$("#form").steps({
-    labels: stepsSettings,
-    bodyTag: "fieldset",
-    onStepChanging: function (event, currentIndex, newIndex)
-    {
-        var form = $(this);
-        form.validate().settings.ignore = ":disabled,:hidden";
-
-        // Always allow going backward even if the current step contains invalid fields!
-        if (currentIndex > newIndex)
+$(document).ready(function () {
+    $("#form").steps({
+        labels: stepsSettings,
+        bodyTag: "fieldset",
+        onStepChanging: function (event, currentIndex, newIndex)
         {
-            return true;
-        }
+            var form = $(this);
+            form.validate().settings.ignore = ":disabled,:hidden";
 
-        if (currentIndex < newIndex) {
-            // To remove error styles
-            $(".body:eq(" + newIndex + ") label.error", form).remove();
-            $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-        }
-
-        // Disable validation on fields that are disabled or hidden.
-        //if (currentIndex == 0 && form.valid()) {
-        //    var sectionId = $("#sectionId").val();
-
-        //}
-
-        if (currentIndex == 2) {
-            var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
-            if (selected == 'xml') {
-                //Cargar el form
+            //Al pulsar NEXT
+            if (currentIndex < newIndex) {
+                // To remove error styles
+                $(".body:eq(" + newIndex + ") label.error", form).remove();
+                $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                if (currentIndex == 2) {
+                    //Deshabilitar la validación de los campos de formulario
+                    disableFormValidation();
+                }
+            } else if (newIndex < currentIndex) {
+                if (newIndex == 0 || newIndex == 1) {
+                    return true;
+                }
             }
-        }
-        // Start validation; Prevent going forward if false
-        return form.valid();
-    },
-    onStepChanged: function (event, currentIndex, priorIndex)
-    {
-        resizeJquerySteps();
-        // Suppress (skip) "Warning" step if the user is old enough.
-        if (currentIndex === 2) {
-            $("#form .actions a[href='#next']").text('Finalizar');
-            var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
-            if (priorIndex > currentIndex && selected === "form") {
-                $(this).steps("previous");
-            } else if (selected === "form") {
-                $(this).steps("next");
-            }
-        } else if (currentIndex == 3) {
-            var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
-            if (selected == "xml") {
-                $(this).steps("previous");
-            } else {
-                $("#form .actions li[class='disabled']").css("display", "block");
-                $("#form .actions li[class='disabled']").removeClass('disabled');
-                $("#form .actions a[href='#next']").text('Siguiente');
-            }
-        } else {
+
+            // Disable validation on fields that are disabled or hidden.
+            //if (currentIndex == 0 && form.valid()) {
+            //    var sectionId = $("#sectionId").val();
+
+            //}
+            // Start validation; Prevent going forward if false
+            return form.valid();
+        },
+        onStepChanged: function (event, currentIndex, priorIndex)
+        {
+            //Ajustar el jquery steps a resolución de todo el formulario
+            resizeJquerySteps();
             $("#form .actions a[href='#next']").text('Siguiente');
+
+            if (currentIndex == 2) {
+                var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
+                if (selected === 'form') {
+                    $('#XmlUpload').rules('remove', 'required');
+                    $(this).steps("next");
+                } else if (selected == 'xml') {
+                    //Cambiar el atributo del botón a submit
+                    //recordar regresar los cambios
+                    //$("#form .actions a[href='#next']").attr('type', 'submit');
+                    //$("#form .actions a[href='#next']").text('Finalizar');
+                    $("#form .actions a[href='#next']").replaceWith(
+                        '<input class="btn btn-primary btn-xs wizard-btn" type ="submit" value="Finalizar"/>');
+                    $('#XmlUpload').rules('add', 'required');
+                }
+            }
+
+            //// Suppress (skip) "Warning" step if the user is old enough.
+            //if (currentIndex === 2) {
+            //    
+            //    var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
+            //    if (priorIndex > currentIndex && selected === "form") {
+            //        $(this).steps("previous");
+            //    } else if (selected === "form") {
+            //        $(this).steps("next");
+            //    }
+            //} else if (currentIndex == 3) {
+            //    var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
+            //    if (selected == "xml") {
+            //        $(this).steps("previous");
+            //    } else {
+            //        $("#form .actions li[class='disabled']").css("display", "block");
+            //        $("#form .actions li[class='disabled']").removeClass('disabled');
+            //        $("#form .actions a[href='#next']").text('Siguiente');
+            //    }
+            //} else {
+            //    
+            //}
+        },
+        onFinishing: function (event, currentIndex)
+        {
+            var form = $(this);
+
+            // Disable validation on fields that are disabled.
+            // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+            form.validate().settings.ignore = ":disabled";
+
+            // Start validation; Prevent form submission if false
+            return form.valid();
+        },
+        onFinished: function (event, currentIndex)
+        {
+            var form = $(this);
+
+            // Submit form input
+            form.submit();
         }
-    },
-    onFinishing: function (event, currentIndex)
-    {
-        var form = $(this);
-
-        // Disable validation on fields that are disabled.
-        // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-        form.validate().settings.ignore = ":disabled";
-
-        // Start validation; Prevent form submission if false
-        return form.valid();
-    },
-    onFinished: function (event, currentIndex)
-    {
-        var form = $(this);
-
-        // Submit form input
-        form.submit();
-    }
-}).validate({
-    errorPlacement: function (error, element)
-    {
-        element.before(error);
-    },
-    rules: {
-        confirm: {
-            equalTo: "#password"
+    }).validate({
+        errorPlacement: function (error, element)
+        {
+            element.before(error);
         }
-    }
-});
+    });
 
-
-// Validación del XML
-jQuery.validator.setDefaults({
-    debug: true,
-    success: "valid"
-});
-$("#myform").validate({
-    rules: {
-        field: {
-            required: true,
-            accept: "audio/*"
-        }
-    }
+    //El estilo de radio button
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
 });
 
 //Validación si el archivo es o no de extensión xml

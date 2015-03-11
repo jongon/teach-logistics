@@ -314,7 +314,7 @@ namespace Tesis
                 "~/Scripts/app/CaseStudies/create.js"));
 
             bundles.Add(new StyleBundle("~/app/CaseStudies").Include(
-                "~/Content/app/initialCharges.css"));
+                "~/Content/app/Casestudies.css"));
 
             //Products
             bundles.Add(new ScriptBundle("~/bundles/Products/index").Include(
