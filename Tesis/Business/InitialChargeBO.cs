@@ -26,6 +26,9 @@ namespace Tesis.Business
             this.InitialCharge.DeliveryTime = initialCharge.DeliveryTime;           
             this.InitialCharge.SecurityStock = initialCharge.SecurityStock;
             this.InitialCharge.InitialStock = initialCharge.InitialStock;
+            this.InitialCharge.PurchaseOrderRecharge = initialCharge.PurchaseOrderRecharge;
+            this.InitialCharge.CourierCharges = initialCharge.CourierCharges;
+            this.InitialCharge.WeeklyMaintenanceCost = initialCharge.WeeklyMaintenanceCost;
             this.GetCalculatedInitialCharge();
         }
 
@@ -43,24 +46,6 @@ namespace Tesis.Business
             this.InitialCharge.TotalQuaterlyCost = this.GetTotalQuaterlyCost();
             this.InitialCharge.CycleTime = this.GetCycleTime();
             this.InitialCharge.AverageStock = this.GetAvergeStock();
-            this.InitialCharge.WeeklyMaintenanceCost = this.GetWeeklyMaintenanceCost();
-            this.InitialCharge.PurchaseOrderRecharge = this.GetPurchaseOrderRecharge();
-            this.InitialCharge.CourierCharges = this.GetCourierCharges(); 
-        }
-        //Aqui va un método por cada campo a calcular
-        private double GetWeeklyMaintenanceCost()
-        {
-            return 1;
-        }
-
-        private short GetPurchaseOrderRecharge()
-        {
-            return 1;
-        }
-
-        private double GetCourierCharges()
-        {
-            return 1;
         }
 
         private short GetTotalTime()
@@ -115,7 +100,7 @@ namespace Tesis.Business
 
         private double GetEOQ()
         {
-            return Math.Sqrt((2 * this.InitialCharge.Demand * this.InitialCharge.PreparationCost) / (this.GetWeeklyMaintenanceCost() * this.InitialCharge.Price));
+            return Math.Sqrt((2 * this.InitialCharge.Demand * this.InitialCharge.PreparationCost) / (this.InitialCharge.WeeklyMaintenanceCost * this.InitialCharge.Price));
         }
     }
 }
