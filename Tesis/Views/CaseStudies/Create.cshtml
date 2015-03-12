@@ -147,6 +147,10 @@
 						@*Formulario de carga*@
 						<h1>Formulario de Carga</h1>
 						<fieldset>
+							<div style="display: none" id="alert" class="alert alert-success">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>La carga inicial del producto se han agregado correctamente!, continúe...</strong>
+							</div>
 							<h2>Formulario de Carga Inicial</h2>
 							<div class="hr-line-dashed"></div>
 							<div class="form-horizontal">
@@ -276,6 +280,7 @@
 								</div>
 							</div>
 						</fieldset>
+						<input name="initialCharges" type="hidden" id="initialCharges">					
 					 }
 				</div>
 			</div>

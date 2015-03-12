@@ -31,10 +31,6 @@ function InitialCharge() {
 
 var initialCharges = [];
 
-function addInitialCharge() {
-    initialCharges.push(new InitialCharge());
-}
-
 function disableFormValidation() {
     $('#ProductId').rules('remove', 'required');
     $('#Demand').rules('remove', 'required');
@@ -46,7 +42,7 @@ function disableFormValidation() {
     $('#PurchaseOrderRecharge').rules('remove', 'required');
     $('#CourierCharges').rules('remove', 'required');
     $('#PreparationTime').rules('remove', 'required');
-    $('#PreparationTime').rules('remove', 'required');
+    $('#FillTime').rules('remove', 'required');
     $('#DeliveryTime').rules('remove', 'required');
     $('#SecurityStock').rules('remove', 'required');
     $('#InitialStock').rules('remove', 'required');
@@ -63,7 +59,7 @@ function enabledFormValidation() {
     $('#PurchaseOrderRecharge').rules('add', 'required');
     $('#CourierCharges').rules('add', 'required');
     $('#PreparationTime').rules('add', 'required');
-    $('#PreparationTime').rules('add', 'required');
+    $('#FillTime').rules('add', 'required');
     $('#DeliveryTime').rules('add', 'required');
     $('#SecurityStock').rules('add', 'required');
     $('#InitialStock').rules('add', 'required');
@@ -80,6 +76,29 @@ function enabledXmlValidation() {
 
 function resizeJquerySteps() {
     $('.wizard .content').animate({ height: $('.body.current').outerHeight() }, "fast");
+}
+
+function addInitialCharge() {
+    window.scrollTo(0, 0);
+    if ($('#form').valid()) {
+        initialCharges.push(new InitialCharge());
+        $('#ProductId').val('');
+        $('#Demand').val('');
+        $('#Stddev').val('');
+        $('#Price').val('');
+        $('#PreparationCost').val('');
+        $('#AnnualMaintenanceCost').val('');
+        $('#WeeklyMaintenanceCost').val('');
+        $('#PurchaseOrderRecharge').val('');
+        $('#CourierCharges').val('');
+        $('#PreparationTime').val('');
+        $('#FillTime').val('');
+        $('#DeliveryTime').val('');
+        $('#SecurityStock').val('');
+        $('#InitialStock').val('');
+        $('#alert').show();
+        $('#alert').delay(3000).fadeOut();
+    }
 }
 
 //Configuración de jQuery steps
@@ -101,7 +120,6 @@ $(document).ready(function () {
         {
             var form = $(this);
             form.validate().settings.ignore = ":disabled,:hidden";
-
             //Al pulsar NEXT
             if (currentIndex < newIndex) {
                 //al pulsar finalizar 
@@ -111,12 +129,12 @@ $(document).ready(function () {
                         var form = $(this);
                         form.submit();
                     }
-                //} else if (newIndex == 2 && selected === 'xml') {
-                //    return true;
-                //} else if (newIndex == 3 && selected === 'form') {
-                //    return true;
                 }
             } else if (newIndex < currentIndex) {
+                if (currentIndex == 3) {
+                    alert('hola');
+                    initialCharges = [];
+                }
                 return true;
             }
             // Start validation; Prevent going forward if false
@@ -148,7 +166,14 @@ $(document).ready(function () {
             } else if (currentIndex == 3 && selected === 'xml') {
                 $(this).steps("previous");
             } else if (currentIndex == 3 && selected === 'form') {
-                //Cambiar el botón
+                $("#form .actions li:eq('1')").removeAttr('aria-hidden');
+                $("#form .actions li:eq('1')").removeAttr('aria-disabled');
+                $("#form .actions li:eq('1')").attr('class', '');
+                $("#form .actions li:eq('1')").attr('style', 'display: block;');
+                $("#form .actions a[href='#next']").text('Agregar otro');
+                $("#form .actions a[href='#next']").attr('onclick', 'addInitialCharge()');
+                $("#form .actions a[href='#next']").attr('id', 'test');
+                $("#form .actions a[href='#next']").attr('href', '#');
             }
         },
         onFinishing: function (event, currentIndex)
@@ -165,7 +190,9 @@ $(document).ready(function () {
         onFinished: function (event, currentIndex)
         {
             var form = $(this);
-
+            initialCharges.push(new InitialCharge());
+            console.log(initialCharges);
+            $("#initialCharges").val(JSON.stringify(initialCharges));
             // Submit form input
             form.submit();
         }
