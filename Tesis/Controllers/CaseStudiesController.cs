@@ -56,7 +56,6 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include="Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,PreparationTime,FillTime,DeliveryTime,SecurityStock,InitialStock,ProductId")] CaseStudyViewModel initialCharge)
         {
             if (ModelState.IsValid)

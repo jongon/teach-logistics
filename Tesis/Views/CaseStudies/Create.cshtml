@@ -139,6 +139,7 @@
 										</span>
 										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
 									</div>
+									@Html.ValidationMessageFor(model => model.XmlUpload, "", new { @class = "text-danger" })
 								</div>
 							</div>
 						</fieldset>

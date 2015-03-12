@@ -13,17 +13,26 @@ $.validator.setDefaults({
 
 //Definición de clase de carga Inicial
 function InitialCharge() {
-    this.productId;
-    this.demand;
-    this.stdDev;
-    this.price;
-    this.preparationCost;
-    this.annualMaintenanceCost;
-    this.preparationTime;
-    this.fillTime;
-    this.deliveryTime;
-    this.securityStock;
-    this.initialStock;
+    this.productId = $('#ProductId').val();
+    this.demand = $('#Demand').val();
+    this.stdDev = $('#Stddev').val();
+    this.price = $('#Price').val();
+    this.preparationCost = $('#PreparationCost').val();
+    this.annualMaintenanceCost = $('#AnnualMaintenanceCost').val();
+    this.weeklyMaitenanceCost = $('#WeeklyMaintenanceCost').val();
+    this.purchaseOrderRecharge = $('#PurchaseOrderRecharge').val();
+    this.courierCharges = $('#CourierCharges').val();
+    this.preparationTime = $('#PreparationTime').val();
+    this.fillTime = $('#FillTime').val();
+    this.deliveryTime = $('#DeliveryTime').val();
+    this.securityStock = $('#SecurityStock').val();
+    this.initialStock = $('#InitialStock').val();
+}
+
+var initialCharges = [];
+
+function addInitialCharge() {
+    initialCharges.push(new InitialCharge());
 }
 
 function disableFormValidation() {
@@ -42,6 +51,32 @@ function disableFormValidation() {
     $('#SecurityStock').rules('remove', 'required');
     $('#InitialStock').rules('remove', 'required');
 }
+
+function enabledFormValidation() {
+    $('#ProductId').rules('add', 'required');
+    $('#Demand').rules('add', 'required');
+    $('#Stddev').rules('add', 'required');
+    $('#Price').rules('add', 'required');
+    $('#PreparationCost').rules('add', 'required');
+    $('#AnnualMaintenanceCost').rules('add', 'required');
+    $('#WeeklyMaintenanceCost').rules('add', 'required');
+    $('#PurchaseOrderRecharge').rules('add', 'required');
+    $('#CourierCharges').rules('add', 'required');
+    $('#PreparationTime').rules('add', 'required');
+    $('#PreparationTime').rules('add', 'required');
+    $('#DeliveryTime').rules('add', 'required');
+    $('#SecurityStock').rules('add', 'required');
+    $('#InitialStock').rules('add', 'required');
+}
+
+function disableXmlValidation() {
+    $('#XmlUpload').rules('remove', 'required');
+}
+
+function enabledXmlValidation() {
+    $('#XmlUpload').rules('add', 'required');
+}
+
 
 function resizeJquerySteps() {
     $('.wizard .content').animate({ height: $('.body.current').outerHeight() }, "fast");
@@ -69,24 +104,21 @@ $(document).ready(function () {
 
             //Al pulsar NEXT
             if (currentIndex < newIndex) {
-                // To remove error styles
-                $(".body:eq(" + newIndex + ") label.error", form).remove();
-                $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                //al pulsar finalizar 
+                var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
                 if (currentIndex == 2) {
-                    //Deshabilitar la validación de los campos de formulario
-                    disableFormValidation();
+                    if (selected === 'xml') {
+                        var form = $(this);
+                        form.submit();
+                    }
+                //} else if (newIndex == 2 && selected === 'xml') {
+                //    return true;
+                //} else if (newIndex == 3 && selected === 'form') {
+                //    return true;
                 }
             } else if (newIndex < currentIndex) {
-                if (newIndex == 0 || newIndex == 1) {
-                    return true;
-                }
+                return true;
             }
-
-            // Disable validation on fields that are disabled or hidden.
-            //if (currentIndex == 0 && form.valid()) {
-            //    var sectionId = $("#sectionId").val();
-
-            //}
             // Start validation; Prevent going forward if false
             return form.valid();
         },
@@ -94,45 +126,28 @@ $(document).ready(function () {
         {
             //Ajustar el jquery steps a resolución de todo el formulario
             resizeJquerySteps();
+            //Nombrar "Siguiente" el botón ya que aveces puede cambiar
             $("#form .actions a[href='#next']").text('Siguiente');
 
+            var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
             if (currentIndex == 2) {
-                var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
                 if (selected === 'form') {
-                    $('#XmlUpload').rules('remove', 'required');
-                    $(this).steps("next");
-                } else if (selected == 'xml') {
-                    //Cambiar el atributo del botón a submit
+                    if (priorIndex > currentIndex) {
+                        $(this).steps("previous");
+                    } else {
+                        disableXmlValidation();
+                        enabledFormValidation();
+                        $(this).steps("next");
+                    }
+                } else if (selected === 'xml') {
                     //recordar regresar los cambios
-                    //$("#form .actions a[href='#next']").attr('type', 'submit');
-                    //$("#form .actions a[href='#next']").text('Finalizar');
-                    $("#form .actions a[href='#next']").replaceWith(
-                        '<input class="btn btn-primary btn-xs wizard-btn" type ="submit" value="Finalizar"/>');
-                    $('#XmlUpload').rules('add', 'required');
+                    disableFormValidation();
+                    enabledXmlValidation();
+                    $("#form .actions a[href='#next']").text('Finalizar');
                 }
-            }
-
-            //// Suppress (skip) "Warning" step if the user is old enough.
-            //if (currentIndex === 2) {
-            //    
-            //    var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
-            //    if (priorIndex > currentIndex && selected === "form") {
-            //        $(this).steps("previous");
-            //    } else if (selected === "form") {
-            //        $(this).steps("next");
-            //    }
-            //} else if (currentIndex == 3) {
-            //    var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
-            //    if (selected == "xml") {
-            //        $(this).steps("previous");
-            //    } else {
-            //        $("#form .actions li[class='disabled']").css("display", "block");
-            //        $("#form .actions li[class='disabled']").removeClass('disabled');
-            //        $("#form .actions a[href='#next']").text('Siguiente');
-            //    }
-            //} else {
-            //    
-            //}
+            } else if (currentIndex == 3 && selected === 'xml') {
+                $(this).steps("previous");
+            } else if (currentIndex == 3 && selected === 'form')
         },
         onFinishing: function (event, currentIndex)
         {
@@ -173,7 +188,7 @@ function isXml(input) {
     var res = str == '.xml';
     if (!res) {
         if (str !== '') {
-            alert("El archivo debe tener XML");
+            alert("El archivo debe tener extensión XML");
         }
         input.value = "";
     }
