@@ -147,7 +147,9 @@ $(document).ready(function () {
                 }
             } else if (currentIndex == 3 && selected === 'xml') {
                 $(this).steps("previous");
-            } else if (currentIndex == 3 && selected === 'form')
+            } else if (currentIndex == 3 && selected === 'form') {
+                //Cambiar el botón
+            }
         },
         onFinishing: function (event, currentIndex)
         {
