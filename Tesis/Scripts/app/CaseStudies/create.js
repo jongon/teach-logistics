@@ -101,6 +101,7 @@ function addInitialCharge() {
         $('#alert').delay(2000).fadeOut();
         $('.has-success').removeClass('has-success');
     }
+    resizeJquerySteps();
 }
 
 //Configuración de jQuery steps
@@ -134,7 +135,6 @@ $(document).ready(function () {
                 }
             } else if (newIndex < currentIndex) {
                 if (currentIndex == 3) {
-                    alert('hola');
                     initialCharges = [];
                 }
                 return true;
@@ -144,8 +144,8 @@ $(document).ready(function () {
         },
         onStepChanged: function (event, currentIndex, priorIndex)
         {
-            //Ajustar el jquery steps a resolución de todo el formulario
             resizeJquerySteps();
+            //Ajustar el jquery steps a resolución de todo el formulario
             //Nombrar "Siguiente" el botón ya que aveces puede cambiar
             $("#form .actions a[href='#next']").text('Siguiente');
 
@@ -181,19 +181,30 @@ $(document).ready(function () {
         onFinishing: function (event, currentIndex)
         {
             var form = $(this);
-
             // Disable validation on fields that are disabled.
             // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
             form.validate().settings.ignore = ":disabled";
 
-            // Start validation; Prevent form submission if false
-            return form.valid();
+            var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
+            if (initialCharges.length > 0 && $('#ProductId option').length <= 1 && selected === 'form') {
+                $("#initialCharges").val(JSON.stringify(initialCharges));
+                form.validate().settings.ignore = "*";
+                form.submit();
+            }
+            if (form.valid()) {
+                return true;
+            } else {
+                resizeJquerySteps();
+                return false;
+            }
+            //return form.valid();
         },
         onFinished: function (event, currentIndex)
         {
             var form = $(this);
+            // Start validation; Prevent form submission if false
+            var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
             initialCharges.push(new InitialCharge());
-            console.log(initialCharges);
             $("#initialCharges").val(JSON.stringify(initialCharges));
             // Submit form input
             form.submit();

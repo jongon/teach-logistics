@@ -16,6 +16,7 @@ $('#next').click(function () {
         $('#Distance').val('');
         $('#alert').show();
         $('#alert').delay(3000).fadeOut();
+        $('.has-success').removeClass('has-success');
     }
 })
 

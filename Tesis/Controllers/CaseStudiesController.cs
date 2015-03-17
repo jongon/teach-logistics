@@ -56,8 +56,10 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include="Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,PreparationTime,FillTime,DeliveryTime,SecurityStock,InitialStock,ProductId")] CaseStudyViewModel initialCharge)
+        public async Task<ActionResult> Create([Bind(Include = "Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,WeeklyMaintenanceCost,PurchaseOrderRecharge,CourierCharges,PreparationTime,FillTime,DeliveryTime,SecurityStock,InitialStock,ProductId,Name,SectionId,SemesterId,ChargeTypeName,XmlUpload")] CaseStudyViewModel initialCharge)
         {
+            Console.WriteLine(initialCharge.ChargeTypeName);
+
             if (ModelState.IsValid)
             {
                 Product product = db.Products.Where(x => x.Id == initialCharge.ProductId).First();

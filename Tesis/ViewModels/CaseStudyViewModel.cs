@@ -93,6 +93,11 @@ namespace Tesis.ViewModels
         [Range(0, Int32.MaxValue, ErrorMessage = "Solo números enteros permitidos")]
         public int InitialStock { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
+        [DisplayName("Nombre de Caso de Estudio")]
+        [StringLength(45, ErrorMessage = "{0} no puede ser mayor a {1} caracteres")]
+        public string Name { get; set; }
+
         [DisplayName("Sección")]
         public Guid SectionId { get; set; }
 

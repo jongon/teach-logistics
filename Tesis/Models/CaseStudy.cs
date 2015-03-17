@@ -20,6 +20,7 @@ namespace Tesis.Models
         public Guid Id { get; set; }
 
         [DisplayName("Nombre")]
+        [MaxLength(45)]
         public string Name { get; set; }
 
         [DisplayName("Fecha de creación")]
