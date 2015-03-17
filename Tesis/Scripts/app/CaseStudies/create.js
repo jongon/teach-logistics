@@ -81,6 +81,7 @@ function resizeJquerySteps() {
 function addInitialCharge() {
     window.scrollTo(0, 0);
     if ($('#form').valid()) {
+        $("#ProductId option[value='" + $('#ProductId').val() + "']").remove();
         initialCharges.push(new InitialCharge());
         $('#ProductId').val('');
         $('#Demand').val('');
@@ -97,7 +98,8 @@ function addInitialCharge() {
         $('#SecurityStock').val('');
         $('#InitialStock').val('');
         $('#alert').show();
-        $('#alert').delay(3000).fadeOut();
+        $('#alert').delay(2000).fadeOut();
+        $('.has-success').removeClass('has-success');
     }
 }
 
