@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Xml.Serialization;
 using Tesis.DAL;
@@ -99,10 +100,10 @@ namespace Tesis.ViewModels
         public string Name { get; set; }
 
         [DisplayName("Sección")]
-        public Guid SectionId { get; set; }
+        public Guid? SectionId { get; set; }
 
         [DisplayName("Semestre")]
-        public Guid SemesterId { get; set; }
+        public Guid? SemesterId { get; set; }
 
         [DisplayName("Producto")]
         [Required(ErrorMessage = "Este Campo es requerido")]
@@ -136,5 +137,10 @@ namespace Tesis.ViewModels
         [DataType(DataType.Upload)]
         [Required(ErrorMessage = "El Archivo Xml es requerido")]
         public HttpPostedFileBase XmlUpload { get; set; }
+
+        [HiddenInput(DisplayValue=false)]
+        public string InitialCharges { get; set; }
+
+
     }
 }

@@ -56,21 +56,50 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include = "Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,WeeklyMaintenanceCost,PurchaseOrderRecharge,CourierCharges,PreparationTime,FillTime,DeliveryTime,SecurityStock,InitialStock,ProductId,Name,SectionId,SemesterId,ChargeTypeName,XmlUpload")] CaseStudyViewModel initialCharge)
+        public async Task<ActionResult> Create([Bind(Include = "Name,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
         {
-            Console.WriteLine(initialCharge.ChargeTypeName);
+            try {
+                CaseStudyBL caseStudyBL = new CaseStudyBL();
+                if (caseStudyViewModel.ChargeTypeName == "xml")
+                {
+                    caseStudyBL.ModelStateForXML(ModelState);
+                    if (ModelState.IsValid)
+                    {
 
-            if (ModelState.IsValid)
-            {
-                Product product = db.Products.Where(x => x.Id == initialCharge.ProductId).First();
-                InitialChargeBO initialChargeBO = new InitialChargeBO(initialCharge);
-                initialChargeBO.InitialCharge.Product = product;
-                db.InitialCharges.Add(initialChargeBO.InitialCharge);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");              
+                    }
+                } else if (caseStudyViewModel.ChargeTypeName == "form") {
+                    caseStudyBL.ModelStateInForm(ModelState);
+                    if (ModelState.IsValid)
+                    {
+                        CaseStudy caseStudy = new CaseStudy { Id = Guid.NewGuid(), Name = caseStudyViewModel.Name, Created = DateTime.Now };
+                        List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
+                        List<InitialCharge> initialChargesNew = new List<InitialCharge>();
+                        foreach (var initialCharge in initialCharges)
+                        {
+                            if (TryUpdateModel(initialCharge))
+                            {
+                                InitialChargeBL initialChargeBL = new InitialChargeBL(initialCharge);
+                                InitialCharge aux = initialChargeBL.InitialCharge;
+                                aux.CaseStudyId = caseStudy.Id;
+                                initialChargesNew.Add(aux);
+                            }
+                            else
+                            {
+                                throw new Exception();
+                            }
+                        }
+                        caseStudy.InitialCharges = initialCharges;
+                        if (caseStudyViewModel.SectionId != null)
+                        {
+                            Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
+                            caseStudy.Sections.Add(section);
+                        }
+                    }
+                }
+            } catch(Exception) {
+                return View();
             }
-
-            return View(initialCharge);
+            return View(caseStudyViewModel);
         }
 
         [HttpPost]

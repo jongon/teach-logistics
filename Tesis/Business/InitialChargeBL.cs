@@ -8,13 +8,14 @@ using Tesis.ViewModels;
 
 namespace Tesis.Business
 {
-    public class InitialChargeBO
+    public class InitialChargeBL
     {
         public const byte WEEKS = 12;
         public InitialCharge InitialCharge { get; set; }
-        public InitialChargeBO(CaseStudyViewModel initialCharge)
+        public InitialChargeBL(InitialCharge initialCharge)
         {
             this.InitialCharge = new InitialCharge();
+            this.InitialCharge.ProductId = initialCharge.ProductId;
             this.InitialCharge.Id = Guid.NewGuid();
             this.InitialCharge.Demand = initialCharge.Demand;
             this.InitialCharge.Stddev = initialCharge.Stddev;
@@ -50,17 +51,17 @@ namespace Tesis.Business
 
         private short GetTotalTime()
         {
-            return (short)(this.InitialCharge.PreparationTime + this.InitialCharge.FillTime + this.InitialCharge.DeliveryTime);
+            return (short)(this.InitialCharge.PreparationTime + this.InitialCharge.FillTime + this.InitialCharge.DeliveryTime + 1);
         }
 
-        private int GetReplacementBatch()
+        private double GetReplacementBatch()
+        {
+            return Math.Max(this.GetMinimumBatchReplacement(), this.GetEOQ());
+        }
+
+        private int GetMinimumBatchReplacement()
         {
             return this.InitialCharge.Demand * this.GetTotalTime();
-        }
-
-        private double GetMinimumBatchReplacement()
-        {
-            return Math.Max(this.GetReplacementBatch(), this.GetEOQ());
         }
 
         private int GetProductQuaterlyCost()
@@ -70,12 +71,12 @@ namespace Tesis.Business
 
         private double GetRequestQuaterlyCost()
         {
-            return (this.InitialCharge.Demand * WEEKS) / (this.GetMinimumBatchReplacement() * this.InitialCharge.PreparationCost);
+            return ((double)(this.InitialCharge.Demand * WEEKS) / this.GetReplacementBatch()) * 100;
         }
 
         private double GetMaintenanceQuaterlyCost()
         {
-            return (((this.InitialCharge.Demand * WEEKS) / 2) + this.GetVariationCoefficient()) * ((this.InitialCharge.AnnualMaintenanceCost / 100) * (1 / 4)) * this.InitialCharge.Price;
+            return (((double)(this.InitialCharge.Demand * WEEKS) / 2) + this.InitialCharge.SecurityStock) * (((double)this.InitialCharge.AnnualMaintenanceCost) * ((double)1 / 4)) * this.InitialCharge.Price;
         }
 
         private double GetTotalQuaterlyCost()
@@ -85,22 +86,22 @@ namespace Tesis.Business
 
         private double GetVariationCoefficient()
         {
-            return this.InitialCharge.Stddev / this.InitialCharge.Demand;
+            return ((double)this.InitialCharge.Stddev / this.InitialCharge.Demand);
         }
 
         private double GetCycleTime()
         {
-            return this.GetMinimumBatchReplacement() / this.InitialCharge.Demand;
+            return (double)this.GetReplacementBatch() / this.InitialCharge.Demand;
         }
 
         private double GetAvergeStock()
         {
-            return (this.GetMinimumBatchReplacement() / 2) + this.InitialCharge.SecurityStock;
+            return ((double)this.GetReplacementBatch() / 2) + this.InitialCharge.SecurityStock;
         }
 
         private double GetEOQ()
         {
-            return Math.Sqrt((2 * this.InitialCharge.Demand * this.InitialCharge.PreparationCost) / (this.InitialCharge.WeeklyMaintenanceCost * this.InitialCharge.Price));
+            return Math.Sqrt((double)(2 * this.InitialCharge.Demand * this.InitialCharge.PreparationCost) / (((double)this.InitialCharge.AnnualMaintenanceCost / 52) * this.InitialCharge.Price));
         }
     }
 }

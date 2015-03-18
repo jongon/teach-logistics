@@ -187,7 +187,7 @@ $(document).ready(function () {
 
             var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
             if (initialCharges.length > 0 && $('#ProductId option').length <= 1 && selected === 'form') {
-                $("#initialCharges").val(JSON.stringify(initialCharges));
+                $("#InitialCharges").val(JSON.stringify(initialCharges));
                 form.validate().settings.ignore = "*";
                 form.submit();
             }
@@ -205,7 +205,7 @@ $(document).ready(function () {
             // Start validation; Prevent form submission if false
             var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
             initialCharges.push(new InitialCharge());
-            $("#initialCharges").val(JSON.stringify(initialCharges));
+            $("#InitialCharges").val(JSON.stringify(initialCharges));
             // Submit form input
             form.submit();
         }
