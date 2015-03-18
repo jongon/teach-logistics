@@ -47,12 +47,6 @@ namespace Tesis.Models
         [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
         public double AnnualMaintenanceCost { get; set; }
 
-        [DisplayName("Costo semanal mantener")]
-        [Required(ErrorMessage = "El campo Costo semanal mantener es requerido")]
-        [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
-        [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
-        public double WeeklyMaintenanceCost { get; set; }
-
         [DisplayName("Recargo por orden de compra")]
         [Required(ErrorMessage = "El campo recargo por orden de compra es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]

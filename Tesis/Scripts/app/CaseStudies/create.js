@@ -19,7 +19,6 @@ function InitialCharge() {
     this.price = $('#Price').val();
     this.preparationCost = $('#PreparationCost').val();
     this.annualMaintenanceCost = $('#AnnualMaintenanceCost').val();
-    this.weeklyMaitenanceCost = $('#WeeklyMaintenanceCost').val();
     this.purchaseOrderRecharge = $('#PurchaseOrderRecharge').val();
     this.courierCharges = $('#CourierCharges').val();
     this.preparationTime = $('#PreparationTime').val();
@@ -38,7 +37,6 @@ function disableFormValidation() {
     $('#Price').rules('remove', 'required');
     $('#PreparationCost').rules('remove', 'required');
     $('#AnnualMaintenanceCost').rules('remove', 'required');
-    $('#WeeklyMaintenanceCost').rules('remove', 'required');
     $('#PurchaseOrderRecharge').rules('remove', 'required');
     $('#CourierCharges').rules('remove', 'required');
     $('#PreparationTime').rules('remove', 'required');
@@ -55,7 +53,6 @@ function enabledFormValidation() {
     $('#Price').rules('add', 'required');
     $('#PreparationCost').rules('add', 'required');
     $('#AnnualMaintenanceCost').rules('add', 'required');
-    $('#WeeklyMaintenanceCost').rules('add', 'required');
     $('#PurchaseOrderRecharge').rules('add', 'required');
     $('#CourierCharges').rules('add', 'required');
     $('#PreparationTime').rules('add', 'required');
@@ -89,7 +86,6 @@ function addInitialCharge() {
         $('#Price').val('');
         $('#PreparationCost').val('');
         $('#AnnualMaintenanceCost').val('');
-        $('#WeeklyMaintenanceCost').val('');
         $('#PurchaseOrderRecharge').val('');
         $('#CourierCharges').val('');
         $('#PreparationTime').val('');

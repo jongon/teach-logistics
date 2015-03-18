@@ -46,12 +46,6 @@ namespace Tesis.ViewModels
         [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
         public double AnnualMaintenanceCost { get; set; }
 
-        [DisplayName("Costo semanal mantener")]
-        [Required(ErrorMessage = "El campo Costo semanal mantener es requerido")]
-        [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
-        [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
-        public double WeeklyMaintenanceCost { get; set; }
-
         [DisplayName("Recargo por orden de compra")]
         [Required(ErrorMessage = "El campo recargo por orden de compra es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
@@ -60,7 +54,7 @@ namespace Tesis.ViewModels
 
         [DisplayName("Cargos de Courier")]
         [Required(ErrorMessage = "El campo costos de courier es requerido")]
-        [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
+        [RegularExpression("[0-9]+(\\.[0-9][0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 3")]
         [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
         public double CourierCharges { get; set; }
         

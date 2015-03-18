@@ -94,10 +94,14 @@ namespace Tesis.Controllers
                             Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
                             caseStudy.Sections.Add(section);
                         }
+                        db.SaveChanges();
+                        Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
+                    } else {
+                        Flash.Error("Error", "El caso de estudio no ha podido ser almacenado correctamente");
                     }
                 }
             } catch(Exception) {
-                return View();
+                Flash.Error("Error", "El caso de estudio no ha podido ser agregado");
             }
             return View(caseStudyViewModel);
         }

@@ -29,7 +29,6 @@ namespace Tesis.Business
             this.InitialCharge.InitialStock = initialCharge.InitialStock;
             this.InitialCharge.PurchaseOrderRecharge = initialCharge.PurchaseOrderRecharge;
             this.InitialCharge.CourierCharges = initialCharge.CourierCharges;
-            this.InitialCharge.WeeklyMaintenanceCost = initialCharge.WeeklyMaintenanceCost;
             this.GetCalculatedInitialCharge();
         }
 

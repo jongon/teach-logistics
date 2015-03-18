@@ -215,17 +215,8 @@
 										@Html.ValidationMessageFor(model => model.AnnualMaintenanceCost, "", new { @class = "text-danger" })
 									</div>
 								</div>
-								<div class="hr-line-dashed"></div>
 
-								<div class="form-group">
-									@Html.LabelFor(model => model.WeeklyMaintenanceCost, new { @class = "control-label col-md-2" })
-									<div class="col-md-10">
-										@Html.EditorFor(model => model.WeeklyMaintenanceCost, new { htmlAttributes = new { @placeholder = "Costo Semanal de Mantener el Inventario" } })
-										@Html.ValidationMessageFor(model => model.WeeklyMaintenanceCost, "", new { @class = "text-danger" })
-									</div>
-								</div>
 								<div class="hr-line-dashed"></div>
-
 								<div class="form-group">
 									@Html.LabelFor(model => model.PurchaseOrderRecharge, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
