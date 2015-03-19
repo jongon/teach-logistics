@@ -1,199 +1,76 @@
-﻿@model IEnumerable<Tesis.InitialCharge>
+﻿@model IEnumerable<Tesis.Models.CaseStudy>
 
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Índice";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Index</h2>
-        <ol class="breadcrumb">
-            <li class="active">
-                <strong>InitialCharge</strong>
-            </li>
-        </ol>
-    </div>
+  <div class="col-sm-4">
+    <h2>Índice</h2>
+    <ol class="breadcrumb">
+      <li class="active">
+        <strong>Casos de estudio</strong>
+      </li>
+    </ol>
+  </div>
 </div>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>List of InitialCharge</h5>
+  @Html.Flash()
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Lista de casos de estudio</h5>
           <div class="ibox-tools">
-            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+            @Html.ActionLink("Crear Caso de estudio", "Create", null, new { @class = "btn btn-primary btn-xs" })
           </div>
-                </div>
-                <div class="ibox-content">
-
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Demand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stddev)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreparationCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnnualMaintenanceCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WeeklyMaintenanceCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PurchaseOrderRecharge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourierCharges)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreparationTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FillTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeliveryTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReplacementBatch)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinimunBatchReplacement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductQuaterlyCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestQuaterlyCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaintenanceQuaterlyCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalQuaterlyCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecurityStock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VariationCoefficient)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CycleTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AverageStock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EOQ)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InitialStock)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Demand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stddev)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreparationCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnnualMaintenanceCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WeeklyMaintenanceCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchaseOrderRecharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourierCharges)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreparationTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FillTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReplacementBatch)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinimunBatchReplacement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductQuaterlyCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestQuaterlyCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaintenanceQuaterlyCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalQuaterlyCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecurityStock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VariationCoefficient)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CycleTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AverageStock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EOQ)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InitialStock)
-        </td>
-        <td>
-      @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-white btn-sm"})
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-white btn-sm"})
-        </td>
-    </tr>
-}
-
-</table>
-
-                </div>
-            </div>
         </div>
+        <div class="ibox-content">
+          <table id="caseStudy"class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                  @Html.DisplayNameFor(model => model.Created)
+                </th>
+                <th>
+                  @Html.DisplayNameFor(model => model.Sections)
+                </th>
+                <th>
+                  Acción
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+              <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+
+                </td>
+                <td>
+                  @Html.ActionLink("Detalles", "Details", new { id=item.Id }, new { @class = "btn btn-primary btn-sm"})
+                  @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                  @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+              </tr>
+            }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
- </div>
-
-
-
+  </div>
+</div>
+@section Scripts {
+  @Scripts.Render("~/bundles/CaseStudies/index")
+}

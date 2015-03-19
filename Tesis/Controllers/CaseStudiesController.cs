@@ -26,7 +26,7 @@ namespace Tesis.Controllers
         // GET: /InitialCharges/
         public async Task<ActionResult> Index()
         {
-            return View(await db.InitialCharges.ToListAsync());
+            return View(await db.CaseStudies.ToListAsync());
         }
 
         // GET: /InitialCharges/Details/5
@@ -73,18 +73,17 @@ namespace Tesis.Controllers
                         {
                             if (!TryValidateModel(initialCharge))
                             {
-                                throw new Exception("Ha Ocurrido un error en la carga inicial de productos");
+                                throw new Exception("Ha ocurrido un error agregando los datos de un producto");
                             }
                         }
                         if (!TryValidateModel(caseStudy))
                         {
-                            throw new Exception("Ha ocurrido un error en los primeros parámetros de carga, asegurese que haya colocado las cargas de productos");
+                            throw new Exception("Ha ocurrido un error agregando los datos de un producto");
                         }
                         db.CaseStudies.Add(caseStudy);
                         await db.SaveChangesAsync();
                         Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
-                        return View("Success");
-                        //return RedirectToAction("Index");
+                        return RedirectToAction("Index");
                     }
                 } else if (caseStudyViewModel.ChargeTypeName == "form") {
                     caseStudyBL.ModelStateInForm(ModelState);
@@ -100,7 +99,8 @@ namespace Tesis.Controllers
                             }
                             else
                             {
-                                throw new Exception("Ha ocurrido un error agregando los dartos de un producto");
+                                Flash.Error("Error", "Ha ocurrido un error agregando los datos de un producto");
+                                throw new Exception();
                             }
                         }
                         CaseStudy caseStudy = new CaseStudy
@@ -128,17 +128,23 @@ namespace Tesis.Controllers
                         db.CaseStudies.Add(caseStudy);
                         await db.SaveChangesAsync();
                         Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
-                        return View("Success");
-                        //return View();
-                        //return RedirectToAction("Index");
+                        return RedirectToAction("Index");
                     } else {
-                        Flash.Error("Error", "El caso de estudio no ha podido ser almacenado correctamente");
+                        throw new Exception("El caso de estudio no ha podido ser almacenado correctamente");
                     }
+                }
+                else
+                {
+                    throw new Exception("Error Inesperado");
                 }
             } catch(Exception e) {
                 Flash.Error("Error", e.Message);
+                db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
+                CaseStudyViewModel caseStudy = new CaseStudyViewModel();
+                ViewBag.Products = caseStudy.Products;
+                ViewBag.ChargeTypes = caseStudy.ChargeTypes;
             }
-            return View(caseStudyViewModel);
+            return View();
         }
 
         [HttpPost]
