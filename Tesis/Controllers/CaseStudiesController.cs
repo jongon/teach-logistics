@@ -56,7 +56,7 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include = "Name,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
+        public async Task<ActionResult> Create([Bind(Include = "Name,PreparationTime,FillTime,DeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
         {
             try {
                 CaseStudyBL caseStudyBL = new CaseStudyBL();
@@ -71,30 +71,30 @@ namespace Tesis.Controllers
                     caseStudyBL.ModelStateInForm(ModelState);
                     if (ModelState.IsValid)
                     {
-                        CaseStudy caseStudy = new CaseStudy { Id = Guid.NewGuid(), Name = caseStudyViewModel.Name, Created = DateTime.Now };
-                        List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
-                        List<InitialCharge> initialChargesNew = new List<InitialCharge>();
-                        foreach (var initialCharge in initialCharges)
-                        {
-                            if (TryUpdateModel(initialCharge))
-                            {
-                                InitialChargeBL initialChargeBL = new InitialChargeBL(initialCharge);
-                                InitialCharge aux = initialChargeBL.InitialCharge;
-                                aux.CaseStudyId = caseStudy.Id;
-                                initialChargesNew.Add(aux);
-                            }
-                            else
-                            {
-                                throw new Exception();
-                            }
-                        }
-                        caseStudy.InitialCharges = initialCharges;
-                        if (caseStudyViewModel.SectionId != null)
-                        {
-                            Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
-                            caseStudy.Sections.Add(section);
-                        }
-                        db.SaveChanges();
+                        //CaseStudy caseStudy = new CaseStudy { Id = Guid.NewGuid(), Name = caseStudyViewModel.Name, Created = DateTime.Now };
+                        //List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
+                        //List<InitialCharge> initialChargesNew = new List<InitialCharge>();
+                        //foreach (var initialCharge in initialCharges)
+                        //{
+                        //    if (TryUpdateModel(initialCharge))
+                        //    {
+                        //        InitialChargeBL initialChargeBL = new InitialChargeBL(initialCharge);
+                        //        InitialCharge aux = initialChargeBL.InitialCharge;
+                        //        aux.CaseStudyId = caseStudy.Id;
+                        //        initialChargesNew.Add(aux);
+                        //    }
+                        //    else
+                        //    {
+                        //        throw new Exception();
+                        //    }
+                        //}
+                        //caseStudy.InitialCharges = initialCharges;
+                        //if (caseStudyViewModel.SectionId != null)
+                        //{
+                        //    Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
+                        //    caseStudy.Sections.Add(section);
+                        //}
+                        //db.SaveChanges();
                         Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
                     } else {
                         Flash.Error("Error", "El caso de estudio no ha podido ser almacenado correctamente");

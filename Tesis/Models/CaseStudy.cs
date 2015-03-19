@@ -26,6 +26,48 @@ namespace Tesis.Models
         [DisplayName("Fecha de creación")]
         public DateTime Created { get; set; }
 
+        [DisplayName("Tiempo de preparación")]
+        [Required(ErrorMessage = "El campo Tiempo de preparación es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte PreparationTime { get; set; }
+
+        [DisplayName("Tiempo de surtir")]
+        [Required(ErrorMessage = "El campo Tiempo de surtir pedido es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte FillTime { get; set; }
+
+        [DisplayName("Tiempo de entrega")]
+        [Required(ErrorMessage = "El campo Tiempo de entrega es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte DeliveryTime { get; set; }
+
+        [DisplayName("Recargo por orden de compra")]
+        [Required(ErrorMessage = "El campo recargo por orden de compra es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
+        public short PurchaseOrderRecharge { get; set; }
+
+        [DisplayName("Cargos de Courier")]
+        [Required(ErrorMessage = "El campo costos de courier es requerido")]
+        [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
+        [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
+        public double CourierCharges { get; set; }
+
+        [DisplayName("Costo de preparación")]
+        [Required(ErrorMessage = "El campo Costo Preparación es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
+        public int PreparationCost { get; set; }
+
+        [DisplayName("Costo anual mantener")]
+        [Required(ErrorMessage = "El campo Costo anual mantener es requerido")]
+        [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
+        [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
+        public double AnnualMaintenanceCost { get; set; }
+
         [DisplayName("Secciones")]
         public virtual ICollection<Section> Sections { get; set; }
 
