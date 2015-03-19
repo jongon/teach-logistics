@@ -90,6 +90,7 @@ namespace Tesis.Models
         public virtual ICollection<Section> Sections { get; set; }
 
         [DisplayName("Cargas Iniciales")]
+        [Required]
         public virtual ICollection<InitialCharge> InitialCharges { get; set; }
     }
 }

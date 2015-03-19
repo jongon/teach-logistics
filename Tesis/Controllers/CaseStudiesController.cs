@@ -69,8 +69,9 @@ namespace Tesis.Controllers
                         CaseStudyXml caseStudyXml = caseStudyXmlBL.Deserealize(caseStudyViewModel.XmlUpload.InputStream);
                         CaseStudy caseStudy = caseStudyXmlBL.XmlToModel(caseStudyXml);
                         db.CaseStudies.Add(caseStudy);
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
                         Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
+                        return RedirectToAction("Index");
                     }
                 } else if (caseStudyViewModel.ChargeTypeName == "form") {
                     caseStudyBL.ModelStateInForm(ModelState);
@@ -114,7 +115,7 @@ namespace Tesis.Controllers
                         db.CaseStudies.Add(caseStudy);
                         await db.SaveChangesAsync();
                         Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
-                        return View("Index");
+                        return RedirectToAction("Index");
                     } else {
                         Flash.Error("Error", "El caso de estudio no ha podido ser almacenado correctamente");
                     }
