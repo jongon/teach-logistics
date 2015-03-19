@@ -56,7 +56,7 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include = "Name,PreparationTime,FillTime,DeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
+        public async Task<ActionResult> Create([Bind(Include = "Name,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
         {
             try {
                 CaseStudyBL caseStudyBL = new CaseStudyBL();
@@ -65,43 +65,62 @@ namespace Tesis.Controllers
                     caseStudyBL.ModelStateForXML(ModelState);
                     if (ModelState.IsValid)
                     {
-
+                        CaseStudyXmlBL caseStudyXmlBL = new CaseStudyXmlBL();
+                        CaseStudyXml caseStudyXml = caseStudyXmlBL.Deserealize(caseStudyViewModel.XmlUpload.InputStream);
+                        CaseStudy caseStudy = caseStudyXmlBL.XmlToModel(caseStudyXml);
+                        db.CaseStudies.Add(caseStudy);
+                        db.SaveChanges();
+                        Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
                     }
                 } else if (caseStudyViewModel.ChargeTypeName == "form") {
                     caseStudyBL.ModelStateInForm(ModelState);
                     if (ModelState.IsValid)
                     {
-                        //CaseStudy caseStudy = new CaseStudy { Id = Guid.NewGuid(), Name = caseStudyViewModel.Name, Created = DateTime.Now };
-                        //List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
-                        //List<InitialCharge> initialChargesNew = new List<InitialCharge>();
-                        //foreach (var initialCharge in initialCharges)
-                        //{
-                        //    if (TryUpdateModel(initialCharge))
-                        //    {
-                        //        InitialChargeBL initialChargeBL = new InitialChargeBL(initialCharge);
-                        //        InitialCharge aux = initialChargeBL.InitialCharge;
-                        //        aux.CaseStudyId = caseStudy.Id;
-                        //        initialChargesNew.Add(aux);
-                        //    }
-                        //    else
-                        //    {
-                        //        throw new Exception();
-                        //    }
-                        //}
-                        //caseStudy.InitialCharges = initialCharges;
-                        //if (caseStudyViewModel.SectionId != null)
-                        //{
-                        //    Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
-                        //    caseStudy.Sections.Add(section);
-                        //}
-                        //db.SaveChanges();
+                        Guid caseStudyId = Guid.NewGuid();
+                        List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
+                        foreach (var initialCharge in initialCharges)
+                        {
+                            if (TryUpdateModel(initialCharge))
+                            {
+                                initialCharge.CaseStudyId = caseStudyId;  
+                            }
+                            else
+                            {
+                                throw new Exception("Ha ocurrido un error agregando los dartos de un producto");
+                            }
+                        }
+                        CaseStudy caseStudy = new CaseStudy
+                        {
+                            Id = caseStudyId,
+                            Name = caseStudyViewModel.Name,
+                            Created = DateTime.Now,
+                            PreparationTime = caseStudyViewModel.PreparationTime,
+                            AcceleratedPreparationTime = caseStudyViewModel.AcceleratedPreparationTime,
+                            FillTime = caseStudyViewModel.FillTime,
+                            ExistingFillTime = caseStudyViewModel.ExistingFillTime,
+                            DeliveryTime = caseStudyViewModel.DeliveryTime,
+                            CourierDeliveryTime = caseStudyViewModel.CourierDeliveryTime,
+                            CourierCharges = caseStudyViewModel.CourierCharges,
+                            PurchaseOrderRecharge = caseStudyViewModel.PurchaseOrderRecharge,
+                            PreparationCost = caseStudyViewModel.PreparationCost,
+                            AnnualMaintenanceCost = caseStudyViewModel.AnnualMaintenanceCost,
+                            InitialCharges = initialCharges
+                        };
+                        if (caseStudyViewModel.SectionId != null)
+                        {
+                            Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
+                            caseStudy.Sections.Add(section);
+                        }
+                        db.CaseStudies.Add(caseStudy);
+                        await db.SaveChangesAsync();
                         Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
+                        return View("Index");
                     } else {
                         Flash.Error("Error", "El caso de estudio no ha podido ser almacenado correctamente");
                     }
                 }
-            } catch(Exception) {
-                Flash.Error("Error", "El caso de estudio no ha podido ser agregado");
+            } catch(Exception e) {
+                Flash.Error("Error", e.Message);
             }
             return View(caseStudyViewModel);
         }

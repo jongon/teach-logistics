@@ -35,41 +35,11 @@ namespace Tesis.Models
         [Range(0, 99999, ErrorMessage = "Solo entero positivo de máx. 5 dígitos")]
         public int Price { get; set; }
 
-        [DisplayName("Lote de reposición")]
-        public double ReplacementBatch { get; set; }
-
-        [DisplayName("Lote de reposición mínimo")]
-        public double MinimunBatchReplacement { get; set; }
-
-        [DisplayName("Costo trimestral de producto")]
-        public int ProductQuaterlyCost { get; set; }
-
-        [DisplayName("Costo ")]
-        public double RequestQuaterlyCost { get; set; }
-
-        [DisplayName("Coso trimestral mantener")]
-        public double MaintenanceQuaterlyCost { get; set; }
-
-        [DisplayName("Costo trimestral total")]
-        public double TotalQuaterlyCost { get; set; }
-
         [DisplayName("Inventario de seguridad")]
         [Required(ErrorMessage = "El campo Inventario de Seguridad es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
         [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
         public short SecurityStock { get; set; }
-
-        [DisplayName("Coeficiente de variación")]
-        public double VariationCoefficient { get; set; }
-
-        [DisplayName("Tiempo del ciclo")]
-        public double CycleTime { get; set; }
-
-        [DisplayName("Inventario promedio")]
-        public double AverageStock { get; set; }
-
-        [DisplayName("EOQ")]
-        public double EOQ { get; set; }
 
         [DisplayName("Inventario Inicial")]
         [Required(ErrorMessage = "Este campo es requerido")]
@@ -90,6 +60,36 @@ namespace Tesis.Models
         [DisplayName("Caso de Estudio")]
         [Required(ErrorMessage = "Este Campo es requerido")]
         public Guid CaseStudyId { get; set; }
+
+        //[DisplayName("Lote de reposición")]
+        //public double ReplacementBatch { get; set; }
+
+        //[DisplayName("Lote de reposición mínimo")]
+        //public double MinimunBatchReplacement { get; set; }
+
+        //[DisplayName("Costo trimestral de producto")]
+        //public int ProductQuaterlyCost { get; set; }
+
+        //[DisplayName("Costo ")]
+        //public double RequestQuaterlyCost { get; set; }
+
+        //[DisplayName("Coso trimestral mantener")]
+        //public double MaintenanceQuaterlyCost { get; set; }
+
+        //[DisplayName("Costo trimestral total")]
+        //public double TotalQuaterlyCost { get; set; }
+
+        //[DisplayName("Coeficiente de variación")]
+        //public double VariationCoefficient { get; set; }
+
+        //[DisplayName("Tiempo del ciclo")]
+        //public double CycleTime { get; set; }
+
+        //[DisplayName("Inventario promedio")]
+        //public double AverageStock { get; set; }
+
+        //[DisplayName("EOQ")]
+        //public double EOQ { get; set; }
 
     }
 }

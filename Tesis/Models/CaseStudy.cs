@@ -32,17 +32,35 @@ namespace Tesis.Models
         [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
         public byte PreparationTime { get; set; }
 
+        [DisplayName("Tiempo de preparación acelerado")]
+        [Required(ErrorMessage = "El campo Tiempo de preparación de acelerado es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte AcceleratedPreparationTime { get; set; }
+
         [DisplayName("Tiempo de surtir")]
         [Required(ErrorMessage = "El campo Tiempo de surtir pedido es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
         [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
         public byte FillTime { get; set; }
 
+        [DisplayName("Tiempo de surtir en existencia")]
+        [Required(ErrorMessage = "El campo Tiempo de surtir en existencia pedido es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte ExistingFillTime { get; set; }
+
         [DisplayName("Tiempo de entrega")]
         [Required(ErrorMessage = "El campo Tiempo de entrega es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
         [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
         public byte DeliveryTime { get; set; }
+
+        [DisplayName("Tiempo de entrega con uso de courier")]
+        [Required(ErrorMessage = "El campo Tiempo de entrega con uso de courier es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte CourierDeliveryTime { get; set; }
 
         [DisplayName("Recargo por orden de compra")]
         [Required(ErrorMessage = "El campo recargo por orden de compra es requerido")]

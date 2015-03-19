@@ -153,52 +153,12 @@
 							</div>
 						</fieldset>
 						
-						@*Formulario de carga*@
-						<h1>Formulario de Carga</h1>
+						@*Formulario de Caso de estudio*@
+						<h1>Formulario de Caso de Estudio</h1>
 						<fieldset>
-							<div style="display: none" id="alert" class="alert alert-success">
-								<button type="button" class="close" data-dismiss="alert">×</button>
-								<strong>La carga inicial del producto se han agregado correctamente!, continúe...</strong>
-							</div>
-							<h2>Formulario de Carga Inicial</h2>
+							<h2>Formulario de Caso de estudio</h2>
 							<div class="hr-line-dashed"></div>
 							<div class="form-horizontal">
-								<div class="form-group">
-									@Html.LabelFor(model => model.ProductId, new { @class = "control-label col-md-2" })
-									<div class="col-md-10">
-										@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "form-control single-line" })
-										@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
-									</div>
-								</div>
-								<div class="hr-line-dashed"></div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.Demand, new { @class = "control-label col-md-2" })
-									<div class="col-md-10">
-										@Html.EditorFor(model => model.Demand, new { htmlAttributes = new { @placeholder = "Demanda" } })
-										@Html.ValidationMessageFor(model => model.Demand, "", new { @class = "text-danger" })
-									</div>
-								</div>
-								<div class="hr-line-dashed"></div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.Stddev, new { @class = "control-label col-md-2" })
-									<div class="col-md-10">
-										@Html.EditorFor(model => model.Stddev, new { htmlAttributes = new { @placeholder = "Desviación estandar" } })
-										@Html.ValidationMessageFor(model => model.Stddev, "", new { @class = "text-danger" })
-									</div>
-								</div>
-								<div class="hr-line-dashed"></div>
-
-								<div class="form-group">
-									@Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
-									<div class="col-md-10">
-										@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @placeholder = "Precio" } })
-										@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-									</div>
-								</div>
-								<div class="hr-line-dashed"></div>
-
 								<div class="form-group">
 									@Html.LabelFor(model => model.PreparationCost, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
@@ -245,6 +205,15 @@
 								<div class="hr-line-dashed"></div>
 
 								<div class="form-group">
+									@Html.LabelFor(model => model.AcceleratedPreparationTime, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.AcceleratedPreparationTime, new { htmlAttributes = new { @placeholder = "Tiempo de Preparación acelerado" } })
+										@Html.ValidationMessageFor(model => model.AcceleratedPreparationTime, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
 									@Html.LabelFor(model => model.FillTime, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
 										@Html.EditorFor(model => model.FillTime, new { htmlAttributes = new { @placeholder = "Tiempo de Surtir Pedido" } })
@@ -254,10 +223,74 @@
 								<div class="hr-line-dashed"></div>
 
 								<div class="form-group">
+									@Html.LabelFor(model => model.ExistingFillTime, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.ExistingFillTime, new { htmlAttributes = new { @placeholder = "Tiempo de Surtir Pedido en existencia" } })
+										@Html.ValidationMessageFor(model => model.ExistingFillTime, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
 									@Html.LabelFor(model => model.DeliveryTime, new { @class = "control-label col-md-2" })
 									<div class="col-md-10">
 										@Html.EditorFor(model => model.DeliveryTime, new { htmlAttributes = new { @placeholder = "Tiempo de Entrega" } })
 										@Html.ValidationMessageFor(model => model.DeliveryTime, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.CourierDeliveryTime, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.CourierDeliveryTime, new { htmlAttributes = new { @placeholder = "Tiempo de Entrega con uso de courier" } })
+										@Html.ValidationMessageFor(model => model.CourierDeliveryTime, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+						</fieldset>					
+						@*Formulario de carga*@
+						<h1>Formulario de Carga</h1>
+						<fieldset>
+							<div style="display: none" id="alert" class="alert alert-success">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>La carga inicial del producto se han agregado correctamente!, continúe...</strong>
+							</div>
+							<h2>Formulario de Carga Inicial</h2>
+							<div class="hr-line-dashed"></div>
+							<div class="form-horizontal">
+								<div class="form-group">
+									@Html.LabelFor(model => model.ProductId, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.Products, "Elija un producto", new { @class = "form-control single-line" })
+										@Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Demand, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Demand, new { htmlAttributes = new { @placeholder = "Demanda" } })
+										@Html.ValidationMessageFor(model => model.Demand, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Stddev, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Stddev, new { htmlAttributes = new { @placeholder = "Desviación estandar" } })
+										@Html.ValidationMessageFor(model => model.Stddev, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @placeholder = "Precio" } })
+										@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
 									</div>
 								</div>
 								<div class="hr-line-dashed"></div>

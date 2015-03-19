@@ -34,14 +34,6 @@ namespace Tesis.Business
             model.Remove("Demand");
             model.Remove("Stddev");
             model.Remove("Price");
-            model.Remove("PreparationCost");
-            model.Remove("AnnualMaintenanceCost");
-            model.Remove("WeeklyMaintenanceCost");
-            model.Remove("PurchaseOrderRecharge");
-            model.Remove("CourierCharges");
-            model.Remove("PreparationTime");
-            model.Remove("FillTime");
-            model.Remove("DeliveryTime");
             model.Remove("SecurityStock");
             model.Remove("InitialStock");
             model.Remove("ProductId");

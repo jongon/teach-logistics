@@ -17,13 +17,6 @@ function InitialCharge() {
     this.demand = $('#Demand').val();
     this.stdDev = $('#Stddev').val();
     this.price = $('#Price').val();
-    this.preparationCost = $('#PreparationCost').val();
-    this.annualMaintenanceCost = $('#AnnualMaintenanceCost').val();
-    this.purchaseOrderRecharge = $('#PurchaseOrderRecharge').val();
-    this.courierCharges = $('#CourierCharges').val();
-    this.preparationTime = $('#PreparationTime').val();
-    this.fillTime = $('#FillTime').val();
-    this.deliveryTime = $('#DeliveryTime').val();
     this.securityStock = $('#SecurityStock').val();
     this.initialStock = $('#InitialStock').val();
 }
@@ -35,13 +28,6 @@ function disableFormValidation() {
     $('#Demand').rules('remove', 'required');
     $('#Stddev').rules('remove', 'required');
     $('#Price').rules('remove', 'required');
-    $('#PreparationCost').rules('remove', 'required');
-    $('#AnnualMaintenanceCost').rules('remove', 'required');
-    $('#PurchaseOrderRecharge').rules('remove', 'required');
-    $('#CourierCharges').rules('remove', 'required');
-    $('#PreparationTime').rules('remove', 'required');
-    $('#FillTime').rules('remove', 'required');
-    $('#DeliveryTime').rules('remove', 'required');
     $('#SecurityStock').rules('remove', 'required');
     $('#InitialStock').rules('remove', 'required');
 }
@@ -51,13 +37,6 @@ function enabledFormValidation() {
     $('#Demand').rules('add', 'required');
     $('#Stddev').rules('add', 'required');
     $('#Price').rules('add', 'required');
-    $('#PreparationCost').rules('add', 'required');
-    $('#AnnualMaintenanceCost').rules('add', 'required');
-    $('#PurchaseOrderRecharge').rules('add', 'required');
-    $('#CourierCharges').rules('add', 'required');
-    $('#PreparationTime').rules('add', 'required');
-    $('#FillTime').rules('add', 'required');
-    $('#DeliveryTime').rules('add', 'required');
     $('#SecurityStock').rules('add', 'required');
     $('#InitialStock').rules('add', 'required');
 }
@@ -78,19 +57,12 @@ function resizeJquerySteps() {
 function addInitialCharge() {
     window.scrollTo(0, 0);
     if ($('#form').valid()) {
-        $("#ProductId option[value='" + $('#ProductId').val() + "']").remove();
         initialCharges.push(new InitialCharge());
+        $("#ProductId option[value='" + $('#ProductId').val() + "']").remove();
         $('#ProductId').val('');
         $('#Demand').val('');
         $('#Stddev').val('');
         $('#Price').val('');
-        $('#PreparationCost').val('');
-        $('#AnnualMaintenanceCost').val('');
-        $('#PurchaseOrderRecharge').val('');
-        $('#CourierCharges').val('');
-        $('#PreparationTime').val('');
-        $('#FillTime').val('');
-        $('#DeliveryTime').val('');
         $('#SecurityStock').val('');
         $('#InitialStock').val('');
         $('#alert').show();
@@ -130,7 +102,7 @@ $(document).ready(function () {
                     }
                 }
             } else if (newIndex < currentIndex) {
-                if (currentIndex == 3) {
+                if (currentIndex == 4) {
                     initialCharges = [];
                 }
                 return true;
@@ -143,6 +115,7 @@ $(document).ready(function () {
             resizeJquerySteps();
             //Ajustar el jquery steps a resolución de todo el formulario
             //Nombrar "Siguiente" el botón ya que aveces puede cambiar
+            $("#form .actions a[href='#']").attr('href', '#next');
             $("#form .actions a[href='#next']").text('Siguiente');
 
             var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
@@ -161,9 +134,9 @@ $(document).ready(function () {
                     enabledXmlValidation();
                     $("#form .actions a[href='#next']").text('Finalizar');
                 }
-            } else if (currentIndex == 3 && selected === 'xml') {
+            } else if ((currentIndex == 4 || currentIndex == 3) && selected === 'xml') {
                 $(this).steps("previous");
-            } else if (currentIndex == 3 && selected === 'form') {
+            } else if (currentIndex == 4 && selected === 'form') {
                 $("#form .actions li:eq('1')").removeAttr('aria-hidden');
                 $("#form .actions li:eq('1')").removeAttr('aria-disabled');
                 $("#form .actions li:eq('1')").attr('class', '');
