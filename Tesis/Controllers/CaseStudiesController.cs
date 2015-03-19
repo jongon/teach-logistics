@@ -68,10 +68,23 @@ namespace Tesis.Controllers
                         CaseStudyXmlBL caseStudyXmlBL = new CaseStudyXmlBL();
                         CaseStudyXml caseStudyXml = caseStudyXmlBL.Deserealize(caseStudyViewModel.XmlUpload.InputStream);
                         CaseStudy caseStudy = caseStudyXmlBL.XmlToModel(caseStudyXml);
+                        caseStudy.Name = caseStudyViewModel.Name;
+                        foreach (var initialCharge in caseStudy.InitialCharges)
+                        {
+                            if (!TryValidateModel(initialCharge))
+                            {
+                                throw new Exception("Ha Ocurrido un error en la carga inicial de productos");
+                            }
+                        }
+                        if (!TryValidateModel(caseStudy))
+                        {
+                            throw new Exception("Ha ocurrido un error en los primeros parámetros de carga, asegurese que haya colocado las cargas de productos");
+                        }
                         db.CaseStudies.Add(caseStudy);
                         await db.SaveChangesAsync();
                         Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
-                        return RedirectToAction("Index");
+                        return View("Success");
+                        //return RedirectToAction("Index");
                     }
                 } else if (caseStudyViewModel.ChargeTypeName == "form") {
                     caseStudyBL.ModelStateInForm(ModelState);
@@ -115,7 +128,9 @@ namespace Tesis.Controllers
                         db.CaseStudies.Add(caseStudy);
                         await db.SaveChangesAsync();
                         Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
-                        return RedirectToAction("Index");
+                        return View("Success");
+                        //return View();
+                        //return RedirectToAction("Index");
                     } else {
                         Flash.Error("Error", "El caso de estudio no ha podido ser almacenado correctamente");
                     }

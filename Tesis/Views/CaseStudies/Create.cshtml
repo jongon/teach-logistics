@@ -30,6 +30,7 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="ibox">
@@ -39,7 +40,7 @@
 				<div class="ibox-content">
 					<h2>Caso de estudio</h2>
 					<p>Por favor siga los pasos para crear su caso de estudio.</p>
-					@using (Html.BeginForm("Create", "CaseStudies", FormMethod.Post, new { @class = "wizard-big", role = "form", id = "form" })) {
+					@using (Html.BeginForm("Create", "CaseStudies", FormMethod.Post, new { enctype = "multipart/form-data", @class = "wizard-big", role = "form", id = "form" })) {
 						<h1>Elija Nombre, Semestre y sección</h1>
 						@*Form para elegir la sección y semestre*@
 						<fieldset>
