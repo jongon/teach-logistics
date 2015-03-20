@@ -291,6 +291,7 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register([Bind(Include = "Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SemesterId, SectionId")] RegisterViewModel model)
         {
+            var errors = ModelState.Keys.SelectMany(key => this.ModelState[key].Errors.Select(x => x.ErrorMessage)).ToList();
             if (ModelState.IsValid)
             {
                 if (model.SectionId == null)
