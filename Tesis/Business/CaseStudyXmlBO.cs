@@ -9,9 +9,6 @@ namespace Tesis.Business
     [XmlRoot("Caso_De_Estudio")]
     public class CaseStudyXml
     {
-        [XmlAttribute("Nombre")]
-        public string Name { get; set; }
-
         [XmlElement("Tiempo_Preparacion")]
         public byte PreparationTime { get; set; }
 

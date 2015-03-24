@@ -112,7 +112,6 @@ $(document).ready(function () {
         },
         onStepChanged: function (event, currentIndex, priorIndex)
         {
-            resizeJquerySteps();
             //Ajustar el jquery steps a resolución de todo el formulario
             //Nombrar "Siguiente" el botón ya que aveces puede cambiar
             $("#form .actions a[href='#']").attr('href', '#next');
@@ -146,6 +145,7 @@ $(document).ready(function () {
                 $("#form .actions a[href='#next']").attr('id', 'test');
                 $("#form .actions a[href='#next']").attr('href', '#');
             }
+            resizeJquerySteps();
         },
         onFinishing: function (event, currentIndex)
         {

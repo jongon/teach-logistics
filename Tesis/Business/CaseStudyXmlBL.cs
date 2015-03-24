@@ -41,24 +41,17 @@ namespace Tesis.Business
                 initialCharge.Demand = initialChargeXml.Demand;
                 initialCharge.InitialStock = initialChargeXml.InitialStock;
                 initialCharge.Price = initialChargeXml.Price;
-                initialCharge.Product = db.Products.Where(x => x.Name == initialChargeXml.Product).FirstOrDefault();
+                initialCharge.ProductId = db.Products.Where(x => x.Name == initialChargeXml.Product).FirstOrDefault().Id;
                 initialCharge.SecurityStock = initialChargeXml.SecurityStock;
                 initialCharge.Stddev = initialChargeXml.Stddev;
-                if (Controller.TryUpdateModel(initialCharge))
-                {
-                    initialCharges.Add(initialCharge);
-                }
-                else
-                {
-                    throw new Exception("Se ha encontrado un error en el archivo XML");
-                }
+                initialCharge.CaseStudyId = caseStudyXmlId;
+                initialCharges.Add(initialCharge);
             }
 
             CaseStudy caseStudy = new CaseStudy
             {
                 Id = caseStudyXmlId,
                 Created = DateTime.Now,
-                Name = caseStudyXml.Name,
                 AcceleratedPreparationTime = caseStudyXml.AcceleratedPreparationTime,
                 AnnualMaintenanceCost = caseStudyXml.AnnualMaintenanceCost,
                 CourierCharges = caseStudyXml.CourierCharges,
@@ -71,12 +64,6 @@ namespace Tesis.Business
                 PurchaseOrderRecharge = caseStudyXml.PurchaseOrderRecharge,
                 InitialCharges = initialCharges,
             };
-
-            if (!Controller.TryValidateModel(caseStudy))
-            {
-                throw new Exception("Se ha encontrado un error en el archivo XML");
-                
-            }
             return caseStudy;
         }
     }

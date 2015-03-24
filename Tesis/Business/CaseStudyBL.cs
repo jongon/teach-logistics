@@ -16,8 +16,10 @@ namespace Tesis.Business
             model.Remove("Stddev");
             model.Remove("Price");
             model.Remove("PreparationCost");
+            model.Remove("AcceleratedPreparationTime");
+            model.Remove("ExistingFillTime");
+            model.Remove("CourierDeliveryTime");            
             model.Remove("AnnualMaintenanceCost");
-            model.Remove("WeeklyMaintenanceCost");
             model.Remove("PurchaseOrderRecharge");
             model.Remove("CourierCharges");
             model.Remove("PreparationTime");
