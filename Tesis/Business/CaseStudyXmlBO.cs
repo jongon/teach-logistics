@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace Tesis.Business
 {
-    [XmlRoot("CaseStudy")]
+    [XmlRoot("Caso_De_Estudio")]
     public class CaseStudyXml
     {
         [XmlAttribute("Nombre")]
