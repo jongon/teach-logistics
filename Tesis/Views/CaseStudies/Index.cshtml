@@ -57,8 +57,8 @@
 										@if (item.Sections.Count() > 0) {
 											foreach (var sectionItem in item.Sections)
 											{
-												<span>Semestre: @sectionItem.Semester.Description</span>
-												<span>Sección: @sectionItem.Number</span>
+												<span><strong>Semestre:</strong> @sectionItem.Semester.Description -</span>
+												<span><strong>Sección:</strong> @sectionItem.Number</span>
 												<br>																																
 											}
 										} else {
@@ -67,6 +67,7 @@
 								</td>
 								<td>
 									@Html.ActionLink("Detalles", "Details", new { id=item.Id }, new { @class = "btn btn-primary btn-sm"})
+									@Html.ActionLink("Asignar sección", "AsignSection", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
 									@Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
 								</td>
 							</tr>

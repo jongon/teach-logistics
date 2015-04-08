@@ -316,6 +316,9 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/CaseStudies/index").Include(
                 "~/Scripts/app/CaseStudies/index.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/CaseStudies/asignSection").Include(
+                "~/Scripts/app/CaseStudies/asignSection.js"));
+
             bundles.Add(new StyleBundle("~/app/CaseStudies").Include(
                 "~/Content/app/Casestudies.css"));
 

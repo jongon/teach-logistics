@@ -147,29 +147,6 @@ namespace Tesis.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateByXml(CreateByXmlViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    CaseStudyXmlBL caseStudyBL = new CaseStudyXmlBL();
-                    CaseStudyXml caseStudyXml = caseStudyBL.Deserealize(model.XmlUpload.InputStream);
-                    CaseStudy caseStudy = caseStudyBL.XmlToModel(caseStudyXml);
-                    db.CaseStudies.Add(caseStudy);
-                    db.SaveChanges();
-                    Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
-                }
-                catch (Exception)
-                {
-                    Flash.Error("Ok", "El Archivo Xml no ha podido ser cargado, revise que esté correctamente formado y tenga todos los campos llenos");
-                }
-            }
-            return View();
-        }
-
         public ActionResult CreateByXml()
         {
             return View();
@@ -233,6 +210,12 @@ namespace Tesis.Controllers
                 {
                     return HttpNotFound();
                 }
+                //Revisar que no tenga simulaciones activas
+                List<Section> sections = await db.Sections.Where(x => x.CaseStudyId == id).ToListAsync();
+                foreach (var section in sections)
+                {
+                    section.CaseStudyId = null;
+                }
                 db.CaseStudies.Remove(caseStudy);
                 await db.SaveChangesAsync();
                 Flash.Success("Ok", "El caso de estudio ha sido eliminado exitosamente");
@@ -255,14 +238,37 @@ namespace Tesis.Controllers
             if (caseStudy ==  null) {
                 return HttpNotFound();
             }
-            return View();
+            AsignSectionViewModel asignSection = new AsignSectionViewModel { CaseStudyId = caseStudy.Id };
+            return View(asignSection);
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> AsignSection(Guid id)
-        //{
-
-        //}
+        [HttpPost]
+        public async Task<ActionResult> AsignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AsignSectionViewModel model)
+        {
+            ViewBag.SemesterId = model.SemesterId.ToString();
+            ViewBag.SectionId = model.SectionId.ToString();
+            if (ModelState.IsValid)
+            {
+                CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == model.CaseStudyId).FirstOrDefaultAsync();
+                if (caseStudy == null)
+                {
+                    Flash.Error("Error", "No existe el caso de estudio");
+                    return View(model);
+                }
+                Section section = await db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
+                if (section.CaseStudyId != null) {
+                    Flash.Error("Error", "Esta sección ya tiene un caso de estudio asignado");
+                    return View(model);
+                }
+                section.CaseStudyId = caseStudy.Id;
+                caseStudy.Sections.Add(section);
+                await db.SaveChangesAsync();
+                Flash.Success("Ok", "El caso de Estudio ha sido asignado a la sección satisfactoriamente");
+                return RedirectToAction("Index");
+            }
+            Flash.Error("Error", "Ha Ocurrido un error");
+            return View(model);
+        }
 
         protected override void Dispose(bool disposing)
         {
