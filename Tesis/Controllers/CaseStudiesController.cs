@@ -36,12 +36,12 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InitialCharge initialCharge = await db.InitialCharges.FindAsync(id);
-            if (initialCharge == null)
+            CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (caseStudy == null)
             {
                 return HttpNotFound();
             }
-            return View(initialCharge);
+            return View(caseStudy);
         }
 
         // GET: /InitialCharges/Create
@@ -213,12 +213,12 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InitialCharge initialCharge = await db.InitialCharges.FindAsync(id);
-            if (initialCharge == null)
+            CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (caseStudy == null)
             {
                 return HttpNotFound();
             }
-            return View(initialCharge);
+            return View(caseStudy);
         }
 
         // POST: /InitialCharges/Delete/5
@@ -226,11 +226,43 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            InitialCharge initialCharge = await db.InitialCharges.FindAsync(id);
-            db.InitialCharges.Remove(initialCharge);
-            await db.SaveChangesAsync();
+            try
+            {
+                CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+                if (caseStudy == null)
+                {
+                    return HttpNotFound();
+                }
+                db.CaseStudies.Remove(caseStudy);
+                await db.SaveChangesAsync();
+                Flash.Success("Ok", "El caso de estudio ha sido eliminado exitosamente");
+            }
+            catch (Exception)
+            {
+                Flash.Error("Error", "No se puede eliminar el caso de estudio, revise el caso no se esté llevando a cabo por los estudiantes");
+            }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<ActionResult> AsignSection(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (caseStudy ==  null) {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        //[HttpPost]
+        //public async Task<ActionResult> AsignSection(Guid id)
+        //{
+
+        //}
 
         protected override void Dispose(bool disposing)
         {

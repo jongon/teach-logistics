@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Tesis.Models.InitialCharge>
+<div class="ibox">
+	<div class="ibox-title">
+		Lista de Productos
+	</div>
+	<div class="ibox-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.Product.Name)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Product.Number)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Demand)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Stddev)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Price)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.SecurityStock)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.InitialStock)
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@item.Product.Name
+					</td>
+					<td>
+						@item.Product.Number
+					</td>
+					<td>
+						@item.Demand
+					</td>
+					<td>
+						@item.Stddev
+					</td>
+					<td>
+						@item.Price
+					</td>
+					<td>
+						@item.SecurityStock
+					</td>
+					<td>
+						@item.InitialStock
+					</td>
+				</tr>
+			}
+			</tbody>
+		</table>
+	</div>
+</div>

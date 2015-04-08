@@ -14,7 +14,7 @@ namespace Tesis.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             ContextKey = "Tesis.DAL.ApplicationDbContext";
         }
 
