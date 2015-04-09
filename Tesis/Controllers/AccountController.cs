@@ -28,6 +28,7 @@ namespace Tesis.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         private ApplicationUserManager _userManager;
+
         public ApplicationUserManager UserManager
         {
             get
@@ -39,6 +40,7 @@ namespace Tesis.Controllers
                 _userManager = value;
             }
         }
+
 
         private ApplicationSignInManager _signInManager;
 
@@ -416,8 +418,7 @@ namespace Tesis.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        //
-        [ValidateAntiForgeryToken]
+
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();

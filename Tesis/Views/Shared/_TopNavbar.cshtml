@@ -8,7 +8,7 @@
 				<span class="m-r-sm text-muted welcome-message">Teach Logistics.</span>
 			</li>
 			<li>
-				<a href="@Url.Action("Login", "Pages")">
+				<a href="@Url.Action("LogOff", "Account", new { Id = ViewBag.User.Id })">
 					<i class="fa fa-sign-out"></i> Cerrar Sesión
 				</a>
 			</li>
