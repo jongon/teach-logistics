@@ -29,7 +29,7 @@
 					@Html.PasswordFor(m => m.Password, new { @class = "form-control required", @placeholder = "Contraseña" })
 				</div>
 				<div>
-					<label> <input id="rememberMe" name="rememberMe" type="checkbox" class="i-checks"> ¿Recordar Sesión? </label>
+					<label> @Html.CheckBoxFor(m => m.RememberMe, new { @class ="i-checks" }) ¿Recordar Sesión? </label>
 					<button type="submit" class="btn btn-primary block full-width m-b">Iniciar Sesión</button>
 				</div>
 			}
