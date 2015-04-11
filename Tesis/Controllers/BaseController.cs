@@ -12,19 +12,30 @@ namespace Tesis.Controllers
 {
     public abstract class BaseController : Controller
     {
+        protected ApplicationDbContext Db { get; set; }
+
         protected virtual IFlashPusher Flash { get; private set; }
 
         protected BaseController()
         {
+            Db = new ApplicationDbContext();
             Flash = MvcFlash.Core.Flash.Instance;
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             var userId = User.Identity.GetUserId();
-            ViewBag.User = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            ViewBag.User = Db.Users.Where(x => x.Id == userId).FirstOrDefault();
             base.OnActionExecuted(filterContext);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
     

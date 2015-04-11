@@ -18,12 +18,10 @@ namespace Tesis.Controllers
 {
     public class SectionsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: /Sections/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Semesters.Where(x => x.Sections.Count > 0).ToListAsync());
+            return View(await Db.Semesters.Where(x => x.Sections.Count > 0).ToListAsync());
         }
 
         public async Task<JsonResult> GetSectionsBySemester(Guid? SemesterId)
@@ -34,7 +32,7 @@ namespace Tesis.Controllers
             }
             else
             {
-                var sections = await db.Sections.Where(x => x.Semester.Id == SemesterId).Select(c => new { Id = c.Id, Number = c.Number }).ToListAsync();
+                var sections = await Db.Sections.Where(x => x.Semester.Id == SemesterId).Select(c => new { Id = c.Id, Number = c.Number }).ToListAsync();
                 return Json(sections, JsonRequestBehavior.AllowGet);
             }
         }
@@ -45,7 +43,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = await db.Sections.FindAsync(id);
+            Section section = await Db.Sections.FindAsync(id);
             if (section == null)
             {
                 return HttpNotFound();
@@ -70,11 +68,11 @@ namespace Tesis.Controllers
         {
             if (ModelState.IsValid)
             {
-                Semester semester = await db.Semesters.Where(x => x.Id == section.SemesterId).FirstOrDefaultAsync();
+                Semester semester = await Db.Semesters.Where(x => x.Id == section.SemesterId).FirstOrDefaultAsync();
                 if (semester != null) {
                     Section sectionDomain = new Section { Id = Guid.NewGuid(), Number = section.Number, Semester = semester };
-                    db.Sections.Add(sectionDomain);
-                    await db.SaveChangesAsync();
+                    Db.Sections.Add(sectionDomain);
+                    await Db.SaveChangesAsync();
                     Flash.Success("Ok", "Sección creada exitosamente");
                     return RedirectToAction("Index");
                 } 
@@ -91,7 +89,7 @@ namespace Tesis.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            SectionViewModel section = await db.Sections.Where(c => c.Id == id).Select(x => new SectionViewModel { Id = x.Id, Number = x.Number, SemesterId = x.Semester.Id }).FirstAsync();
+            SectionViewModel section = await Db.Sections.Where(c => c.Id == id).Select(x => new SectionViewModel { Id = x.Id, Number = x.Number, SemesterId = x.Semester.Id }).FirstAsync();
             if (section == null)
             {
                 return HttpNotFound();
@@ -109,14 +107,14 @@ namespace Tesis.Controllers
         {
             if (ModelState.IsValid)
             {
-                Semester semester = db.Semesters.Where(x => x.Id == section.SemesterId).First();
+                Semester semester = Db.Semesters.Where(x => x.Id == section.SemesterId).First();
                 if (semester != null)
                 {
-                    Section sectionDomain = await db.Sections.Where(x => x.Id == section.Id).FirstAsync();
+                    Section sectionDomain = await Db.Sections.Where(x => x.Id == section.Id).FirstAsync();
                     sectionDomain.Number = section.Number;
                     sectionDomain.Semester = semester;
-                    db.Entry(sectionDomain).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
+                    Db.Entry(sectionDomain).State = EntityState.Modified;
+                    await Db.SaveChangesAsync();
                     Flash.Success("Ok!", "La sección ha sido editada exitosamente");
                     return RedirectToAction("Index");
                 }
@@ -132,7 +130,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = await db.Sections.FindAsync(id);
+            Section section = await Db.Sections.FindAsync(id);
             if (section == null)
             {
                 return HttpNotFound();
@@ -147,11 +145,11 @@ namespace Tesis.Controllers
         {
             try
             {
-                Section section = await db.Sections.FindAsync(id);
+                Section section = await Db.Sections.FindAsync(id);
                 if (section != null)
                 {
-                    db.Sections.Remove(section);
-                    await db.SaveChangesAsync();
+                    Db.Sections.Remove(section);
+                    await Db.SaveChangesAsync();
                     Flash.Success("Ok!", "Sección eliminada exitosamente");
                     return RedirectToAction("Index");
                 }
@@ -161,15 +159,6 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "No se ha podido eliminar la sección, puede tener relaciones");
                 return RedirectToAction("Index");
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

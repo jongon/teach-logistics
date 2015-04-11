@@ -25,8 +25,6 @@ namespace Tesis.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         private ApplicationUserManager _userManager;
 
         public ApplicationUserManager UserManager
@@ -40,7 +38,6 @@ namespace Tesis.Controllers
                 _userManager = value;
             }
         }
-
 
         private ApplicationSignInManager _signInManager;
 
@@ -417,7 +414,6 @@ namespace Tesis.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
-
 
         public ActionResult LogOff()
         {

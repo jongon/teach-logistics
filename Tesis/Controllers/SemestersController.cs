@@ -18,18 +18,16 @@ namespace Tesis.Controllers
 {
     public class SemestersController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: /Semesters/
         public async Task<ActionResult> Index()
         {
-            var semesters = await db.Semesters.Select(x => new SemesterViewModel { Description = x.Description, Id = x.Id }).ToListAsync();
+            var semesters = await Db.Semesters.Select(x => new SemesterViewModel { Description = x.Description, Id = x.Id }).ToListAsync();
             return View(semesters);
         }
 
         public async Task<JsonResult> IndexJson()
         {
-            var semesters = await db.Semesters.Select(c => new { Id = c.Id, Description = c.Description }).ToListAsync();
+            var semesters = await Db.Semesters.Select(c => new { Id = c.Id, Description = c.Description }).ToListAsync();
             return Json(semesters, JsonRequestBehavior.AllowGet);
         }
 
@@ -40,7 +38,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SemesterViewModel semester = await db.Semesters.Select(x => new SemesterViewModel { Id = x.Id, Description = x.Description }).SingleAsync(l => l.Id == id);
+            SemesterViewModel semester = await Db.Semesters.Select(x => new SemesterViewModel { Id = x.Id, Description = x.Description }).SingleAsync(l => l.Id == id);
             if (semester == null)
             {
                 return HttpNotFound();
@@ -66,8 +64,8 @@ namespace Tesis.Controllers
                 Semester semester = new Semester();
                 semester.Id = Guid.NewGuid();
                 semester.Description = semesterViewModel.Description;
-                db.Semesters.Add(semester);
-                await db.SaveChangesAsync();
+                Db.Semesters.Add(semester);
+                await Db.SaveChangesAsync();
                 Flash.Success("OK", "Semestre Creado Exitosamente");
                 return RedirectToAction("Index");
             }
@@ -82,7 +80,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SemesterViewModel semester = await db.Semesters.Select(x => new SemesterViewModel { Id = x.Id, Description = x.Description }).SingleAsync(l => l.Id == id);
+            SemesterViewModel semester = await Db.Semesters.Select(x => new SemesterViewModel { Id = x.Id, Description = x.Description }).SingleAsync(l => l.Id == id);
             if (semester == null)
             {
                 return HttpNotFound();
@@ -100,8 +98,8 @@ namespace Tesis.Controllers
             if (ModelState.IsValid)
             {
                 Semester semesterDomain = new Semester { Id = semester.Id, Description = semester.Description };
-                db.Entry(semesterDomain).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                Db.Entry(semesterDomain).State = EntityState.Modified;
+                await Db.SaveChangesAsync();
                 Flash.Success("OK", "Semestre editado exitosamente");
                 return RedirectToAction("Index");
             }
@@ -116,7 +114,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SemesterViewModel semester = await db.Semesters.Select(x => new SemesterViewModel { Id = x.Id, Description = x.Description }).SingleAsync(l => l.Id == id);
+            SemesterViewModel semester = await Db.Semesters.Select(x => new SemesterViewModel { Id = x.Id, Description = x.Description }).SingleAsync(l => l.Id == id);
             if (semester == null)
             {
                 return HttpNotFound();
@@ -131,11 +129,11 @@ namespace Tesis.Controllers
         {
             try
             {
-                Semester semester = await db.Semesters.FindAsync(id);
+                Semester semester = await Db.Semesters.FindAsync(id);
                 if (semester != null)
                 {
-                    db.Semesters.Remove(semester);
-                    await db.SaveChangesAsync();
+                    Db.Semesters.Remove(semester);
+                    await Db.SaveChangesAsync();
                     Flash.Success("OK", "El semestre ha sido eliminado exitosamente");
                     return RedirectToAction("Index");
                 }
@@ -147,15 +145,6 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "Ha ocurrido un error eliminando el semestre, puede tener relaciones");
                 return RedirectToAction("Index");
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

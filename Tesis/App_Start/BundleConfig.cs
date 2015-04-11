@@ -275,7 +275,6 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/plugins/summernote").Include(
                       "~/Scripts/plugins/summernote/summernote.min.js"));
 
-
             //Application Scripts
 
             //Account
@@ -331,6 +330,7 @@ namespace Tesis
 
             bundles.Add(new ScriptBundle("~/bundles/Products/edit").Include(
                 "~/Scripts/app/Products/edit.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

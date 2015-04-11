@@ -20,16 +20,20 @@ namespace Tesis.DAL
         }
 
         public virtual DbSet<CaseStudy> CaseStudies { get; set; }
+
         public virtual DbSet<Group> Groups { get; set; }
+
         public virtual DbSet<InitialCharge> InitialCharges { get; set; }
+
         public virtual DbSet<Product> Products { get; set; }
+
         public virtual DbSet<Section> Sections { get; set; }
+
         public virtual DbSet<Semester> Semesters { get; set; }
 
         protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-        
             modelBuilder.Entity<User>().ToTable("Users");//.Property(p => p.Id).HasColumnName("Id");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");

@@ -218,6 +218,7 @@
     <Compile Include="Business\InitialChargeBL.cs" />
     <Compile Include="Business\CaseStudyXmlBL.cs" />
     <Compile Include="Business\ProductBO.cs" />
+    <Compile Include="Business\UserBL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
@@ -250,7 +251,6 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AsignSectionViewModel.cs" />
-    <Compile Include="ViewModels\CreateByXmlViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\CaseStudyViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
@@ -565,7 +565,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -589,17 +588,12 @@
     <Content Include="Content\plugins\angular-steps\_angular-steps.scss" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Icon.png" />
     <Content Include="Content\images\a1.jpg" />
     <Content Include="Content\images\a2.jpg" />
     <Content Include="Content\images\a3.jpg" />
@@ -1657,7 +1651,6 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_SkinConfig.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Views\CaseStudies\Create.cshtml" />

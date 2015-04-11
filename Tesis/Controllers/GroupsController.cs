@@ -15,14 +15,13 @@ using MvcFlash.Core.Extensions;
 
 namespace Tesis.Controllers
 {
+    [Authorize]
     public class GroupsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: /Groups/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Groups.ToListAsync());
+            return View(await Db.Groups.ToListAsync());
         }
 
         // GET: /Groups/Details/5
@@ -32,7 +31,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = await db.Groups.FindAsync(id);
+            Group group = await Db.Groups.FindAsync(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -56,7 +55,7 @@ namespace Tesis.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!(group.Users.Count() == db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
+                if (!(group.Users.Count() == Db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
                 {
                     Flash.Error("Error", "Ha ocurrido un error creando el grupo, revise que el usuario no tenga un grupo asignado");
                     return View(group);
@@ -64,10 +63,10 @@ namespace Tesis.Controllers
 
                 try
                 {
-                    List<User> users = await db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
+                    List<User> users = await Db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
                     group.Id = Guid.NewGuid();
-                    db.Groups.Add(new Group { Id = group.Id, Name = group.Name, Score = "0", Users = users, SectionId = group.SectionId });
-                    await db.SaveChangesAsync();
+                    Db.Groups.Add(new Group { Id = group.Id, Name = group.Name, Score = "0", Users = users, SectionId = group.SectionId });
+                    await Db.SaveChangesAsync();
                     Flash.Success("Ok", "Grupo creado exitosamente");
                     ViewBag.SemesterId = group.SemesterId.ToString();
                     ViewBag.SectionId = group.SectionId.ToString();
@@ -90,7 +89,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = await db.Groups.FindAsync(id);
+            Group group = await Db.Groups.FindAsync(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -117,20 +116,20 @@ namespace Tesis.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Group currentGroup = db.Groups.Where(x => x.Id == group.Id).FirstOrDefault();
+                    Group currentGroup = Db.Groups.Where(x => x.Id == group.Id).FirstOrDefault();
                     foreach (var user in currentGroup.Users)
                     {
                         user.Group = null;
                     }
-                    db.SaveChanges();
-                    if (!(group.Users.Count() == db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
+                    Db.SaveChanges();
+                    if (!(group.Users.Count() == Db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
                     {
                         Flash.Error("Error", "Ha ocurrido un error creando el grupo, revise que el usuario no tenga un grupo asignado");
                         return View(group);
                     }
-                    currentGroup.Users = await db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
-                    db.Entry(currentGroup).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
+                    currentGroup.Users = await Db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
+                    Db.Entry(currentGroup).State = EntityState.Modified;
+                    await Db.SaveChangesAsync();
                     Flash.Success("Ok", "Grupo ha sido editado satisfactoriamente");
                     return RedirectToAction("Index");
                 }
@@ -151,7 +150,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = await db.Groups.FindAsync(id);
+            Group group = await Db.Groups.FindAsync(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -164,15 +163,15 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            Group group = await db.Groups.FindAsync(id);
+            Group group = await Db.Groups.FindAsync(id);
             foreach (var user in group.Users)
             {
                 user.Group = null;
             }
             try
             {
-                db.Groups.Remove(group);
-                await db.SaveChangesAsync();
+                Db.Groups.Remove(group);
+                await Db.SaveChangesAsync();
                 Flash.Success("Ok", "Grupo ha sido eliminado correctamente");
                 return RedirectToAction("Index");
             }
@@ -181,15 +180,6 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "Ha ocurrido un error eliminando el grupo");
                 return View(group);
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

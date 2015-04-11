@@ -19,14 +19,13 @@ using System.IO;
 
 namespace Tesis.Controllers
 {
+    [Authorize]
     public class CaseStudiesController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: /InitialCharges/
         public async Task<ActionResult> Index()
         {
-            return View(await db.CaseStudies.ToListAsync());
+            return View(await Db.CaseStudies.ToListAsync());
         }
 
         // GET: /InitialCharges/Details/5
@@ -36,7 +35,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (caseStudy == null)
             {
                 return HttpNotFound();
@@ -47,7 +46,7 @@ namespace Tesis.Controllers
         // GET: /InitialCharges/Create
         public ActionResult Create()
         {
-            db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
+            Db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
             CaseStudyViewModel caseStudy = new CaseStudyViewModel();
             ViewBag.Products = caseStudy.Products;
             ViewBag.ChargeTypes = caseStudy.ChargeTypes;
@@ -80,8 +79,8 @@ namespace Tesis.Controllers
                         {
                             throw new Exception("Ha ocurrido un error agregando los datos de un producto");
                         }
-                        db.CaseStudies.Add(caseStudy);
-                        await db.SaveChangesAsync();
+                        Db.CaseStudies.Add(caseStudy);
+                        await Db.SaveChangesAsync();
                         Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
                         return RedirectToAction("Index");
                     }
@@ -122,11 +121,11 @@ namespace Tesis.Controllers
                         };
                         if (caseStudyViewModel.SectionId != null)
                         {
-                            Section section = db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
+                            Section section = Db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
                             caseStudy.Sections.Add(section);
                         }
-                        db.CaseStudies.Add(caseStudy);
-                        await db.SaveChangesAsync();
+                        Db.CaseStudies.Add(caseStudy);
+                        await Db.SaveChangesAsync();
                         Flash.Success("Ok", "El caso de estudio ha sido agregado exitosamente");
                         return RedirectToAction("Index");
                     } else {
@@ -139,7 +138,7 @@ namespace Tesis.Controllers
                 }
             } catch(Exception e) {
                 Flash.Error("Error", e.Message);
-                db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
+                Db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
                 CaseStudyViewModel caseStudy = new CaseStudyViewModel();
                 ViewBag.Products = caseStudy.Products;
                 ViewBag.ChargeTypes = caseStudy.ChargeTypes;
@@ -159,7 +158,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InitialCharge initialCharge = await db.InitialCharges.FindAsync(id);
+            InitialCharge initialCharge = await Db.InitialCharges.FindAsync(id);
             if (initialCharge == null)
             {
                 return HttpNotFound();
@@ -176,8 +175,8 @@ namespace Tesis.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(initialCharge).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                Db.Entry(initialCharge).State = EntityState.Modified;
+                await Db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(initialCharge);
@@ -190,7 +189,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (caseStudy == null)
             {
                 return HttpNotFound();
@@ -205,19 +204,19 @@ namespace Tesis.Controllers
         {
             try
             {
-                CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+                CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
                 if (caseStudy == null)
                 {
                     return HttpNotFound();
                 }
                 //Revisar que no tenga simulaciones activas
-                List<Section> sections = await db.Sections.Where(x => x.CaseStudyId == id).ToListAsync();
+                List<Section> sections = await Db.Sections.Where(x => x.CaseStudyId == id).ToListAsync();
                 foreach (var section in sections)
                 {
                     section.CaseStudyId = null;
                 }
-                db.CaseStudies.Remove(caseStudy);
-                await db.SaveChangesAsync();
+                Db.CaseStudies.Remove(caseStudy);
+                await Db.SaveChangesAsync();
                 Flash.Success("Ok", "El caso de estudio ha sido eliminado exitosamente");
             }
             catch (Exception)
@@ -234,7 +233,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (caseStudy ==  null) {
                 return HttpNotFound();
             }
@@ -249,34 +248,25 @@ namespace Tesis.Controllers
             ViewBag.SectionId = model.SectionId.ToString();
             if (ModelState.IsValid)
             {
-                CaseStudy caseStudy = await db.CaseStudies.Where(x => x.Id == model.CaseStudyId).FirstOrDefaultAsync();
+                CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == model.CaseStudyId).FirstOrDefaultAsync();
                 if (caseStudy == null)
                 {
                     Flash.Error("Error", "No existe el caso de estudio");
                     return View(model);
                 }
-                Section section = await db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
+                Section section = await Db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
                 if (section.CaseStudyId != null) {
                     Flash.Error("Error", "Esta sección ya tiene un caso de estudio asignado");
                     return View(model);
                 }
                 section.CaseStudyId = caseStudy.Id;
                 caseStudy.Sections.Add(section);
-                await db.SaveChangesAsync();
+                await Db.SaveChangesAsync();
                 Flash.Success("Ok", "El caso de Estudio ha sido asignado a la sección satisfactoriamente");
                 return RedirectToAction("Index");
             }
             Flash.Error("Error", "Ha Ocurrido un error");
             return View(model);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

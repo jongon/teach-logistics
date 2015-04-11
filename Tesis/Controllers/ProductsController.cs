@@ -19,11 +19,8 @@ using Newtonsoft.Json;
 
 namespace Tesis.Controllers
 {
-    [AllowAnonymous]
     public class ProductsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: /Products/Create
         public ActionResult Create()
         {
@@ -48,8 +45,8 @@ namespace Tesis.Controllers
                             Distance = productViewModel.Distance,
                             Number = productViewModel.Number
                         };
-                        db.Products.Add(product);
-                        await db.SaveChangesAsync();
+                        Db.Products.Add(product);
+                        await Db.SaveChangesAsync();
                     } else {
                         errors++;
                     }
@@ -70,7 +67,7 @@ namespace Tesis.Controllers
         // GET: /Products/
         public async Task<ActionResult> Index()
         {
-            return View(await db.Products.ToListAsync());
+            return View(await Db.Products.ToListAsync());
         }
 
         public JsonResult ExistsProductNumber(string number)
@@ -79,7 +76,7 @@ namespace Tesis.Controllers
             int numberProduct = Convert.ToInt32(number);
             try
             {
-                Product product = db.Products.Where(x => x.Number == numberProduct).FirstOrDefault();
+                Product product = Db.Products.Where(x => x.Number == numberProduct).FirstOrDefault();
                 if (product != null)
                 {
                     result = false;
@@ -101,7 +98,7 @@ namespace Tesis.Controllers
             bool result = false;
             try
             {
-                Product product = db.Products.Where(x => x.Name == name).FirstOrDefault();
+                Product product = Db.Products.Where(x => x.Name == name).FirstOrDefault();
                 if (product != null)
                 {
                     result = false;
@@ -125,7 +122,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = await db.Products.FindAsync(id);
+            Product product = await Db.Products.FindAsync(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -140,7 +137,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = await db.Products.FindAsync(id);
+            Product product = await Db.Products.FindAsync(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -163,7 +160,7 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include="Id,Number,Name,City,Distance")] ProductViewModelEdit productViewModel)
         {
-            List<Product> duplicatedProducts = db.Products.Where(x => (x.Number == productViewModel.Number || x.Name == productViewModel.Name) && (x.Id != productViewModel.Id)).ToList();
+            List<Product> duplicatedProducts = Db.Products.Where(x => (x.Number == productViewModel.Number || x.Name == productViewModel.Name) && (x.Id != productViewModel.Id)).ToList();
             if (duplicatedProducts.Count() > 0)
             {
                 Flash.Error("Error", "El usuario no puede ser editado con esos valores, se encuentran duplicados");
@@ -181,7 +178,7 @@ namespace Tesis.Controllers
                 };
                 if (TryUpdateModel(product))
                 {
-                    await db.SaveChangesAsync();
+                    await Db.SaveChangesAsync();
                     Flash.Success("Ok", "El producto ha sido editado exitosamente");
                     return RedirectToAction("Index");
                 }
@@ -201,7 +198,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = await db.Products.FindAsync(id);
+            Product product = await Db.Products.FindAsync(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -214,10 +211,10 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
-            Product product = await db.Products.FindAsync(id);
+            Product product = await Db.Products.FindAsync(id);
             try{
-                db.Products.Remove(product);
-                await db.SaveChangesAsync();
+                Db.Products.Remove(product);
+                await Db.SaveChangesAsync();
                 Flash.Success("Ok", "Producto eliminado satisfactoriamente");
                 return RedirectToAction("Index");
             }
@@ -226,15 +223,6 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "Producto no puede ser eliminado, revise que no tenga relaciones");
                 return View(product);
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
