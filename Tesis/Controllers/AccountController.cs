@@ -259,7 +259,7 @@ namespace Tesis.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var user = await UserManager.FindByEmailAsync(model.Email);
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            if (!await UserManager.IsEmailConfirmedAsync(user.Id) && result == SignInStatus.Success)
+            if (user!= null && !await UserManager.IsEmailConfirmedAsync(user.Id) && result == SignInStatus.Success)
             {
                 return RedirectToAction("Confirmation", "Account", new { UserId = user.Id, returnUrl = returnUrl, rememberMe = model.RememberMe });
             }
