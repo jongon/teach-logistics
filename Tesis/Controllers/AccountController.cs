@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -10,15 +8,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Tesis.ViewModels;
 using Tesis.DAL;
-using MvcFlash.Core;
 using MvcFlash.Core.Extensions;
 using System.Net;
 using System.Data.Entity;
-using System.Collections.Generic;
-using Tesis.Business;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Tesis.Models;
-using System.Web.Helpers;
 
 namespace Tesis.Controllers
 {

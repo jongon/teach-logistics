@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MvcFlash.Core;
 using MvcFlash.Core.Extensions;
-using Tesis;
 using Tesis.ViewModels;
 using Tesis.Business;
-using System.Collections;
 using Tesis.Models;
-using Tesis.DAL;
-using System.IO;
 
 namespace Tesis.Controllers
 {

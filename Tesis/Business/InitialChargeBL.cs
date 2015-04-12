@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Tesis;
-using Tesis.Models;
-using Tesis.ViewModels;
-
-namespace Tesis.Business
+﻿namespace Tesis.Business
 {
     public class InitialChargeBL
     {

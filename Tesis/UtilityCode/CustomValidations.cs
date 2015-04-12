@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using Tesis.DAL;
 using Tesis.Models;
 using Tesis.ViewModels;
