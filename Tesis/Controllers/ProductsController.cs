@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace Tesis.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ProductsController : BaseController
     {
         // GET: /Products/Create

@@ -6,6 +6,7 @@ using Tesis.DAL;
 
 namespace Tesis.Controllers
 {
+    [Authorize]
     public abstract class BaseController : Controller
     {
         protected ApplicationDbContext Db { get; set; }

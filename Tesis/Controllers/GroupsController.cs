@@ -11,7 +11,7 @@ using MvcFlash.Core.Extensions;
 
 namespace Tesis.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class GroupsController : BaseController
     {
         // GET: /Groups/

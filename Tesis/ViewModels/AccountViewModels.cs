@@ -91,7 +91,7 @@ namespace Tesis.ViewModels
     public class EditUserViewModel : ConfirmationViewModel
     {
         [Required(ErrorMessage = "Este Campo es requerido")]
-        [DisplayName("Activación")]
+        [DisplayName("Activado")]
         public virtual bool EmailConfirmed { get; set; }
 
         [Required(ErrorMessage = "Senestre Este Campo es requerido")]

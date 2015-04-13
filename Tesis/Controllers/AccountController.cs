@@ -54,6 +54,7 @@ namespace Tesis.Controllers
             SignInManager = signInManager;
         }
 
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
@@ -62,6 +63,7 @@ namespace Tesis.Controllers
             return View(users);
         }
 
+        [Authorize(Roles = "Administrador")]
         public async Task<JsonResult> GetUsersBySection(string UserName, string SectionId)
         {
             if (String.IsNullOrEmpty(SectionId))
@@ -84,6 +86,7 @@ namespace Tesis.Controllers
             return Json(users, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Details(string Id)
         {
             if (Id == null)
@@ -211,6 +214,7 @@ namespace Tesis.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DeleteConfirmation(string Id)
         {
             var user = await UserManager.FindByIdAsync(Id);
@@ -274,12 +278,14 @@ namespace Tesis.Controllers
 
         //
         // GET: /Account/Register
+        [Authorize(Roles = "Administrador")]
         public ActionResult Register()
         {
             return View();
         }
 
         // POST: /Account/Register
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register([Bind(Include = "Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SemesterId, SectionId")] RegisterViewModel model)
@@ -333,19 +339,19 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult> Confirmation(string UserId, string returnUrl, bool rememberMe = false)
+        public async Task<ActionResult> Confirmation(string userId, string returnUrl, bool rememberMe = false)
         {
             AuthenticationManager.SignOut();
-            if (String.IsNullOrEmpty(UserId))
+            if (String.IsNullOrEmpty(userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
             }
-            var user = await UserManager.FindByIdAsync(UserId);
+            var user = await UserManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
             }
+            ViewBag.userId = userId;
             ViewBag.returnUrl = returnUrl;
             ViewBag.rememberMe = rememberMe;
             return View(new ConfirmationViewModel
@@ -361,7 +367,6 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Confirmation([Bind(Include = "Id, Email, FirstName, LastName, IdCard, Password, ConfirmPassword")] ConfirmationViewModel model, string returnUrl, bool rememberMe = false)
         {
             if (ModelState.IsValid) {
@@ -372,6 +377,7 @@ namespace Tesis.Controllers
                 else if (user.EmailConfirmed)
                 {
                     Flash.Error("Error", "Este usuario ya ha sido confirmado");
+                    return RedirectToAction("Login", "Account");
                 }
                 PasswordHasher passwordHash = new PasswordHasher();
                 passwordHash.HashPassword(model.Password);
@@ -409,6 +415,7 @@ namespace Tesis.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [AllowAnonymous]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();

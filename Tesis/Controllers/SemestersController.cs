@@ -10,6 +10,7 @@ using Tesis.Models;
 
 namespace Tesis.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class SemestersController : BaseController
     {
         // GET: /Semesters/

@@ -12,7 +12,7 @@ using Tesis.Models;
 
 namespace Tesis.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class CaseStudiesController : BaseController
     {
         // GET: /InitialCharges/
