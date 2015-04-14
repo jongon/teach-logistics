@@ -6,7 +6,7 @@ using Tesis.DAL;
 using Tesis.Models;
 using Tesis.ViewModels;
 
-namespace Tesis
+namespace Tesis.UtilityCode
 {
     public class UniqueUser : ValidationAttribute 
     {

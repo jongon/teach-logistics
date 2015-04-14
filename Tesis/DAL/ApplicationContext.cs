@@ -27,23 +27,17 @@ namespace Tesis.DAL
 
         public virtual DbSet<Semester> Semesters { get; set; }
 
-        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        public virtual DbSet<Evaluation> Evaluations { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("Users");//.Property(p => p.Id).HasColumnName("Id");
+            modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
             modelBuilder.Entity<Semester>().HasMany(x => x.Sections).WithOptional().HasForeignKey(e => e.SemesterId).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Product>().ToTable("Products");
-            ////modelBuilder.Entity<Section>().ToTable("Sections");
-            //modelBuilder.Entity<Semester>().ToTable("Semesters");
-            ////modelBuilder.Entity<Group>().ToTable("Groups");
-            //modelBuilder.Entity<InitialCharge>().ToTable("InitialCharges");
-            //modelBuilder.Entity<ApplicationUser>().HasOptional(c => c.Section).WithMany(t => t.Users).Map(m => m.MapKey("Section_Id"));
-            //modelBuilder.Entity<CustomRole>().HasMany(c => c.Menus).WithMany(p => p.Roles).Map(m => { m.MapLeftKey("RoleId"); m.MapRightKey("MenuId"); m.ToTable("MenusRoles"); });
-            //modelBuilder.Entity<Product>().HasRequired(c => c.User).WithMany(t => t.Products).Map(m => m.MapKey("UserId"));
         }
     }
 }
