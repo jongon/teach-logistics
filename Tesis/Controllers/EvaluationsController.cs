@@ -9,7 +9,6 @@ namespace Tesis.Controllers
     public class EvaluationsController : BaseController
     {
         // GET: Evaluations
-        //Esto es un comentario
         public ActionResult Index()
         {
             return View();
