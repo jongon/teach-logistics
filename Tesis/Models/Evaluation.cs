@@ -5,7 +5,15 @@ namespace Tesis.Models
 {
     public class Evaluation
     {
-        [Key]
-        public virtual Guid Id { get; set; }
+        public Evaluation()
+        {
+
+        }
+
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        public ICollection<Question> Questions { get; set; }
     }
 }
