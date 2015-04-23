@@ -149,7 +149,5 @@ namespace Tesis.ViewModels
 
         [HiddenInput(DisplayValue=false)]
         public string InitialCharges { get; set; }
-
-
     }
 }

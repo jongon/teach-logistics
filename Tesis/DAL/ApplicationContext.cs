@@ -31,6 +31,8 @@ namespace Tesis.DAL
 
         public virtual DbSet<Question> Questions { get; set; }
 
+        public virtual DbSet<QuestionOption> QuestionOptions { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -123,6 +123,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -239,6 +240,7 @@
     <Compile Include="Models\CaseStudy.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\QuestionOption.cs" />
     <Compile Include="UtilityCode\CustomValidations.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\InitialCharge.cs" />
@@ -258,6 +260,7 @@
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\CaseStudyViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\QuestionsViewModel.cs" />
     <Compile Include="ViewModels\SectionViewModel.cs" />
     <Compile Include="ViewModels\SemesterViewModel.cs" />
   </ItemGroup>
@@ -1661,7 +1664,6 @@
     <Content Include="Views\CaseStudies\Delete.cshtml" />
     <Content Include="Views\CaseStudies\Details.cshtml" />
     <Content Include="Views\CaseStudies\Index.cshtml" />
-    <Content Include="Views\Admin\Menu\AddMenu.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -1822,17 +1824,21 @@
     <Content Include="Views\CaseStudies\AsignSection.cshtml" />
     <Content Include="Views\Shared\_AdminNavigation.cshtml" />
     <Content Include="Views\Shared\_StudentNavigation.cshtml" />
+    <Content Include="Views\Evaluations\Index.cshtml" />
+    <Content Include="Views\Evaluations\Create.cshtml" />
+    <Content Include="Views\Evaluations\Delete.cshtml" />
+    <Content Include="Views\Evaluations\Details.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="Scripts\app\Questions\" />
     <Folder Include="Scripts\plugins\angular-animate\" />
     <Folder Include="Scripts\plugins\angular-steps\" />
     <Folder Include="Scripts\plugins\staps\" />
-    <Folder Include="Views\Evaluations\" />
-    <Folder Include="Views\Questions\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
