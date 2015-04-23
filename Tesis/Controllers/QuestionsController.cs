@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
+using System.Net;
 using System.Web.Mvc;
 using Tesis.Models;
 using Tesis.ViewModels;
 using MvcFlash.Core.Extensions;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Tesis.Controllers
 {
     public class QuestionsController : BaseController
     {
         // GET: Questions
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await Db.Questions.ToListAsync());
         }
 
         // GET: Questions/Details/5

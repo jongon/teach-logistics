@@ -56,15 +56,11 @@
 					<span class="nav-label">Casos de Estudios</span>
 				</a>
 			</li>
-			<li class="@Html.IsSelected(controller: "Graphs")">
-				<a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
+			<li class="@Html.IsSelected(controller: "Evaluation") @Html.IsSelected(controller: "Questions")">
+				<a href="#"><i class="fa fa-question-circle"></i> <span class="nav-label">Evaluacion</span><span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li class="@Html.IsSelected(action: "Flot")"><a href="@Url.Action("Flot", "Graphs")">Flot Charts</a></li>
-					<li class="@Html.IsSelected(action: "Morris")"><a href="@Url.Action("Morris", "Graphs")">Morris.js Charts</a></li>
-					<li class="@Html.IsSelected(action: "Rickshaw")"><a href="@Url.Action("Rickshaw", "Graphs")">Rickshaw Charts</a></li>
-					<li class="@Html.IsSelected(action: "Chartjs")"><a href="@Url.Action("Chartjs", "Graphs")">Chart.js</a></li>
-					<li class="@Html.IsSelected(action: "Peity")"><a href="@Url.Action("Peity", "Graphs")">Peity Charts</a></li>
-					<li class="@Html.IsSelected(action: "Sparkline")"><a href="@Url.Action("Sparkline", "Graphs")">Sparkline Charts</a></li>
+					<li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Evaluations")">Quizes</a></li>
+					<li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Questions")">Preguntas</a></li>
 				</ul>
 			</li>
 		</ul>
