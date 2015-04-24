@@ -21,7 +21,6 @@ namespace Tesis.Models
         public string QuestionText { get; set; }
 
         [DisplayName("Imagen")]
-        [Required]
         [DataType(DataType.ImageUrl)]
         public string ImagePath { get; set; }
 

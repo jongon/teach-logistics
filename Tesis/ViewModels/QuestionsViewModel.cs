@@ -40,5 +40,7 @@ namespace Tesis.ViewModels
         [DisplayName("Imagen")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase Image { get; set; }
+
+        public string ImagePath { get; set; }
     }
 }
