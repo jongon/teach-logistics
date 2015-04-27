@@ -15,12 +15,14 @@ namespace Tesis.Controllers
     public class QuestionsController : BaseController
     {
         // GET: Questions
+        [HttpGet]
         public async Task<ActionResult> Index()
         {
             return View(await Db.Questions.ToListAsync());
         }
 
         // GET: Questions/Details/5
+        [HttpGet]
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Tesis.Controllers
         }
 
         // GET: Questions/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -113,6 +116,7 @@ namespace Tesis.Controllers
         }
 
         // GET: Questions/Edit/5
+        [HttpGet]
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -201,24 +205,53 @@ namespace Tesis.Controllers
         }
 
         // GET: Questions/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Question question = await Db.Questions.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (question == null)
+            {
+                return HttpNotFound();
+            }
+            return View(question);
         }
 
         // POST: Questions/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(Guid? id)
         {
+            Question question = await Db.Questions.FindAsync(id);
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (question.Evaluations.Count() == 0)
+                {
+                    if (!String.IsNullOrEmpty(question.ImagePath))
+                    {
+                        string fullPath = Request.MapPath(question.ImagePath);
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                    }
+                    Db.Questions.Remove(question);
+                    await Db.SaveChangesAsync();
+                    Flash.Success("Ok", "Pregunta eliminada satisfactoriamente");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                Flash.Error("Error", "Pregunta no puede ser eliminada, revise que no tenga relaciones");
+                return View(question);
             }
         }
     }
