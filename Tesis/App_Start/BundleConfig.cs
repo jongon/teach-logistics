@@ -333,6 +333,11 @@ namespace Tesis
             //Questions
             bundles.Add(new ScriptBundle("~/bundles/Questions/index").Include(
                 "~/Scripts/app/Questions/index.js"));
+
+            //Evaluations
+            bundles.Add(new ScriptBundle("~/bundles/Evaluations/index").Include(
+                "~/Scripts/app/Evaluations/index.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;
