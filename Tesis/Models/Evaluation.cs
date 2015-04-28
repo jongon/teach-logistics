@@ -10,6 +10,7 @@ namespace Tesis.Models
     {
         public Evaluation()
         {
+            this.Id = Guid.NewGuid();
             Questions = new HashSet<Question>();
         }
 

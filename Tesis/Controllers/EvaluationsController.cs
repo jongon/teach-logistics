@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Net;
 using Tesis.Models;
 using Tesis.ViewModels;
+using MvcFlash.Core.Extensions;
 
 namespace Tesis.Controllers
 {
@@ -47,17 +48,30 @@ namespace Tesis.Controllers
         // POST: Evaluations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude="Questions")]EvaluationViewModel evaluationViewModel)
+        public async Task<ActionResult> Create([Bind(Exclude="Questions")]EvaluationViewModel evaluationViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
+                if (ModelState.IsValid && evaluationViewModel.QuestionIds.Count() > 0)
+                {
+                    Evaluation evaluation = new Evaluation
+                    {
+                        Name = evaluationViewModel.Name,
+                        Created = DateTime.Now,
+                        Questions = Db.Questions.Where(x => evaluationViewModel.QuestionIds.ToList().Contains(x.Id)).ToList(),
+                    };
+                    Db.Evaluations.Add(evaluation);
+                    await Db.SaveChangesAsync();
+                    Flash.Success("Ok", "La Evaluación ha sido creada exitosamente");
+                    return RedirectToAction("index");
+                }
             }
-            catch
+            catch (Exception)
             {
-                return View();
-            }
+
+            } 
+            Flash.Error("Error", "No se Ha Podido guardar la Evaluación");
+            return View(evaluationViewModel);
         }
 
         // GET: Evaluations/Edit/5

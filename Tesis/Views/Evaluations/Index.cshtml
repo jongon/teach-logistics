@@ -57,7 +57,7 @@
 										@Html.DisplayFor(modelItem => item.Created)
 									</td>
 									<td>
-										@Html.DisplayFor(modelItem => item.Questions.Count())
+										@item.Questions.Count()
 									</td>
 									<td>
 										@if (item.Sections.Count() > 0)
