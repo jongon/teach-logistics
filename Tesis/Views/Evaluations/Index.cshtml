@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				<div class="ibox-content">
-					<table id="caseStudy" class="table table-striped">
+					<table id="evaluations" class="table table-striped">
 						<thead>
 							<tr>
 								<th>
@@ -34,6 +34,9 @@
 								</th>
 								<th>
 									@Html.DisplayNameFor(model => model.Created)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Questions)
 								</th>
 								<th>
 									@Html.DisplayNameFor(model => model.Sections)
@@ -52,6 +55,9 @@
 									</td>
 									<td>
 										@Html.DisplayFor(modelItem => item.Created)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Questions.Count())
 									</td>
 									<td>
 										@if (item.Sections.Count() > 0)

@@ -3,32 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Net;
+using Tesis.Models;
+using Tesis.ViewModels;
 
 namespace Tesis.Controllers
 {
     public class EvaluationsController : BaseController
     {
         // GET: Evaluations
-        public ActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await Db.Evaluations.ToListAsync());
         }
 
         // GET: Evaluations/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<ActionResult> Details(Guid? id)
         {
-            return View();
+            Object validatedEvaluation = await this.ValidateEvaluation(id);
+            Evaluation evaluation;
+            try
+            {
+                evaluation = validatedEvaluation as Evaluation;
+            }
+            catch (Exception)
+            {
+                return validatedEvaluation as ActionResult;
+            }
+            return View(evaluation);
         }
 
         // GET: Evaluations/Create
+        [HttpGet]
         public ActionResult Create()
         {
+            EvaluationViewModel evaluation = new EvaluationViewModel();
+            ViewBag.Questions = evaluation.Questions;
             return View();
         }
 
         // POST: Evaluations/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(QuestionViewModel questionViewModel)
         {
             try
             {
@@ -84,6 +104,20 @@ namespace Tesis.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task<Object> ValidateEvaluation(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evaluation evaluation = await Db.Evaluations.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (evaluation == null)
+            {
+                return HttpNotFound();
+            }
+            return evaluation;
         }
     }
 }
