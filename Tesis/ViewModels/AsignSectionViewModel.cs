@@ -16,5 +16,8 @@ namespace Tesis.ViewModels
 
         [Required]
         public Guid CaseStudyId { get; set; }
+
+        [DisplayName("Caso de Estudio")]
+        public string CaseStudyName { get; set; }
     }
 }
