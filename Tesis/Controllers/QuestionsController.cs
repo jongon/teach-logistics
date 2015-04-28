@@ -46,7 +46,7 @@ namespace Tesis.Controllers
 
         // POST: Questions/Create
         [HttpPost]
-        public async Task<ActionResult> Create(QuestionViewModel questionViewModel)
+        public async Task<ActionResult> Create([Bind(Exclude="ImagePath")]QuestionViewModel questionViewModel)
         {
             var validImageTypes = new string[]
             {
@@ -148,7 +148,7 @@ namespace Tesis.Controllers
 
         // POST: Questions/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit(Guid? id, QuestionViewModel questionViewModel)
+        public async Task<ActionResult> Edit(Guid? id,[Bind(Exclude = "ImagePath")]QuestionViewModel questionViewModel)
         {
             if (id == null)
             {

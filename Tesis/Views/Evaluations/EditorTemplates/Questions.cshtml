@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Tesis.Models.Question>
+	<table id="questions" class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.QuestionText)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Score)
+				</th>
+				<th>
+					@Html.DisplayName("Seleccionar")
+				</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.QuestionText)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Score)
+				</th>
+				<th>
+					@Html.DisplayName("Seleccionar")
+				</th>
+			</tr>
+		</tfoot>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@item.QuestionText
+					</td>
+					<td>
+						@item.Score
+					</td>
+					<td>
+						<input type="checkbox" value="@item.Id.ToString()" name="QuestionIds[]" />
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>

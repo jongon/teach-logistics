@@ -41,19 +41,17 @@ namespace Tesis.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            EvaluationViewModel evaluation = new EvaluationViewModel();
-            ViewBag.Questions = evaluation.Questions;
-            return View();
+            return View(new EvaluationViewModel());
         }
 
         // POST: Evaluations/Create
         [HttpPost]
-        public ActionResult Create(QuestionViewModel questionViewModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Exclude="Questions")]EvaluationViewModel evaluationViewModel)
         {
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch

@@ -21,6 +21,7 @@ namespace Tesis.ViewModels
         public DateTime Created { get; set; }
 
         [DisplayName("Preguntas")]
+        [UIHint("Questions")]
         public virtual ICollection<Question> Questions
         {
             get
@@ -29,5 +30,8 @@ namespace Tesis.ViewModels
             }
             set { }
         }
+
+        [DisplayName("Identificadores de Preguntas")]
+        public virtual ICollection<Guid> QuestionIds { get; set; }
     }
 }
