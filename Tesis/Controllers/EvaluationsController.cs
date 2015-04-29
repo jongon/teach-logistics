@@ -12,6 +12,7 @@ using MvcFlash.Core.Extensions;
 
 namespace Tesis.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class EvaluationsController : BaseController
     {
         // GET: Evaluations

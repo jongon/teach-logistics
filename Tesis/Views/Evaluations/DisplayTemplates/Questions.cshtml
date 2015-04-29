@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Tesis.Models.Question>
+<dd>
+	@foreach (var question in Model)
+	{
+		<dd>
+		@question.QuestionText <br />
+		Puntaje: @question.Score<br />
+		@foreach (var option in question.Options)
+		{
+			if (option.IsCorrectOption)	{						
+				<span style="color:green;"><strong>Opcion Correcta: </strong>@option.Option</span>
+			} else {				
+				<span style="color:red"><strong>Opcion Incorrecta: </strong>@option.Option</span>	
+			}		
+			<br />			
+		}	
+			<hr />
+		</dd>
+	}
+	<hr>
+</dd>

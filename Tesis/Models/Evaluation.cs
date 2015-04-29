@@ -24,6 +24,7 @@ namespace Tesis.Models
         public DateTime Created { get; set; }
 
         [DisplayName("Preguntas")]
+        [UIHint("Questions")]
         public virtual ICollection<Question> Questions { get; set; }
 
         [DisplayName("Secciones")]

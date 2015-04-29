@@ -12,6 +12,7 @@ using System.IO;
 
 namespace Tesis.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class QuestionsController : BaseController
     {
         // GET: Questions
