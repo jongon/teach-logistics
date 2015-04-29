@@ -1,6 +1,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -37,6 +38,9 @@ namespace Tesis.Models
         public virtual Group Group { get; set; }
 
         public virtual Guid? GroupId { get; set; }
+
+        [DisplayName("Evaluaciones")]
+        public virtual ICollection<EvaluationUser> EvaluationUsers { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

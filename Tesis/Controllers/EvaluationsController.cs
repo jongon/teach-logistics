@@ -30,11 +30,11 @@ namespace Tesis.Controllers
             Evaluation evaluation;
             try
             {
-                evaluation = validatedEvaluation as Evaluation;
+                evaluation = (Evaluation)validatedEvaluation;
             }
             catch (Exception)
             {
-                return validatedEvaluation as ActionResult;
+                return (ActionResult)validatedEvaluation;
             }
             return View(evaluation);
         }
@@ -83,6 +83,7 @@ namespace Tesis.Controllers
 
         // POST: Evaluations/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -98,24 +99,38 @@ namespace Tesis.Controllers
         }
 
         // GET: Evaluations/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            return View();
+            Object validatedEvaluation = await this.ValidateEvaluation(id);
+            Evaluation evaluation;
+            try
+            {
+                evaluation = (Evaluation)validatedEvaluation;
+            }
+            catch (Exception)
+            {
+                return (ActionResult)validatedEvaluation;
+            }
+            return View(evaluation);
         }
 
         // POST: Evaluations/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(Guid? id)
         {
+            Object validatedEvaluation = await this.ValidateEvaluation(id);
             try
             {
-                // TODO: Add delete logic here
-
+                Evaluation evaluation = (Evaluation)validatedEvaluation;
+                Db.Evaluations.Remove(evaluation);
+                await Db.SaveChangesAsync();
+                Flash.Success("Ok", "La evaluación ha sido eliminada con exito");
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return (ActionResult)validatedEvaluation;
             }
         }
 

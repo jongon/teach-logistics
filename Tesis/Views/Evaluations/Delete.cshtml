@@ -1,1 +1,72 @@
-﻿
+﻿@model Tesis.Models.Evaluation
+
+@{
+	ViewBag.Title = "Eliminar";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Eliminar</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("List", "Index")
+			</li>
+			<li class="active">
+				<strong>Eliminar</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Eliminar Evaluación</h5>
+				</div>
+				<div class="ibox-content">
+					<h4 class="text-danger">¿Está seguro que desea eliminar el producto?</h4>
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.Name)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Name)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Created)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Created)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Sections)
+						</dt>
+						<dd>
+							@foreach (var item in Model.Sections)
+							{
+								<span><strong>Secciones:</strong> @item.Number</span>
+								<hr>
+							}
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Questions)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Questions)
+						</dd>
+					</dl>
+					<input type="submit" value="Eliminar" class="btn btn-primary" />
+					@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-white" })
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -29,5 +29,8 @@ namespace Tesis.Models
 
         [DisplayName("Secciones")]
         public virtual ICollection<Section> Sections { get; set; }
+
+        [DisplayName("Usuarios")]
+        public virtual ICollection<EvaluationUser> EvaluationUsers { get; set; }
     }
 }

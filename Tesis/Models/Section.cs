@@ -33,5 +33,8 @@ namespace Tesis.Models
 
         [DisplayName("Integrantes")]
         public virtual ICollection<User> Users { get; set; }
+
+        [DisplayName("Evaluaciones")]
+        public virtual ICollection<Evaluation> Evaluations { get; set; }
     }
 }

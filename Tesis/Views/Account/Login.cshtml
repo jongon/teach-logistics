@@ -13,7 +13,6 @@
 			<h1 class="logo-name">TEG</h1>
 		</div>
 		<div class="col-md-12">
-			<h3>Bienvenido al TEG de Jonathan González y Javier Gutierrez</h3>
 			<p>Inicie Sesión para ingresar.</p>
 			@Html.Flash()
 			@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t" }))
@@ -34,7 +33,7 @@
 				</div>
 			}
 		</div>
-		<p class="m-t"> <small>Tesis &copy; 2015</small> </p>
+		<p class="m-t"> <small>Teach Logistics &copy; @DateTime.Now.Year</small> </p>
 	</div>
 </div>
 @section Scripts {
