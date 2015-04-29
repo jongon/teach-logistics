@@ -22,5 +22,9 @@ namespace Tesis.Models
 
         [DisplayName("Estudiante")]
         public virtual User User { get; set; }
+
+        public virtual int  Calification { get; set; }
+
+        public virtual int Total { get; set; }
     }
 }
