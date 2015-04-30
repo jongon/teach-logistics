@@ -11,7 +11,12 @@ namespace Tesis.ViewModels
 {
     public class EvaluationViewModel
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db; 
+
+        public EvaluationViewModel()
+        {
+            this.db = new ApplicationDbContext();
+        }
 
         [DisplayName("Evaluación")]
         [Required(ErrorMessage = "El nombre de la evaluación es requerido")]
@@ -33,5 +38,17 @@ namespace Tesis.ViewModels
 
         [DisplayName("Identificadores de Preguntas")]
         public virtual ICollection<Guid> QuestionIds { get; set; }
+    }
+
+    public class AssignEvaluationViewModel
+    {
+        public Guid Id { get; set; }
+
+        [DisplayName("Nombre de Evaluación")]
+        public string EvaluationName { get; set; }
+
+        public ICollection<Semester> Semesters { get; set; }
+
+        public ICollection<Guid> Sections { get; set; }
     }
 }

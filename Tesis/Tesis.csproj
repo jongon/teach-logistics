@@ -257,7 +257,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AsignSectionViewModel.cs" />
+    <Compile Include="ViewModels\AssignSectionViewModel.cs" />
     <Compile Include="ViewModels\EvaluationViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\CaseStudyViewModel.cs" />
@@ -616,6 +616,7 @@
     <Content Include="Scripts\app\CaseStudies\asignSection.js" />
     <Content Include="Scripts\app\CaseStudies\create.js" />
     <Content Include="Scripts\app\CaseStudies\index.js" />
+    <Content Include="Scripts\app\Evaluations\assign_section.js" />
     <Content Include="Scripts\app\Evaluations\create.js" />
     <Content Include="Scripts\app\Evaluations\index.js" />
     <Content Include="Scripts\app\Groups\create.js" />
@@ -1549,6 +1550,12 @@
     <Content Include="Scripts\plugins\npm.js" />
     <Content Include="Scripts\plugins\pace\pace.min.js" />
     <Content Include="Scripts\plugins\peity\jquery.peity.min.js" />
+    <Content Include="Scripts\plugins\quicksearch\examples\index.html" />
+    <Content Include="Scripts\plugins\quicksearch\examples\jquery.js" />
+    <Content Include="Scripts\plugins\quicksearch\examples\loader.gif" />
+    <Content Include="Scripts\plugins\quicksearch\examples\style.css" />
+    <Content Include="Scripts\plugins\quicksearch\examples\super_table.html" />
+    <Content Include="Scripts\plugins\quicksearch\jquery.quicksearch.js" />
     <Content Include="Scripts\plugins\rickshaw\rickshaw.min.js" />
     <Content Include="Scripts\plugins\rickshaw\vendor\d3.v3.js" />
     <Content Include="Scripts\plugins\slimscroll\jquery.slimscroll.min.js" />
@@ -1559,6 +1566,8 @@
     <Content Include="Scripts\plugins\multiselect\bower.json" />
     <Content Include="Scripts\plugins\multiselect\multi-select.jquery.json" />
     <Content Include="Scripts\plugins\multiselect\README.markdown" />
+    <Content Include="Scripts\plugins\quicksearch\examples\example.json" />
+    <Content Include="Scripts\plugins\quicksearch\README.markdown" />
     <None Include="Scripts\plugins\validate\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\plugins\validate\jquery.validate.js" />
     <Content Include="Scripts\plugins\validate\jquery.validate.min.js" />
@@ -1819,6 +1828,7 @@
     <Content Include="Views\Questions\Edit.cshtml" />
     <Content Include="Views\Evaluations\EditorTemplates\Questions.cshtml" />
     <Content Include="Views\Evaluations\DisplayTemplates\Questions.cshtml" />
+    <Content Include="Views\Evaluations\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

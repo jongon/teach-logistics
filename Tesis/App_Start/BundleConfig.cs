@@ -281,6 +281,10 @@ namespace Tesis
             //multiselect
             bundles.Add(new ScriptBundle("~/plugins/multiselect").Include(
                      "~/Scripts/plugins/multiselect/jquery.multi-select.js"));
+
+            //quicksearch
+            bundles.Add(new ScriptBundle("~/plugins/quicksearch").Include(
+                    "~/Scripts/plugins/quicksearch/jquery.quicksearch.js"));
             
             //Application Scripts
 
@@ -348,6 +352,9 @@ namespace Tesis
 
             bundles.Add(new ScriptBundle("~/bundles/Evaluations/create").Include(
                 "~/Scripts/app/Evaluations/create.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Evaluations/assign_section").Include(
+                "~/Scripts/app/Evaluations/assign_section.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Tesis.ViewModels
 {
-    public class AsignSectionViewModel
+    public class AssignSectionViewModel
     {
         [DisplayName("Sección")]
         [Required(ErrorMessage = "Este campo es requerido")]

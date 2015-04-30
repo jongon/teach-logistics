@@ -9,6 +9,7 @@ using System.Net;
 using Tesis.Models;
 using Tesis.ViewModels;
 using MvcFlash.Core.Extensions;
+using Newtonsoft.Json;
 
 namespace Tesis.Controllers
 {
@@ -16,9 +17,63 @@ namespace Tesis.Controllers
     public class EvaluationsController : BaseController
     {
         [HttpGet]
-        public ActionResult AssignSection()
+        public async Task<ActionResult> AssignSection(Guid? id)
         {
-            return View();
+            Object validatedEvaluation = await this.ValidateEvaluation(id);
+            try
+            {
+                Evaluation evaluation = (Evaluation)validatedEvaluation;
+                AssignEvaluationViewModel evaluationViewModel = new AssignEvaluationViewModel
+                {
+                    Id = evaluation.Id,
+                    EvaluationName = evaluation.Name,
+                    Semesters = Db.Semesters.ToList(),
+                };
+                var selectedSections = evaluation.Sections.Select(x => x.Id.ToString()).ToList();
+                ViewBag.SelectedSections = selectedSections;
+                return View(evaluationViewModel);
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return (ActionResult)validatedEvaluation;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AssignSection([Bind(Exclude="EvaluationName,Semesters")]AssignEvaluationViewModel evaluationModel)
+        {
+            try
+            {
+                //Evaluación a Asignarle sección
+                var evaluation = await Db.Evaluations.Where(x => x.Id == evaluationModel.Id).FirstOrDefaultAsync();
+                List<Section> sections;
+                if (evaluationModel.Sections != null)
+                {
+                    //Secciones por ser asignadas
+                    sections = await Db.Sections.Where(x => evaluationModel.Sections.Contains(x.Id)).ToListAsync();
+                }
+                else
+                {
+                    sections = null;
+                }
+
+                if (evaluation != null)
+                {
+                    evaluation.Sections.Clear();
+                    evaluation.Sections = sections;
+                }
+                await Db.SaveChangesAsync();
+                Flash.Success("Ok", "Las Asignaciones han sido exitosas");
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Flash.Error("Error", "La Asignación no ha sido posible");
+                return View(evaluationModel);
+            }
         }
 
         // GET: Evaluations

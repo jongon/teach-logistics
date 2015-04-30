@@ -725,3 +725,6 @@
 /// <reference path="app/evaluations/index.js" />
 /// <reference path="app/evaluations/create.js" />
 /// <reference path="plugins/multiselect/jquery.multi-select.js" />
+/// <reference path="app/evaluations/assign_section.js" />
+/// <reference path="plugins/quicksearch/jquery.quicksearch.js" />
+/// <reference path="plugins/quicksearch/examples/jquery.js" />

@@ -230,12 +230,12 @@ namespace Tesis.Controllers
             if (caseStudy ==  null) {
                 return HttpNotFound();
             }
-            AsignSectionViewModel asignSection = new AsignSectionViewModel { CaseStudyId = caseStudy.Id };
+            AssignSectionViewModel asignSection = new AssignSectionViewModel { CaseStudyId = caseStudy.Id };
             return View(asignSection);
         }
 
         [HttpPost]
-        public async Task<ActionResult> AsignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AsignSectionViewModel model)
+        public async Task<ActionResult> AsignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AssignSectionViewModel model)
         {
             ViewBag.SemesterId = model.SemesterId.ToString();
             ViewBag.SectionId = model.SectionId.ToString();
