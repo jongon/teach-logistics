@@ -274,6 +274,14 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/plugins/summernote").Include(
                       "~/Scripts/plugins/summernote/summernote.min.js"));
 
+            //multiselect styles
+            bundles.Add(new StyleBundle("~/plugins/multiselectStyles").Include(
+                      "~/Content/plugins/multiselect/multi-select.css"));
+
+            //multiselect
+            bundles.Add(new ScriptBundle("~/plugins/multiselect").Include(
+                     "~/Scripts/plugins/multiselect/jquery.multi-select.js"));
+            
             //Application Scripts
 
             //Account

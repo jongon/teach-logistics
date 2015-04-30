@@ -15,6 +15,12 @@ namespace Tesis.Controllers
     [Authorize(Roles = "Administrador")]
     public class EvaluationsController : BaseController
     {
+        [HttpGet]
+        public ActionResult AssignSection()
+        {
+            return View();
+        }
+
         // GET: Evaluations
         [HttpGet]
         public async Task<ActionResult> Index()

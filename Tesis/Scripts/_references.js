@@ -724,3 +724,4 @@
 /// <reference path="app/questions/index.js" />
 /// <reference path="app/evaluations/index.js" />
 /// <reference path="app/evaluations/create.js" />
+/// <reference path="plugins/multiselect/jquery.multi-select.js" />
