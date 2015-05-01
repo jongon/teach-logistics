@@ -229,33 +229,33 @@ namespace Tesis.Controllers
         //    return View(asignSection);
         //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AssignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AssignSectionViewModel model)
-        {
-            ViewBag.SemesterId = model.SemesterId.ToString();
-            ViewBag.SectionId = model.SectionId.ToString();
-            if (ModelState.IsValid)
-            {
-                CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == model.CaseStudyId).FirstOrDefaultAsync();
-                if (caseStudy == null)
-                {
-                    Flash.Error("Error", "No existe el caso de estudio");
-                    return View(model);
-                }
-                Section section = await Db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
-                if (section.CaseStudyId != null) {
-                    Flash.Error("Error", "Esta sección ya tiene un caso de estudio asignado");
-                    return View(model);
-                }
-                section.CaseStudyId = caseStudy.Id;
-                caseStudy.Sections.Add(section);
-                await Db.SaveChangesAsync();
-                Flash.Success("Ok", "El caso de Estudio ha sido asignado a la sección satisfactoriamente");
-                return RedirectToAction("Index");
-            }
-            Flash.Error("Error", "Ha Ocurrido un error");
-            return View(model);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> AssignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AssignSectionViewModel model)
+        //{
+        //    ViewBag.SemesterId = model.SemesterId.ToString();
+        //    ViewBag.SectionId = model.SectionId.ToString();
+        //    if (ModelState.IsValid)
+        //    {
+        //        CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == model.CaseStudyId).FirstOrDefaultAsync();
+        //        if (caseStudy == null)
+        //        {
+        //            Flash.Error("Error", "No existe el caso de estudio");
+        //            return View(model);
+        //        }
+        //        Section section = await Db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
+        //        if (section.CaseStudyId != null) {
+        //            Flash.Error("Error", "Esta sección ya tiene un caso de estudio asignado");
+        //            return View(model);
+        //        }
+        //        section.CaseStudyId = caseStudy.Id;
+        //        caseStudy.Sections.Add(section);
+        //        await Db.SaveChangesAsync();
+        //        Flash.Success("Ok", "El caso de Estudio ha sido asignado a la sección satisfactoriamente");
+        //        return RedirectToAction("Index");
+        //    }
+        //    Flash.Error("Error", "Ha Ocurrido un error");
+        //    return View(model);
+        //}
     }
 }
