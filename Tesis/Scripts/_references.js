@@ -728,3 +728,4 @@
 /// <reference path="app/evaluations/assign_section.js" />
 /// <reference path="plugins/quicksearch/jquery.quicksearch.js" />
 /// <reference path="plugins/quicksearch/examples/jquery.js" />
+/// <reference path="app/evaluations/edit.js" />

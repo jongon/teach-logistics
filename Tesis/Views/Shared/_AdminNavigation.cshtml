@@ -20,6 +20,12 @@
 					<img width="30" src="@Url.Content("/Content/images/logo-box.png")" alt="logo-box" />
 				</div>
 			</li>
+			<li class="@Html.IsSelected(controller: "Home")">
+				<a href="@Url.Action("Index", "Home")">
+					<i class="fa fa-home"></i>
+					<span class="nav-label">Inicio</span>
+				</a>
+			</li>
 			<li class="@Html.IsSelected(controller: "Account")">
 				<a href="@Url.Action("Index", "Account")">
 					<i class="fa fa-users"></i>

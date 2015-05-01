@@ -137,25 +137,62 @@ namespace Tesis.Controllers
         }
 
         // GET: Evaluations/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid? id)
         {
-            return View();
+            Object validatedEvaluation = await this.ValidateEvaluation(id);
+            try
+            {
+                Evaluation evaluation = (Evaluation)validatedEvaluation;
+                if (evaluation.Sections.Count() <= 0)
+                {
+                    EvaluationViewModel evaluationViewModel = new EvaluationViewModel
+                    {
+                        Name = evaluation.Name,
+                        QuestionIds = evaluation.Questions.Select(x => x.Id).ToList(),
+                    };
+                    return View(evaluationViewModel);
+                }
+                else
+                {
+                    Flash.Error("Error", "Esta evaluación no puede ser modificada porque se encuentra asignada");
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return (ActionResult)validatedEvaluation;
+            }
         }
 
         // POST: Evaluations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit([Bind(Exclude = "Questions")]EvaluationViewModel evaluationViewModel)
         {
+            Object validatedEvaluation = await this.ValidateEvaluation(evaluationViewModel.Id);
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                Evaluation evaluation = (Evaluation)validatedEvaluation;
+                if (evaluation.Sections.Count() <= 0)
+                {
+                    evaluation.Name = evaluationViewModel.Name;
+                    evaluation.Questions.Clear();
+                    evaluation.Questions = await Db.Questions.Where(x => evaluationViewModel.QuestionIds.Contains(x.Id)).ToListAsync();
+                    await Db.SaveChangesAsync();
+                    Flash.Success("Ok", "La evaluación ha sido editada con exito");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Flash.Error("Error", "Esta evaluación no puede ser modificada porque se encuentra asignada");
+                    return View(evaluationViewModel);
+                }
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                Console.WriteLine(e);
+                return (ActionResult)validatedEvaluation;
             }
         }
 

@@ -79,7 +79,6 @@
 @section Scripts {
 	<script>
 		var assignedSections = @Html.Raw(Json.Encode(ViewBag.SelectedSections));
-		console.log(assignedSections);
 	</script>
 	@Scripts.Render("~/plugins/quicksearch")
 	@Scripts.Render("~/plugins/multiselect")

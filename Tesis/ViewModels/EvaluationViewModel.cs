@@ -18,6 +18,8 @@ namespace Tesis.ViewModels
             this.db = new ApplicationDbContext();
         }
 
+        public Guid? Id { get; set; }
+
         [DisplayName("Evaluación")]
         [Required(ErrorMessage = "El nombre de la evaluación es requerido")]
         public string Name { get; set; }
