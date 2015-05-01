@@ -139,11 +139,6 @@ namespace Tesis.Controllers
             return View();
         }
 
-        public ActionResult CreateByXml()
-        {
-            return View();
-        }
-
         // GET: /InitialCharges/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
@@ -220,7 +215,7 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> AsignSection(Guid? id)
+        public async Task<ActionResult> AssignSection(Guid? id)
         {
             if (id == null)
             {
@@ -235,7 +230,8 @@ namespace Tesis.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AsignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AssignSectionViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AssignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AssignSectionViewModel model)
         {
             ViewBag.SemesterId = model.SemesterId.ToString();
             ViewBag.SectionId = model.SectionId.ToString();
