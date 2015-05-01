@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Tesis.DAL;
+using Tesis.Models;
 
 namespace Tesis.ViewModels
 {
@@ -149,5 +150,17 @@ namespace Tesis.ViewModels
 
         [HiddenInput(DisplayValue=false)]
         public string InitialCharges { get; set; }
+    }
+
+    public class AssignSectionViewModel
+    {
+        public Guid Id { get; set; }
+
+        [DisplayName("Nombre de Evaluación")]
+        public string CaseStudyName { get; set; }
+
+        public ICollection<Semester> Semesters { get; set; }
+
+        public ICollection<Guid> Sections { get; set; }
     }
 }
