@@ -6,8 +6,9 @@ namespace Tesis.DAL
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext(): base("DefaultConnection")
+        public ApplicationDbContext(): base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MySqlInitializer());
         }
 
         public static ApplicationDbContext Create()
