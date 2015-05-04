@@ -156,7 +156,7 @@ namespace Tesis.ViewModels
     {
         public Guid Id { get; set; }
 
-        [DisplayName("Nombre de Evaluación")]
+        [DisplayName("Nombre de Caso de estudio")]
         public string CaseStudyName { get; set; }
 
         public ICollection<Semester> Semesters { get; set; }

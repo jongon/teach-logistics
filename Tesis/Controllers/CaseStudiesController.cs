@@ -214,20 +214,26 @@ namespace Tesis.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        //[HttpGet]
-        //public async Task<ActionResult> AssignSection(Guid? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
-        //    if (caseStudy ==  null) {
-        //        return HttpNotFound();
-        //    }
-        //    AssignSectionViewModel asignSection = new AssignSectionViewModel { CaseStudyId = caseStudy.Id };
-        //    return View(asignSection);
-        //}
+        [HttpGet]
+        public async Task<ActionResult> AssignSection(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (caseStudy == null)
+            {
+                return HttpNotFound();
+            }
+            AssignSectionViewModel asignSection = new AssignSectionViewModel { 
+                Id = caseStudy.Id,
+                CaseStudyName = caseStudy.Name,
+                Semesters = Db.Semesters.ToList(),
+            };
+            ViewBag.SelectedSections = caseStudy.Sections.Select(x => x.Id).ToList();
+            return View(asignSection);
+        }
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
