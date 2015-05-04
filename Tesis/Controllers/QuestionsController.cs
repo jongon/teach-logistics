@@ -129,22 +129,28 @@ namespace Tesis.Controllers
             {
                 return HttpNotFound();
             }
-            List<QuestionOption> options = await Db.QuestionOptions.Where(x => x.QuestionId == id).ToListAsync();
-            List<QuestionOption> incorrectOptions = options.Where(x => x.IsCorrectOption == false && x.QuestionId == id).Take(3).ToList();
-            QuestionOption correctOption = options.Where(x => x.IsCorrectOption == true).FirstOrDefault();
-            
-            QuestionViewModel questionViewModel = new QuestionViewModel
+
+            if (question.Evaluations.Count() <= 0)
             {
-                QuestionText = question.QuestionText,
-                CorrectOption = correctOption.Option,
-                IncorrectOption1 = incorrectOptions[0].Option,
-                IncorrectOption2 = incorrectOptions[1].Option,
-                IncorrectOption3 = incorrectOptions[2].Option,
-                ImagePath = question.ImagePath,
-                Score = question.Score,
-            };
-            ViewBag.Id = id;
-            return View(questionViewModel);
+                List<QuestionOption> options = await Db.QuestionOptions.Where(x => x.QuestionId == id).ToListAsync();
+                List<QuestionOption> incorrectOptions = options.Where(x => x.IsCorrectOption == false && x.QuestionId == id).Take(3).ToList();
+                QuestionOption correctOption = options.Where(x => x.IsCorrectOption == true).FirstOrDefault();
+
+                QuestionViewModel questionViewModel = new QuestionViewModel
+                {
+                    QuestionText = question.QuestionText,
+                    CorrectOption = correctOption.Option,
+                    IncorrectOption1 = incorrectOptions[0].Option,
+                    IncorrectOption2 = incorrectOptions[1].Option,
+                    IncorrectOption3 = incorrectOptions[2].Option,
+                    ImagePath = question.ImagePath,
+                    Score = question.Score,
+                };
+                ViewBag.Id = id;
+                return View(questionViewModel);
+            }
+            Flash.Error("Error", "La pregunta está presente en una evaluación y no se puede editar");
+            return RedirectToAction("Index");
         }
 
         // POST: Questions/Edit/5
@@ -163,6 +169,11 @@ namespace Tesis.Controllers
 
             try
             {
+                if (question.Evaluations.Count() > 0)
+                {
+                    Flash.Error("Error", "No se puede editar la pregunta");
+                    return RedirectToAction("Index");
+                }
                 // TODO: Add update logic here
                 //Eliminar imagen si ha sido modificada la imagen
                 if (questionViewModel.Image != null && question.ImagePath != "")
