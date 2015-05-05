@@ -359,6 +359,10 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Evaluations/assign_section").Include(
                 "~/Scripts/app/Evaluations/assign_section.js"));
 
+            //Documents
+            bundles.Add(new ScriptBundle("~/bundles/Documents/index").Include(
+                "~/Scripts/app/Documents/index.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

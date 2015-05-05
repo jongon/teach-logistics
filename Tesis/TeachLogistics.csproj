@@ -230,6 +230,7 @@
     <Compile Include="Business\UserBL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\EvaluationsController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DAL\MySqlHistoryContext.cs" />
     <Compile Include="Models\CaseStudy.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\EvaluationUser.cs" />
     <Compile Include="Models\Question.cs" />
@@ -267,6 +269,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
     <Compile Include="ViewModels\EvaluationViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\CaseStudyViewModel.cs" />
@@ -627,6 +630,7 @@
     <Content Include="Scripts\app\CaseStudies\asign_section.js" />
     <Content Include="Scripts\app\CaseStudies\create.js" />
     <Content Include="Scripts\app\CaseStudies\index.js" />
+    <Content Include="Scripts\app\Documents\index.js" />
     <Content Include="Scripts\app\Evaluations\assign_section.js" />
     <Content Include="Scripts\app\Evaluations\create.js" />
     <Content Include="Scripts\app\Evaluations\edit.js" />
@@ -1841,12 +1845,16 @@
     <Content Include="Views\Evaluations\EditorTemplates\Questions.cshtml" />
     <Content Include="Views\Evaluations\DisplayTemplates\Questions.cshtml" />
     <Content Include="Views\Evaluations\Edit.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Documents\Create.cshtml" />
+    <Content Include="Views\Documents\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="Content\app_files\" />
     <Folder Include="Content\app_images\" />
     <Folder Include="Scripts\plugins\angular-animate\" />
     <Folder Include="Scripts\plugins\angular-steps\" />

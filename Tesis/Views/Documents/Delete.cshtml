@@ -1,0 +1,60 @@
+﻿@model Tesis.Models.Document
+
+@{
+	ViewBag.Title = "Eliminar";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Eliminar</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Eliminar</strong>
+			</li>
+		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-primary" })
+		</div>
+	</div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Documento</h5>
+				</div>
+				<div class="ibox-content">
+					<h4 class="text-danger">¿Está seguro que desea eliminar el Documento?</h4>
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.Name)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Name)
+						</dd>
+					</dl>
+
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-actions no-color">
+							<input type="submit" value="Eliminar" class="btn btn-primary" />
+							@Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-white" })
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

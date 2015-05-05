@@ -186,33 +186,33 @@ namespace Tesis.Controllers
         }
 
         //// POST: /InitialCharges/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(Guid id)
-        //{
-        //    try
-        //    {
-        //        CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
-        //        if (caseStudy == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        //Revisar que no tenga simulaciones activas
-        //        List<Section> sections = await Db.Sections.Where(x => x.CaseStudyId == id).ToListAsync();
-        //        foreach (var section in sections)
-        //        {
-        //            section.CaseStudyId = null;
-        //        }
-        //        Db.CaseStudies.Remove(caseStudy);
-        //        await Db.SaveChangesAsync();
-        //        Flash.Success("Ok", "El caso de estudio ha sido eliminado exitosamente");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Flash.Error("Error", "No se puede eliminar el caso de estudio, revise el caso no se esté llevando a cabo por los estudiantes");
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(Guid id)
+        {
+            try
+            {
+                CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == id).FirstOrDefaultAsync();
+                if (caseStudy == null)
+                {
+                    return HttpNotFound();
+                }
+                //Revisar que no tenga simulaciones activas
+                List<Section> sections = await Db.Sections.Where(x => x.CaseStudyId == id).ToListAsync();
+                foreach (var section in sections)
+                {
+                    section.CaseStudyId = null;
+                }
+                Db.CaseStudies.Remove(caseStudy);
+                await Db.SaveChangesAsync();
+                Flash.Success("Ok", "El caso de estudio ha sido eliminado exitosamente");
+            }
+            catch (Exception)
+            {
+                Flash.Error("Error", "No se puede eliminar el caso de estudio, revise el caso no se esté llevando a cabo por los estudiantes");
+            }
+            return RedirectToAction("Index");
+        }
 
         [HttpGet]
         public async Task<ActionResult> AssignSection(Guid? id)
@@ -235,33 +235,28 @@ namespace Tesis.Controllers
             return View(asignSection);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> AssignSection([Bind(Include="CaseStudyId,SemesterId,SectionId")] AssignSectionViewModel model)
-        //{
-        //    ViewBag.SemesterId = model.SemesterId.ToString();
-        //    ViewBag.SectionId = model.SectionId.ToString();
-        //    if (ModelState.IsValid)
-        //    {
-        //        CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == model.CaseStudyId).FirstOrDefaultAsync();
-        //        if (caseStudy == null)
-        //        {
-        //            Flash.Error("Error", "No existe el caso de estudio");
-        //            return View(model);
-        //        }
-        //        Section section = await Db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
-        //        if (section.CaseStudyId != null) {
-        //            Flash.Error("Error", "Esta sección ya tiene un caso de estudio asignado");
-        //            return View(model);
-        //        }
-        //        section.CaseStudyId = caseStudy.Id;
-        //        caseStudy.Sections.Add(section);
-        //        await Db.SaveChangesAsync();
-        //        Flash.Success("Ok", "El caso de Estudio ha sido asignado a la sección satisfactoriamente");
-        //        return RedirectToAction("Index");
-        //    }
-        //    Flash.Error("Error", "Ha Ocurrido un error");
-        //    return View(model);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AssignSection([Bind(Include = "CaseStudyName, Semesters")] AssignSectionViewModel caseStudyModel)
+        {
+            if (ModelState.IsValid)
+            {
+                CaseStudy caseStudy = await Db.CaseStudies.Where(x => x.Id == caseStudyModel.Id).FirstOrDefaultAsync();
+                if (caseStudy == null)
+                {
+                    Flash.Error("Error", "No existe el caso de estudio");
+                    return RedirectToAction("Index");
+                }
+                List<Section> sections = Db.Sections.Where(x => caseStudyModel.Sections.Contains(x.Id)).ToList();
+                caseStudy.Sections.Clear();
+                caseStudy.Sections = sections;
+                await Db.SaveChangesAsync();
+                Flash.Success("Ok", "El caso de Estudio ha sido asignado a las sección(es) satisfactoriamente");
+                return RedirectToAction("Index");
+            }
+            ViewBag.SelectedSections = Db.Sections.Where(y => y.CaseStudyId == caseStudyModel.Id).Select(x => x.Id).ToList();
+            Flash.Error("Error", "Ha Ocurrido un error");
+            return View(caseStudyModel);
+        }
     }
 }
