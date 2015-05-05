@@ -1,4 +1,7 @@
 ﻿@model Tesis.ViewModels.RegisterViewModel
+@section Styles{
+	@Styles.Render("~/plugins/iCheckStyles")
+}
 @{
 	ViewBag.Title = "Registrar";
 }
@@ -35,6 +38,21 @@
 				{
 					@Html.AntiForgeryToken()
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					<div class="form-group">
+						@Html.LabelFor(model => model.Roles, new { @class = "control-label col-md-2" })
+						<div class="col-sm-10">
+							@foreach (var option in (SelectList)ViewBag.Roles)
+							{
+								<div class="radio i-checks">
+									<label>
+										@Html.RadioButtonFor(model => model.RoleName, option.Value)
+										<i></i>@option.Text
+									</label>
+								</div>
+							}
+							@Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+						</div>
+					</div>
 					<div class="form-group">
 						@Html.Label("Semestre", new { @class = "control-label col-md-2" })
 						<div class="col-md-10">
@@ -133,5 +151,6 @@
 	</div>
 </div>
 @section Scripts {
+	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/bundles/Account/register")
 }

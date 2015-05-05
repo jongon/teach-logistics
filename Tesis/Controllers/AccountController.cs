@@ -281,6 +281,8 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Register()
         {
+            RegisterViewModel register = new RegisterViewModel();
+            ViewBag.Roles = register.Roles;
             return View();
         }
 
@@ -288,14 +290,16 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register([Bind(Include = "Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SemesterId, SectionId")] RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Include = "Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SemesterId, SectionId, RoleName")] RegisterViewModel model)
         {
+            RegisterViewModel register = new RegisterViewModel();
+            ViewBag.Roles = register.Roles;
             if (ModelState.IsValid)
             {
                 if (model.SectionId == null)
                 {
                     Flash.Error("Error", "Ha Ocurrido un error");
-                    return View();
+                    return View(model);
                 }
                 var user = new User
                 {
@@ -305,12 +309,17 @@ namespace Tesis.Controllers
                     LastName = model.LastName,
                     IdCard = model.IdCard,
                     EmailConfirmed = false,
-                    SectionId = model.SectionId
                 };
+
+                if (model.RoleName == "Estudiante")
+                {
+                    user.SectionId = model.SectionId;
+                }
+
                 var result = await UserManager.CreateAsync(user, "123456");
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, "Estudiante");
+                    UserManager.AddToRole(user.Id, model.RoleName);
                     ViewBag.SectionId = model.SectionId.ToString();
                     ViewBag.SemesterId = model.SemesterId.ToString();
                     ModelState.Clear();
