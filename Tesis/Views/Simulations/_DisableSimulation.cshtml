@@ -1,0 +1,24 @@
+﻿<div class="modal inmodal" id="disableSimulation" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content animated fadeIn">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+				<i class="fa fa-connectdevelop modal-icon"></i>
+				<h4 class="modal-title">Finalizar Simulación</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					<strong>Finalizar Simulación:</strong> Aceptando la siguiente desactivación terminará con este caso de estudio.
+				</p>
+			</div>
+			@using (Html.BeginForm("DisableSimulation", "Simulations", FormMethod.Post, new { role = "form" }))
+			{
+				<div class="modal-footer">
+					@Html.Hidden("DisableId")
+					<button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+					<button type="submit" class="btn btn-danger">Finalizar</button>
+				</div>
+			}
+		</div>
+	</div>
+</div>

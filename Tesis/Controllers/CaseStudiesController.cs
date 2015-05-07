@@ -237,7 +237,7 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AssignSection([Bind(Include = "CaseStudyName, Semesters")] AssignSectionViewModel caseStudyModel)
+        public async Task<ActionResult> AssignSection([Bind(Exclude = "CaseStudyName, Semesters")] AssignSectionViewModel caseStudyModel)
         {
             if (ModelState.IsValid)
             {
@@ -247,9 +247,12 @@ namespace Tesis.Controllers
                     Flash.Error("Error", "No existe el caso de estudio");
                     return RedirectToAction("Index");
                 }
-                List<Section> sections = Db.Sections.Where(x => caseStudyModel.Sections.Contains(x.Id)).ToList();
                 caseStudy.Sections.Clear();
-                caseStudy.Sections = sections;
+                if (caseStudyModel.Sections != null)
+                {
+                    List<Section> sections = Db.Sections.Where(x => caseStudyModel.Sections.Contains(x.Id)).ToList();
+                    caseStudy.Sections = sections;
+                }
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "El caso de Estudio ha sido asignado a las sección(es) satisfactoriamente");
                 return RedirectToAction("Index");

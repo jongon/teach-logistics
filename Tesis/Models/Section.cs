@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace Tesis.Models
         {
             Groups = new HashSet<Group>();
             Users = new HashSet<User>();
+            IsActivedSimulation = false;
         }
 
         public Guid Id { get; set; }
@@ -18,12 +20,14 @@ namespace Tesis.Models
         [DisplayName("Número")]
         public string Number { get; set; }
 
+        public bool IsActivedSimulation { get; set; }
+
         public Guid SemesterId { get; set; }
 
         public Guid? CaseStudyId { get; set; }
         
         [DisplayName("Caso de Estudio")]
-        public CaseStudy CaseStudy { get; set; }
+        public virtual CaseStudy CaseStudy { get; set; }
 
         [DisplayName("Grupos")]
         public virtual ICollection<Group> Groups { get; set; }
@@ -36,5 +40,8 @@ namespace Tesis.Models
 
         [DisplayName("Evaluaciones")]
         public virtual ICollection<Evaluation> Evaluations { get; set; }
+
+        [DisplayName("Periodos")]
+        public virtual ICollection<Period> Periods { get; set; }
     }
 }

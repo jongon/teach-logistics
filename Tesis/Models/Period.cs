@@ -13,11 +13,11 @@ namespace Tesis.Models
 
         public byte PeriodNumber { get; set; }
 
-        public bool isLastPeriod { get; set; }
+        public bool IsLastPeriod { get; set; }
 
         public Section Section { get; set; }
 
-        public Guid SectiondId { get; set; }
+        public Guid SectionId { get; set; }
 
         public ICollection<Sale> Sales { get; set; }
     }
