@@ -1,1 +1,64 @@
-﻿
+﻿@model Tesis.ViewModels.SellViewModel
+@{
+	ViewBag.Title = "Registrar Ventas";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Registrar Ventas</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Registrar Ventas Semanales</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Periodo N° @Model.Section.Periods.Count()</h5>
+				</div>
+				<div class="ibox-content">
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.Section.CaseStudy)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Section.CaseStudy.Name)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Section.Semester)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Section.Semester.Description)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Section)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Section.Number)
+						</dd>
+					</dl>
+					<hr />
+					@using (Html.BeginForm("RegisterSells", "Simulations", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					{
+						@Html.EditorFor(model => model.ProductSells)
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-10">
+								<input type="submit" value="Registrar Ventas" class="btn btn-primary" />
+								@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
+							</div>
+						</div>					
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

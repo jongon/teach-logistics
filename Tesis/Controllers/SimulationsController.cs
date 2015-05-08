@@ -37,11 +37,11 @@ namespace Tesis.Controllers
                         Created = DateTime.Now,
                         Id = Guid.NewGuid(),
                         IsLastPeriod = false,
-                        PeriodNumber = 0,
+                        PeriodNumber = 1,
                     };
                     section.Periods.Add(period);
-                    await Db.SaveChangesAsync();
                 }
+                await Db.SaveChangesAsync();
                 Flash.Success("Ok", "La Simulación ha sido activada con exito");
                 return RedirectToAction("Index");
             }
@@ -77,27 +77,34 @@ namespace Tesis.Controllers
         [HttpGet]
         public async Task<ActionResult> RegisterSells(Guid? Id)
         {
-            Section section = await Db.Sections.Where(x => x.Id == Id).FirstOrDefaultAsync<Section>();
-            if (section == null)
+            try
             {
-                throw new Exception();
-            }
+                Section section = await Db.Sections.Where(x => x.Id == Id).FirstOrDefaultAsync<Section>();
+                if (section == null)
+                {
+                    throw new Exception();
+                }
 
-            if (section.Periods.Count() == 0 || section.IsActivedSimulation == false)
+                if (section.Periods.Count() == 0 || section.IsActivedSimulation == false)
+                {
+                    Flash.Error("Error", "No ha sido activada la simulación");
+                    return RedirectToAction("Index");
+                }
+
+                var caseStudyQuery = Db.CaseStudies.Where(x => x.Id == section.CaseStudyId);
+                CaseStudy caseStudy = await caseStudyQuery.FirstOrDefaultAsync();
+                SellViewModel sellViewModel = new SellViewModel
+                {
+                    ProductSells = caseStudy.InitialCharges.Select(y => new ProductSell { Product = y.Product }).ToList<ProductSell>(),
+                    Section = section,
+                };
+                return View(sellViewModel);
+            }
+            catch
             {
-                Flash.Error("Error", "No ha sido activada la simulación");
+                Flash.Error("Error", "Ha ocurrido un error inesperado");
                 return RedirectToAction("Index");
             }
-
-            var caseStudyQuery = Db.CaseStudies.Where(x => x.Id == section.CaseStudyId);
-            CaseStudy caseStudy = await caseStudyQuery.FirstOrDefaultAsync();
-            SellViewModel sellViewModel = new SellViewModel
-            {
-                CaseStudyId = caseStudy.Id,
-                Products = caseStudy.InitialCharges.Select(y => y.Product).ToList<Product>(),
-                Section = section,
-            };
-            return View(sellViewModel);
         }
 
         [HttpPost]
