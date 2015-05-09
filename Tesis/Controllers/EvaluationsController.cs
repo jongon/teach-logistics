@@ -250,7 +250,7 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> Evaluations()
         {
-            List<Evaluation> evaluations = await Db.Users.Where(z => z.Id == CurrentUser.Id).Select(x => x.Section).SelectMany(y => y.Evaluations).ToListAsync();
+            List<Evaluation> evaluations = await Db.Users.Where(z => z.Id == CurrentUser.Id || z.EvaluationUsers.Select(c => c.UserId).Contains(CurrentUser.Id)).Select(x => x.Section).SelectMany(y => y.Evaluations).ToListAsync();
             EvaluationBL evaluationBL = new EvaluationBL();
             return View(evaluationBL.GetEvaluationStudent(evaluations, CurrentUser.Id));
         }
@@ -259,7 +259,22 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> TakeQuiz(Guid? Id)
         {
-            throw new NotImplementedException();
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evaluation evaluation = await Db.Evaluations.Where(x => x.Id == Id).FirstOrDefaultAsync<Evaluation>();
+            if (evaluation == null)
+            {
+                return HttpNotFound();
+            }
+            EvaluationBL evaluationBL = new EvaluationBL();
+            if (evaluationBL.UserCanBeEvaluated(evaluation, CurrentUser.Id))
+            {
+                return View(evaluationBL.GetQuiz(evaluation));
+            }
+            Flash.Error("Error", "Ha ocurrido un error al intentar presentar la evaluación");
+            return View("Evaluations");
         }
 
         [HttpPost]

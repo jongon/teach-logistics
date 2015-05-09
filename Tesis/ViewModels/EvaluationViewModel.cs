@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Tesis.DAL;
 using Tesis.Models;
 
@@ -78,6 +79,37 @@ namespace Tesis.ViewModels
 
     public class QuizViewModel
     {
+        public Guid Id { get; set; }
 
+        [DisplayName("Nombre del Quiz")]
+        public string QuizName { get; set; }
+
+        [UIHint("QuestionsQuiz")]
+        public ICollection<QuestionQuizViewModel> Questions { get; set; }
+
+        public int Score { get; set; }
+    }
+
+    public class QuestionQuizViewModel
+    {
+        public Guid Id { get; set; }
+
+        [DisplayName("Imagen")]
+        public string ImagePath { get; set; }
+
+        [DisplayName("Opciones")]
+        [UIHint("OptionQuiz")]
+        public OptionQuizViewModel Options { get; set; }
+    }
+
+    public class OptionQuizViewModel
+    {
+        [DisplayName("Respuesta Seleccionada")]
+        public Guid SelectedAnswer { get; set; }
+
+        [DisplayName("Respuesta Correcta")]
+        public Guid CorrectAnswer { get; set; }
+
+        public SelectList Options { get; set; }
     }
 }

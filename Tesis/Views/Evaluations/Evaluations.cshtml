@@ -74,11 +74,12 @@
 								<td>
 									@if (!item.IsTaken)
 									{
-										@Html.ActionLink("Presentar Quiz", "TakeQuiz", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })																	
+										<button type="button" class="btn btn-primary btn-sm quizButton" data-toggle="modal" data-target="#quizModal" data-evaluation="@item.Id">Presentar Quiz</button>									
 									}									
 								</td>
 							</tr>
 						}
+						@Html.Partial("_QuizConfirmation")
 						</tbody>
 					</table>
 				</div>
