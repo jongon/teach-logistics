@@ -77,7 +77,14 @@
 										@Html.DisplayFor(modelItem => item.Number)
 									</td>
 									<td>
-										@item.Periods.Count()
+										@if (item.Periods.Count() >= 1) 
+										{
+											@(item.Periods.Count() - 1)
+										}
+										else 
+										{
+											@item.Periods.Count()							
+										}																																
 									</td>
 									<td>
 										@if (item.IsActivedSimulation)

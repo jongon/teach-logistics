@@ -85,7 +85,7 @@ namespace Tesis.Controllers
                         List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
                         foreach (var initialCharge in initialCharges)
                         {
-                            if (TryUpdateModel(initialCharge))
+                            if (TryValidateModel(initialCharge))
                             {
                                 initialCharge.CaseStudyId = caseStudyId;  
                             }

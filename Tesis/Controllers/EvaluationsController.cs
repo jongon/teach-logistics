@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Net;
@@ -13,10 +16,11 @@ using Newtonsoft.Json;
 
 namespace Tesis.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize]
     public class EvaluationsController : BaseController
     {
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> AssignSection(Guid? id)
         {
             Object validatedEvaluation = await this.ValidateEvaluation(id);
@@ -42,6 +46,7 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> AssignSection([Bind(Exclude="EvaluationName,Semesters")]AssignEvaluationViewModel evaluationModel)
         {
             try
@@ -78,6 +83,7 @@ namespace Tesis.Controllers
 
         // GET: Evaluations
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Index()
         {
             return View(await Db.Evaluations.ToListAsync());
@@ -85,6 +91,7 @@ namespace Tesis.Controllers
 
         // GET: Evaluations/Details/5
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Details(Guid? id)
         {
             Object validatedEvaluation = await this.ValidateEvaluation(id);
@@ -102,6 +109,7 @@ namespace Tesis.Controllers
 
         // GET: Evaluations/Create
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View(new EvaluationViewModel());
@@ -110,6 +118,7 @@ namespace Tesis.Controllers
         // POST: Evaluations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Create([Bind(Exclude="Questions")]EvaluationViewModel evaluationViewModel)
         {
             try
@@ -168,6 +177,7 @@ namespace Tesis.Controllers
         // POST: Evaluations/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Edit([Bind(Exclude = "Questions")]EvaluationViewModel evaluationViewModel)
         {
             Object validatedEvaluation = await this.ValidateEvaluation(evaluationViewModel.Id);
@@ -197,6 +207,8 @@ namespace Tesis.Controllers
         }
 
         // GET: Evaluations/Delete/5
+        [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Delete(Guid? id)
         {
             Object validatedEvaluation = await this.ValidateEvaluation(id);
@@ -215,6 +227,7 @@ namespace Tesis.Controllers
         // POST: Evaluations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DeleteConfirmed(Guid? id)
         {
             Object validatedEvaluation = await this.ValidateEvaluation(id);
@@ -230,6 +243,14 @@ namespace Tesis.Controllers
             {
                 return (ActionResult)validatedEvaluation;
             }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Estudiante")]
+        public async Task<ActionResult> Evaluations()
+        {
+            List<Evaluation> evaluations = await Db.Users.Where(z => z.Id == CurrentUser.Id).Select(x => x.Section).SelectMany(y => y.Evaluations).ToListAsync();
+            return View(evaluations);
         }
 
         private async Task<Object> ValidateEvaluation(Guid? id)

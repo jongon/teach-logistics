@@ -19,20 +19,6 @@ namespace Tesis.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-        private ApplicationUserManager _userManager;
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
         private ApplicationSignInManager _signInManager;
 
         public ApplicationSignInManager SignInManager

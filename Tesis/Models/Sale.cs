@@ -7,6 +7,11 @@ namespace Tesis.Models
 {
     public class Sale
     {
+        public Sale()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
 
         public int Quantity { get; set; }

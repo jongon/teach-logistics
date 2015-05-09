@@ -1,8 +1,16 @@
 ﻿using System.Linq;
-using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using MvcFlash.Core;
+using System.Net;
+using System.Web;
 using Tesis.DAL;
+using Tesis.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Tesis.Controllers
 {
@@ -10,6 +18,24 @@ namespace Tesis.Controllers
     public abstract class BaseController : Controller
     {
         protected ApplicationDbContext Db { get; set; }
+
+        protected ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            set
+            {
+                _userManager = value;
+            }
+        }
+
+        private ApplicationUserManager _userManager;
+
+        protected User CurrentUser { get; set; }
+
+        protected string UserId { get; set; }
 
         protected virtual IFlashPusher Flash { get; private set; }
 
@@ -19,10 +45,16 @@ namespace Tesis.Controllers
             Flash = MvcFlash.Core.Flash.Instance;
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            UserId = User.Identity.GetUserId();
+            CurrentUser = UserManager.FindById(User.Identity.GetUserId());
+            base.OnActionExecuting(filterContext);
+        }
+
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var userId = User.Identity.GetUserId();
-            ViewBag.User = Db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            ViewBag.User = CurrentUser;
             base.OnActionExecuted(filterContext);
         }
 
@@ -35,5 +67,4 @@ namespace Tesis.Controllers
             base.Dispose(disposing);
         }
     }
-    
 }

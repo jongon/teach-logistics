@@ -13,9 +13,14 @@ namespace Tesis.ViewModels
         [DisplayName("Sección")]
         public virtual Section Section { get; set; }
 
+        [DisplayName("Sección")]
+        [Required(ErrorMessage = "El Id de la sección es requerido")]
+        public virtual Guid SectionId { get; set; }
+
         public ICollection<Product> Products { get; set; }
 
         [DisplayName("Productos")]
+        [Required(ErrorMessage = "Los Productos son requeridos")]
         [UIHint("Products")]
         public ICollection<ProductSell> ProductSells { get; set; }
     }

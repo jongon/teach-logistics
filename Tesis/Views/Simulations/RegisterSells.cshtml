@@ -47,18 +47,24 @@
 						</dd>
 					</dl>
 					<hr />
-					@using (Html.BeginForm("RegisterSells", "Simulations", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					@using (Html.BeginForm("RegisterSells", "Simulations", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
 					{
+						@Html.AntiForgeryToken()					
+						@Html.HiddenFor(model => model.SectionId)					
 						@Html.EditorFor(model => model.ProductSells)
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
-								<input type="submit" value="Registrar Ventas" class="btn btn-primary" />
+								<button type="button" data-toggle="modal" data-target="#registerSells" class="btn btn-primary">Registrar Ventas</button>
 								@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
 							</div>
-						</div>					
+						</div>
+						@Html.Partial("_RegisterSellsConfirmation")		
 					}
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@section Scripts {
+	@Scripts.Render("~/bundles/Simulations/register_sells")
+}

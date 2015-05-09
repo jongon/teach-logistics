@@ -1,11 +1,12 @@
-﻿@model IEnumerable<Tesis.ViewModels.ProductSell>
-@foreach (var item in Model)
+﻿@model IList<Tesis.ViewModels.ProductSell>
+@for (int i = 0; i < Model.Count(); i++ )
 {
 	<div class="form-group">
-		@Html.Label(item.Product.Name, new { @class = "control-label col-md-2" })
+		@Html.Label(Model[i].Product.Name, new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
-			@Html.EditorFor(model => item.Quantity, new { htmlAttributes = new { @placeholder = "Cantidad Vendida", @Value = "" } })
-			@Html.ValidationMessageFor(model => item.Quantity, "", new { @class = "text-danger" })
+			@Html.HiddenFor(model => model[i].Product.Id)
+			@Html.EditorFor(model => model[i].Quantity, new { htmlAttributes = new { @placeholder = "Cantidad Vendida", @Value = "" } })
+			@Html.ValidationMessageFor(model => model[i].Quantity, "", new { @class = "text-danger" })
 		</div>
 	</div>
 }

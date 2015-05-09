@@ -37,7 +37,6 @@ namespace Tesis.Controllers
                         Created = DateTime.Now,
                         Id = Guid.NewGuid(),
                         IsLastPeriod = false,
-                        PeriodNumber = 1,
                     };
                     section.Periods.Add(period);
                 }
@@ -97,6 +96,7 @@ namespace Tesis.Controllers
                 {
                     ProductSells = caseStudy.InitialCharges.Select(y => new ProductSell { Product = y.Product }).ToList<ProductSell>(),
                     Section = section,
+                    SectionId = section.Id,
                 };
                 return View(sellViewModel);
             }
@@ -111,7 +111,48 @@ namespace Tesis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterSells(SellViewModel model)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                Section section = await Db.Sections.Where(x => x.Id == model.SectionId).FirstOrDefaultAsync();
+                if (section == null)
+                {
+                    return HttpNotFound();
+                }
+                Period period = section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
+                period.Sales = new List<Sale>();
+                foreach (var productSell in model.ProductSells)
+                {
+                    if (TryValidateModel(productSell))
+                    {
+                        Sale sale = new Sale
+                        {
+                            ProductId = productSell.Product.Id,
+                            Quantity = productSell.Quantity
+                        };
+                        period.Sales.Add(sale);
+                    }
+                    else
+                    {
+                        Flash.Error("Error", "Ha Ocurrido un error inesperado");
+                        return RedirectToAction("Index");
+                    }
+                }
+                Period newPeriod = new Period
+                {
+                    Created = DateTime.Now,
+                    Id = Guid.NewGuid(),
+                    IsLastPeriod = false,
+                };
+                section.Periods.Add(newPeriod);
+                await Db.SaveChangesAsync();
+                Flash.Success("Ok", "Las ventas del período han sido registradas exitosamente");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Flash.Error("Error", "Ha Ocurrido un error registrando las ventas");
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpGet]

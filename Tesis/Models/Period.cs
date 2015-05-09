@@ -11,8 +11,6 @@ namespace Tesis.Models
 
         public DateTime Created { get; set; }
 
-        public byte PeriodNumber { get; set; }
-
         public bool IsLastPeriod { get; set; }
 
         public Section Section { get; set; }

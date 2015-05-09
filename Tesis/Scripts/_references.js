@@ -731,3 +731,4 @@
 /// <reference path="app/casestudies/asign_section.js" />
 /// <reference path="app/documents/index.js" />
 /// <reference path="app/simulations/index.js" />
+/// <reference path="app/simulations/register_sells.js" />
