@@ -32,6 +32,12 @@
 					<span class="nav-label">Evaluaciones</span>
 				</a>
 			</li>
+			<li class="@Html.IsSelected(controller: "Documents")">
+				<a href="@Url.Action("IndexStudents", "Documents")">
+					<i class="fa fa-folder-open"></i>
+					<span class="nav-label">Documentos</span>
+				</a>
+			</li>
 		</ul>
 	</div>
 </nav>

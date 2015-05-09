@@ -53,4 +53,31 @@ namespace Tesis.ViewModels
 
         public ICollection<Guid> Sections { get; set; }
     }
+
+    public class EvaluationStudentViewModel
+    {
+        public Guid Id { get; set; }
+
+        [DisplayName("Nombre de la Evaluación")]
+        public string QuizName { get; set; }
+
+        [DisplayName("Puntaje Obtenido")]
+        public int GotScore { get; set; }
+
+        [DisplayName("Puntaje Total")]
+        public int TotalScore { get; set; }
+
+        [DisplayName("N° de Preguntas")]
+        public int QuestionNumbers { get; set; }
+
+        public bool IsTaken { get; set; }
+
+        [DisplayName("Presentado")]
+        public DateTime TakenDate { get; set; }
+    }
+
+    public class QuizViewModel
+    {
+
+    }
 }

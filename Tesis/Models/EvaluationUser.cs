@@ -13,6 +13,12 @@ namespace Tesis.Models
         [DisplayName("Activo")]
         public virtual bool Active { get; set; }
 
+        [DisplayName("Calificación")]
+        public virtual int Calification { get; set; }
+
+        [DisplayName("Fecha")]
+        public virtual DateTime TakenDate { get; set; }
+
         public virtual Guid EvaluationId { get; set; }
 
         [DisplayName("Evaluación")]
@@ -22,9 +28,5 @@ namespace Tesis.Models
 
         [DisplayName("Estudiante")]
         public virtual User User { get; set; }
-
-        public virtual int  Calification { get; set; }
-
-        public virtual int Total { get; set; }
     }
 }

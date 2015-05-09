@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Tesis.Models.Evaluation>
+﻿@model IEnumerable<Tesis.ViewModels.EvaluationStudentViewModel>
 @{
 	ViewBag.Title = "Índice";
 }
@@ -21,25 +21,28 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>Lista de Evaluaciones</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Crear Evaluación", "Create", null, new { @class = "btn btn-primary btn-xs" })
-					</div>
 				</div>
 				<div class="ibox-content">
-					<table id="evaluations" class="table table-striped">
+					<table id="evaluations" class="table table-striped table-bordered">
 						<thead>
 							<tr>
 								<th>
-									@Html.DisplayNameFor(model => model.Name)
+									@Html.DisplayNameFor(model => model.QuizName)
 								</th>
 								<th>
-									@Html.DisplayNameFor(model => model.Created)
+									@Html.DisplayNameFor(model => model.QuestionNumbers)
 								</th>
 								<th>
-									@Html.DisplayNameFor(model => model.Questions)
+									@Html.DisplayNameFor(model => model.TotalScore)
 								</th>
 								<th>
-									@Html.DisplayNameFor(model => model.Sections)
+									@Html.DisplayNameFor(model => model.GotScore)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.TakenDate)
+								</th>
+								<th>
+									Acción
 								</th>
 							</tr>
 						</thead>
@@ -48,28 +51,31 @@
 						{
 							<tr>
 								<td>
-									@Html.DisplayFor(modelItem => item.Name)
+									@Html.DisplayFor(modelItem => item.QuizName)
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.Created)
+									@Html.DisplayFor(modelItem => item.QuestionNumbers)
 								</td>
 								<td>
-									@item.Questions.Count()
+									@Html.DisplayFor(modelItem => item.TotalScore)
 								</td>
 								<td>
-									@if (item.Sections.Count() > 0)
+									@if (item.IsTaken)
+									{									
+										@Html.DisplayFor(modelItem => item.GotScore)
+									}									
+								</td>
+								<td>
+									@if (item.IsTaken)
 									{
-										foreach (var sectionItem in item.Sections)
-										{
-											<span><strong>Semestre:</strong> @sectionItem.Semester.Description -</span>
-											<span><strong>Sección:</strong> @sectionItem.Number</span>
-											<br>
-										}
+										@Html.DisplayFor(modelItem => item.TakenDate)									
 									}
-									else
+								</td>
+								<td>
+									@if (!item.IsTaken)
 									{
-										<span>No tiene secciones asociadas</span>
-									}
+										@Html.ActionLink("Presentar Quiz", "TakeQuiz", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })																	
+									}									
 								</td>
 							</tr>
 						}

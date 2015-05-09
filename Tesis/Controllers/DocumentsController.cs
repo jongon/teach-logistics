@@ -13,17 +13,27 @@ using System.Net;
 
 namespace Tesis.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize]
     public class DocumentsController : BaseController
     {
         // GET: Documents
+        [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Index()
         {
             return View(await Db.Documents.ToListAsync());
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Estudiante")]
+        public async Task<ActionResult> IndexStudents()
+        {
+            return View("Index", await Db.Documents.ToListAsync<Document>());
+        }
+
         // GET: Documents/Create
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View();
@@ -32,6 +42,7 @@ namespace Tesis.Controllers
         // POST: Documents/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Create([Bind(Exclude="DocumentPath")]DocumentViewModel documentViewModel)
         {
             try
@@ -68,6 +79,7 @@ namespace Tesis.Controllers
 
         // GET: Documents/Delete/5
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -85,6 +97,7 @@ namespace Tesis.Controllers
         // POST: Documents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DeleteConfirmed(Guid? id)
         {
             try

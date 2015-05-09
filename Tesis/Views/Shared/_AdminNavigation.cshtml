@@ -62,19 +62,18 @@
 					<span class="nav-label">Casos de Estudios</span>
 				</a>
 			</li>
-			<li class="@Html.IsSelected(controller: "Simulations")">
-				<a href="@Url.Action("Index", "Simulations")">
-					<i class="fa fa-connectdevelop"></i>
-					<span class="nav-label">Simulación</span>
-				</a>
-			</li>
 			<li class="@Html.IsSelected(controller: "Evaluations") @Html.IsSelected(controller: "Questions")">
 				<a href="#"><i class="fa fa-question-circle"></i> <span class="nav-label">Evaluacion</span><span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li class="@Html.IsSelected(controller: "Evaluations", action: "Index")"><a href="@Url.Action("Index", "Evaluations")">Quizes</a></li>
 					<li class="@Html.IsSelected(controller: "Questions", action: "Index")"><a href="@Url.Action("Index", "Questions")">Preguntas</a></li>
-					<li class="@Html.IsSelected(controller: "Documents", action: "Index")"><a href="@Url.Action("Index", "Documents")">Documentos</a></li>
 				</ul>
+			</li>
+			<li class="@Html.IsSelected(controller: "Documents")">
+				<a href="@Url.Action("Index", "Documents")">
+					<i class="fa fa-folder-open"></i>
+					<span class="nav-label">Documentos</span>
+				</a>
 			</li>
 		</ul>
 	</div>

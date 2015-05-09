@@ -7,7 +7,15 @@ namespace Tesis.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole("Administrador"))
+            {
+                return View();
+            }
+            else if (User.IsInRole("Estudiante"))
+            {
+                return View();
+            }
+            return HttpNotFound();
         }
     }
 }

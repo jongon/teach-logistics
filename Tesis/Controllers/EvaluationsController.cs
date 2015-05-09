@@ -13,6 +13,7 @@ using Tesis.Models;
 using Tesis.ViewModels;
 using MvcFlash.Core.Extensions;
 using Newtonsoft.Json;
+using Tesis.Business;
 
 namespace Tesis.Controllers
 {
@@ -250,7 +251,22 @@ namespace Tesis.Controllers
         public async Task<ActionResult> Evaluations()
         {
             List<Evaluation> evaluations = await Db.Users.Where(z => z.Id == CurrentUser.Id).Select(x => x.Section).SelectMany(y => y.Evaluations).ToListAsync();
-            return View(evaluations);
+            EvaluationBL evaluationBL = new EvaluationBL();
+            return View(evaluationBL.GetEvaluationStudent(evaluations, CurrentUser.Id));
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Estudiante")]
+        public async Task<ActionResult> TakeQuiz(Guid? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Estudiante")]
+        public async Task<ActionResult> ReviewQuiz()
+        {
+            throw new NotImplementedException();
         }
 
         private async Task<Object> ValidateEvaluation(Guid? id)
