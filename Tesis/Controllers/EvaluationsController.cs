@@ -279,9 +279,17 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Estudiante")]
-        public async Task<ActionResult> ReviewQuiz()
+        public async Task<ActionResult> TakeQuiz(QuizViewModel quiz)
         {
-            throw new NotImplementedException();
+            Evaluation evaluation = await Db.Evaluations.Where(x => x.Id == quiz.Id).FirstOrDefaultAsync();
+            if (evaluation == null)
+            {
+                return HttpNotFound();
+            }
+            EvaluationBL evaluationBL = new EvaluationBL();
+            evaluationBL.TakeQuiz(evaluation, quiz, CurrentUser.Id);
+            QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, quiz);
+            return View("ReviewQuiz", reviewedQuiz);
         }
 
         private async Task<Object> ValidateEvaluation(Guid? id)

@@ -87,6 +87,7 @@ namespace Tesis.ViewModels
         [UIHint("QuestionsQuiz")]
         public ICollection<QuestionQuizViewModel> Questions { get; set; }
 
+        [DisplayName("Puntaje Total")]
         public int Score { get; set; }
     }
 
@@ -97,6 +98,12 @@ namespace Tesis.ViewModels
         [DisplayName("Imagen")]
         public string ImagePath { get; set; }
 
+        [DisplayName("Pregunta")]
+        public string QuestionText { get; set; }
+
+        [DisplayName("Puntaje")]
+        public int QuestionScore { get; set; }
+
         [DisplayName("Opciones")]
         [UIHint("OptionQuiz")]
         public OptionQuizViewModel Options { get; set; }
@@ -105,11 +112,13 @@ namespace Tesis.ViewModels
     public class OptionQuizViewModel
     {
         [DisplayName("Respuesta Seleccionada")]
+        [Required(ErrorMessage = "Debe seleccionar una respuesta")]
         public Guid SelectedAnswer { get; set; }
 
         [DisplayName("Respuesta Correcta")]
         public Guid CorrectAnswer { get; set; }
 
+        [DisplayName("Opciones")]
         public SelectList Options { get; set; }
     }
 }

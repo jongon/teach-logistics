@@ -68,9 +68,9 @@ namespace Tesis.ViewModels
         {
             get
             {
-                return new SelectList(new Dictionary<string, string>() {
-                    { "Estudiante", "Estudiante"},
-                    { "Administrador", "Administrador"}
+                return new SelectList(new Dictionary<string, string> {
+                   { "Estudiante", "Estudiante"},
+                   { "Administrador", "Administrador"}
                 }, "Key", "Value");
             }
             set { }

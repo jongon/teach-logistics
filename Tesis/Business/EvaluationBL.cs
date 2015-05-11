@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Tesis.Models;
 using Tesis.ViewModels;
+using System.Web.Mvc;
 
 namespace Tesis.Business
 {
@@ -48,18 +49,42 @@ namespace Tesis.Business
             return false;
         }
 
-        public bool GetQuiz(Evaluation evaluation)
+        public QuizViewModel GetQuiz(Evaluation evaluation)
         {
             List<QuestionQuizViewModel> questionViewModel = new List<QuestionQuizViewModel>();
+            Random random = new Random();
             foreach (var question in evaluation.Questions)
             {
-                foreach (var option in question.Options)
+                Dictionary<Guid, string> dictionary = question.Options.OrderBy(x => random.Next()).ToDictionary(x => x.Id, x => x.Option);
+                OptionQuizViewModel optionViewModel = new OptionQuizViewModel();
+                optionViewModel.Options = new SelectList(dictionary, "Key", "Value");
+                questionViewModel.Add(new QuestionQuizViewModel
                 {
-                    
-                }
+                    Id = question.Id,
+                    ImagePath = question.ImagePath,
+                    Options = optionViewModel,
+                    QuestionText = question.QuestionText,
+                    QuestionScore = question.Score
+                });
             }
-            QuizViewModel quizViewModel = new QuizViewModel();
-            return true;
+            return new QuizViewModel
+            {
+                Id = evaluation.Id,
+                Questions = questionViewModel.OrderBy(x => random.Next()).ToList(),
+                QuizName = evaluation.Name,
+                Score = evaluation.Questions.Sum(x => x.Score)
+
+            };
+        }
+
+        public void TakeQuiz(Evaluation evaluation, QuizViewModel quiz, string p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public QuizViewModel ReviewQuiz(Evaluation evaluation, QuizViewModel quiz)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -733,3 +733,4 @@
 /// <reference path="app/simulations/index.js" />
 /// <reference path="app/simulations/register_sells.js" />
 /// <reference path="app/evaluations/evaluations.js" />
+/// <reference path="app/evaluations/take_quiz.js" />

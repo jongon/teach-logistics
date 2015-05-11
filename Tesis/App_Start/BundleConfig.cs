@@ -362,6 +362,9 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Evaluations/evaluations").Include(
                 "~/Scripts/app/Evaluations/evaluations.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Evaluations/take_quiz").Include(
+                "~/Scripts/app/Evaluations/take_quiz.js"));
+
             //Documents
             bundles.Add(new ScriptBundle("~/bundles/Documents/index").Include(
                 "~/Scripts/app/Documents/index.js"));
