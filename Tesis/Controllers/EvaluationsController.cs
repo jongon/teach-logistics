@@ -256,6 +256,29 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        public async Task<ActionResult> Califications(Guid? Id)
+        {
+            if (Id == null)
+            {
+                return HttpNotFound();
+            }
+            Evaluation evaluation = await Db.Evaluations.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            if (evaluation == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> ReviewQuiz(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> TakeQuiz(Guid? Id)
         {
@@ -287,9 +310,27 @@ namespace Tesis.Controllers
                 return HttpNotFound();
             }
             EvaluationBL evaluationBL = new EvaluationBL();
-            evaluationBL.TakeQuiz(evaluation, quiz, CurrentUser.Id);
-            QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, quiz);
-            return View("ReviewQuiz", reviewedQuiz);
+            try
+            {
+                if (evaluationBL.UserCanBeEvaluated(evaluation, CurrentUser.Id))
+                {
+                    evaluationBL.TakeQuiz(evaluation, quiz, CurrentUser.Id);
+                    await Db.SaveChangesAsync();
+                    Flash.Success("Ok", "El Quiz ha sido presentado exitosamente");
+                    QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, CurrentUser.Id);
+                    return View("ReviewQuiz", reviewedQuiz);
+                }
+                else
+                {
+                    Flash.Error("Error", "Ha ocurrido un error al intentar presentar la evaluación");
+                    return View("Evaluations");
+                }
+            }
+            catch (Exception e)
+            {
+                Flash.Error("Error", e.Message);
+                return View("Evaluations");
+            }
         }
 
         private async Task<Object> ValidateEvaluation(Guid? id)

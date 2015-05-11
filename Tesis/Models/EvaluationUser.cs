@@ -8,6 +8,11 @@ namespace Tesis.Models
 {
     public class EvaluationUser
     {
+        public EvaluationUser()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
 
         [DisplayName("Activo")]
@@ -28,5 +33,7 @@ namespace Tesis.Models
 
         [DisplayName("Estudiante")]
         public virtual User User { get; set; }
+
+        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

@@ -77,14 +77,83 @@ namespace Tesis.Business
             };
         }
 
-        public void TakeQuiz(Evaluation evaluation, QuizViewModel quiz, string p)
+        public void TakeQuiz(Evaluation evaluation, QuizViewModel quiz, string userId)
         {
-            throw new NotImplementedException();
+            int TotalScore = 0;
+            //Aquí validar si el quiz tiene las mismas preguntas que el quiz
+            int questionNumber = quiz.Questions.Where(x => evaluation.Questions.Select(y => y.Id).Contains(x.Id)).Count();
+            if (evaluation.Questions.Count() != questionNumber)
+            {
+                throw new Exception("El Quiz es falso");
+            }
+            //Validar si el estudiante ya presentó este quiz; tomar en cuenta el active
+            EvaluationUser auxEvaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
+            if (auxEvaluationUser != null)
+            {
+                if (auxEvaluationUser.Active)
+                {
+                    throw new Exception("Estudiante ya presento este quiz");
+                }
+            }
+
+            List<Answer> answers = new List<Answer>();
+            foreach (var questionQuiz in quiz.Questions)
+            {
+                Question questionEvaluation = evaluation.Questions.Where(x => x.Id == questionQuiz.Id).FirstOrDefault();
+                Guid correctOption = questionEvaluation.Options.Where(x => x.IsCorrectOption == true).Select(y => y.Id).FirstOrDefault();
+                if (correctOption == questionQuiz.Options.SelectedAnswer)
+                {
+                    TotalScore += questionEvaluation.Score;
+                }
+                answers.Add(new Answer
+                {
+                    QuestionOptionId = questionQuiz.Options.SelectedAnswer
+                });
+            }
+
+            EvaluationUser evaluationUser = new EvaluationUser
+            {
+                TakenDate = DateTime.Now,
+                UserId = userId,
+                EvaluationId = evaluation.Id,
+                Calification = TotalScore,
+                Answers = answers,
+                Active = true,
+            };
+            evaluation.EvaluationUsers.Add(evaluationUser);
         }
 
-        public QuizViewModel ReviewQuiz(Evaluation evaluation, QuizViewModel quiz)
+        public QuizViewModel ReviewQuiz(Evaluation evaluation, string userId)
         {
-            throw new NotImplementedException();
+            EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
+            List<QuestionQuizViewModel> quizQuestions = new List<QuestionQuizViewModel>();
+            foreach (var question in evaluation.Questions)
+            {
+                Dictionary<Guid, string> dictionary = question.Options.ToDictionary(x => x.Id, x => x.Option);
+                OptionQuizViewModel optionViewModel = new OptionQuizViewModel
+                {
+                    CorrectAnswer = question.Options.Where(x => x.IsCorrectOption == true).Select(y => y.Id).FirstOrDefault(),
+                    SelectedAnswer = evaluationUser.Answers.Where(x => question.Options.Select(y => y.Id).Contains(x.QuestionOptionId)).Select(z => z.QuestionOptionId).FirstOrDefault(),
+                    Options = new SelectList(dictionary, "Key", "Value")
+                };
+
+                QuestionQuizViewModel quizQuestion = new QuestionQuizViewModel
+                {
+                    ImagePath = question.ImagePath,
+                    QuestionScore = question.Score,
+                    QuestionText = question.QuestionText,
+                    Options = optionViewModel
+                };
+                quizQuestions.Add(quizQuestion);
+            }
+            QuizViewModel quizViewModel = new QuizViewModel
+            {
+                QuizName = evaluation.Name,
+                Score = evaluation.Questions.Sum(x => x.Score),
+                GotScore = evaluationUser.Calification,
+                Questions = quizQuestions
+            };
+            return quizViewModel;
         }
     }
 }

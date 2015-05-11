@@ -21,5 +21,7 @@ namespace Tesis.Models
         public Question Question { get; set; }
 
         public Guid QuestionId { get; set; }
+
+        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

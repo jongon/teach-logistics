@@ -89,6 +89,9 @@ namespace Tesis.ViewModels
 
         [DisplayName("Puntaje Total")]
         public int Score { get; set; }
+
+        [DisplayName("Puntaje Obtenido")]
+        public int GotScore { get; set; }
     }
 
     public class QuestionQuizViewModel
@@ -120,5 +123,10 @@ namespace Tesis.ViewModels
 
         [DisplayName("Opciones")]
         public SelectList Options { get; set; }
+    }
+
+    public class CalificationVieWModel
+    {
+
     }
 }
