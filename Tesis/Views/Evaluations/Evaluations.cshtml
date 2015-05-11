@@ -75,7 +75,11 @@
 									@if (!item.IsTaken)
 									{
 										<button type="button" class="btn btn-primary btn-sm quizButton" data-toggle="modal" data-target="#quizModal" data-evaluation="@item.Id">Presentar Quiz</button>									
-									}									
+									}
+									else
+									{
+										@Html.ActionLink("Revisar Quiz", "Review Quiz", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })									
+									}							
 								</td>
 							</tr>
 						}

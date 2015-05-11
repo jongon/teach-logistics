@@ -257,6 +257,7 @@ namespace Tesis.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrador")]
+        //Falta
         public async Task<ActionResult> Califications(Guid? Id)
         {
             if (Id == null)
@@ -268,11 +269,27 @@ namespace Tesis.Controllers
             {
                 return HttpNotFound();
             }
-            return View();
+            List<CalificationVieWModel> califications = evaluation.EvaluationUsers.Select(x => new CalificationVieWModel { 
+                UserId = x.UserId,
+                FirstName = x.User.FirstName,
+                LastName = x.User.LastName,
+                GotScore = x.Calification,
+                SemesterDescription = x.User.Section.Semester.Description,
+                SectionNumber = x.User.Section.Number
+            }).ToList();
+            EvaluationCalificationViewModel evaluationViewModel = new EvaluationCalificationViewModel
+            {
+                Id = evaluation.Id,
+                Name = evaluation.Name,
+                TotalScore = evaluation.Questions.Sum(x => x.Score),
+                Califications = califications,
+            };
+            return View(evaluationViewModel);
         }
 
         [HttpGet]
         [Authorize]
+        //Falta
         public async Task<ActionResult> ReviewQuiz(Guid Id)
         {
             throw new NotImplementedException();

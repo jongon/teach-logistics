@@ -125,8 +125,38 @@ namespace Tesis.ViewModels
         public SelectList Options { get; set; }
     }
 
+    public class EvaluationCalificationViewModel
+    {
+        public Guid Id { get; set; }
+
+        [DisplayName("Nombre")]
+        public string Name { get; set; }
+
+        [DisplayName("Puntaje Total")]
+        public int TotalScore { get; set; }
+
+        [UIHint("Califications")]
+        public virtual ICollection<CalificationVieWModel> Califications { get; set; }
+    }
+
     public class CalificationVieWModel
     {
+        [DisplayName("UserId")]
+        public string UserId { get; set; }
 
+        [DisplayName("Nombre")]
+        public string FirstName { get; set; }
+
+        [DisplayName("Apellido")]
+        public string LastName { get; set; }
+
+        [DisplayName("Semestre")]
+        public string SemesterDescription { get; set; }
+
+        [DisplayName("Sección")]
+        public string SectionNumber { get; set; }
+
+        [DisplayName("Puntaje")]
+        public int GotScore { get; set; }
     }
 }
