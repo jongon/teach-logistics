@@ -1,1 +1,37 @@
-﻿
+﻿@model Tesis.ViewModels.EvaluationCalificationViewModel
+@{
+	ViewBag.Title = "Calificaciones";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Evaluación</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Calificaciones</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Lista de Calificaciones</h5>
+				</div>
+				<div class="ibox-content">
+					@{ Html.RenderPartial("_Califications", Model.Califications); }
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/Evaluations/califications")
+}

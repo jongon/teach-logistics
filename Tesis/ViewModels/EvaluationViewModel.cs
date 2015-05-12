@@ -141,6 +141,9 @@ namespace Tesis.ViewModels
 
     public class CalificationVieWModel
     {
+        [DisplayName("EvaluationId")]
+        public Guid EvaluationId { get; set; }
+
         [DisplayName("UserId")]
         public string UserId { get; set; }
 

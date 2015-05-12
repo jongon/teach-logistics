@@ -257,7 +257,6 @@ namespace Tesis.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrador")]
-        //Falta
         public async Task<ActionResult> Califications(Guid? Id)
         {
             if (Id == null)
@@ -275,7 +274,8 @@ namespace Tesis.Controllers
                 LastName = x.User.LastName,
                 GotScore = x.Calification,
                 SemesterDescription = x.User.Section.Semester.Description,
-                SectionNumber = x.User.Section.Number
+                SectionNumber = x.User.Section.Number,
+                EvaluationId = evaluation.Id
             }).ToList();
             EvaluationCalificationViewModel evaluationViewModel = new EvaluationCalificationViewModel
             {
@@ -288,8 +288,14 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
-        [Authorize]
-        //Falta
+        [Authorize(Roles = "Administrador")]
+        public async Task<ActionResult> ReviewQuiz(string UserId, Guid EvaluationId)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> ReviewQuiz(Guid Id)
         {
             throw new NotImplementedException();
