@@ -291,7 +291,7 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> ReviewQuiz(string userId, Guid evaluationId)
         {
-            if (evaluationId == null || String.IsNullOrEmpty(UserId))
+            if (evaluationId == null || String.IsNullOrEmpty(userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -312,6 +312,7 @@ namespace Tesis.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Estudiante")]
+        [ActionName("ReviewQuizStudent")]
         public async Task<ActionResult> ReviewQuiz(Guid Id)
         {
             if (Id == null)
@@ -325,7 +326,7 @@ namespace Tesis.Controllers
             }
             EvaluationBL evaluationBL = new EvaluationBL();
             QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, CurrentUser.Id);
-            return View(reviewedQuiz);
+            return View("ReviewQuiz", reviewedQuiz);
         }
 
         [HttpGet]

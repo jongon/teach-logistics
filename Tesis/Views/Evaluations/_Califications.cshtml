@@ -64,7 +64,7 @@
 					@Html.DisplayFor(modelItem => item.GotScore)
 				</td>
 				<td>
-					@Html.ActionLink("Revisar Quiz", "ReviewQuiz", new { id = item.UserId, evaluationId = item.EvaluationId }, new { @class = "btn btn-primary btn-sm" })		
+					@Html.ActionLink("Revisar Quiz", "ReviewQuiz", new { userId = item.UserId, evaluationId = item.EvaluationId }, new { @class = "btn btn-primary btn-sm" })		
 				</td>
 			</tr>
 		}

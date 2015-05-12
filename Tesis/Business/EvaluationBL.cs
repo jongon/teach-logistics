@@ -148,6 +148,7 @@ namespace Tesis.Business
             }
             QuizViewModel quizViewModel = new QuizViewModel
             {
+                Id = evaluation.Id,
                 QuizName = evaluation.Name,
                 Score = evaluation.Questions.Sum(x => x.Score),
                 GotScore = evaluationUser.Calification,

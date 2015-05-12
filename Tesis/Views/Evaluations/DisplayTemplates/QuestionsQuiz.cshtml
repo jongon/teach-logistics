@@ -1,0 +1,24 @@
+﻿@model IList<Tesis.ViewModels.QuestionQuizViewModel>
+@for (int i = 0; i < Model.Count(); i++)
+{
+	<div class="form-group">
+		<div class="col-md-12">
+			<p>
+				@(i + 1)) @Html.DisplayFor(model => model[i].QuestionText)
+			</p>
+			@if (!String.IsNullOrEmpty(Model[i].ImagePath))
+			{
+				<div class="col-md-12">
+					<img src="@Url.Content(Model[i].ImagePath)" alt="question_@i" max-width="500" />
+					<hr />
+				</div>
+			}
+		</div>
+		<div class="col-md-12">
+			@Html.DisplayFor(model => model[i].Options)
+			<br />
+			<small>@Html.DisplayNameFor(model => model[i].QuestionScore):</small> @Html.DisplayFor(model => model[i].QuestionScore)
+		</div>
+	</div>
+	<hr />
+}
