@@ -289,16 +289,43 @@ namespace Tesis.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrador")]
-        public async Task<ActionResult> ReviewQuiz(string UserId, Guid EvaluationId)
+        public async Task<ActionResult> ReviewQuiz(string userId, Guid evaluationId)
         {
-            throw new NotImplementedException();
+            if (evaluationId == null || String.IsNullOrEmpty(UserId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evaluation evaluation = await Db.Evaluations.Where(x => x.Id == evaluationId).FirstOrDefaultAsync<Evaluation>();
+            if (evaluation == null)
+            {
+                return HttpNotFound();
+            }
+            User user = await UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            EvaluationBL evaluationBL = new EvaluationBL();
+            QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, userId);
+            return View(reviewedQuiz);
         }
 
         [HttpGet]
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> ReviewQuiz(Guid Id)
         {
-            throw new NotImplementedException();
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Evaluation evaluation = await Db.Evaluations.Where(x => x.Id == Id).FirstOrDefaultAsync<Evaluation>();
+            if (evaluation == null)
+            {
+                return HttpNotFound();
+            }
+            EvaluationBL evaluationBL = new EvaluationBL();
+            QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, CurrentUser.Id);
+            return View(reviewedQuiz);
         }
 
         [HttpGet]
