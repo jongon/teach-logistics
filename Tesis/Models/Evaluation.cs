@@ -25,11 +25,9 @@ namespace Tesis.Models
 
         [DisplayName("Fecha Límite")]
         [Required(ErrorMessage = "Fecha límite de examen es requerido")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime LimitDate { get; set; }
 
-        [DisplayName("Minutos de Duración")]
+        [DisplayName("Duración")]
         [Required(ErrorMessage = "Duración del examen es requerido")]
         public int MinutesDuration { get; set; }
 

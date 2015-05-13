@@ -21,7 +21,8 @@ namespace Tesis.Business
                     Id = evaluation.Id,
                     QuestionNumbers = evaluation.Questions.Count(),
                     QuizName = evaluation.Name,
-                    TotalScore = evaluation.Questions.Sum(c => c.Score)
+                    TotalScore = evaluation.Questions.Sum(c => c.Score),
+                    LimitDate = evaluation.LimitDate
                 };
                 EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
                 if (evaluationUser != null)
@@ -123,7 +124,7 @@ namespace Tesis.Business
             evaluation.EvaluationUsers.Add(evaluationUser);
         }
 
-        public QuizViewModel ReviewQuiz(Evaluation evaluation, string userId)
+        public QuizViewModel ReviewQuiz(Evaluation evaluation, string userId, bool isUserRequired = false)
         {
             EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
             List<QuestionQuizViewModel> quizQuestions = new List<QuestionQuizViewModel>();
@@ -152,7 +153,8 @@ namespace Tesis.Business
                 QuizName = evaluation.Name,
                 Score = evaluation.Questions.Sum(x => x.Score),
                 GotScore = evaluationUser.Calification,
-                Questions = quizQuestions
+                Questions = quizQuestions,
+                User = (isUserRequired) ? evaluationUser.User : null,
             };
             return quizViewModel;
         }

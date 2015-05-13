@@ -30,11 +30,9 @@ namespace Tesis.ViewModels
 
         [DisplayName("Fecha Límite")]
         [Required(ErrorMessage = "Fecha límite de examen es requerido")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime LimitDate { get; set; }
 
-        [DisplayName("Minutos de Duración")]
+        [DisplayName("Duración")]
         [Required(ErrorMessage = "Duración del examen es requerido")]
         [Range(0, 999, ErrorMessage = "Solo entero positivo de máx. 3 dígitos")]
         public int MinutesDuration { get; set; }
@@ -82,6 +80,9 @@ namespace Tesis.ViewModels
         [DisplayName("N° de Preguntas")]
         public int QuestionNumbers { get; set; }
 
+        [DisplayName("Fecha Límite")]
+        public DateTime LimitDate { get; set; }
+
         public bool IsTaken { get; set; }
 
         [DisplayName("Presentado")]
@@ -91,6 +92,9 @@ namespace Tesis.ViewModels
     public class QuizViewModel
     {
         public Guid Id { get; set; }
+
+        [DisplayName("Usuario")]
+        public User User { get; set; }
 
         [DisplayName("Nombre del Quiz")]
         public string QuizName { get; set; }
@@ -172,5 +176,8 @@ namespace Tesis.ViewModels
 
         [DisplayName("Puntaje")]
         public int GotScore { get; set; }
+
+        [DisplayName("Puntaje Total")]
+        public int TotalScore { get; set; }
     }
 }

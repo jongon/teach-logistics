@@ -32,6 +32,13 @@ namespace Tesis
                         "~/Scripts/plugins/jquery-unobtrusive/jquery.validate.unobtrusive.js",
                         "~/Scripts/plugins/jquery-unobtrusive-bootstrap/jquery.validate.unobtrusive.bootstrap.js"));
 
+            //Globalization
+            bundles.Add(new ScriptBundle("~/bundles/globalization").Include(
+                        "~/Scripts/cldr.js",
+                        "~/Scripts/globalize.js",
+                        "~/Scripts/globalize/date.js",
+                        "~/Scripts/plugins/jquery-validate-globalize/jquery.validate.globalize.min.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

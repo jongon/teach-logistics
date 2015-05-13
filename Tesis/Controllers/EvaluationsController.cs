@@ -128,6 +128,8 @@ namespace Tesis.Controllers
                 {
                     Evaluation evaluation = new Evaluation
                     {
+                        MinutesDuration = evaluationViewModel.MinutesDuration,
+                        LimitDate = evaluationViewModel.LimitDate,
                         Name = evaluationViewModel.Name,
                         Created = DateTime.Now,
                         Questions = Db.Questions.Where(x => evaluationViewModel.QuestionIds.ToList().Contains(x.Id)).ToList(),
@@ -273,6 +275,7 @@ namespace Tesis.Controllers
                 FirstName = x.User.FirstName,
                 LastName = x.User.LastName,
                 GotScore = x.Calification,
+                TotalScore = evaluation.Questions.Sum(c => c.Score),
                 SemesterDescription = x.User.Section.Semester.Description,
                 SectionNumber = x.User.Section.Number,
                 EvaluationId = evaluation.Id
@@ -282,7 +285,7 @@ namespace Tesis.Controllers
                 Id = evaluation.Id,
                 Name = evaluation.Name,
                 TotalScore = evaluation.Questions.Sum(x => x.Score),
-                Califications = califications,
+                Califications = califications
             };
             return View(evaluationViewModel);
         }
@@ -306,7 +309,7 @@ namespace Tesis.Controllers
                 return HttpNotFound();
             }
             EvaluationBL evaluationBL = new EvaluationBL();
-            QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, userId);
+            QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, userId, true);
             return View(reviewedQuiz);
         }
 

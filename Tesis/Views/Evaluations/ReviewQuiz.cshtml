@@ -17,7 +17,7 @@
 				}
 				else if (User.IsInRole("Estudiante"))
 				{
-					@Html.ActionLink("Evaluaciones", "Evaluations")
+					@Html.ActionLink("Índice", "Evaluations")
 				}								
 			</li>
 			@if (User.IsInRole("Administrador"))
@@ -30,6 +30,18 @@
 				<strong>Revisión de Quiz</strong>
 			</li>
 		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@if(User.IsInRole("Administrador"))
+			{			
+				@Html.ActionLink("Volver a Calificaciones", "Califications", null, new { @class = "btn btn-primary" })
+			}
+			else if (User.IsInRole("Estudiante"))
+			{
+				@Html.ActionLink("Volver al Índice", "Evaluations", null, new { @class = "btn btn-primary" })
+			}						
+		</div>
 	</div>
 </div>
 
