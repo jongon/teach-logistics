@@ -35,7 +35,7 @@
 		<div class="title-action">
 			@if(User.IsInRole("Administrador"))
 			{			
-				@Html.ActionLink("Volver a Calificaciones", "Califications", null, new { @class = "btn btn-primary" })
+				@Html.ActionLink("Volver a Calificaciones", "Califications", new { Id = Model.Id }, new { @class = "btn btn-primary" })
 			}
 			else if (User.IsInRole("Estudiante"))
 			{
@@ -54,6 +54,33 @@
 					<h5>Revisión de Quiz</h5>
 				</div>
 				<div class="ibox-content">
+					@if (User.IsInRole("Administrador"))
+					{
+						<dl class="dl-horizontal">
+							<dt>
+								@Html.DisplayNameFor(m => m.User.FirstName)
+							</dt>
+							<dd>
+								@Html.DisplayFor(m => m.User.FirstName) @Html.DisplayFor(m => m.User.LastName)
+							</dd>
+							<dt>
+								@Html.DisplayNameFor(m => m.User.IdCard)
+							</dt>
+							<dd>
+								@Html.DisplayFor(m => m.User.IdCard)
+							</dd>
+							<dt>
+								@Html.DisplayNameFor(m => m.User.Email)
+							</dt>
+							<dd>
+								@Html.DisplayFor(m => m.User.Email)
+							</dd>
+						</dl>
+						<hr />					
+					}
+					<div class="alert alert-info">
+						<strong>@Html.DisplayNameFor(m => m.GotScore):</strong> @Html.DisplayFor(m => m.GotScore)
+					</div>
 					<dl class="dl-horizontal">
 						<dt>
 							@Html.DisplayNameFor(m => m.QuizName)

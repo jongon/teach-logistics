@@ -252,7 +252,8 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> Evaluations()
         {
-            List<Evaluation> evaluations = await Db.Users.Where(z => z.Id == CurrentUser.Id || z.EvaluationUsers.Select(c => c.UserId).Contains(CurrentUser.Id)).Select(x => x.Section).SelectMany(y => y.Evaluations).ToListAsync();
+            var evaluationQuery = Db.Users.Where(z => z.Id == CurrentUser.Id || z.EvaluationUsers.Select(c => c.UserId).Contains(CurrentUser.Id)).Select(x => x.Section).SelectMany(y => y.Evaluations);
+            var evaluations = await evaluationQuery.Where(x => x.EvaluationUsers.Select(t => t.Active).Contains(true) || x.LimitDate >= DateTime.Today).ToListAsync();
             EvaluationBL evaluationBL = new EvaluationBL();
             return View(evaluationBL.GetEvaluationStudent(evaluations, CurrentUser.Id));
         }

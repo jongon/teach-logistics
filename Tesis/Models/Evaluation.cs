@@ -20,10 +20,10 @@ namespace Tesis.Models
         [Required(ErrorMessage = "El nombre de la evaluación es requerido")]
         public string Name { get; set; }
    
-        [DisplayName("Fecha de Creación")]
+        [DisplayName("Creación")]
         public DateTime Created { get; set; }
 
-        [DisplayName("Fecha Límite")]
+        [DisplayName("Límite")]
         [Required(ErrorMessage = "Fecha límite de examen es requerido")]
         public DateTime LimitDate { get; set; }
 
