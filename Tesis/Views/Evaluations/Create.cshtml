@@ -41,6 +41,20 @@
 								@Html.ValidationMessageFor(model => model.Name)
 							</div>
 						</div>
+						<div class="form-group">
+							@Html.LabelFor(model => model.MinutesDuration, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.MinutesDuration, new { htmlAttributes = new { @placeholder = "Duración de evaluación", @Value = "" } })
+								@Html.ValidationMessageFor(model => model.MinutesDuration)
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.LabelFor(model => model.LimitDate, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.Kendo().DatePickerFor(model => model.LimitDate).Format("dd/MM/yyyy").Value(DateTime.Now).Min(DateTime.Now).HtmlAttributes(new { @placeholder = "Fecha Límite" })		
+								@Html.ValidationMessageFor(model => model.LimitDate)
+							</div>
+						</div>
 						<hr />					
 						@Html.EditorFor(model => model.Questions)
 						<div class="form-group">

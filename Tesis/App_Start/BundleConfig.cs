@@ -10,7 +10,8 @@ namespace Tesis
             //KendoUI
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                 "~/Scripts/kendo/2014.2.1008/kendo.all.min.js",
-                "~/Scripts/kendo/2014.2.1008/kendo.aspnetmvc.min.js"));
+                "~/Scripts/kendo/2014.2.1008/kendo.aspnetmvc.min.js",
+                "~/Scripts/kendo/2014.2.1008/cultures/kendo.culture.es-VE.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                 "~/Content/kendo/2014.2.1008/kendo.common-bootstrap.min.css",
