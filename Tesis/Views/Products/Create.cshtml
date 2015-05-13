@@ -1,17 +1,17 @@
 ﻿@model Tesis.ViewModels.ProductViewModel
 @{
-	ViewBag.Title = "Agregar Productos";
+	ViewBag.Title = "Crear";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
-		<h2>Crear</h2>
+		<h2>Productos</h2>
 		<ol class="breadcrumb">
 			<li>
 				@Html.ActionLink("Índice", "Index")
 			</li>
 			<li class="active">
-				<strong>Crear Productos</strong>
+				<strong>Crear</strong>
 			</li>
 		</ol>
 	</div>
@@ -31,7 +31,7 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Agregar Productos</h5>
+					<h5>Crear Productos</h5>
 				</div>
 				<div class="ibox-content">
 					@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
@@ -71,7 +71,7 @@
 								<input name="products" type="hidden" id="products">
 								<input value="Agregar y Finalizar" class="btn btn-primary" type="submit">
 								<input value="Agregar otro" class="btn btn-info" type="button" id="next">
-								<a class="btn btn-danger" href="/products">Cancelar</a>
+								<a class="btn btn-danger" href="/Products">Cancelar</a>
 							</div>
 						</div>
 					}

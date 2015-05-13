@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<Tesis.Models.Group>
+@{
+	ViewBag.Title = "Índice";
+}
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
-		<h2>Índice</h2>
+		<h2>Grupos</h2>
 		<ol class="breadcrumb">
 			<li class="active">
-				<strong>Grupo</strong>
+				<strong>Índice</strong>
 			</li>
 		</ol>
 	</div>
@@ -17,7 +20,7 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Lista de grupos</h5>
+					<h5>Grupos</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Crear grupo", "Create", null, new { @class = "btn btn-primary btn-xs" })
 					</div>

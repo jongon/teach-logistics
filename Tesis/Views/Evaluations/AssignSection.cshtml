@@ -1,13 +1,13 @@
 ﻿@model Tesis.ViewModels.AssignEvaluationViewModel
 @{
-	ViewBag.Title = "Asignar Sección";	
+	ViewBag.Title = "Asignar";	
 }
 @section Styles{
 	@Styles.Render("~/plugins/multiselectStyles")
 }
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
-		<h2>Crear</h2>
+		<h2>Evaluaciones</h2>
 		<ol class="breadcrumb">
 			<li>
 				@Html.ActionLink("Índice", "Index")
@@ -29,7 +29,7 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Asignar Quiz a una sección</h5>
+					<h5>Asignar Evaluación a una sección</h5>
 				</div>
 				<div class="ibox-content">
 					@using (Html.BeginForm("AssignSection", "Evaluations", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
@@ -68,7 +68,7 @@
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
 								<input value="Asignar" class="btn btn-primary" type="submit">
-								<a class="btn btn-danger" href="/evaluations">Cancelar</a>
+								<a class="btn btn-danger" href="/Evaluations">Cancelar</a>
 							</div>
 						</div>
 					}

@@ -3,12 +3,12 @@
 	@Styles.Render("~/plugins/iCheckStyles")
 }
 @{
-	ViewBag.Title = "Quiz";
+	ViewBag.Title = "Revisar";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
-		<h2>Evaluación</h2>
+		<h2>Evaluaciones</h2>
 		<ol class="breadcrumb">
 			<li>
 				@if (User.IsInRole("Administrador"))
@@ -34,6 +34,7 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">

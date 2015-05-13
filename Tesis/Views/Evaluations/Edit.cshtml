@@ -1,17 +1,17 @@
 @model Tesis.ViewModels.EvaluationViewModel
 @{
-	ViewBag.Title = "Editar Quiz";	
+	ViewBag.Title = "Editar";	
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
-		<h2>Editar</h2>
+		<h2>Evaluaciones</h2>
 		<ol class="breadcrumb">
 			<li>
 				@Html.ActionLink("Índice", "Index")
 			</li>
 			<li class="active">
-				<strong>Editar Quiz</strong>
+				<strong>Editar</strong>
 			</li>
 		</ol>
 	</div>
@@ -27,7 +27,7 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Editar Quiz</h5>
+					<h5>Editar Evaluación</h5>
 				</div>
 				<div class="ibox-content">
 					@using (Html.BeginForm("Edit", "Evaluations", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
@@ -47,7 +47,7 @@
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
 								<input value="Editar" class="btn btn-primary" type="submit">
-								<a class="btn btn-info" href="/evaluations">Cancelar</a>
+								<a class="btn btn-info" href="/Evaluations">Cancelar</a>
 							</div>
 						</div>
 					}
