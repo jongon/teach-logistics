@@ -1,6 +1,7 @@
 using System.Data.Entity.Migrations;
 using Tesis.Business;
 using Tesis.DAL;
+using Tesis.Models;
 
 namespace Tesis.DAL
 {
@@ -19,6 +20,10 @@ namespace Tesis.DAL
         protected override void Seed(ApplicationDbContext context)
         {
             UserBL.CreateFirstUser(context);
+            Semester semester = SemesterBL.CreateSemesterSection();
+            context.Semesters.AddOrUpdate(semester);
+            context.Products.AddRange(ProductBL.GetProducts());
+            context.SaveChanges();
         }
     }
 }

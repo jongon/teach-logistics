@@ -40,7 +40,6 @@ namespace Tesis.Business
                     UserManager.AddToRole(user.Id, "Administrador");
                 }
             }
-            context.SaveChanges();
         }
     }
 }
