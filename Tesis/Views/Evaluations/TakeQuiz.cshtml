@@ -31,6 +31,14 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>Presentar Evaluación</h5>
+					<div class="pull-right">
+						<strong>
+							Tiempo restante:
+						</strong>
+						<span id="countdown">
+
+						</span>
+					</div>
 				</div>
 				<div class="ibox-content">
 					<dl class="dl-horizontal">
@@ -65,4 +73,19 @@
 	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/plugins/jqueryCountdown")
 	@Scripts.Render("~/bundles/Evaluations/take_quiz")
+	<script>
+		var isFinished = false;
+		$("#countdown")
+			.countdown("@Model.StartTime.AddMinutes(5).ToString("MM/dd/yyyy HH:mm:ss")", function(event) {
+			$(this).text(
+				event.strftime('%M:%S')
+			)
+			.on('finish.countdown', function() {
+				if (!isFinished) {
+					//Deshabilitar la validation
+					//Submit del form asignando false a un hiddenInput
+				}
+			})
+	});
+	</script>
 }

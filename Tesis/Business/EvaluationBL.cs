@@ -51,7 +51,7 @@ namespace Tesis.Business
             return false;
         }
 
-        public QuizViewModel GetQuiz(Evaluation evaluation)
+        public QuizViewModel GetQuiz(Evaluation evaluation, DateTime? evaluationTime = null)
         {
             List<QuestionQuizViewModel> questionViewModel = new List<QuestionQuizViewModel>();
             Random random = new Random();
