@@ -72,6 +72,11 @@ namespace Tesis
             //Pace
             bundles.Add(new ScriptBundle("~/plugins/pace").Include(
                         "~/Scripts/plugins/pace/pace.min.js"));
+
+            //JqueryCountdown
+            bundles.Add(new ScriptBundle("~/plugins/jqueryCountdown").Include(
+                        "~/Scripts/plugins/jquery.countdown/jquery.countdown.min.js"));
+
             // Inspinia
             bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
                         "~/Scripts/app/inspinia.js"));

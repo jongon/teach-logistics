@@ -36,6 +36,9 @@
 									@Html.DisplayNameFor(model => model.LimitDate)
 								</th>
 								<th>
+									@Html.DisplayNameFor(model => model.MinutesDuration)
+								</th>
+								<th>
 									@Html.DisplayNameFor(model => model.TotalScore)
 								</th>
 								<th>
@@ -61,6 +64,9 @@
 								</td>
 								<td>
 									@item.LimitDate.ToString("dd/MM/yyyy")
+								</td>
+								<td>
+									@item.MinutesDuration min
 								</td>
 								<td>
 									@Html.DisplayFor(modelItem => item.TotalScore)

@@ -87,6 +87,9 @@ namespace Tesis.ViewModels
 
         [DisplayName("Presentado")]
         public DateTime TakenDate { get; set; }
+
+        [DisplayName("Duración")]
+        public int MinutesDuration { get; set; }
     }
 
     public class QuizViewModel
@@ -107,6 +110,12 @@ namespace Tesis.ViewModels
 
         [DisplayName("Puntaje Obtenido")]
         public int GotScore { get; set; }
+
+        [DisplayName("Duración")]
+        public int MinutesDuration { get; set; }
+
+        [DisplayName("Tiempo a empezar")]
+        public DateTime StartTime { get; set; }
     }
 
     public class QuestionQuizViewModel

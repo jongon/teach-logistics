@@ -22,7 +22,8 @@ namespace Tesis.Business
                     QuestionNumbers = evaluation.Questions.Count(),
                     QuizName = evaluation.Name,
                     TotalScore = evaluation.Questions.Sum(c => c.Score),
-                    LimitDate = evaluation.LimitDate
+                    LimitDate = evaluation.LimitDate,
+                    MinutesDuration = evaluation.MinutesDuration
                 };
                 EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
                 if (evaluationUser != null)
@@ -73,8 +74,9 @@ namespace Tesis.Business
                 Id = evaluation.Id,
                 Questions = questionViewModel.OrderBy(x => random.Next()).ToList(),
                 QuizName = evaluation.Name,
-                Score = evaluation.Questions.Sum(x => x.Score)
-
+                Score = evaluation.Questions.Sum(x => x.Score),
+                MinutesDuration = evaluation.MinutesDuration,
+                StartTime = DateTime.Now,
             };
         }
 
