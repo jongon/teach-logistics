@@ -159,6 +159,8 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/plugins/dataTables").Include(
                       "~/Scripts/plugins/dataTables/jquery.dataTables.min.js",
                       "~/Scripts/plugins/dataTables/dataTables.bootstrap.js",
+                      "~/Scripts/plugins/dataTables/plugins/type-detection/date-uk.js",
+                      "~/Scripts/plugins/dataTables/plugins/sorting/date-uk.js",
                       "~/Scripts/plugins/dataTables/dataTables.responsive.js",
                       "~/Scripts/plugins/dataTables/dataTables.tableTools.min.js"));
 

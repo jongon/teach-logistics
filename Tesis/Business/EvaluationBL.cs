@@ -39,7 +39,7 @@ namespace Tesis.Business
         public bool UserCanBeEvaluated(Evaluation evaluation, string UserId)
         {
             EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == UserId).FirstOrDefault();
-            if (evaluationUser == null)
+            if (evaluationUser == null && evaluation.LimitDate >= DateTime.Today)
             {
                 User user = evaluation.Sections.Where(x => x.Users.Select(y => y.Id).Contains(UserId)).SelectMany(z => z.Users.Where(c => c.Id == UserId)).FirstOrDefault();
                 if (user != null)
