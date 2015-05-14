@@ -57,9 +57,6 @@
 										@Html.DisplayFor(modelItem => item.Created)
 								</td>
 								<td>
-										@Html.DisplayFor(modelItem => item.Periods)
-								</td>
-								<td>
 										@if (item.Sections.Count() > 0) {
 											foreach (var sectionItem in item.Sections)
 											{
@@ -70,6 +67,9 @@
 										} else {
 											<span>No tiene secciones asociadas</span>
 										}																														
+								</td>
+								<td>
+										@Html.DisplayFor(modelItem => item.Periods)
 								</td>
 								<td>
 									@Html.ActionLink("Detalles", "Details", new { id=item.Id }, new { @class = "btn btn-primary btn-sm"})
