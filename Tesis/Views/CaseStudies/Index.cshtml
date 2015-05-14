@@ -40,6 +40,9 @@
 									@Html.DisplayNameFor(model => model.Sections)
 								</th>
 								<th>
+									@Html.DisplayNameFor(model => model.Periods)
+								</th>
+								<th>
 									Acción
 								</th>
 							</tr>
@@ -52,6 +55,9 @@
 								</td>
 								<td>
 										@Html.DisplayFor(modelItem => item.Created)
+								</td>
+								<td>
+										@Html.DisplayFor(modelItem => item.Periods)
 								</td>
 								<td>
 										@if (item.Sections.Count() > 0) {

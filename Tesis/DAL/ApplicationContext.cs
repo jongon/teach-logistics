@@ -36,6 +36,10 @@ namespace Tesis.DAL
 
         public virtual DbSet<Document> Documents { get; set; }
 
+        public virtual DbSet<Order> Orders { get; set; }
+
+        public virtual DbSet<Balance> Balances { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

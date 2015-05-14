@@ -23,6 +23,9 @@ namespace Tesis.Models
         [DisplayName("Fecha de creación")]
         public DateTime Created { get; set; }
 
+        [DisplayName("Número de Períodos")]
+        public int Periods { get; set; }
+
         [DisplayName("Tiempo de preparación")]
         [Required(ErrorMessage = "El campo Tiempo de preparación es requerido")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]

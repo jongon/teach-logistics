@@ -6,16 +6,14 @@ using System.Web;
 
 namespace Tesis.Models
 {
-    public class Sale
+    public class Order
     {
-        public Sale()
-        {
-            Id = Guid.NewGuid();
-        }
-
         public Guid Id { get; set; }
 
-        public int Quantity { get; set; }
+        [DisplayName("Grupo")]
+        public virtual Group Group { get; set; }
+
+        public Guid GroupId { get; set; }
 
         [DisplayName("Período")]
         public virtual Period Period { get; set; }

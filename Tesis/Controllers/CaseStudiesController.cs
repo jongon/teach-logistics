@@ -48,7 +48,7 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include = "Name,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
+        public async Task<ActionResult> Create([Bind(Include = "Name,Periods,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
         {
             try {
                 CaseStudyBL caseStudyBL = new CaseStudyBL();
@@ -61,6 +61,7 @@ namespace Tesis.Controllers
                         CaseStudyXml caseStudyXml = caseStudyXmlBL.Deserealize(caseStudyViewModel.XmlUpload.InputStream);
                         CaseStudy caseStudy = caseStudyXmlBL.XmlToModel(caseStudyXml);
                         caseStudy.Name = caseStudyViewModel.Name;
+                        caseStudy.Periods = caseStudyViewModel.Periods;
                         foreach (var initialCharge in caseStudy.InitialCharges)
                         {
                             if (!TryValidateModel(initialCharge))
@@ -99,6 +100,7 @@ namespace Tesis.Controllers
                         {
                             Id = caseStudyId,
                             Name = caseStudyViewModel.Name,
+                            Periods = caseStudyViewModel.Periods,
                             Created = DateTime.Now,
                             PreparationTime = caseStudyViewModel.PreparationTime,
                             AcceleratedPreparationTime = caseStudyViewModel.AcceleratedPreparationTime,

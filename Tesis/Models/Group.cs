@@ -31,5 +31,11 @@ namespace Tesis.Models
 
         [DisplayName("Integrantes")]
         public virtual ICollection<User> Users { get; set; }
+
+        [DisplayName("Ordenes")]
+        public virtual ICollection<Order> Orders { get; set; } 
+
+        [DisplayName("Balances")]
+        public virtual ICollection<Balance> Balances { get; set; }
     }
 }

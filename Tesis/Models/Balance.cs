@@ -6,18 +6,11 @@ using System.Web;
 
 namespace Tesis.Models
 {
-    public class Sale
+    public class Balance
     {
-        public Sale()
-        {
-            Id = Guid.NewGuid();
-        }
-
         public Guid Id { get; set; }
 
-        public int Quantity { get; set; }
-
-        [DisplayName("Período")]
+        [DisplayName("Periodo")]
         public virtual Period Period { get; set; }
 
         public Guid PeriodId { get; set; }
@@ -26,5 +19,10 @@ namespace Tesis.Models
         public virtual Product Product { get; set; }
 
         public Guid ProductId { get; set; }
+
+        [DisplayName("Grupo")]
+        public virtual Group Group { get; set; }
+
+        public Guid GroupId { get; set; }
     }
 }

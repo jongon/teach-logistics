@@ -109,6 +109,12 @@ namespace Tesis.ViewModels
         [StringLength(45, ErrorMessage = "{0} no puede ser mayor a {1} caracteres")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Número de Períodos es requerido")]
+        [DisplayName("Número de Períodos")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(1, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos mayor a 1")]
+        public int Periods { get; set; }
+
         [DisplayName("Sección")]
         public Guid? SectionId { get; set; }
 

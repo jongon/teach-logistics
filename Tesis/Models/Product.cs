@@ -29,5 +29,14 @@ namespace Tesis.Models
 
         [DisplayName("Cargas Iniciales")]
         public virtual ICollection<InitialCharge> InitialCharges { get; set; }
+
+        [DisplayName("Demandas")]
+        public virtual ICollection<Sale> Sales { get; set; }
+
+        [DisplayName("Ordenes")]
+        public virtual ICollection<Order> Orders { get; set; }
+
+        [DisplayName("Balances")]
+        public virtual ICollection<Balance> Balances { get; set; }
     }
 }

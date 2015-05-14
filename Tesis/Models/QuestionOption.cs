@@ -18,7 +18,7 @@ namespace Tesis.Models
 
         public string Option { get; set; }
 
-        public Question Question { get; set; }
+        public virtual Question Question { get; set; }
 
         public Guid QuestionId { get; set; }
 

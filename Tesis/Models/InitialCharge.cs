@@ -87,6 +87,5 @@ namespace Tesis.Models
 
         //[DisplayName("EOQ")]
         //public double EOQ { get; set; }
-
     }
 }
