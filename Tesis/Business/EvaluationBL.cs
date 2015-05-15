@@ -37,21 +37,33 @@ namespace Tesis.Business
             return evaluationStudentList;
         }
 
-        public bool UserCanBeEvaluated(Evaluation evaluation, string UserId)
+        public bool UserCanBeEvaluated(Evaluation evaluation, string UserId, List<Answer> answers = null)
         {
             EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == UserId).FirstOrDefault();
-            if (evaluationUser == null && evaluation.LimitDate >= DateTime.Today)
+            if (evaluation.LimitDate >= DateTime.Today)
             {
                 User user = evaluation.Sections.Where(x => x.Users.Select(y => y.Id).Contains(UserId)).SelectMany(z => z.Users.Where(c => c.Id == UserId)).FirstOrDefault();
-                if (user != null)
+                if (user != null && evaluationUser == null)
                 {
+                    CreateEvaluationUser(evaluation, UserId);
                     return true;
+                }
+                else if (user != null)
+                {
+                    if (!evaluationUser.Active && (DateTime.Now < evaluationUser.TakenDate.AddMinutes(evaluation.MinutesDuration)))
+                    {
+                        return true;
+                    } 
+                    else if (!evaluationUser.Active) 
+                    {
+                        FillEvaluationForRunningOutTime(evaluationUser, answers);
+                    }
                 }
             }
             return false;
         }
 
-        public QuizViewModel GetQuiz(Evaluation evaluation, DateTime? evaluationTime = null)
+        public QuizViewModel GetQuiz(Evaluation evaluation, DateTime evaluationTime)
         {
             List<QuestionQuizViewModel> questionViewModel = new List<QuestionQuizViewModel>();
             Random random = new Random();
@@ -75,8 +87,7 @@ namespace Tesis.Business
                 Questions = questionViewModel.OrderBy(x => random.Next()).ToList(),
                 QuizName = evaluation.Name,
                 Score = evaluation.Questions.Sum(x => x.Score),
-                MinutesDuration = evaluation.MinutesDuration,
-                StartTime = DateTime.Now,
+                EndTime = evaluationTime.AddMinutes(evaluation.MinutesDuration),
             };
         }
 
@@ -90,10 +101,10 @@ namespace Tesis.Business
                 throw new Exception("El Quiz es falso");
             }
             //Validar si el estudiante ya presentó este quiz; tomar en cuenta el active
-            EvaluationUser auxEvaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
-            if (auxEvaluationUser != null)
+            EvaluationUser evaluationUser = evaluation.EvaluationUsers.Where(x => x.UserId == userId).FirstOrDefault();
+            if (evaluationUser != null)
             {
-                if (auxEvaluationUser.Active)
+                if (evaluationUser.Active)
                 {
                     throw new Exception("Estudiante ya presento este quiz");
                 }
@@ -113,16 +124,10 @@ namespace Tesis.Business
                     QuestionOptionId = questionQuiz.Options.SelectedAnswer
                 });
             }
-
-            EvaluationUser evaluationUser = new EvaluationUser
-            {
-                TakenDate = DateTime.Now,
-                UserId = userId,
-                EvaluationId = evaluation.Id,
-                Calification = TotalScore,
-                Answers = answers,
-                Active = true,
-            };
+            evaluationUser.UserId = userId;
+            evaluationUser.EvaluationId = evaluation.Id;
+            evaluationUser.Calification = TotalScore;
+            evaluationUser.Active = true;
             evaluation.EvaluationUsers.Add(evaluationUser);
         }
 
@@ -159,6 +164,33 @@ namespace Tesis.Business
                 User = (isUserRequired) ? evaluationUser.User : null,
             };
             return quizViewModel;
+        }
+
+        public void CreateEvaluationUser(Evaluation evaluation, string userId)
+        {
+            EvaluationUser evaluationUser = new EvaluationUser
+            {
+                Id = Guid.NewGuid(),
+                Active = false,
+                TakenDate = DateTime.Now,
+                UserId = userId
+            };
+            evaluation.EvaluationUsers.Add(evaluationUser);
+        }
+
+        public void FillEvaluationForRunningOutTime(EvaluationUser evaluationUser, List<Answer> answers = null)
+        {
+            evaluationUser.Active = true;
+            evaluationUser.Answers = answers == null ? new List<Answer>() : answers;
+            if (answers != null)
+            {
+                evaluationUser.Calification = evaluationUser.Evaluation.Questions.Where(x => answers.Select(y => y.QuestionOptionId).Contains(x.Options.Where(z => z.IsCorrectOption == true).Select(t => t.Id).FirstOrDefault())).Sum(f => f.Score);
+            }
+            else
+            {
+                evaluationUser.Calification = 0;
+            }
+            evaluationUser.TakenDate = DateTime.Now;
         }
     }
 }

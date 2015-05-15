@@ -160,6 +160,7 @@ namespace Tesis.Controllers
                     EvaluationViewModel evaluationViewModel = new EvaluationViewModel
                     {
                         Name = evaluation.Name,
+                        MinutesDuration = evaluation.MinutesDuration,
                         QuestionIds = evaluation.Questions.Select(x => x.Id).ToList(),
                     };
                     return View(evaluationViewModel);
@@ -349,10 +350,13 @@ namespace Tesis.Controllers
             EvaluationBL evaluationBL = new EvaluationBL();
             if (evaluationBL.UserCanBeEvaluated(evaluation, CurrentUser.Id))
             {
-                return View(evaluationBL.GetQuiz(evaluation));
+                DateTime dateTime = evaluation.EvaluationUsers.Where(x => x.UserId == CurrentUser.Id).FirstOrDefault().TakenDate;
+                await Db.SaveChangesAsync();
+                return View(evaluationBL.GetQuiz(evaluation, dateTime));
             }
-            Flash.Error("Error", "Ha ocurrido un error al intentar presentar la evaluación");
-            return View("Evaluations");
+            await Db.SaveChangesAsync();
+            Flash.Error("Error", "Esta evaluación ya ha sido presentada o Ha ocurrido un error al intentar presentar la evaluación");
+            return RedirectToAction("Evaluations");
         }
 
         [HttpPost]
@@ -367,18 +371,34 @@ namespace Tesis.Controllers
             EvaluationBL evaluationBL = new EvaluationBL();
             try
             {
-                if (evaluationBL.UserCanBeEvaluated(evaluation, CurrentUser.Id))
+                List<Answer> answers = null;
+                if (quiz.RunoutTime)
                 {
-                    evaluationBL.TakeQuiz(evaluation, quiz, CurrentUser.Id);
-                    await Db.SaveChangesAsync();
-                    Flash.Success("Ok", "El Quiz ha sido presentado exitosamente");
-                    QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, CurrentUser.Id);
-                    return View("ReviewQuiz", reviewedQuiz);
+                    quiz.Questions = quiz.Questions.Where(x => x.Options != null).ToList();
+                    answers = quiz.Questions.Select(x => new Answer { QuestionOptionId = x.Options.SelectedAnswer }).ToList();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    if (evaluationBL.UserCanBeEvaluated(evaluation, CurrentUser.Id, answers))
+                    {
+                        evaluationBL.TakeQuiz(evaluation, quiz, CurrentUser.Id);
+                        await Db.SaveChangesAsync();
+                        Flash.Success("Ok", "El Quiz ha sido presentado exitosamente");
+                        QuizViewModel reviewedQuiz = evaluationBL.ReviewQuiz(evaluation, CurrentUser.Id);
+                        return View("ReviewQuiz", reviewedQuiz);
+                    }
+                    else
+                    {
+                        await Db.SaveChangesAsync();
+                        Flash.Error("Error", "Ha caducado el tiempo para presentar el quiz");
+                        return RedirectToAction("Evaluations");
+                    }
                 }
                 else
                 {
                     Flash.Error("Error", "Ha ocurrido un error al intentar presentar la evaluación");
-                    return View("Evaluations");
+                    return RedirectToAction("Evaluations");
                 }
             }
             catch (Exception e)

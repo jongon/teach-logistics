@@ -112,10 +112,10 @@ namespace Tesis.ViewModels
         public int GotScore { get; set; }
 
         [DisplayName("Duración")]
-        public int MinutesDuration { get; set; }
+        public DateTime EndTime { get; set; }
 
-        [DisplayName("Tiempo a empezar")]
-        public DateTime StartTime { get; set; }
+        [DisplayName("Sin Tiempo")]
+        public bool RunoutTime { get; set; }
     }
 
     public class QuestionQuizViewModel

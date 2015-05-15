@@ -8,6 +8,7 @@
             null,
             null,
             null,
+            { "sType": "date-uk" },
             null,
         ]
     });

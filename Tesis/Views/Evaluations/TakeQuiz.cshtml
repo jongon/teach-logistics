@@ -59,7 +59,8 @@
 					{
 						@Html.AntiForgeryToken()
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })			
-						@Html.HiddenFor(m => m.Id)					
+						@Html.HiddenFor(m => m.Id)	
+						@Html.HiddenFor(m => m.RunoutTime)									
 						<hr />							
 						@Html.EditorFor(m => m.Questions)
 						<input type="submit" value="Finalizar" class="btn btn-primary" />					
@@ -70,22 +71,11 @@
 	</div>
 </div>
 @section Scripts {
+	<script>
+		var isFinished = false;
+		var dateTime = "@Model.EndTime.ToString("MM/dd/yyyy HH:mm:ss")";
+	</script>
 	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/plugins/jqueryCountdown")
 	@Scripts.Render("~/bundles/Evaluations/take_quiz")
-	<script>
-		var isFinished = false;
-		$("#countdown")
-			.countdown("@Model.StartTime.AddMinutes(5).ToString("MM/dd/yyyy HH:mm:ss")", function(event) {
-			$(this).text(
-				event.strftime('%M:%S')
-			)
-			.on('finish.countdown', function() {
-				if (!isFinished) {
-					//Deshabilitar la validation
-					//Submit del form asignando false a un hiddenInput
-				}
-			})
-	});
-	</script>
 }
