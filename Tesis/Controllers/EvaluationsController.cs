@@ -334,7 +334,8 @@ namespace Tesis.Controllers
             return View("ReviewQuiz", reviewedQuiz);
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ActionName("TakeQuizFirst")]
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> TakeQuiz(Guid? Id)
         {
@@ -352,7 +353,7 @@ namespace Tesis.Controllers
             {
                 DateTime dateTime = evaluation.EvaluationUsers.Where(x => x.UserId == CurrentUser.Id).FirstOrDefault().TakenDate;
                 await Db.SaveChangesAsync();
-                return View(evaluationBL.GetQuiz(evaluation, dateTime));
+                return View("TakeQuiz", evaluationBL.GetQuiz(evaluation, dateTime));
             }
             await Db.SaveChangesAsync();
             Flash.Error("Error", "Esta evaluación ya ha sido presentada o Ha ocurrido un error al intentar presentar la evaluación");

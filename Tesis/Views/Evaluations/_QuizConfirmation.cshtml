@@ -8,12 +8,16 @@
 			</div>
 			<div class="modal-body">
 				<p>
-					<strong>Instrucciones del Quiz: </strong>Preguntas de selección simple, solo se podrá selccionar una opcion, ¡ÉXITO!
+					<strong>Instrucciones del Quiz: </strong>Preguntas de selección simple, solo se podrá selccionar una opcion, una vez elija presentar no se podrán devolver los cambios, ¡ÉXITO!
 				</p>
 			</div>
 				<div class="modal-footer">
+				@using (Html.BeginForm("TakeQuizFirst", "Evaluations", FormMethod.Post, new { role = "form", id = "form" }))
+				{
+					<input type="hidden" value="" name="Id" id="takeQuiz"/>
 					<button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
-					@Html.ActionLink("Presentar Quiz", "TakeQuiz", new { id = "" }, new { @class = "btn btn-primary btn-sm", @id = "takeQuiz" })
+					<input type="submit" value="Presentar Quiz" class="btn btn-primary btn-sm" />
+				}				
 				</div>
 		</div>
 	</div>
