@@ -11,6 +11,9 @@ namespace Tesis.Models
     {
         public Guid Id { get; set; }
 
+        [Required]
+        public DateTime Created { get; set; }
+
         [DisplayName("Costo Insatisfecho")]
         [Required]
         public double DissatisfiedCost { get; set; }
@@ -22,6 +25,26 @@ namespace Tesis.Models
         [DisplayName("Costo Por ordenar")]
         [Required]
         public double OrderCost { get; set; }
+
+        [DisplayName("Inventario Inicial")]
+        [Required]
+        public int InitialStock { get; set; }
+
+        [DisplayName("Inventario Final")]
+        [Required]
+        public int FinalStock { get; set; }
+
+        [DisplayName("Ordenes Recibidas")]
+        [Required]
+        public int ReciviedOrders { get; set; }
+
+        [DisplayName("Demanda de la Semana")]
+        [Required]
+        public int Demand { get; set; }
+
+        [DisplayName("Ventas de la Semana")]
+        [Required]
+        public int Sells { get; set; }
 
         [DisplayName("Periodo")]
         [Required]

@@ -36,7 +36,7 @@ namespace Tesis.Controllers
                     {
                         Created = DateTime.Now,
                         Id = Guid.NewGuid(),
-                        IsLastPeriod = false,
+                        IsLastPeriod = section.CaseStudy.Periods == 1 ? true : false,
                     };
                     section.Periods.Add(period);
                 }
@@ -137,13 +137,19 @@ namespace Tesis.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                Period newPeriod = new Period
+                //
+                //Por aquí deberia estar la llamada a la simulación 
+                //
+                if (period.IsLastPeriod)
                 {
-                    Created = DateTime.Now,
-                    Id = Guid.NewGuid(),
-                    IsLastPeriod = false,
-                };
-                section.Periods.Add(newPeriod);
+                    Period newPeriod = new Period
+                    {
+                        Created = DateTime.Now,
+                        Id = Guid.NewGuid(),
+                        IsLastPeriod = section.CaseStudy.Periods == 1 ? true : false,
+                    };
+                    section.Periods.Add(newPeriod);
+                }
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "Las ventas del período han sido registradas exitosamente");
                 return RedirectToAction("Index");
