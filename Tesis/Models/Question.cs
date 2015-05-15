@@ -9,11 +9,6 @@ namespace Tesis.Models
 {
     public class Question
     {
-        public Question()
-        {
-
-        }
-
         public Guid Id { get; set; }
 
         [DisplayName("Pregunta")]
@@ -35,6 +30,7 @@ namespace Tesis.Models
         public virtual ICollection<Evaluation> Evaluations { get; set; }
 
         [DisplayName("Opciones")]
+        [Required]
         public virtual ICollection<QuestionOption> Options { get; set; }
     }
 }

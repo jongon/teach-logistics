@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tesis.Models
 {
@@ -24,12 +25,14 @@ namespace Tesis.Models
         public string Position { get; set; }
 
         [DisplayName("Sección")]
+        [Required]
         public Guid SectionId { get; set; }
         
         [DisplayName("Sección")]
         public virtual Section Section { get; set; }
 
         [DisplayName("Integrantes")]
+        [Required]
         public virtual ICollection<User> Users { get; set; }
 
         [DisplayName("Ordenes")]

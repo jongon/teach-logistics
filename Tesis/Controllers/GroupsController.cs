@@ -71,7 +71,7 @@ namespace Tesis.Controllers
                 }
                 catch (Exception e)
                 {
-                    Flash.Error("Error", e.ToString());
+                    Flash.Error("Error", e.Message.ToString());
                     return View(group);
                 } 
             }

@@ -33,6 +33,7 @@ namespace Tesis.Models
 
         [DisplayName("Preguntas")]
         [UIHint("Questions")]
+        [Required]
         public virtual ICollection<Question> Questions { get; set; }
 
         [DisplayName("Secciones")]

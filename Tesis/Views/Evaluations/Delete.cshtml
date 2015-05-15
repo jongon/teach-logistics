@@ -66,9 +66,14 @@
 							@Html.DisplayFor(model => model.Questions)
 						</dd>
 					</dl>
-					<input type="submit" value="Eliminar" class="btn btn-primary" />
-					@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-white" })
-
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
+						<div class="form-actions no-color">
+							<input type="submit" value="Eliminar" class="btn btn-primary" />
+							@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-white" })
+						</div>
+					}
 				</div>
 			</div>
 		</div>

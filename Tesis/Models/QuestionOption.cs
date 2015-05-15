@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,8 +19,10 @@ namespace Tesis.Models
 
         public string Option { get; set; }
 
+        [Required]
         public virtual Question Question { get; set; }
 
+        [Required]
         public Guid QuestionId { get; set; }
 
         public virtual ICollection<Answer> Answers { get; set; }

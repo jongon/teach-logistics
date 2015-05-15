@@ -10,6 +10,12 @@ namespace Tesis.Models
     {
         public Guid Id { get; set; }
 
+        [DisplayName("Cantidad")]
+        public int Quantity { get; set; }
+
+        [DisplayName("Tipo de Orden")]
+        public OrderType OrderType { get; set; }
+
         [DisplayName("Grupo")]
         public virtual Group Group { get; set; }
 
