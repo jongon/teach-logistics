@@ -22,24 +22,54 @@ namespace Tesis.Business
                 //Los Balances del grupo
                 var balancesGroup = group.Balances;
                 //Iteración de las ventas del último período
-                foreach (var sale in demands)
+                foreach (var demand in demands)
                 {
-                    var productBalances = balancesGroup.Where(x => x.ProductId == sale.ProductId).OrderBy(y => y.Created).ToList();
+                    var productBalances = balancesGroup.Where(x => x.ProductId == demand.ProductId).OrderBy(y => y.Created).ToList();
                     //Si aún el grupo no ha creado balance se crea nuevo balance
+                    Balance balance;
                     if (productBalances.Count() == 0)
                     {
-
+                        balance = CreateFirstBalance(caseStudy, demand, group);
+                        group.Balances.Add(balance);
+                        continue;
                     }
-
-                    foreach (var balance in productBalances)
-                    {
-                        
-                    }
+                    balance = CalculateNextBalance();
+                    group.Balances.Add(balance);
                 }
             }
         }
 
-        public Balance CreateFirstBalance(CaseStudy caseStudy, Guid ProductId)
+        public Balance CreateFirstBalance(CaseStudy caseStudy, Demand demand, Group group)
+        {
+            int initialStock = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.InitialStock).FirstOrDefault();
+            int demandNumber = demand.Quantity;
+            int receivedOrders = 0;
+            int finalStock = (demandNumber >= initialStock) ? 0 : (initialStock - demandNumber);
+            int sells = initialStock - finalStock;
+            int productPrice = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.Price).FirstOrDefault();
+            int dissastifiedDemand = (initialStock >= demandNumber) ? 0 : (demandNumber - initialStock);
+            int orderCost = 0;
+            Balance balance = new Balance
+            {
+                Id = Guid.NewGuid(),
+                Created = DateTime.Now,
+                Demand = demandNumber,
+                ReceivedOrders = receivedOrders,
+                InitialStock = initialStock,
+                FinalStock = finalStock,
+                FinalStockCost = finalStock * productPrice,
+                DissatisfiedDemand = dissastifiedDemand,
+                DissatisfiedCost = dissastifiedDemand * productPrice,
+                OrderCost = orderCost,
+                Sells = sells,
+                Product = demand.Product,
+                Group = group,
+                Period = demand.Period,
+            };
+            return balance;
+        }
+
+        public Balance CalculateNextBalance()
         {
             throw new NotImplementedException();
         }
