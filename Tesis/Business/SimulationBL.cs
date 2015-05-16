@@ -14,11 +14,10 @@ namespace Tesis.Business
             List<Group> groups = section.Groups.ToList();
             Period lastPeriod = section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
             List<Demand> demands = lastPeriod.Demands.ToList();
+
             //Simulación para cada uno de los grupos de la sección
             foreach (var group in groups)
             {
-                //Las ordenes de un período del grupo
-                List<Order> ordersInPeriod = group.Orders.Where(x => x.PeriodId == lastPeriod.Id).ToList();
                 //Los Balances del grupo
                 var balancesGroup = group.Balances;
                 //Iteración de las ventas del último período
@@ -30,16 +29,18 @@ namespace Tesis.Business
                     if (productBalances.Count() == 0)
                     {
                         balance = CreateFirstBalance(caseStudy, demand, group);
-                        group.Balances.Add(balance);
+                        balancesGroup.Add(balance);
                         continue;
                     }
-                    balance = CalculateNextBalance();
-                    group.Balances.Add(balance);
+                    List<Period> periods = section.Periods.ToList();
+                    List<Order> orders = section.Periods.SelectMany(x => x.Orders.Where(y => y.ProductId == demand.ProductId && y.GroupId == group.Id)).ToList();
+                    balance = CalculateNextBalance(caseStudy, demand, group, orders, periods);
+                    balancesGroup.Add(balance);
                 }
             }
         }
 
-        public Balance CreateFirstBalance(CaseStudy caseStudy, Demand demand, Group group)
+        private Balance CreateFirstBalance(CaseStudy caseStudy, Demand demand, Group group)
         {
             int initialStock = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.InitialStock).FirstOrDefault();
             int demandNumber = demand.Quantity;
@@ -69,9 +70,78 @@ namespace Tesis.Business
             return balance;
         }
 
-        public Balance CalculateNextBalance()
+        private Balance CalculateNextBalance(CaseStudy caseStudy, Demand demand, Group group, List<Order> orders, List<Period> periods)
+        {
+            //Si el estudiante no creo ninguna orden en este período se le crea
+            //Pero se le crea vacia
+            int periodLength = periods.Count();
+            Order lastOrder;
+            if (periods.Count() > orders.Count())
+            {
+                lastOrder = new Order
+                {
+                    Id = Guid.NewGuid(),
+                    OrderType = OrderType.None,
+                    Quantity = 0,
+                    Group = group,
+                    Product = demand.Product,
+                    Period = demand.Period,
+                    Created = DateTime.Now,
+                };
+                group.Orders.Add(lastOrder);
+            }
+            else
+            {
+                lastOrder = orders.OrderByDescending(c => c.Created).FirstOrDefault();
+            }
+            throw new NotImplementedException();
+            //DeliveryTimes deliveryTimes = new DeliveryTimes{
+            //    OrdinaryOrderTime =  caseStudy.PreparationTime,
+            //    FastOrderTIme = caseStudy.AcceleratedPreparationTime,
+            //    CourierDeliveryTime = caseStudy.FillTime + caseStudy.CourierDeliveryTime,
+            //    CourierDeliveryFastOrderTime = caseStudy.FillTime
+            //};
+
+            ////Costs costs = new Costs
+            ////{
+            ////    OrdinaryOrderCost = caseStudy.PreparationCost,
+            ////    FastOrderCost = caseStudy.
+            ////    CourierChargeCost = caseStudy.CourierCharges,
+                    
+            ////};
+
+            //Balance newBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
+            //foreach (var order in orders)
+            //{
+            //    newBalance = BalanceWithPendingOrders(newBalance, deliveryTimes, costs, periodLength);
+            //}
+            //return newBalance;
+        }
+
+        public Balance BalanceWithPendingOrders(Balance balance, DeliveryTimes deliveryTimes, Costs costs, int periodLength)
         {
             throw new NotImplementedException();
         }
+
+        private struct DeliveryTimes
+        {
+            public int OrdinaryOrderTime { get; set; }
+
+            public int FastOrderTIme { get; set; }
+
+            public int CourierDeliveryTime { get; set; }
+
+            public int CourierDeliveryFastOrderTime { get; set; }
+        }
+
+        private struct Costs
+        {
+            public int OrdinaryOrderCost { get; set; }
+
+            public double CourierChargeCost { get; set; }
+
+            public int AnnualMaintenanceCost { get; set; }
+        }
     }
+
 }

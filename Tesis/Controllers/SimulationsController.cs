@@ -137,9 +137,11 @@ namespace Tesis.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+
                 //
                 //Por aquí deberia estar la llamada a la simulación 
                 //
+
                 if (period.IsLastPeriod)
                 {
                     Period newPeriod = new Period
