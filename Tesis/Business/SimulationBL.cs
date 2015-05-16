@@ -123,7 +123,7 @@ namespace Tesis.Business
             throw new NotImplementedException();
         }
 
-        private struct DeliveryTimes
+        public struct DeliveryTimes
         {
             public int OrdinaryOrderTime { get; set; }
 
@@ -134,7 +134,7 @@ namespace Tesis.Business
             public int CourierDeliveryFastOrderTime { get; set; }
         }
 
-        private struct Costs
+        public struct Costs
         {
             public int OrdinaryOrderCost { get; set; }
 

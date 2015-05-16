@@ -11,9 +11,9 @@ namespace Tesis.Business
         public static List<Product> GetProducts()
         {
             List<Product> products = new List<Product> {
-                new Product { Id = Guid.NewGuid(), City = "Caracas", Distance = 300, Name = "Margarina" },
-                new Product { Id = Guid.NewGuid(), City = "Maracay", Distance = 400, Name = "Leche" },
-                new Product { Id = Guid.NewGuid(), City = "Margarita", Distance = 500, Name = "Carne" }
+                new Product { Id = Guid.NewGuid(), Number = 101, City = "Caracas", Distance = 300, Name = "Margarina" },
+                new Product { Id = Guid.NewGuid(), Number = 102, City = "Maracay", Distance = 400, Name = "Leche" },
+                new Product { Id = Guid.NewGuid(), Number = 103, City = "Margarita", Distance = 500, Name = "Carne" }
             };
             return products;
         }

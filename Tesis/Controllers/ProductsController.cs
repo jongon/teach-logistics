@@ -157,19 +157,17 @@ namespace Tesis.Controllers
             List<Product> duplicatedProducts = Db.Products.Where(x => (x.Number == productViewModel.Number || x.Name == productViewModel.Name) && (x.Id != productViewModel.Id)).ToList();
             if (duplicatedProducts.Count() > 0)
             {
-                Flash.Error("Error", "El usuario no puede ser editado con esos valores, se encuentran duplicados");
+                Flash.Error("Error", "El producto no puede ser editado con esos valores, se encuentran duplicados");
                 return View(productViewModel);
             }
             if (ModelState.IsValid)
             {
-                Product product = new Product
-                {
-                    Id = productViewModel.Id,
-                    Number = productViewModel.Number,
-                    Name = productViewModel.Name,
-                    City = productViewModel.City,
-                    Distance = productViewModel.Distance
-                };
+                Product product = await Db.Products.Where(x => x.Id == productViewModel.Id).FirstOrDefaultAsync();
+                product.Number = productViewModel.Number;
+                product.Name = productViewModel.Name;
+                product.City = productViewModel.City;
+                product.Distance = productViewModel.Distance;
+
                 if (TryUpdateModel(product))
                 {
                     await Db.SaveChangesAsync();
