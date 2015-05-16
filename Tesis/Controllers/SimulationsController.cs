@@ -74,7 +74,7 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> RegisterSells(Guid? Id)
+        public async Task<ActionResult> RegisterDemands(Guid? Id)
         {
             try
             {
@@ -92,9 +92,9 @@ namespace Tesis.Controllers
 
                 var caseStudyQuery = Db.CaseStudies.Where(x => x.Id == section.CaseStudyId);
                 CaseStudy caseStudy = await caseStudyQuery.FirstOrDefaultAsync();
-                SellViewModel sellViewModel = new SellViewModel
+                DemandViewModel sellViewModel = new DemandViewModel
                 {
-                    ProductSells = caseStudy.InitialCharges.Select(y => new ProductSell { Product = y.Product }).ToList<ProductSell>(),
+                    ProductDemands = caseStudy.InitialCharges.Select(y => new ProductDemand { Product = y.Product }).ToList<ProductDemand>(),
                     Section = section,
                     SectionId = section.Id,
                 };
@@ -109,7 +109,7 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterSells(SellViewModel model)
+        public async Task<ActionResult> RegisterDemands(DemandViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -119,17 +119,17 @@ namespace Tesis.Controllers
                     return HttpNotFound();
                 }
                 Period period = section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
-                period.Sales = new List<Sale>();
-                foreach (var productSell in model.ProductSells)
+                period.Demands = new List<Demand>();
+                foreach (var productSell in model.ProductDemands)
                 {
                     if (TryValidateModel(productSell))
                     {
-                        Sale sale = new Sale
+                        Demand sale = new Demand
                         {
                             ProductId = productSell.Product.Id,
                             Quantity = productSell.Quantity
                         };
-                        period.Sales.Add(sale);
+                        period.Demands.Add(sale);
                     }
                     else
                     {

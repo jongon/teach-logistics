@@ -31,7 +31,7 @@ namespace Tesis.Models
         public virtual ICollection<InitialCharge> InitialCharges { get; set; }
 
         [DisplayName("Demandas")]
-        public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Demand> Demands { get; set; }
 
         [DisplayName("Ordenes")]
         public virtual ICollection<Order> Orders { get; set; }

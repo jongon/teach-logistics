@@ -40,6 +40,8 @@ namespace Tesis.DAL
 
         public virtual DbSet<Balance> Balances { get; set; }
 
+        public virtual DbSet<Demand> Demands { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

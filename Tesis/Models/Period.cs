@@ -20,7 +20,7 @@ namespace Tesis.Models
         public Guid SectionId { get; set; }
 
         [DisplayName("Demandas")]
-        public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Demand> Demands { get; set; }
 
         [DisplayName("Balances")]
         public virtual ICollection<Balance> Balances { get; set; }

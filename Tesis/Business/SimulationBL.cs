@@ -13,7 +13,7 @@ namespace Tesis.Business
             CaseStudy caseStudy = section.CaseStudy;
             List<Group> groups = section.Groups.ToList();
             Period lastPeriod = section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
-            List<Sale> sales = lastPeriod.Sales.ToList();
+            List<Demand> demands = lastPeriod.Demands.ToList();
             //Simulación para cada uno de los grupos de la sección
             foreach (var group in groups)
             {
@@ -22,7 +22,7 @@ namespace Tesis.Business
                 //Los Balances del grupo
                 var balancesGroup = group.Balances;
                 //Iteración de las ventas del último período
-                foreach (var sale in sales)
+                foreach (var sale in demands)
                 {
                     var productBalances = balancesGroup.Where(x => x.ProductId == sale.ProductId).OrderBy(y => y.Created).ToList();
                     //Si aún el grupo no ha creado balance se crea nuevo balance

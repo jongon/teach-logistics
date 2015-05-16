@@ -228,7 +228,6 @@
     <Compile Include="Business\InitialChargeBL.cs" />
     <Compile Include="Business\CaseStudyXmlBL.cs" />
     <Compile Include="Business\ProductBL.cs" />
-    <Compile Include="Business\ProductBO.cs" />
     <Compile Include="Business\SemesterBL.cs" />
     <Compile Include="Business\SimulationBL.cs" />
     <Compile Include="Business\UserBL.cs" />
@@ -298,7 +297,7 @@
     <Compile Include="Models\Period.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionOption.cs" />
-    <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\Demand.cs" />
     <Compile Include="products.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -797,7 +796,7 @@
     <Content Include="Scripts\app\Sections\index.js" />
     <Content Include="Scripts\app\Semesters\index.js" />
     <Content Include="Scripts\app\Simulations\index.js" />
-    <Content Include="Scripts\app\Simulations\register_sells.js" />
+    <Content Include="Scripts\app\Simulations\register_demnads.js" />
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
@@ -2236,7 +2235,7 @@
     <Content Include="Views\Simulations\_EnableSimulation.cshtml" />
     <Content Include="Views\Simulations\_DisableSimulation.cshtml" />
     <Content Include="Views\Simulations\EditorTemplates\Products.cshtml" />
-    <Content Include="Views\Simulations\_RegisterSellsConfirmation.cshtml" />
+    <Content Include="Views\Simulations\_RegisterDemandsConfirmation.cshtml" />
     <Content Include="Views\Evaluations\Evaluations.cshtml" />
     <Content Include="Views\Evaluations\TakeQuiz.cshtml" />
     <Content Include="Views\Evaluations\ReviewQuiz.cshtml" />

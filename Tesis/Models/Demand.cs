@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Tesis.Models
 {
-    public class Sale
+    public class Demand
     {
-        public Sale()
+        public Demand()
         {
             Id = Guid.NewGuid();
         }

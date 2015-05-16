@@ -1,4 +1,4 @@
-﻿@model Tesis.ViewModels.SellViewModel
+﻿@model Tesis.ViewModels.DemandViewModel
 @{
 	ViewBag.Title = "Registrar Ventas";
 }
@@ -47,18 +47,18 @@
 						</dd>
 					</dl>
 					<hr />
-					@using (Html.BeginForm("RegisterSells", "Simulations", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
+					@using (Html.BeginForm("RegisterDemands", "Simulations", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
 					{
 						@Html.AntiForgeryToken()					
 						@Html.HiddenFor(model => model.SectionId)					
 						@Html.EditorFor(model => model.ProductSells)
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
-								<button type="button" data-toggle="modal" data-target="#registerSells" class="btn btn-primary">Registrar Ventas</button>
+								<button type="button" data-toggle="modal" data-target="#registerDemands" class="btn btn-primary">Registrar Ventas</button>
 								@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
 							</div>
 						</div>
-						@Html.Partial("_RegisterSellsConfirmation")		
+						@Html.Partial("_RegisterDemandsConfirmation")		
 					}
 				</div>
 			</div>
@@ -66,5 +66,5 @@
 	</div>
 </div>
 @section Scripts {
-	@Scripts.Render("~/bundles/Simulations/register_sells")
+	@Scripts.Render("~/bundles/Simulations/register_demands")
 }

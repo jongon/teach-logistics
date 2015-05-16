@@ -8,7 +8,7 @@ using Tesis.Models;
 
 namespace Tesis.ViewModels
 {
-    public class SellViewModel {
+    public class DemandViewModel {
 
         [DisplayName("Sección")]
         public virtual Section Section { get; set; }
@@ -22,10 +22,10 @@ namespace Tesis.ViewModels
         [DisplayName("Productos")]
         [Required(ErrorMessage = "Los Productos son requeridos")]
         [UIHint("Products")]
-        public ICollection<ProductSell> ProductSells { get; set; }
+        public ICollection<ProductDemand> ProductDemands { get; set; }
     }
 
-    public class ProductSell
+    public class ProductDemand
     {
         [DisplayName("Producto")]
         public Product Product { get; set; }
