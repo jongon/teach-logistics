@@ -33,8 +33,7 @@ namespace Tesis.Business
                         continue;
                     }
                     List<Period> periods = section.Periods.ToList();
-                    List<Order> orders = section.Periods.SelectMany(x => x.Orders.Where(y => y.ProductId == demand.ProductId && y.GroupId == group.Id)).ToList();
-                    balance = CalculateNextBalance(caseStudy, demand, group, orders, periods);
+                    balance = CalculateNextBalance(caseStudy, demand, group, periods);
                     balancesGroup.Add(balance);
                 }
             }
@@ -70,11 +69,12 @@ namespace Tesis.Business
             return balance;
         }
 
-        private Balance CalculateNextBalance(CaseStudy caseStudy, Demand demand, Group group, List<Order> orders, List<Period> periods)
+        private Balance CalculateNextBalance(CaseStudy caseStudy, Demand demand, Group group, List<Period> periods)
         {
+            List<Order> orders = group.Orders.Where(x => x.ProductId == demand.ProductId).OrderBy(y => y.Created).ToList();
+            periods = periods.OrderBy(x => x.Created).ToList(); //List de períodos ordenados de menor a mayor en orden de creación
             //Si el estudiante no creo ninguna orden en este período se le crea
             //Pero se le crea vacia
-            int periodLength = periods.Count();
             Order lastOrder;
             if (periods.Count() > orders.Count())
             {
@@ -90,58 +90,36 @@ namespace Tesis.Business
                 };
                 group.Orders.Add(lastOrder);
             }
-            else
+            Balance newBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
+            foreach (var order in orders)
             {
-                lastOrder = orders.OrderByDescending(c => c.Created).FirstOrDefault();
+                newBalance = BalanceWithPendingOrders(newBalance, order, demand, caseStudy, periods);
             }
-            throw new NotImplementedException();
-            //DeliveryTimes deliveryTimes = new DeliveryTimes{
-            //    OrdinaryOrderTime =  caseStudy.PreparationTime,
-            //    FastOrderTIme = caseStudy.AcceleratedPreparationTime,
-            //    CourierDeliveryTime = caseStudy.FillTime + caseStudy.CourierDeliveryTime,
-            //    CourierDeliveryFastOrderTime = caseStudy.FillTime
-            //};
-
-            ////Costs costs = new Costs
-            ////{
-            ////    OrdinaryOrderCost = caseStudy.PreparationCost,
-            ////    FastOrderCost = caseStudy.
-            ////    CourierChargeCost = caseStudy.CourierCharges,
-                    
-            ////};
-
-            //Balance newBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
-            //foreach (var order in orders)
-            //{
-            //    newBalance = BalanceWithPendingOrders(newBalance, deliveryTimes, costs, periodLength);
-            //}
-            //return newBalance;
+            return newBalance;
         }
 
-        public Balance BalanceWithPendingOrders(Balance balance, DeliveryTimes deliveryTimes, Costs costs, int periodLength)
+        private Balance BalanceWithPendingOrders(Balance balance, Order order, Demand demand, CaseStudy caseStudy, List<Period> periods)
+        {
+            int periodLength = periods.Count(); //Número de períodos en el caso de Estudio
+            int indexOrderPeriod = periods.IndexOf(order.Period);
+            OrderType orderType = order.OrderType;
+            Product product = demand.Product;
+            int periodDelivering = PeridoWillBeDelivered(caseStudy, product, orderType);
+            if ((periodDelivering + indexOrderPeriod) == periodLength)
+            {
+                return UpdateBalance(balance, caseStudy, product);
+            }
+            return balance;
+        }
+
+        private int PeridoWillBeDelivered(CaseStudy caseStudy, Product product, OrderType orderType)
         {
             throw new NotImplementedException();
         }
 
-        public struct DeliveryTimes
+        private Balance UpdateBalance(Balance balance, CaseStudy caseStudy, Product product)
         {
-            public int OrdinaryOrderTime { get; set; }
-
-            public int FastOrderTIme { get; set; }
-
-            public int CourierDeliveryTime { get; set; }
-
-            public int CourierDeliveryFastOrderTime { get; set; }
-        }
-
-        public struct Costs
-        {
-            public int OrdinaryOrderCost { get; set; }
-
-            public double CourierChargeCost { get; set; }
-
-            public int AnnualMaintenanceCost { get; set; }
+            throw new NotImplementedException();
         }
     }
-
 }
