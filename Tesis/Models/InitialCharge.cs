@@ -44,6 +44,24 @@ namespace Tesis.Models
         [Range(0, Int32.MaxValue, ErrorMessage = "Solo números enteros permitidos")]
         public int InitialStock { get; set; }
 
+        [DisplayName("Tiempo de preparación")]
+        [Required(ErrorMessage = "El campo Tiempo de preparación es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte PreparationTime { get; set; }
+
+        [DisplayName("Tiempo de surtir")]
+        [Required(ErrorMessage = "El campo Tiempo de surtir pedido es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte FillTime { get; set; }
+
+        [DisplayName("Tiempo de entrega")]
+        [Required(ErrorMessage = "El campo Tiempo de entrega es requerido")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
+        [Range(0, 99, ErrorMessage = "Solo entero positivo de máx. 2 dígitos")]
+        public byte DeliveryTime { get; set; }
+
         [DisplayName("Caso de Estudio")]
         public virtual CaseStudy CaseStudy { get; set; }
 

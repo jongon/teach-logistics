@@ -19,6 +19,9 @@ function InitialCharge() {
     this.price = $('#Price').val();
     this.securityStock = $('#SecurityStock').val();
     this.initialStock = $('#InitialStock').val();
+    this.fillTime = $('#FillTimeOption').val();
+    this.deliveryTime = $('#DeliveryTimeOption').val();
+    this.prepatationTime = $('#PreparationTimeOption').val();
 }
 
 var initialCharges = [];
@@ -30,6 +33,9 @@ function disableFormValidation() {
     $('#Price').rules('remove', 'required');
     $('#SecurityStock').rules('remove', 'required');
     $('#InitialStock').rules('remove', 'required');
+    $('#FillTimeOption').rules('remove', 'required');
+    $('#DeliveryTimeOption').rules('remove', 'required');
+    $('#PreparationTimeOption').rules('remove', 'required');
 }
 
 function enabledFormValidation() {
@@ -39,6 +45,9 @@ function enabledFormValidation() {
     $('#Price').rules('add', 'required');
     $('#SecurityStock').rules('add', 'required');
     $('#InitialStock').rules('add', 'required');
+    $('#FillTimeOption').rules('add', 'required');
+    $('#DeliveryTimeOption').rules('add', 'required');
+    $('#PreparationTimeOption').rules('add', 'required');
 }
 
 function disableXmlValidation() {
@@ -65,6 +74,9 @@ function addInitialCharge() {
         $('#Price').val('');
         $('#SecurityStock').val('');
         $('#InitialStock').val('');
+        $('input[name=PreparationTime').iCheck('uncheck');
+        $('input[name=DeliveryTime]').iCheck('uncheck');
+        $('input[name=FillTime]').iCheck('uncheck');
         $('#alert').show();
         $('#alert').delay(2000).fadeOut();
         $('.has-success').removeClass('has-success');
@@ -116,7 +128,7 @@ $(document).ready(function () {
             //Nombrar "Siguiente" el botón ya que aveces puede cambiar
             $("#form .actions a[href='#']").attr('href', '#next');
             $("#form .actions a[href='#next']").text('Siguiente');
-
+            $('.has-success').removeClass('has-success');
             var selected = ($("input:radio[name*= 'ChargeTypeName']:checked").val());
             if (currentIndex == 2) {
                 if (selected === 'form') {

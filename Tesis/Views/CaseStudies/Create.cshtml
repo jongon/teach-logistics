@@ -319,7 +319,58 @@
 										@Html.ValidationMessageFor(model => model.InitialStock, "", new { @class = "text-danger" })
 									</div>
 								</div>
+							<div class="hr-line-dashed"></div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.PreparationTimeOption, new { @class = "control-label col-md-2" })
+								<div class="col-sm-10">
+									@foreach (var option in (SelectList)ViewBag.PreparationTime)
+									{
+										<div class="radio i-checks">
+											<label>
+												@Html.RadioButtonFor(model => model.PreparationTimeOption, option.Value)
+												<i></i>@option.Text
+											</label>
+										</div>
+									}
+									@Html.ValidationMessageFor(model => model.PreparationTimeOption, "", new { @class = "text-danger" })
+								</div>
 							</div>
+							<div class="hr-line-dashed"></div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.FillTimeOption, new { @class = "control-label col-md-2" })
+								<div class="col-sm-10">
+									@foreach (var option in (SelectList)ViewBag.FillTime)
+									{
+										<div class="radio i-checks">
+											<label>
+												@Html.RadioButtonFor(model => model.FillTimeOption, option.Value)
+												<i></i>@option.Text
+											</label>
+										</div>
+									}
+									@Html.ValidationMessageFor(model => model.FillTimeOption, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<div class="hr-line-dashed"></div>
+
+							<div class="form-group">
+								@Html.LabelFor(model => model.DeliveryTimeOption, new { @class = "control-label col-md-2" })
+								<div class="col-sm-10">
+									@foreach (var option in (SelectList)ViewBag.DeliveryTime)
+									{
+										<div class="radio i-checks">
+											<label>
+												@Html.RadioButtonFor(model => model.DeliveryTimeOption, option.Value)
+												<i></i>@option.Text
+											</label>
+										</div>
+									}
+									@Html.ValidationMessageFor(model => model.DeliveryTimeOption, "", new { @class = "text-danger" })
+								</div>
+							</div>	
+						</div>
 						</fieldset>
 						@Html.EditorFor(model => model.InitialCharges)									
 					 }

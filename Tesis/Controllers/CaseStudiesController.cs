@@ -16,12 +16,14 @@ namespace Tesis.Controllers
     public class CaseStudiesController : BaseController
     {
         // GET: /InitialCharges/
+        [HttpGet]
         public async Task<ActionResult> Index()
         {
             return View(await Db.CaseStudies.ToListAsync());
         }
 
         // GET: /InitialCharges/Details/5
+        [HttpGet]
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -37,18 +39,22 @@ namespace Tesis.Controllers
         }
 
         // GET: /InitialCharges/Create
+        [HttpGet]
         public ActionResult Create()
         {
             Db.Sections.Where(x => x.CaseStudy == null).Select(x => new { x.Id, x.Number, x.Semester.Description });
             CaseStudyViewModel caseStudy = new CaseStudyViewModel();
             ViewBag.Products = caseStudy.Products;
             ViewBag.ChargeTypes = caseStudy.ChargeTypes;
+            ViewBag.FillTime = caseStudy.FillTimeRadio;
+            ViewBag.DeliveryTime = caseStudy.DeliveryTimeRadio;
+            ViewBag.PreparationTime = caseStudy.PreparationTimeRadio;
             return View();
         }
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include = "Name,Periods,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges")] CaseStudyViewModel caseStudyViewModel)
+        public async Task<ActionResult> Create([Bind(Include = "Name,Periods,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges,PreparationTimeRadio,FillTimeRadio,DeliveryTimeRadio")] CaseStudyViewModel caseStudyViewModel)
         {
             try {
                 CaseStudyBL caseStudyBL = new CaseStudyBL();
@@ -102,12 +108,12 @@ namespace Tesis.Controllers
                             Name = caseStudyViewModel.Name,
                             Periods = caseStudyViewModel.Periods,
                             Created = DateTime.Now,
-                            PreparationTime = caseStudyViewModel.PreparationTime,
-                            AcceleratedPreparationTime = caseStudyViewModel.AcceleratedPreparationTime,
-                            FillTime = caseStudyViewModel.FillTime,
-                            ExistingFillTime = caseStudyViewModel.ExistingFillTime,
-                            DeliveryTime = caseStudyViewModel.DeliveryTime,
-                            CourierDeliveryTime = caseStudyViewModel.CourierDeliveryTime,
+                            //PreparationTime = caseStudyViewModel.PreparationTime,
+                            //AcceleratedPreparationTime = caseStudyViewModel.AcceleratedPreparationTime,
+                            //FillTime = caseStudyViewModel.FillTime,
+                            //ExistingFillTime = caseStudyViewModel.ExistingFillTime,
+                            //DeliveryTime = caseStudyViewModel.DeliveryTime,
+                            //CourierDeliveryTime = caseStudyViewModel.CourierDeliveryTime,
                             CourierCharges = caseStudyViewModel.CourierCharges,
                             PurchaseOrderRecharge = caseStudyViewModel.PurchaseOrderRecharge,
                             PreparationCost = caseStudyViewModel.PreparationCost,
@@ -141,38 +147,8 @@ namespace Tesis.Controllers
             return View();
         }
 
-        // GET: /InitialCharges/Edit/5
-        public async Task<ActionResult> Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            InitialCharge initialCharge = await Db.InitialCharges.FindAsync(id);
-            if (initialCharge == null)
-            {
-                return HttpNotFound();
-            }
-            return View(initialCharge);
-        }
-
-        // POST: /InitialCharges/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="Id,Demand,Stddev,Price,PreparationCost,AnnualMaintenanceCost,WeeklyMaintenanceCost,PurchaseOrderRecharge,CourierCharges,PreparationTime,FillTime,DeliveryTime,TotalTime,ReplacementBatch,MinimunBatchReplacement,ProductQuaterlyCost,RequestQuaterlyCost,MaintenanceQuaterlyCost,TotalQuaterlyCost,SecurityStock,VariationCoefficient,CycleTime,AverageStock,EOQ,InitialStock")] InitialCharge initialCharge)
-        {
-            if (ModelState.IsValid)
-            {
-                Db.Entry(initialCharge).State = EntityState.Modified;
-                await Db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(initialCharge);
-        }
-
         // GET: /InitialCharges/Delete/5
+        [HttpGet]
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)

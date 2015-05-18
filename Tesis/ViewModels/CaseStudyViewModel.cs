@@ -150,6 +150,54 @@ namespace Tesis.ViewModels
             set { }
         }
 
+        [Required(ErrorMessage = "El Tiempo de preparación es requerido")]
+        [DisplayName("Tiempo de Preparación")]
+        public bool PreparationTimeOption { get; set; }
+
+        [Required(ErrorMessage = "El Tiempo de surtir es requerido")]
+        [DisplayName("Tiempo de Surtir")]
+        public bool FillTimeOption { get; set; }
+
+        [Required(ErrorMessage = "El Tiempo de entrega es requerido")]
+        [DisplayName("Tiempo de Entrega")]
+        public bool DeliveryTimeOption { get; set; }
+
+        public SelectList PreparationTimeRadio
+        {
+            get
+            {
+                return new SelectList(new Dictionary<string, string>() {
+                    { "false", "Proceso Ordinario"},
+                    { "true", "Proceso Acelerado"}
+                }, "Key", "Value");
+            }
+            set { }
+        }
+
+        public SelectList FillTimeRadio
+        {
+            get
+            {
+                return new SelectList(new Dictionary<string, string>() {
+                    { "false", "Con Elaboración"},
+                    { "true", "En Existencia"}
+                }, "Key", "Value");
+            }
+            set { }
+        }
+
+        public SelectList DeliveryTimeRadio
+        {
+            get
+            {
+                return new SelectList(new Dictionary<string, string>() {
+                    { "false", "Entrega Ordinaria"},
+                    { "true", "Con Uso de Courier"}
+                }, "Key", "Value");
+            }
+            set { }
+        }
+
         [DataType(DataType.Upload)]
         [Required(ErrorMessage = "El Archivo Xml es requerido")]
         public HttpPostedFileBase XmlUpload { get; set; }
