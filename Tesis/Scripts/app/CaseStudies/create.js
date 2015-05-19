@@ -74,9 +74,9 @@ function addInitialCharge() {
         $('#Price').val('');
         $('#SecurityStock').val('');
         $('#InitialStock').val('');
-        $('input[name=PreparationTime').iCheck('uncheck');
-        $('input[name=DeliveryTime]').iCheck('uncheck');
-        $('input[name=FillTime]').iCheck('uncheck');
+        $('input[name=PreparationTimeOption').iCheck('uncheck');
+        $('input[name=DeliveryTimeOption]').iCheck('uncheck');
+        $('input[name=FillTimeOption]').iCheck('uncheck');
         $('#alert').show();
         $('#alert').delay(2000).fadeOut();
         $('.has-success').removeClass('has-success');

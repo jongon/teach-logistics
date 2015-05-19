@@ -34,7 +34,7 @@ namespace Tesis.Models
 
         [DisplayName("Cargos de Courier")]
         [Required(ErrorMessage = "El campo costos de courier es requerido")]
-        [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
+        [RegularExpression("[0-9]+(\\.[0-9][0-9][0-9]?)?", ErrorMessage = "Solo número decirmal permitido, con Precisión de 2")]
         [Range(0, 10000, ErrorMessage = "Solo decimal positivo de máx. 4 dígitos")]
         public double CourierCharges { get; set; }
 

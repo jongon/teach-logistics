@@ -171,12 +171,6 @@ namespace Tesis.Business
             }
         }
 
-        private Balance UpdateReceivedOrders(Balance balance, Order order)
-        {
-            balance.ReceivedOrders += order.Quantity;
-            return balance;
-        }
-
         private Balance UpdateBalance(Balance balance, Demand demand, CaseStudy caseStudy, Order lastOrder)
         {
             InitialCharge initialChargeProduct = caseStudy.InitialCharges.Where(x => x.Product == demand.Product).FirstOrDefault();

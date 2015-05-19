@@ -138,6 +138,9 @@ namespace Tesis.Controllers
                 CaseStudyViewModel caseStudy = new CaseStudyViewModel();
                 ViewBag.Products = caseStudy.Products;
                 ViewBag.ChargeTypes = caseStudy.ChargeTypes;
+                ViewBag.FillTime = caseStudy.FillTimeRadio;
+                ViewBag.DeliveryTime = caseStudy.DeliveryTimeRadio;
+                ViewBag.PreparationTime = caseStudy.PreparationTimeRadio;
             }
             return View();
         }

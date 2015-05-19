@@ -78,5 +78,23 @@ namespace Tesis.Business
 
             return initialCharge;
         }
+
+        public CaseStudy CreateCase()
+        {
+            return new CaseStudy
+            {
+                Id = Guid.NewGuid(),
+                Created = DateTime.Now,
+                AnnualMaintenanceCost = 0.5,
+                PreparationCost = 100,
+                CourierCharges = 0.005,
+                PurchaseOrderRecharge = 100,
+            };
+        }
+
+        public List<InitialCharge> CreateCharges()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
