@@ -90,13 +90,18 @@ namespace Tesis.Business
                 };
                 group.Orders.Add(lastOrder);
             }
+            else
+            {
+                lastOrder = orders.Last();
+            }
             Balance lastBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
             Balance newBalance = CloneBalance(lastBalance, demand);
+            newBalance = UpdateBalance(newBalance, demand, caseStudy, lastOrder);
             foreach (var order in orders)
             {
                 newBalance = BalanceWithPendingOrders(newBalance, order, demand, caseStudy, periods);
             }
-            //Descontar las ventas aquí
+            newBalance.FinalStock += newBalance.ReceivedOrders;
             return newBalance;
         }
 
@@ -135,7 +140,7 @@ namespace Tesis.Business
                 int periodDelivering = PeriodWillBeDelivered(caseStudy, product, orderType);
                 if ((periodDelivering + indexOrderPeriod) == periodLength)
                 {
-                    return UpdateBalance(balance, caseStudy, product);
+                    balance.ReceivedOrders += order.Quantity;
                 }
             }
             return balance;
@@ -166,39 +171,51 @@ namespace Tesis.Business
             }
         }
 
-        private Balance UpdateBalance(Balance balance, CaseStudy caseStudy, Product product)
+        private Balance UpdateReceivedOrders(Balance balance, Order order)
         {
-            //int initialStock = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.InitialStock).FirstOrDefault();
-            //int demandNumber = demand.Quantity;
-            //int receivedOrders = 0;
-            //int finalStock = (demandNumber >= initialStock) ? 0 : (initialStock - demandNumber);
-            //int sells = initialStock - finalStock;
-            //int productPrice = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.Price).FirstOrDefault();
-            //int dissastifiedDemand = (initialStock >= demandNumber) ? 0 : (demandNumber - initialStock);
-            //int orderCost = 0;
-            //Balance balance = new Balance
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Created = DateTime.Now,
-            //    Demand = demandNumber,
-            //    ReceivedOrders = receivedOrders,
-            //    InitialStock = initialStock,
-            //    FinalStock = finalStock,
-            //    FinalStockCost = finalStock * productPrice,
-            //    DissatisfiedDemand = dissastifiedDemand,
-            //    DissatisfiedCost = dissastifiedDemand * productPrice,
-            //    OrderCost = orderCost,
-            //    Sells = sells,
-            //    Product = demand.Product,
-            //    Group = group,
-            //    Period = demand.Period,
-            //};
+            balance.ReceivedOrders += order.Quantity;
             return balance;
         }
 
-        private Balance UpdateSellsBalance(Balance balance, CaseStudy caseStudy, Product product)
+        private Balance UpdateBalance(Balance balance, Demand demand, CaseStudy caseStudy, Order lastOrder)
         {
-            throw new NotFiniteNumberException();
+            InitialCharge initialChargeProduct = caseStudy.InitialCharges.Where(x => x.Product == demand.Product).FirstOrDefault();
+            int initialStock = balance.FinalStock;
+            int demandNumber = demand.Quantity;
+            int finalStock = (demandNumber >= initialStock) ? 0 : (initialStock - demandNumber);
+            int sells = initialStock - finalStock;
+            int productPrice = caseStudy.InitialCharges.Where(x => x.Product == demand.Product).FirstOrDefault().Price;
+            int dissastifiedDemand = (initialStock >= demandNumber) ? 0 : (demandNumber - initialStock);
+            double orderCost = GetOrderCost(caseStudy, lastOrder);
+
+            #region UpdateBalance
+            balance.Demand = demand.Quantity;
+            balance.DissatisfiedDemand = dissastifiedDemand;
+            balance.DissatisfiedCost = dissastifiedDemand * initialChargeProduct.Price;
+            balance.OrderCost = orderCost;
+            balance.InitialStock = initialStock;
+            balance.FinalStock = initialStock - sells;
+            balance.FinalStockCost = initialStock * initialChargeProduct.Price;
+            balance.ReceivedOrders = 0;
+            #endregion
+            return balance;
+        }
+
+        private double GetOrderCost(CaseStudy caseStudy, Order order)
+        {
+            OrderType orderType = order.OrderType;
+            switch (orderType)
+            {
+                case OrderType.Fast:
+                    return caseStudy.PreparationCost;
+                case OrderType.Courrier:
+                    return caseStudy.CourierCharges;
+                case OrderType.FastCourier:
+                    return caseStudy.CourierCharges + caseStudy.PreparationCost;
+                default:
+                    return 0;
+                
+            }
         }
     }
 }

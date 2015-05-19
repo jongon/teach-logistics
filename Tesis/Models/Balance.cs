@@ -31,7 +31,7 @@ namespace Tesis.Models
 
         [DisplayName("Costo Por ordenar")]
         [Required]
-        public int OrderCost { get; set; }
+        public double OrderCost { get; set; }
 
         [DisplayName("Inventario Inicial")]
         [Required]
