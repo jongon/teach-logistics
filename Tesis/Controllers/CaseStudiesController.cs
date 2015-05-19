@@ -54,7 +54,7 @@ namespace Tesis.Controllers
 
         // POST: /InitialCharges/Create
         [HttpPost]
-        public async Task<ActionResult> Create([Bind(Include = "Name,Periods,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges,PreparationTimeRadio,FillTimeRadio,DeliveryTimeRadio")] CaseStudyViewModel caseStudyViewModel)
+        public async Task<ActionResult> Create([Bind(Include = "Name,Periods,PreparationTime,AcceleratedPreparationTime,FillTime,ExistingFillTime,DeliveryTime,CourierDeliveryTime,PurchaseOrderRecharge,CourierCharges,PreparationCost,AnnualMaintenanceCost,SemesterId,SectionId,ChargeTypeName,XmlUpload,InitialCharges,PreparationTimeOption,FillTimeOption,DeliveryTimeOption")] CaseStudyViewModel caseStudyViewModel)
         {
             try {
                 CaseStudyBL caseStudyBL = new CaseStudyBL();
@@ -92,9 +92,10 @@ namespace Tesis.Controllers
                         List<InitialCharge> initialCharges = caseStudyBL.JsonToInitialChargeList(caseStudyViewModel.InitialCharges);
                         foreach (var initialCharge in initialCharges)
                         {
-                            if (TryValidateModel(initialCharge))
+                            InitialCharge auxInitialCharge = caseStudyBL.ChangeTimes(caseStudyViewModel, initialCharge);
+                            if (TryValidateModel(auxInitialCharge))
                             {
-                                initialCharge.CaseStudyId = caseStudyId;  
+                                auxInitialCharge.CaseStudyId = caseStudyId;  
                             }
                             else
                             {
@@ -108,12 +109,6 @@ namespace Tesis.Controllers
                             Name = caseStudyViewModel.Name,
                             Periods = caseStudyViewModel.Periods,
                             Created = DateTime.Now,
-                            //PreparationTime = caseStudyViewModel.PreparationTime,
-                            //AcceleratedPreparationTime = caseStudyViewModel.AcceleratedPreparationTime,
-                            //FillTime = caseStudyViewModel.FillTime,
-                            //ExistingFillTime = caseStudyViewModel.ExistingFillTime,
-                            //DeliveryTime = caseStudyViewModel.DeliveryTime,
-                            //CourierDeliveryTime = caseStudyViewModel.CourierDeliveryTime,
                             CourierCharges = caseStudyViewModel.CourierCharges,
                             PurchaseOrderRecharge = caseStudyViewModel.PurchaseOrderRecharge,
                             PreparationCost = caseStudyViewModel.PreparationCost,

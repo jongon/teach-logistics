@@ -152,23 +152,23 @@ namespace Tesis.ViewModels
 
         [Required(ErrorMessage = "El Tiempo de preparación es requerido")]
         [DisplayName("Tiempo de Preparación")]
-        public bool PreparationTimeOption { get; set; }
+        public byte PreparationTimeOption { get; set; }
 
         [Required(ErrorMessage = "El Tiempo de surtir es requerido")]
         [DisplayName("Tiempo de Surtir")]
-        public bool FillTimeOption { get; set; }
+        public byte FillTimeOption { get; set; }
 
         [Required(ErrorMessage = "El Tiempo de entrega es requerido")]
         [DisplayName("Tiempo de Entrega")]
-        public bool DeliveryTimeOption { get; set; }
+        public byte DeliveryTimeOption { get; set; }
 
         public SelectList PreparationTimeRadio
         {
             get
             {
                 return new SelectList(new Dictionary<string, string>() {
-                    { "false", "Proceso Ordinario"},
-                    { "true", "Proceso Acelerado"}
+                    { "0", "Proceso Ordinario"},
+                    { "1", "Proceso Acelerado"}
                 }, "Key", "Value");
             }
             set { }
@@ -179,8 +179,8 @@ namespace Tesis.ViewModels
             get
             {
                 return new SelectList(new Dictionary<string, string>() {
-                    { "false", "Con Elaboración"},
-                    { "true", "En Existencia"}
+                    { "0", "Con Elaboración"},
+                    { "1", "En Existencia"}
                 }, "Key", "Value");
             }
             set { }
@@ -191,8 +191,8 @@ namespace Tesis.ViewModels
             get
             {
                 return new SelectList(new Dictionary<string, string>() {
-                    { "false", "Entrega Ordinaria"},
-                    { "true", "Con Uso de Courier"}
+                    { "0", "Entrega Ordinaria"},
+                    { "1", "Con Uso de Courier"}
                 }, "Key", "Value");
             }
             set { }

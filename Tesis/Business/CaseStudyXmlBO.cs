@@ -6,24 +6,6 @@ namespace Tesis.Business
     [XmlRoot("Caso_De_Estudio")]
     public class CaseStudyXml
     {
-        [XmlElement("Tiempo_Preparacion")]
-        public byte PreparationTime { get; set; }
-
-        [XmlElement("Tiempo_Preparacion_Acelerado")]
-        public byte AcceleratedPreparationTime { get; set; }
-
-        [XmlElement("Tiempo_Surtido")]
-        public byte FillTime { get; set; }
-
-        [XmlElement("Tiempo_Surtido_Existencia")]
-        public byte ExistingFillTime { get; set; }
-
-        [XmlElement("Tiempo_Entrega")]
-        public byte DeliveryTime { get; set; }
-
-        [XmlElement("Tiempo_Entrega_Courier")]
-        public byte CourierDeliveryTime { get; set; }
-
         [XmlElement("Recargo_Orden_Compra")]
         public short PurchaseOrderRecharge { get; set; }
 
@@ -42,6 +24,15 @@ namespace Tesis.Business
 
     public class InitialChargeXml
     {
+        [XmlElement("Tiempo_Preparacion")]
+        public byte PreparationTime { get; set; }
+
+        [XmlElement("Tiempo_Surtido")]
+        public byte FillTime { get; set; }
+
+        [XmlElement("Tiempo_Entrega")]
+        public byte DeliveryTime { get; set; }
+
         [XmlElement("Demanda")]
         public short Demand { get; set; }
 

@@ -20,6 +20,15 @@
 						@Html.DisplayNameFor(model => model.Stddev)
 					</th>
 					<th>
+						@Html.DisplayNameFor(model => model.PreparationTime)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.FillTime)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.DeliveryTime)
+					</th>
+					<th>
 						@Html.DisplayNameFor(model => model.Price)
 					</th>
 					<th>
@@ -35,25 +44,34 @@
 			{
 				<tr>
 					<td>
-						@item.Product.Name
+						@Html.DisplayFor(modelItem => item.Product.Name)
 					</td>
 					<td>
-						@item.Product.Number
+						@Html.DisplayFor(modelItem => item.Product.Number)
 					</td>
 					<td>
-						@item.Demand
+						@Html.DisplayFor(modelItem => item.Demand)
 					</td>
 					<td>
-						@item.Stddev
+						@Html.DisplayFor(modelItem => item.Stddev)
 					</td>
 					<td>
-						@item.Price
+						@Html.DisplayFor(modelItem => item.PreparationTime)
 					</td>
 					<td>
-						@item.SecurityStock
+						@Html.DisplayFor(modelItem => item.FillTime)
 					</td>
 					<td>
-						@item.InitialStock
+						@Html.DisplayFor(modelItem => item.DeliveryTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Price)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.SecurityStock)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.InitialStock)
 					</td>
 				</tr>
 			}

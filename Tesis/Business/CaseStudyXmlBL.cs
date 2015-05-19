@@ -50,15 +50,9 @@ namespace Tesis.Business
             {
                 Id = caseStudyXmlId,
                 Created = DateTime.Now,
-                //AcceleratedPreparationTime = caseStudyXml.AcceleratedPreparationTime,
                 AnnualMaintenanceCost = caseStudyXml.AnnualMaintenanceCost,
                 CourierCharges = caseStudyXml.CourierCharges,
-                //CourierDeliveryTime = caseStudyXml.CourierDeliveryTime,
-                //DeliveryTime = caseStudyXml.DeliveryTime,
-                //ExistingFillTime = caseStudyXml.ExistingFillTime,
-                //FillTime = caseStudyXml.FillTime,
                 PreparationCost = caseStudyXml.PreparationCost,
-                //PreparationTime = caseStudyXml.PreparationTime,
                 PurchaseOrderRecharge = caseStudyXml.PurchaseOrderRecharge,
                 InitialCharges = initialCharges,
             };
