@@ -90,36 +90,115 @@ namespace Tesis.Business
                 };
                 group.Orders.Add(lastOrder);
             }
-            Balance newBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
+            Balance lastBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
+            Balance newBalance = CloneBalance(lastBalance, demand);
             foreach (var order in orders)
             {
                 newBalance = BalanceWithPendingOrders(newBalance, order, demand, caseStudy, periods);
             }
+            //Descontar las ventas aquí
             return newBalance;
+        }
+
+        private Balance CloneBalance(Balance lastBalance, Demand demand)
+        {
+            return new Balance
+            {
+                Id = Guid.NewGuid(),
+                Created = DateTime.Now,
+                Demand = lastBalance.Demand,
+                DissatisfiedCost = lastBalance.DissatisfiedCost,
+                DissatisfiedDemand = lastBalance.DissatisfiedDemand,
+                FinalStock = lastBalance.FinalStock,
+                FinalStockCost = lastBalance.FinalStockCost,
+                Group = lastBalance.Group,
+                GroupId = lastBalance.GroupId,
+                InitialStock = lastBalance.InitialStock,
+                OrderCost = lastBalance.OrderCost,
+                Period = demand.Period,
+                PeriodId = demand.PeriodId,
+                Product = demand.Product,
+                ProductId = demand.ProductId,
+                ReceivedOrders = lastBalance.ReceivedOrders,
+                Sells = lastBalance.Sells,
+            };
         }
 
         private Balance BalanceWithPendingOrders(Balance balance, Order order, Demand demand, CaseStudy caseStudy, List<Period> periods)
         {
             int periodLength = periods.Count(); //Número de períodos en el caso de Estudio
             int indexOrderPeriod = periods.IndexOf(order.Period);
-            OrderType orderType = order.OrderType;
             Product product = demand.Product;
-            int periodDelivering = PeridoWillBeDelivered(caseStudy, product, orderType);
-            if ((periodDelivering + indexOrderPeriod) == periodLength)
+            OrderType orderType = order.OrderType;
+            if (orderType != OrderType.None)
             {
-                return UpdateBalance(balance, caseStudy, product);
+                int periodDelivering = PeriodWillBeDelivered(caseStudy, product, orderType);
+                if ((periodDelivering + indexOrderPeriod) == periodLength)
+                {
+                    return UpdateBalance(balance, caseStudy, product);
+                }
             }
             return balance;
         }
 
-        private int PeridoWillBeDelivered(CaseStudy caseStudy, Product product, OrderType orderType)
+        private int PeriodWillBeDelivered(CaseStudy caseStudy, Product product, OrderType orderType)
         {
-            throw new NotImplementedException();
+            InitialCharge initialCharge = caseStudy.InitialCharges.Where(x => x.Product == product).FirstOrDefault();
+            if (orderType == OrderType.Normal)
+            {
+                return initialCharge.FillTime + initialCharge.PreparationTime + initialCharge.DeliveryTime;
+            }
+            else if (orderType == OrderType.Fast)
+            {
+                return initialCharge.FillTime + initialCharge.DeliveryTime;
+            }
+            else if (orderType == OrderType.Courrier)
+            {
+                return initialCharge.PreparationTime + initialCharge.FillTime;
+            }
+            else if (orderType == OrderType.FastCourier)
+            {
+                return initialCharge.FillTime;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         private Balance UpdateBalance(Balance balance, CaseStudy caseStudy, Product product)
         {
-            throw new NotImplementedException();
+            //int initialStock = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.InitialStock).FirstOrDefault();
+            //int demandNumber = demand.Quantity;
+            //int receivedOrders = 0;
+            //int finalStock = (demandNumber >= initialStock) ? 0 : (initialStock - demandNumber);
+            //int sells = initialStock - finalStock;
+            //int productPrice = caseStudy.InitialCharges.Where(x => x.ProductId == demand.ProductId).Select(y => y.Price).FirstOrDefault();
+            //int dissastifiedDemand = (initialStock >= demandNumber) ? 0 : (demandNumber - initialStock);
+            //int orderCost = 0;
+            //Balance balance = new Balance
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Created = DateTime.Now,
+            //    Demand = demandNumber,
+            //    ReceivedOrders = receivedOrders,
+            //    InitialStock = initialStock,
+            //    FinalStock = finalStock,
+            //    FinalStockCost = finalStock * productPrice,
+            //    DissatisfiedDemand = dissastifiedDemand,
+            //    DissatisfiedCost = dissastifiedDemand * productPrice,
+            //    OrderCost = orderCost,
+            //    Sells = sells,
+            //    Product = demand.Product,
+            //    Group = group,
+            //    Period = demand.Period,
+            //};
+            return balance;
+        }
+
+        private Balance UpdateSellsBalance(Balance balance, CaseStudy caseStudy, Product product)
+        {
+            throw new NotFiniteNumberException();
         }
     }
 }
