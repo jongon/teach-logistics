@@ -51,14 +51,14 @@
 					{
 						@Html.AntiForgeryToken()					
 						@Html.HiddenFor(model => model.SectionId)					
-						@Html.EditorFor(model => model.ProductSells)
+						@Html.EditorFor(model => model.ProductDemands)
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
 								<button type="button" data-toggle="modal" data-target="#registerDemands" class="btn btn-primary">Registrar Ventas</button>
 								@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
 							</div>
 						</div>
-						@Html.Partial("_RegisterDemandsConfirmation")		
+						@Html.Partial("_RegisterDemandsConfirmation")	
 					}
 				</div>
 			</div>

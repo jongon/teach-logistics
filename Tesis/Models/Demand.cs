@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,11 +19,13 @@ namespace Tesis.Models
         public int Quantity { get; set; }
 
         [DisplayName("Período")]
+        [Required]
         public virtual Period Period { get; set; }
 
         public Guid PeriodId { get; set; }
 
         [DisplayName("Producto")]
+        [Required]
         public virtual Product Product { get; set; }
 
         public Guid ProductId { get; set; }

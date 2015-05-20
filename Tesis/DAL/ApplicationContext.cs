@@ -42,6 +42,8 @@ namespace Tesis.DAL
 
         public virtual DbSet<Demand> Demands { get; set; }
 
+        public virtual DbSet<Period> Periods { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

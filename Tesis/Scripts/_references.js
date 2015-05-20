@@ -846,4 +846,4 @@
 /// <reference path="plugins/datatables/datatables.colreorder.min.js" />
 /// <reference path="plugins/datatables/datatables.bootstrap.js" />
 /// <reference path="plugins/datatables/datatables.autofill.min.js" />
-/// <reference path="app/simulations/register_demnads.js" />
+/// <reference path="app/simulations/register_demands.js" />

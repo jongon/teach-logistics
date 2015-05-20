@@ -5,7 +5,7 @@
 		@Html.Label(Model[i].Product.Name, new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
 			@Html.HiddenFor(model => model[i].Product.Id)
-			@Html.EditorFor(model => model[i].Quantity, new { htmlAttributes = new { @placeholder = "Cantidad Vendida", @Value = "" } })
+			@Html.EditorFor(model => model[i].Quantity, new { htmlAttributes = new { @placeholder = "Cantidad Demandada", @Value = "" } })
 			@Html.ValidationMessageFor(model => model[i].Quantity, "", new { @class = "text-danger" })
 		</div>
 	</div>

@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Tesis.ViewModels;
 using MvcFlash.Core.Extensions;
 using Tesis.Models;
+using System.Net;
+using Tesis.Business;
 
 namespace Tesis.Controllers
 {
@@ -126,7 +128,7 @@ namespace Tesis.Controllers
                     {
                         Demand sale = new Demand
                         {
-                            ProductId = productSell.Product.Id,
+                            Product = await Db.Products.Where(x => x.Id == productSell.Product.Id).FirstOrDefaultAsync(),
                             Quantity = productSell.Quantity
                         };
                         period.Demands.Add(sale);
@@ -137,18 +139,19 @@ namespace Tesis.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                await Db.SaveChangesAsync();
+                //llamada a la simulación
+                SimulationBL simulation = new SimulationBL();
+                simulation.Simulation(await Db.Sections.Where(x => x.Id == section.Id).FirstOrDefaultAsync());
+                //Fin de llamada a la simulación
 
-                //
-                //Por aquí deberia estar la llamada a la simulación 
-                //
-
-                if (period.IsLastPeriod)
+                if (!period.IsLastPeriod)
                 {
                     Period newPeriod = new Period
                     {
                         Created = DateTime.Now,
                         Id = Guid.NewGuid(),
-                        IsLastPeriod = section.CaseStudy.Periods == 1 ? true : false,
+                        IsLastPeriod = section.CaseStudy.Periods == section.Periods.Count() + 1 ? true : false,
                     };
                     section.Periods.Add(newPeriod);
                 }
@@ -173,6 +176,53 @@ namespace Tesis.Controllers
         public async Task<ActionResult> Rankings(Guid? Id)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Orders(Guid? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Group group = await Db.Groups.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (group == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Period lastPeriod = await Db.Periods.Where(y => y.Section == group.Section).OrderByDescending(x => x.Created).FirstOrDefaultAsync();
+            if (lastPeriod == null)
+            {
+                //Tira un error de que el model de gestión aún no ha empezado
+                Flash.Error("Error", "El Modelo de gestión aún no ha empezado");
+                return RedirectToAction("Index", "Home");
+            }
+            List<Order> ordersInLastPeriod = lastPeriod.Orders.Where(x => x.Group == group).ToList();
+            if (ordersInLastPeriod.Count() > 0)
+            {
+                //Tira un error de que no puede llenar ordenes hasta que el profesor ingrese demanda.
+                Flash.Error("Error", "El Profesor aún no sumistrado nuevas demandas");
+                return RedirectToAction("Index", "Home");
+            }
+            List<Balance> balances = await Db.Balances.Where(x => x.GroupId == id && x.Period == lastPeriod).ToListAsync<Balance>();     
+            List<OrderViewModel> orders = balances.Select(x => new OrderViewModel {
+                Demand = x.Demand,
+                FinalStock = x.FinalStock,
+                FinalStockCost = x.FinalStockCost,
+                InitialStock = x.InitialStock,
+                ReceivedOrders = x.ReceivedOrders,
+                ProductName = x.Product.Name,
+                ProductNumber = x.Product.Number,
+                Sells = x.Sells,
+                UnsatisfiedDemand = x.DissatisfiedDemand,
+                UnsatisfiedDemandCost = x.DissatisfiedCost
+            }).ToList();
+            PeriodViewModel periodViewModel = new PeriodViewModel {
+                CaseStudyName = group.Section.CaseStudy.Name,
+                WeekNumber = group.Section.Periods.Count(),
+                Orders = orders,
+            };
+            return View(periodViewModel);
         }
     }
 }
