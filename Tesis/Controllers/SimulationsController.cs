@@ -16,12 +16,14 @@ namespace Tesis.Controllers
     public class SimulationsController : BaseController
     {
         // GET: Simulations
+        [Authorize(Roles="Administrador")]
         public async Task<ActionResult> Index()
         {
             return View(await Db.Sections.Where(x => x.CaseStudyId != null).ToListAsync());
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> EnableSimulation([Bind(Prefix = "EnableId")] Guid? Id)
         {
             try
@@ -54,6 +56,7 @@ namespace Tesis.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DisableSimulation([Bind(Prefix = "DisableId")] Guid? Id)
         {
             Section section = await Db.Sections.Where(x => x.Id == Id).FirstOrDefaultAsync<Section>();
@@ -76,6 +79,7 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> RegisterDemands(Guid? Id)
         {
             try
@@ -111,6 +115,7 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Administrador")]
         public async Task<ActionResult> RegisterDemands(DemandViewModel model)
         {
             if (ModelState.IsValid)
@@ -167,18 +172,21 @@ namespace Tesis.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Groups(Guid? Id)
         {
             throw new NotImplementedException();
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Rankings(Guid? Id)
         {
             throw new NotImplementedException();
         }
 
         [HttpGet]
+        [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> Orders(Guid? id)
         {
             if (id == null)
