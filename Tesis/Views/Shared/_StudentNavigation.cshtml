@@ -27,7 +27,7 @@
 				</a>
 			</li>
 			<li class="@Html.IsSelected(controller: "Simulations")">
-				<a href="@Url.Action("Index", "Simulations")">
+				<a href="@Url.Action("Orders", "Simulations")">
 					<i class="fa fa-connectdevelop"></i>
 					<span class="nav-label">Modelo de Gestión</span>
 				</a>
@@ -42,6 +42,12 @@
 				<a href="@Url.Action("IndexStudents", "Documents")">
 					<i class="fa fa-folder-open"></i>
 					<span class="nav-label">Documentos</span>
+				</a>
+			</li>
+			<li class="@Html.IsSelected(controller: "Stadistics")">
+				<a href="@Url.Action("StudentStadistics", "Sstadistics")">
+					<i class="fa fa-bar-chart"></i>
+					<span class="nav-label">Estadisticas</span>
 				</a>
 			</li>
 		</ul>

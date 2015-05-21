@@ -9,9 +9,7 @@
 
 namespace Tesis
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class questionoptions
     {
         public System.Guid Id { get; set; }

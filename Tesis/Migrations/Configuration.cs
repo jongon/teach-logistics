@@ -1,6 +1,5 @@
 using System.Data.Entity.Migrations;
 using Tesis.Business;
-using Tesis.DAL;
 using Tesis.Models;
 
 namespace Tesis.DAL

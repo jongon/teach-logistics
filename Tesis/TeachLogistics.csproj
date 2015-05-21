@@ -248,6 +248,7 @@
     <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="Controllers\SemestersController.cs" />
     <Compile Include="Controllers\SimulationsController.cs" />
+    <Compile Include="Controllers\StadisticsController.cs" />
     <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="DAL\ApplicationInitializer.cs" />
     <Compile Include="DAL\MySqlInitializer.cs" />
@@ -2252,6 +2253,13 @@
     <Content Include="Views\Evaluations\Califications.cshtml" />
     <Content Include="Views\Evaluations\_Califications.cshtml" />
     <Content Include="Views\Simulations\Orders.cshtml" />
+    <Content Include="Views\Simulations\Groups.cshtml" />
+    <Content Include="Views\Stadistics\Rankings.cshtml" />
+    <Content Include="Views\Simulations\_CaseStudyInformation.cshtml" />
+    <Content Include="Views\Simulations\_OrderInstructions.cshtml" />
+    <Content Include="Views\Simulations\_OrderSteps.cshtml" />
+    <Content Include="Views\Simulations\_Formulas.cshtml" />
+    <Content Include="Views\Simulations\_CaseStudyInstructions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -2264,7 +2272,6 @@
     <Folder Include="Scripts\plugins\angular-animate\" />
     <Folder Include="Scripts\plugins\angular-steps\" />
     <Folder Include="Scripts\plugins\staps\" />
-    <Folder Include="Views\Stadistics\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

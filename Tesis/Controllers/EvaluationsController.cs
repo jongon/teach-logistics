@@ -1,19 +1,14 @@
-﻿using System;
+﻿using MvcFlash.Core.Extensions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using Tesis.Business;
 using Tesis.Models;
 using Tesis.ViewModels;
-using MvcFlash.Core.Extensions;
-using Newtonsoft.Json;
-using Tesis.Business;
 
 namespace Tesis.Controllers
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Tesis.Models;
 
 namespace Tesis.Business
@@ -76,7 +75,7 @@ namespace Tesis.Business
             //Si el estudiante no creo ninguna orden en este período se le crea
             //Pero se le crea vacia
             Order lastOrder;
-            if (periods.Count() > orders.Count())
+            if (periods.Count() - 1 > orders.Count())
             {
                 lastOrder = new Order
                 {

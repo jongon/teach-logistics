@@ -81,6 +81,12 @@
 					<span class="nav-label">Documentos</span>
 				</a>
 			</li>
+			<li class="@Html.IsSelected(controller: "Stadistics")">
+				<a href="@Url.Action("Index", "Simulations")">
+					<i class="fa fa-bar-chart"></i>
+					<span class="nav-label">Estadisticas</span>
+				</a>
+			</li>
 		</ul>
 	</div>
 </nav>

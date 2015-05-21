@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MvcFlash.Core.Extensions;
+using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using MvcFlash.Core.Extensions;
-using Tesis.ViewModels;
 using Tesis.Models;
+using Tesis.ViewModels;
 
 namespace Tesis.Controllers
 {

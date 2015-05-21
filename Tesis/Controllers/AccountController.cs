@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using MvcFlash.Core.Extensions;
+using System;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Tesis.ViewModels;
 using Tesis.DAL;
-using MvcFlash.Core.Extensions;
-using System.Net;
-using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Tesis.Models;
+using Tesis.ViewModels;
 
 namespace Tesis.Controllers
 {

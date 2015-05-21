@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Tesis.Models;
 
@@ -39,9 +37,6 @@ namespace Tesis.ViewModels
 
     public class PeriodViewModel
     {
-        [DisplayName("Caso de Estudio")]
-        public string CaseStudyName { get; set; }
-
         [DisplayName("Número de Semana")]
         public int WeekNumber { get; set; }
 
@@ -50,6 +45,12 @@ namespace Tesis.ViewModels
 
         [DisplayName("Grupo")]
         public Guid GroupId { get; set; }
+
+        [DisplayName("Grupo")]
+        public virtual Group Group { get; set; }
+
+        [DisplayName("Caso de Estudio")]
+        public virtual CaseStudy CaseStudy { get; set; }
     }
 
     public class OrderViewModel

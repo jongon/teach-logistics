@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Threading.Tasks;
-using System.Data.Entity;
+using System.Web.Mvc;
 using Tesis.Models;
 using Tesis.ViewModels;
-using System.Web.Mvc;
 
 namespace Tesis.Business
 {

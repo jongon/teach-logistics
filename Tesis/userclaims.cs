@@ -9,9 +9,7 @@
 
 namespace Tesis
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class userclaims
     {
         public int Id { get; set; }
