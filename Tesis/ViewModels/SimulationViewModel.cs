@@ -46,7 +46,10 @@ namespace Tesis.ViewModels
         public int WeekNumber { get; set; }
 
         [DisplayName("Ordenes")]
-        public ICollection<OrderViewModel> Orders { get; set; }
+        public IList<OrderViewModel> Orders { get; set; }
+
+        [DisplayName("Grupo")]
+        public Guid GroupId { get; set; }
     }
 
     public class OrderViewModel
@@ -56,6 +59,9 @@ namespace Tesis.ViewModels
 
         [DisplayName("NombreProducto")]
         public string ProductName { get; set; }
+
+        [DisplayName("Precio Producto")]
+        public int ProductPrice { get; set; }
 
         [DisplayName("Ordenes recibidas")]
         public int ReceivedOrders { get; set; }

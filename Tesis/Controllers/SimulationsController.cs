@@ -10,6 +10,7 @@ using MvcFlash.Core.Extensions;
 using Tesis.Models;
 using System.Net;
 using Tesis.Business;
+using Tesis.DAL;
 
 namespace Tesis.Controllers
 {
@@ -198,7 +199,7 @@ namespace Tesis.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Period lastPeriod = await Db.Periods.Where(y => y.Section == group.Section).OrderByDescending(x => x.Created).FirstOrDefaultAsync();
+            Period lastPeriod = group.Section.Periods.Where(t => t.Demands.Count() > 0).OrderByDescending(x => x.Created).FirstOrDefault();
             if (lastPeriod == null)
             {
                 //Tira un error de que el model de gestión aún no ha empezado
@@ -212,7 +213,7 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "El Profesor aún no sumistrado nuevas demandas");
                 return RedirectToAction("Index", "Home");
             }
-            List<Balance> balances = await Db.Balances.Where(x => x.GroupId == id && x.Period == lastPeriod).ToListAsync<Balance>();     
+            List<Balance> balances = group.Balances.Where(x => x.PeriodId == lastPeriod.Id).ToList<Balance>();
             List<OrderViewModel> orders = balances.Select(x => new OrderViewModel {
                 Demand = x.Demand,
                 FinalStock = x.FinalStock,
@@ -221,6 +222,8 @@ namespace Tesis.Controllers
                 ReceivedOrders = x.ReceivedOrders,
                 ProductName = x.Product.Name,
                 ProductNumber = x.Product.Number,
+                ProductId = x.ProductId,
+                ProductPrice = group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault().Price,
                 Sells = x.Sells,
                 UnsatisfiedDemand = x.DissatisfiedDemand,
                 UnsatisfiedDemandCost = x.DissatisfiedCost
@@ -228,9 +231,49 @@ namespace Tesis.Controllers
             PeriodViewModel periodViewModel = new PeriodViewModel {
                 CaseStudyName = group.Section.CaseStudy.Name,
                 WeekNumber = group.Section.Periods.Count(),
+                GroupId = group.Id,
                 Orders = orders,
             };
             return View(periodViewModel);
+        }
+
+        [HttpPost]
+        [ActionName("MakeOrders")]
+        [Authorize(Roles = "Estudiante")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Orders(PeriodViewModel model)
+        {
+            Group group = await Db.Groups.Where(x => x.Id == model.GroupId).FirstOrDefaultAsync();
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            Period lastPeriod = group.Section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                foreach (var order in model.Orders)
+                {
+                    Product product = Db.Products.Where(x => x.Id == order.ProductId).FirstOrDefault();
+                    Order newOrder = new Order
+                    {
+                        Id = Guid.NewGuid(),
+                        Created = DateTime.Now,
+                        Group = group,
+                        OrderType = order.OrderMethodOption,
+                        Product = product,
+                        Quantity = order.Quantity, 
+                    };
+                    lastPeriod.Orders.Add(newOrder);
+                }
+                await Db.SaveChangesAsync();
+                Flash.Success("Ok", "Las Ordenes han sido realizadas exitosamente");
+                return View("Index");
+            }
+            else
+            {
+                Flash.Error("Error", "Ha Ocurrido un error creando las ordenes");
+                return View("Index");
+            }
         }
     }
 }

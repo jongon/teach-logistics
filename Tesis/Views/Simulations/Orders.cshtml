@@ -1,4 +1,144 @@
 ﻿@model Tesis.ViewModels.PeriodViewModel
 @{
-	ViewBag.Title = "Modelo de gestión";
+	ViewBag.Title = "Ordenes";
+}
+@section Styles{
+	@Styles.Render("~/plugins/iCheckStyles")
+	@Styles.Render("~/app/Simulations")
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Modelos de Gestión</h2>
+		<ol class="breadcrumb">
+			<li class="active">
+				<strong>Índice</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<h4>Aquí va las cosas del caso de estudio</h4>
+			@using (Html.BeginForm("MakeOrders", "Simulations", FormMethod.Post, new { @class = "", role = "form", id = "form" }))
+			{
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })		
+				@Html.HiddenFor(model => model.GroupId)				
+				for (var i = 0; i < Model.Orders.Count(); i++)
+				{
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>@Html.DisplayFor(modelItem => Model.Orders[i].ProductName)</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-sm-4 b-r">
+								@Html.HiddenFor(modelItem => Model.Orders[i].ProductId)
+								<dl class="dl-horizontal">
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].ProductNumber)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].ProductNumber)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].ProductPrice)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].ProductPrice)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].ReceivedOrders)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].ReceivedOrders)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].InitialStock)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].InitialStock)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].Demand)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].Demand)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].Sells)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].Sells)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].FinalStock)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].FinalStock)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].FinalStockCost)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].FinalStockCost)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].UnsatisfiedDemand)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].UnsatisfiedDemand)
+									</dd>
+									<dt>
+										@Html.DisplayNameFor(modelItem => Model.Orders[i].UnsatisfiedDemandCost)
+									</dt>
+									<dd>
+										@Html.DisplayFor(modelItem => Model.Orders[i].UnsatisfiedDemandCost)
+									</dd>
+								</dl>
+							</div>
+							<div class="col-sm-8">
+								<div class="form-group">
+									@Html.LabelFor(modelItem => Model.Orders[i].Quantity, new { @class = "col-md-2 control-label" })
+									<div class="col-md-12">
+										@Html.EditorFor(modelItem => Model.Orders[i].Quantity, new { htmlAttributes = new { @placeholder = "Cantidad", @Value = "" } })
+										@Html.ValidationMessageFor(modelItem => Model.Orders[i].Quantity, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="form-group">
+									@Html.LabelFor(modelItem => Model.Orders[i].OrderMethod, new { @class = "control-label col-md-2" })
+									<div class="col-md-12">
+										@foreach (var option in (SelectList)Model.Orders[i].OrderMethod)
+										{
+											<div class="radio i-checks">
+												<label>
+													@Html.RadioButtonFor(modelItem => Model.Orders[i].OrderMethodOption, option.Value)
+													<i></i>@option.Text
+												</label>
+											</div>
+										}
+										@Html.ValidationMessageFor(modelItem => Model.Orders[i].OrderMethod, "", new { @class = "text-danger" })
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+							}
+				<div class="ibox-content">			
+					<div class="form-group">
+						<div class="col-md-12">
+							<input type="submit" value="Ordenar" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>			
+			}				
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/plugins/iCheck")
+	@Scripts.Render("~/bundles/Simulations/orders")
 }

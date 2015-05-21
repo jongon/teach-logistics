@@ -397,6 +397,12 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Simulations/register_demands").Include(
                 "~/Scripts/app/Simulations/register_demands.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Simulations/orders").Include(
+                "~/Scripts/app/Simulations/orders.js"));
+
+            bundles.Add(new StyleBundle("~/app/Simulations").Include(
+                "~/Content/app/Simulations.css"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;
