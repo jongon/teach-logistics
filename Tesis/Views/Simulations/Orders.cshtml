@@ -23,7 +23,9 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-content">
-
+					<button class="btn btn-success">Caso de Estudio</button>
+					<button class="btn btn-primary">Formulas</button>
+					<button class="btn btn-warning">Instrucciones</button>
 				</div>
 			</div>		
 			@using (Html.BeginForm("MakeOrders", "Simulations", FormMethod.Post, new { @class = "", role = "form", id = "form" }))
@@ -39,7 +41,7 @@
 					</div>
 					<div class="ibox-content">
 						<div class="row">
-							<div class="col-sm-4 b-r">
+							<div class="col-md-4 b-r">
 								@Html.HiddenFor(modelItem => Model.Orders[i].ProductId)
 								<dl class="dl-horizontal">
 									<dt>
@@ -104,7 +106,7 @@
 									</dd>
 								</dl>
 							</div>
-							<div class="col-sm-8 form-horizontal">
+							<div class="col-md-8 form-horizontal">
 								<div class="form-group">
 									@Html.LabelFor(modelItem => Model.Orders[i].Quantity, new { @class = "control-label col-sm-3" })
 									<div class="col-sm-9">
@@ -129,7 +131,9 @@
 								</div>
 								<p>
 								Ordenes serán entregadas en el período:
-								<span id="weekDelivery" class="text-primary"><strong></strong></span></p>
+								<span id="weekDelivery" class="text-primary"><strong></strong></span>
+								</p>
+								<button class="btn btn-info">Costos y tiempos</button>
 							</div>
 						</div>
 					</div>
@@ -153,11 +157,11 @@
 		</div>
 	</div>
 </div>
+@*@{ Html.RenderPartial("_OrderInstructions"); }*@
 @{ Html.RenderPartial("_CaseStudyInformation", Model.CaseStudy); }
-@{ Html.RenderPartial("_OrderInstructions"); }
-@{ Html.RenderPartial("_OrderSteps"); }
-@{ Html.RenderPartial("_Formulas"); }
 @{ Html.RenderPartial("_CaseStudyInstructions"); }
+@*@{ Html.RenderPartial("_OrderSteps"); }
+@{ Html.RenderPartial("_Formulas"); }*@
 @section Scripts {
 	<script>
 		var periodNumber = @Model.WeekNumber;

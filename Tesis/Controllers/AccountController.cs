@@ -133,20 +133,22 @@ namespace Tesis.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id, Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SectionId, SemesterId, EmailConfirmed")] EditUserViewModel User)
+        public async Task<ActionResult> Edit([Bind(Include = "Id, Email, FirstName, LastName, IdCard, Password, ConfirmPassword, SectionId, SemesterId, EmailConfirmed")] EditUserViewModel userViewModel)
         {
-            var rolesUser = UserManager.GetRoles(User.Id);
-            if (!rolesUser.Contains("Estudiante"))
+            var rolesUser = UserManager.GetRoles(userViewModel.Id);
+            var roleCurrentUser = UserManager.GetRoles(User.Identity.GetUserId());
+            if (!rolesUser.Contains("Estudiante") || roleCurrentUser.Contains("Estudiante"))
             {
                 ModelState.Remove("SectionId");
                 ModelState.Remove("SemesterId");
+                ModelState.Remove("EmailConfirmed");
             }
-            else if (User.SectionId == null)
+            else if (userViewModel.SectionId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
             }
 
-            if (String.IsNullOrEmpty(User.Password) && String.IsNullOrEmpty(User.ConfirmPassword))
+            if (String.IsNullOrEmpty(userViewModel.Password) && String.IsNullOrEmpty(userViewModel.ConfirmPassword))
             {
                 ModelState.Remove("Password");
                 ModelState.Remove("ConfirmPassword");
@@ -155,32 +157,39 @@ namespace Tesis.Controllers
             {
                 try
                 {
-                    var user = UserManager.FindById(User.Id);
-                    user.UserName = User.Email;
-                    user.Email = User.Email;
-                    user.FirstName = User.FirstName;
-                    user.LastName = User.LastName;
-                    user.IdCard = User.IdCard;
-                    user.EmailConfirmed = User.EmailConfirmed;
-                    user.SectionId = User.SectionId;
-                    if (!String.IsNullOrEmpty(User.Password))
+                    var user = UserManager.FindById(userViewModel.Id);
+                    user.UserName = userViewModel.Email;
+                    user.Email = userViewModel.Email;
+                    user.FirstName = userViewModel.FirstName;
+                    user.LastName = userViewModel.LastName;
+                    user.IdCard = userViewModel.IdCard;
+                    user.EmailConfirmed = userViewModel.EmailConfirmed;
+                    user.SectionId = userViewModel.SectionId;
+                    if (!String.IsNullOrEmpty(userViewModel.Password))
                     {
                         var passwordHash = new PasswordHasher();
-                        user.PasswordHash = passwordHash.HashPassword(User.Password);
+                        user.PasswordHash = passwordHash.HashPassword(userViewModel.Password);
                     }
                     await UserManager.UpdateAsync(user);
                     Flash.Success("OK", "Usuario editado exitosamente");
-                    return RedirectToAction("Index");
+                    if (roleCurrentUser.Contains("Administrador"))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else if (roleCurrentUser.Contains("Estudiante"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 catch (Exception e)
                 {
                     Flash.Error("Error", e.Message);
-                    return View(User);
+                    return View(userViewModel);
                 }
             }
             ViewBag.Roles = rolesUser;
             Flash.Error("Error", "Ha ocurrido un error editando el usuario");
-            return View(User);
+            return View(userViewModel);
         }
 
         public async Task<ActionResult> Delete(string Id)

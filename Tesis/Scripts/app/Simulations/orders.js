@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     if (periodNumber == 1) {
-        alert("hola");
+        $('#instructions').modal('show');
     }
 
     $('.i-checks').iCheck({

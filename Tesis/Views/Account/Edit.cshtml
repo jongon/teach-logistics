@@ -7,7 +7,14 @@
 		<h2>Usuarios</h2>
 		<ol class="breadcrumb">
 			<li>
-				@Html.ActionLink("Índice", "Index")
+				@if (User.IsInRole("Administrador"))
+				{				
+					@Html.ActionLink("Índice", "Index")
+				}
+				else if (User.IsInRole("Estudiante"))
+				{
+					@Html.ActionLink("Inicio", "Index", "Home")
+				}																				
 			</li>
 			<li class="active">
 				<strong>Editar</strong>
@@ -16,7 +23,14 @@
 	</div>
 	<div class="col-sm-8">
 		<div class="title-action">
-			@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-primary" })
+			@if (User.IsInRole("Administrador"))
+			{			
+				@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-primary" })
+			}
+			else if (User.IsInRole("Estudiante"))
+			{
+				@Html.ActionLink("Volver al inicio", "Index", "Home", null, new { @class = "btn btn-primary" })
+			}									
 		</div>
 	</div>
 </div>
@@ -35,57 +49,60 @@
 						@Html.AntiForgeryToken()
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 						@Html.HiddenFor(model => model.Id)
-						if (ViewBag.Roles.Contains("Estudiante"))
-						{
-							<div class="form-group">
-								@Html.LabelFor(model => model.SemesterId, new { @class = "control-label col-md-2" })
-								<div class="col-md-10">
-								@(Html.Kendo().DropDownListFor(model => model.SemesterId)
-								.Name("SemesterId")
-								.OptionLabel("Seleccione el semestre...")
-								.DataTextField("Description")
-								.DataValueField("Id")
-								.Value(Model.SemesterId.ToString())
-								.DataSource(source =>
-								{
-									source.Read(read =>
+						if (User.IsInRole("Adinistrador"))
+						{											
+							if (ViewBag.Roles.Contains("Estudiante"))
+							{
+								<div class="form-group">
+									@Html.LabelFor(model => model.SemesterId, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+									@(Html.Kendo().DropDownListFor(model => model.SemesterId)
+									.Name("SemesterId")
+									.OptionLabel("Seleccione el semestre...")
+									.DataTextField("Description")
+									.DataValueField("Id")
+									.Value(Model.SemesterId.ToString())
+									.DataSource(source =>
 									{
-										read.Action("IndexJson", "Semesters");
-									});
-								})
-									)
-									@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
-								</div>
-							</div>
-							<div class="hr-line-dashed"></div>
-
-							<div class="form-group">
-								@Html.LabelFor(model => model.SectionId, new { @class = "control-label col-md-2" })
-								<div class="col-md-10">
-									@(Html.Kendo().DropDownListFor(model => model.SectionId)
-										.Name("SectionId")
-										.OptionLabel("Seleccione la sección...")
-										.DataTextField("Number")
-										.DataValueField("Id")
-										.Value(Model.SectionId.ToString())
-										.DataSource(source =>
+										source.Read(read =>
 										{
-											source.Read(read =>
-											{
-												read.Action("GetSectionsBySemester", "Sections")
-																.Data("filterSections");
-											})
-											.ServerFiltering(true);
-										})
-										.Enable(false)
-										.AutoBind(false)
-										.CascadeFrom("SemesterId")
-									)
-									@Html.ValidationMessageFor(model => model.SectionId, "", new { @class = "text-danger" })
+											read.Action("IndexJson", "Semesters");
+										});
+									})
+										)
+										@Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
+									</div>
 								</div>
-							</div>
-							<div class="hr-line-dashed"></div>
-						}
+								<div class="hr-line-dashed"></div>
+
+								<div class="form-group">
+									@Html.LabelFor(model => model.SectionId, new { @class = "control-label col-md-2" })
+									<div class="col-md-10">
+										@(Html.Kendo().DropDownListFor(model => model.SectionId)
+											.Name("SectionId")
+											.OptionLabel("Seleccione la sección...")
+											.DataTextField("Number")
+											.DataValueField("Id")
+											.Value(Model.SectionId.ToString())
+											.DataSource(source =>
+											{
+												source.Read(read =>
+												{
+													read.Action("GetSectionsBySemester", "Sections")
+																	.Data("filterSections");
+												})
+												.ServerFiltering(true);
+											})
+											.Enable(false)
+											.AutoBind(false)
+											.CascadeFrom("SemesterId")
+										)
+										@Html.ValidationMessageFor(model => model.SectionId, "", new { @class = "text-danger" })
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+							}
+						}							
 						<div class="form-group">
 							@Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
 							<div class="col-md-10">
@@ -139,15 +156,17 @@
 							</div>
 						</div>
 						<div class="hr-line-dashed"></div>
-
-						<div class="form-group">
-							@Html.LabelFor(model => model.EmailConfirmed, new { @class = "control-label col-md-2" })
-							<div class="col-md-10">
-								@Html.EditorFor(model => model.EmailConfirmed)
-								@Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
+						if (User.IsInRole("Administrador"))
+						{
+							<div class="form-group">
+								@Html.LabelFor(model => model.EmailConfirmed, new { @class = "control-label col-md-2" })
+								<div class="col-md-10">
+									@Html.EditorFor(model => model.EmailConfirmed)
+									@Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
+								</div>
 							</div>
-						</div>
 						<div class="hr-line-dashed"></div>
+						}						
 
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
