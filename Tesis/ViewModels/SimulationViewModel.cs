@@ -51,6 +51,9 @@ namespace Tesis.ViewModels
 
         [DisplayName("Caso de Estudio")]
         public virtual CaseStudy CaseStudy { get; set; }
+
+        [DisplayName("Último período")]
+        public bool IsLastPeriod { get; set; }
     }
 
     public class OrderViewModel
@@ -96,7 +99,7 @@ namespace Tesis.ViewModels
         public Guid ProductId { get; set; }
         
         [DisplayName("Cantidad a Ordenar")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         [DisplayName("Costo Ordenar")]
         public int OrderCost { get; set; }
@@ -117,7 +120,7 @@ namespace Tesis.ViewModels
         }
 
         [DisplayName("Tipo de Orden")]
-        public OrderType OrderMethodOption { get; set; }
+        public OrderType? OrderMethodOption { get; set; }
 
         [DisplayName("Semana de entrega")]
         public int WeekDelivery { get; set; }

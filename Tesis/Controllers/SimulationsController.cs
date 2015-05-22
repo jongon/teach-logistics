@@ -217,6 +217,7 @@ namespace Tesis.Controllers
                 WeekNumber = group.Section.Periods.Count(),
                 GroupId = group.Id,
                 Orders = orders,
+                IsLastPeriod = lastPeriod.IsLastPeriod,
             };
             return View(periodViewModel);
         }
@@ -225,27 +226,52 @@ namespace Tesis.Controllers
         [ActionName("MakeOrders")]
         [Authorize(Roles = "Estudiante")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Orders([Bind(Include="Orders,GroupId")] PeriodViewModel model)
+        public async Task<ActionResult> Orders([Bind(Include="Orders,GroupId,IsLastPeriod")] PeriodViewModel model)
         {
-            Group group = await Db.Groups.Where(x => x.Id == model.GroupId).FirstOrDefaultAsync();
+            Group group = await Db.Groups.Where(x => x.Users.Select(c => c.Id).Contains(CurrentUser.Id)).FirstOrDefaultAsync();
             if (group == null)
             {
-                return HttpNotFound();
+                Flash.Error("Error", "Lo Siento pero usted no pertenece a ningún grupo para empezar el modelo de gestión");
+                return RedirectToAction("Index", "Home");
             }
-            Period lastPeriod = group.Section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
+            if (!group.Section.IsActivedSimulation)
+            {
+                //Tira un error de que el model de gestión aún no ha empezado
+                Flash.Error("Error", "El Modelo de gestión aún no ha empezado");
+                return RedirectToAction("Index", "Home");
+            }
+            Period lastPeriod = group.Section.Periods.Where(t => t.Demands.Count() > 0).OrderByDescending(x => x.Created).FirstOrDefault();
+            if (lastPeriod == null)
+            {
+                //Tira un error de que no puede llenar ordenes hasta que el profesor ingrese demanda.
+                Flash.Error("Error", "El Profesor aún no suministra nuevas demandas");
+                return RedirectToAction("Index", "Home");
+            }
+            else if (lastPeriod.Orders.Where(x => x.Group == group).Count() != 0)
+            {
+                //Tira un error de que no puede llenar ordenes hasta que el profesor ingrese demanda.
+                Flash.Error("Error", "El Profesor aún no sumistra nuevas demandas");
+                return RedirectToAction("Index", "Home");
+            }
+            lastPeriod = group.Section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 foreach (var order in model.Orders)
                 {
+                    if (!TryValidateModel(order))
+                    {
+                        Flash.Error("Error", "Ha ocurrido un error con las ordenes");
+                        return RedirectToAction("Orders");
+                    }
                     Product product = Db.Products.Where(x => x.Id == order.ProductId).FirstOrDefault();
                     Order newOrder = new Order
                     {
                         Id = Guid.NewGuid(),
                         Created = DateTime.Now,
                         Group = group,
-                        OrderType = order.OrderMethodOption,
+                        OrderType = (order.OrderMethodOption == null  || order.Quantity == null) ? OrderType.None : (OrderType)order.OrderMethodOption,
                         Product = product,
-                        Quantity = order.Quantity, 
+                        Quantity = order.Quantity == null ? 0 : (int)order.Quantity, 
                     };
                     lastPeriod.Orders.Add(newOrder);
                 }
