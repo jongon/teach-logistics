@@ -6,16 +6,22 @@ namespace Tesis
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
-        {   
-            //KendoUI
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                "~/Scripts/kendo/2014.2.1008/kendo.all.min.js",
-                "~/Scripts/kendo/2014.2.1008/kendo.aspnetmvc.min.js",
-                "~/Scripts/kendo/2014.2.1008/cultures/kendo.culture.es-VE.min.js"));
+        {
+            bundles.UseCdn = true;
 
-            bundles.Add(new StyleBundle("~/Content/kendo").Include(
-                "~/Content/kendo/2014.2.1008/kendo.common-bootstrap.min.css",
-                "~/Content/kendo/2014.2.1008/kendo.bootstrap.min.css"));
+            // bundles code
+            var cdnPath = "//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en";
+            bundles.Add(new StyleBundle("~/fonts", cdnPath));
+
+            //KendoUI
+            bundles.Add(new ScriptBundle("~/bundles/kendo/kendoscripts").Include(
+                "~/Scripts/kendo/2014.2.1008/kendo.all.*",
+                "~/Scripts/kendo/2014.2.1008/kendo.aspnetmvc.*",
+                "~/Scripts/kendo/2014.2.1008/cultures/kendo.culture.es-VE.*"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo/2014.2.1008/kendostyles").Include(
+                "~/Content/kendo/2014.2.1008/kendo.common-bootstrap.*",
+                "~/Content/kendo/2014.2.1008/kendo.bootstrap.*"));
 
             //AngularJs
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
@@ -147,7 +153,7 @@ namespace Tesis
                       "~/Scripts/plugins/chartjs/Chart.min.js"));
 
             // iCheck css styles
-            bundles.Add(new StyleBundle("~/plugins/iCheckStyles").Include(
+            bundles.Add(new StyleBundle("~/Content/plugins/iCheck/iCheckStyles").Include(
                       "~/Content/plugins/iCheck/custom.css"));
 
             // iCheck
@@ -155,7 +161,7 @@ namespace Tesis
                       "~/Scripts/plugins/iCheck/icheck.min.js"));
 
             // dataTables css styles
-            bundles.Add(new StyleBundle("~/plugins/dataTablesStyles").Include(
+            bundles.Add(new StyleBundle("~/Content/plugins/dataTables/dataTablesStyles").Include(
                       "~/Content/plugins/dataTables/dataTables.bootstrap.css",
                       "~/Content/plugins/dataTables/dataTables.responsive.css",
                       "~/Content/plugins/dataTables/dataTables.tableTools.min.css"));
@@ -405,7 +411,7 @@ namespace Tesis
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

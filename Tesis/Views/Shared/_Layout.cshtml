@@ -4,10 +4,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@ViewBag.Title - Tesis</title>
-	@Styles.Render("~/Content/kendo")
+	@Styles.Render("~/fonts")
+	@Styles.Render("~/Content/kendo/2014.2.1008/kendostyles")
 	@Styles.Render("~/bundles/bootstrapStyles")
 	@Styles.Render("~/Content/font-awesome")
-	@Styles.Render("~/plugins/dataTablesStyles")
+	@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
 	@*<!-- Add local styles, mostly for plugins css file -->*@
 	@if (IsSectionDefined("Styles"))
 	{
@@ -44,7 +45,7 @@
 	</div>
 	@*<!-- End wrapper-->*@
 	@*<!-- Section for main scripts render -->*@
-	@Scripts.Render("~/bundles/kendo")
+	@Scripts.Render("~/bundles/kendo/kendoscripts")
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/plugins/metisMenu")
 	@Scripts.Render("~/plugins/slimScroll")

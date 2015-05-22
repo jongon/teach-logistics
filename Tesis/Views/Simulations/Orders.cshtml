@@ -3,7 +3,7 @@
 	ViewBag.Title = "Ordenes";
 }
 @section Styles{
-	@Styles.Render("~/plugins/iCheckStyles")
+	@Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
 	@Styles.Render("~/app/Simulations")
 }
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -13,8 +13,14 @@
 			@Html.DisplayFor(model => model.CaseStudy.Name)
 		</ol>
 		<span>
-			<strong>Período: </strong>@Html.DisplayFor(model => model.WeekNumber)
+			<strong>Período: </strong>@Html.DisplayFor(model => model.WeekNumber) de @Html.DisplayFor(model => model.CaseStudy.Periods)
 		</span>
+		<h5>Progreso</h5>
+		<div class="progress progress-striped">
+			<div style="width: @(((float)Model.WeekNumber / Model.CaseStudy.Periods) * 100 )%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar progress-bar-success">
+				<span class="sr-only">@(((float)Model.WeekNumber / Model.CaseStudy.Periods) * 100)% Completado (success)</span>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
