@@ -15,13 +15,13 @@ namespace Tesis
 
             //KendoUI
             bundles.Add(new ScriptBundle("~/bundles/kendo/kendoscripts").Include(
-                "~/Scripts/kendo/2014.2.1008/kendo.all.*",
-                "~/Scripts/kendo/2014.2.1008/kendo.aspnetmvc.*",
-                "~/Scripts/kendo/2014.2.1008/cultures/kendo.culture.es-VE.*"));
+                "~/Scripts/kendo/2014.2.1008/kendo.all.min.js",
+                "~/Scripts/kendo/2014.2.1008/kendo.aspnetmvc.min.js",
+                "~/Scripts/kendo/2014.2.1008/cultures/kendo.culture.es-VE.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/kendo/2014.2.1008/kendostyles").Include(
-                "~/Content/kendo/2014.2.1008/kendo.common-bootstrap.*",
-                "~/Content/kendo/2014.2.1008/kendo.bootstrap.*"));
+                "~/Content/kendo/2014.2.1008/kendo.common-bootstrap.min.css",
+                "~/Content/kendo/2014.2.1008/kendo.bootstrap.min.css"));
 
             //AngularJs
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(

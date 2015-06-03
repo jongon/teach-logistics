@@ -29,11 +29,10 @@
 		<div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-content">
-					<button id="animation" class="btn btn-success">Caso de Estudio</button>
-					<button class="btn btn-primary">Formulas</button>
-					<button class="btn btn-warning">Instrucciones</button>
+					<button id="animation-case-study" class="btn btn-success" data-placement="top" data-toggle="modal" data-target="#information" data-content="Haz click aquí para ver información del caso de estudio.">Caso de Estudio</button>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#formulas">Formulas</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#instructions">Instrucciones</button>
 					<button class="btn btn-info pull-right">Grupo</button>
-					<a href="#" class="btn btn-white animation_select" data-animation="bounce">bounce</a>
 				</div>
 			</div>		
 			@using (Html.BeginForm("MakeOrders", "Simulations", FormMethod.Post, new { @class = "", role = "form", id = "form" }))

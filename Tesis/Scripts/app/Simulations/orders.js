@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $('#form').validate().settings.ignore = "*";
+
     if (periodNumber == 1) {
         $('#instructions').modal('show');
     }
@@ -9,11 +10,15 @@
         radioClass: 'iradio_square-green',
     });
 
-    $('.animation_select').click(function () {
-        //$('#animation_box').removeAttr('class').attr('class', '');
+    $('#instructions').on('hidden.bs.modal', function (e) {
         var animation = $(this).attr("data-animation");
-        $('#animation').addClass('animated');
-        $('#animation').addClass(animation);
+        $('#animation-case-study').addClass('animated');
+        $('#animation-case-study').addClass(animation);
+        $('#animation-case-study').popover('show');
+        setTimeout(function () {
+            $('#animation-case-study').popover('destroy');
+        }, 2000);
         return false;
     });
 });
+

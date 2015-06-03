@@ -4,8 +4,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-				<i class="fa fa-connectdevelop modal-icon"></i>
-				<h4 class="modal-title">Modelo de gestión</h4>
+				<i class="fa fa-graduation-cap modal-icon"></i>
+				<h4 class="modal-title">Caso de Estudio</h4>
 			</div>
 			<div class="modal-body">
 				<div class="wrapper wrapper-content animated fadeInRight">
@@ -13,28 +13,10 @@
 						<div class="col-lg-12">
 							<div class="ibox float-e-margins">
 								<div class="ibox-title">
-									<h5>Detalle de Caso de Estudio</h5>
+									<h5>Caso de Estudio</h5>
 								</div>
 								<div class="ibox-content">
 									<dl class="dl-horizontal">
-										<dt>
-											@Html.DisplayNameFor(model => model.Sections)
-										</dt>
-										<dd>
-											@if (Model.Sections.Count() > 0)
-											{
-												foreach (var item in Model.Sections)
-												{
-													<span><strong>Semestre:</strong> @item.Semester.Description - </span>
-													<span><strong>Sección:</strong> @item.Number</span>
-													<hr>
-												}
-											}
-											else
-											{
-												<span>No hay secciones asociadas a este caso de estudio</span>
-											}
-										</dd>
 										<dt>
 											@Html.DisplayNameFor(model => model.Name)
 										</dt>
@@ -46,12 +28,6 @@
 										</dt>
 										<dd>
 											@Html.DisplayFor(model => model.Periods)
-										</dd>
-										<dt>
-											@Html.DisplayNameFor(model => model.Created)
-										</dt>
-										<dd>
-											@Html.DisplayFor(model => model.Created)
 										</dd>
 										<dt>
 											@Html.DisplayNameFor(model => model.PurchaseOrderRecharge)
