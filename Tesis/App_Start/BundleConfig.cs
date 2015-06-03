@@ -306,6 +306,10 @@ namespace Tesis
             //quicksearch
             bundles.Add(new ScriptBundle("~/plugins/quicksearch").Include(
                     "~/Scripts/plugins/quicksearch/jquery.quicksearch.js"));
+
+            //mathjax
+            bundles.Add(new ScriptBundle("~/plugins/mathJax/mathJax").Include(
+                    "~/Scripts/plugins/mathjax/MathJax.js"));
             
             //Application Scripts
 

@@ -3,7 +3,7 @@
 	<div class="ibox-title">
 		Lista de Productos
 	</div>
-	<div class="ibox-content">
+	<div class="ibox-content table-responsive">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -41,40 +41,40 @@
 			</thead>
 			<tbody>
 				@foreach (var item in Model)
-				{
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.Product.Name)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Product.Number)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Demand)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Stddev)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.PreparationTime)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.FillTime)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.DeliveryTime)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Price)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.SecurityStock)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.InitialStock)
-						</td>
-					</tr>
-				}
+								{
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.Product.Name)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Product.Number)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Demand)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Stddev)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.PreparationTime)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.FillTime)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.DeliveryTime)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Price)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.SecurityStock)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.InitialStock)
+										</td>
+									</tr>
+																}
 			</tbody>
 		</table>
 	</div>
