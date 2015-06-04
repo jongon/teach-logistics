@@ -1,4 +1,23 @@
 ﻿$(document).ready(function () {
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
     $('#form').validate().settings.ignore = "*";
 
     if (periodNumber == 1) {
@@ -30,3 +49,16 @@ function animateGroup() {
     }, 2000);
 }
 
+$('#animation-group').click(function () {
+    var members;
+    for (var i = 0; i < group.length; i++) {
+        if (i == 0 )
+            members = group[i].FirstName + " " + group[i].LastName + "</br>";
+        else
+            members += group[i].FirstName + " " + group[i].LastName + "</br>";
+    }
+    toastr["info"](
+        members,
+        "Integrantes"
+    );
+});

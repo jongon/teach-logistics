@@ -317,7 +317,7 @@ namespace Tesis
 
             //toastr styles
             bundles.Add(new StyleBundle("~/plugins/toastrStyles").Include(
-                    "~/Content/plugins/toastr/toasrt.min.css"));
+                    "~/Content/plugins/toastr/toastr.min.css"));
 
             //Application Scripts
 
@@ -423,7 +423,7 @@ namespace Tesis
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

@@ -211,8 +211,11 @@ namespace Tesis.Controllers
                 UnsatisfiedDemand = x.DissatisfiedDemand,
                 UnsatisfiedDemandCost = x.DissatisfiedCost
             }).ToList();
+            //Lista de integrantes
+            List<User> members = group.Users.Select(x => new User { Id = x.Id, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName }).ToList();
             PeriodViewModel periodViewModel = new PeriodViewModel {
                 CaseStudy = group.Section.CaseStudy,
+                Members = members,
                 Group = group,
                 WeekNumber = group.Section.Periods.Count(),
                 GroupId = group.Id,

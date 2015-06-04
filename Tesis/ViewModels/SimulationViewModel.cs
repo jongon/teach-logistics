@@ -49,6 +49,9 @@ namespace Tesis.ViewModels
         [DisplayName("Grupo")]
         public virtual Group Group { get; set; }
 
+        [DisplayName("Integrantes")]
+        public virtual ICollection<User> Members { get; set; }
+
         [DisplayName("Caso de Estudio")]
         public virtual CaseStudy CaseStudy { get; set; }
 

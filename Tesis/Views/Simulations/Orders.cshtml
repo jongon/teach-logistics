@@ -4,7 +4,7 @@
 }
 @section Styles{
 	@Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
-	@Styles.Render("~/plugins/toastr")
+	@Styles.Render("~/plugins/toastrStyles")
 	@Styles.Render("~/app/Simulations")
 }
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -179,8 +179,9 @@
 @{ Html.RenderPartial("_OrderCosts"); }
 @section Scripts {
 	<script>
+		var group = @Html.Raw(Json.Encode(Model.Members));
 		var periodNumber = @Model.WeekNumber;
-	</script>
+</script>
 	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/plugins/toastr")
 	<script src="~/Scripts/plugins/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=es"></script>	
