@@ -40,41 +40,41 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var item in Model)
-								{
-									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.Product.Name)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Product.Number)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Demand)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Stddev)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.PreparationTime)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.FillTime)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.DeliveryTime)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Price)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.SecurityStock)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.InitialStock)
-										</td>
-									</tr>
-																}
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Product.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Product.Number)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Demand)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Stddev)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.PreparationTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.FillTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DeliveryTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Price)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.SecurityStock)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.InitialStock)
+					</td>
+				</tr>
+			}
 			</tbody>
 		</table>
 	</div>

@@ -354,10 +354,6 @@
     <Compile Include="ViewModels\SimulationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Tesis.mdf" />
-    <Content Include="App_Data\Tesis_log.ldf">
-      <DependentUpon>Tesis.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\animate.css" />
     <Content Include="Content\app\Casestudies.css" />
     <Content Include="Content\app\Simulations.css" />
@@ -811,6 +807,7 @@
     <Content Include="Content\plugins\summernote\summernote-bs3.css" />
     <Content Include="Content\plugins\summernote\summernote.css" />
     <Content Include="Content\plugins\switchery\switchery.css" />
+    <Content Include="Content\plugins\toastr\toastr.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -2356,6 +2353,7 @@
     <Content Include="Scripts\plugins\mathjax\LICENSE" />
     <Content Include="Scripts\plugins\mathjax\README.md" />
     <None Include="Scripts\plugins\validate\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\plugins\toastr\toastr.min.js" />
     <Content Include="Scripts\plugins\validate\jquery.validate.js" />
     <Content Include="Scripts\plugins\validate\jquery.validate.min.js" />
     <Content Include="Scripts\plugins\validate\localization\messages_ar.js" />
@@ -2524,8 +2522,6 @@
     <Content Include="Views\Simulations\Groups.cshtml" />
     <Content Include="Views\Stadistics\Rankings.cshtml" />
     <Content Include="Views\Simulations\_CaseStudyInformation.cshtml" />
-    <Content Include="Views\Simulations\_OrderInstructions.cshtml" />
-    <Content Include="Views\Simulations\_OrderSteps.cshtml" />
     <Content Include="Views\Simulations\_Formulas.cshtml" />
     <Content Include="Views\Simulations\_CaseStudyInstructions.cshtml" />
     <Content Include="Views\Simulations\_InitialCharges.cshtml" />
@@ -2533,6 +2529,7 @@
     <Content Include="Views\Shared\EditorTemplates\Email-Inactive.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress-Inactive.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String-Inactive.cshtml" />
+    <Content Include="Views\Simulations\_OrderCosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

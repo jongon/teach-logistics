@@ -4,6 +4,7 @@
 }
 @section Styles{
 	@Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+	@Styles.Render("~/plugins/toastr")
 	@Styles.Render("~/app/Simulations")
 }
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -32,7 +33,7 @@
 					<button id="animation-case-study" class="btn btn-success dim" data-placement="top" data-toggle="modal" data-target="#information" data-content="Haz click aquí para ver información del caso de estudio."><i class="fa fa-graduation-cap fa-lg"></i> Caso de Estudio</button>
 					<button class="btn btn-primary dim" data-toggle="modal" data-target="#formulas"><i class="fa fa-calculator fa-lg"></i> Fórmulas</button>
 					<button class="btn btn-warning dim" data-toggle="modal" data-target="#instructions"><i class="fa fa-info-circle fa-lg"></i> Instrucciones</button>
-					<button class="btn btn-info pull-right dim"><i class="fa fa-group	fa-lg"></i> Grupo</button>
+					<button class="btn btn-info pull-right dim" id="animation-group" data-placement="top" data-content="Haz click aquí para ver los integrantes del grupo."><i class="fa fa-group	fa-lg"></i> Grupo</button>
 				</div>
 			</div>		
 			@using (Html.BeginForm("MakeOrders", "Simulations", FormMethod.Post, new { @class = "", role = "form", id = "form" }))
@@ -141,7 +142,7 @@
 								Ordenes serán entregadas en el período:
 								<span id="weekDelivery" class="text-primary"><strong></strong></span>
 								</p>
-								<button class="btn btn-info dim"><i class="fa fa-clock-o fa-lg"></i> Costos y tiempos</button>
+								<button type="button" data-toggle="modal" data-target="#orders" class="btn btn-info dim"><i class="fa fa-clock-o fa-lg"></i> Costos y tiempos</button>
 							</div>
 						</div>
 					</div>
@@ -175,12 +176,13 @@
 @{ Html.RenderPartial("_CaseStudyInformation", Model.CaseStudy); }
 @{ Html.RenderPartial("_CaseStudyInstructions"); }
 @{ Html.RenderPartial("_Formulas"); }
-@*@{ Html.RenderPartial("_OrderSteps"); }*@
+@{ Html.RenderPartial("_OrderCosts"); }
 @section Scripts {
 	<script>
 		var periodNumber = @Model.WeekNumber;
 	</script>
 	@Scripts.Render("~/plugins/iCheck")
+	@Scripts.Render("~/plugins/toastr")
 	<script src="~/Scripts/plugins/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=es"></script>	
 	@Scripts.Render("~/bundles/Simulations/orders")
 }

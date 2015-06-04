@@ -17,8 +17,16 @@
         $('#animation-case-study').popover('show');
         setTimeout(function () {
             $('#animation-case-study').popover('destroy');
+            animateGroup(animation);
         }, 2000);
         return false;
     });
 });
+
+function animateGroup() {
+    $('#animation-group').popover('show');
+    setTimeout(function () {
+        $('#animation-group').popover('destroy');
+    }, 2000);
+}
 

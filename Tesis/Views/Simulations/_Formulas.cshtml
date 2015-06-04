@@ -7,53 +7,84 @@
 				<h4 class="modal-title">Fórmulas</h4>
 			</div>
 			<div class="modal-body">
-				<p>
-					<div class="panel-body">
-						<div class="panel-group" id="accordion">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h5 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Collapsible Group Item #1</a>
-									</h5>
-								</div>
-								<div id="collapseOne" class="panel-collapse collapse in">
-									<div class="panel-body">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-									</div>
+				<div class="panel-body">
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h5 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.) TIEMPO DE ENTREGA TOTAL (Li ), (semanas/ciclo de pedido)</a>
+								</h5>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<p>
+										“L” por “lead time”, para el “i-ésimo” producto
+										Es la suma de los distintos “tiempos muertos”.
+									</p>
+									<ul>
+										<li>
+											<b>Tiempo de preparación y transmisión al proveedor (L1.1i) (semanas/ciclo de pedido).</b><br />
+											Tiempo que se requiere para preparar y transmitir una Orden de Compra (para cada artículo por separado).<br />
+											Podrá tomar los valores: <br />
+											1 semana – para procesamiento ordinario <br />
+											0 semana – para procesamiento “acelerado” (por el cual se incurre en un costo) <br />
+										</li>
+										<li>
+											<b>Tiempo de “surtir” el pedido (L1.2i) (semanas/ciclo de pedido).</b><br />
+											Es el tiempo que requiere el proveedor para poder disponer del producto para su entrega.<br />
+											Podrá tomar los valores: <br />
+											1 semana – si el producto requiere de preparación contra pedido <br />
+											0 semana – si el producto se encuentra en existencia <br />
+										</li>
+										<li>
+											<b>Tiempo de transporte (L1.3i) (semanas/ciclo de pedido).</b>
+											Es el tiempo que tarda el envío desde que sale del proveedor hasta que se recibe.<br />
+											Podrá tomar los valores: <br />
+											1 semana – para entrega ordinaria <br />
+											0 semana – para entrega por Courier (por el cual se incurre en un costo). <br />
+										</li>
+									</ul>
 								</div>
 							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Collapsible Group Item #2</a>
-									</h4>
-								</div>
-								<div id="collapseTwo" class="panel-collapse collapse">
-									<div class="panel-body">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-									</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.) LOTE DE REPOSICIÓN MÍNIMO (DLi), (unidadesi/ciclo de pedido)</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse">
+								<div class="panel-body">
+									Demanda esperada durante el "tiempo muerto" o "lead time" (Li).
 								</div>
 							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Collapsible Group Item #3</a>
-									</h4>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Collapsible Group Item #3</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse">
+								<div class="panel-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 								</div>
-								<div id="collapseThree" class="panel-collapse collapse">
-									<div class="panel-body">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-									</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.) CANTIDAD ECONÓMICA DE PEDIDO (EOQi), (unidadesi/ciclo de pedido)</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse">
+								<div class="panel-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 								</div>
 							</div>
 						</div>
 					</div>
-					<div>
-						When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-						$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-					</div>
-					<strong>Lorem Ipsum is simply dummy</strong> Aquí se echa el cuento del caso de estudio se invita a chequear.
-				</p>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

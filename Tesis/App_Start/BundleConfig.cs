@@ -310,7 +310,15 @@ namespace Tesis
             //mathjax
             bundles.Add(new ScriptBundle("~/plugins/mathJax/mathJax").Include(
                     "~/Scripts/plugins/mathjax/MathJax.js"));
-            
+
+            //toastr
+            bundles.Add(new ScriptBundle("~/plugins/toastr").Include(
+                    "~/Scripts/plugins/toastr/toastr.min.js"));
+
+            //toastr styles
+            bundles.Add(new StyleBundle("~/plugins/toastrStyles").Include(
+                    "~/Content/plugins/toastr/toasrt.min.css"));
+
             //Application Scripts
 
             //Account
