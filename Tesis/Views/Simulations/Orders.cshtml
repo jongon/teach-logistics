@@ -139,7 +139,7 @@
 									</div>
 								</div>
 								<p>
-								Ordenes serán entregadas en el período:
+								Ordenes serán entregadas en el período: <span class="font-bold" id="delivery"></span>
 								<span id="weekDelivery" class="text-primary"><strong></strong></span>
 								</p>
 								<button type="button" data-toggle="modal" data-target="#orders" class="btn btn-info dim"><i class="fa fa-clock-o fa-lg"></i> Costos y tiempos</button>
@@ -181,7 +181,7 @@
 	<script>
 		var group = @Html.Raw(Json.Encode(Model.Members));
 		var periodNumber = @Model.WeekNumber;
-</script>
+	</script>
 	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/plugins/toastr")
 	<script src="~/Scripts/plugins/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&locale=es"></script>	
