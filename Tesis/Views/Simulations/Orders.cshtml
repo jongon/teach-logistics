@@ -142,7 +142,17 @@
 								Ordenes serán entregadas en el período: <span class="font-bold" id="delivery"></span>
 								<span id="weekDelivery" class="text-primary"><strong></strong></span>
 								</p>
-								<button type="button" data-toggle="modal" data-target="#orders" class="btn btn-info dim"><i class="fa fa-clock-o fa-lg"></i> Costos y tiempos</button>
+								<div id="order_@i" class="costs" style="display:none">
+									<input class="OrdinaryOrderCost" type="hidden" value="@Model.Orders[i].OrderCostTime.OrdinaryOrderCost" />
+									<input class="CourierOrderCost" type="hidden" value="@Model.Orders[i].OrderCostTime.CourierOrderCost" />
+									<input class="FastOrderCost" type="hidden" value="@Model.Orders[i].OrderCostTime.FastOrderCost" />
+									<input class="FastCourierCost" type="hidden" value="@Model.Orders[i].OrderCostTime.FastCourierCost" />
+									<input class="OrdinaryOrderTime" type="hidden" value="@Model.Orders[i].OrderCostTime.OrdinaryOrderTime" />
+									<input class="CourierOrderTime" type="hidden" value="@Model.Orders[i].OrderCostTime.CourierTime" />
+									<input class="FastOrderTime" type="hidden" value="@Model.Orders[i].OrderCostTime.FastOrderTime" />
+									<input class="FastCourierTime" type="hidden" value="@Model.Orders[i].OrderCostTime.FastCourierTime" />
+								</div>
+								<button type="button" data-toggle="modal" data-target="#orders" data-order="order_@i" class="btn btn-info dim order"><i class="fa fa-clock-o fa-lg"></i> Costos y tiempos</button>
 							</div>
 						</div>
 					</div>

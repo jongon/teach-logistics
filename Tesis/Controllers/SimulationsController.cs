@@ -196,6 +196,7 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "El Profesor aún no sumistra nuevas demandas");
                 return RedirectToAction("Index", "Home");
             }
+            SimulationBL simulation = new SimulationBL();
             List<Balance> balances = group.Balances.Where(x => x.PeriodId == lastPeriod.Id).ToList<Balance>();
             List<OrderViewModel> orders = balances.Select(x => new OrderViewModel {
                 Demand = x.Demand,
@@ -207,6 +208,16 @@ namespace Tesis.Controllers
                 ProductNumber = x.Product.Number,
                 ProductId = x.ProductId,
                 ProductPrice = group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault().Price,
+                OrderCostTime = new OrderCostTime {
+                    OrdinaryOrderCost = simulation.GetOrderCost(group.Section.CaseStudy, OrderType.Normal), 
+                    CourierOrderCost = simulation.GetOrderCost(group.Section.CaseStudy, OrderType.Courrier),
+                    FastCourierCost = simulation.GetOrderCost(group.Section.CaseStudy, OrderType.FastCourier),
+                    FastOrderCost = simulation.GetOrderCost(group.Section.CaseStudy, OrderType.Fast),
+                    OrdinaryOrderTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Normal),
+                    CourierTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Courrier),
+                    FastOrderTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Fast),
+                    FastCourierTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.FastCourier),
+                },
                 Sells = x.Sells,
                 UnsatisfiedDemand = x.DissatisfiedDemand,
                 UnsatisfiedDemandCost = x.DissatisfiedCost

@@ -124,9 +124,43 @@ namespace Tesis.ViewModels
 
         [DisplayName("Tipo de Orden")]
         public OrderType? OrderMethodOption { get; set; }
+        #endregion 
+
+        public OrderCostTime OrderCostTime { get; set; }
 
         [DisplayName("Semana de entrega")]
         public int WeekDelivery { get; set; }
-        #endregion 
+    }
+
+    public class OrderCostTime
+    {
+        #region Order Costs
+        [DisplayName("Pedido Ordinario")]
+        public double OrdinaryOrderCost { get; set; }
+
+        [DisplayName("Rápido")]
+        public double FastOrderCost { get; set; }
+
+        [DisplayName("Courier")]
+        public double CourierOrderCost { get; set; }
+
+        [DisplayName("Compra Rápida + Uso de Courier")]
+        public double FastCourierCost { get; set; }
+        #endregion
+
+        #region Order Times
+        [DisplayName("Pedido Ordinario")]
+        public int OrdinaryOrderTime { get; set; }
+
+        [DisplayName("Rápido")]
+        public int FastOrderTime { get; set; }
+
+        [DisplayName("Courier")]
+        public int CourierTime { get; set; }
+
+        [DisplayName("Compra Rápida + Uso de Courier")]
+        public int FastCourierTime { get; set; }
+
+        #endregion
     }
 }

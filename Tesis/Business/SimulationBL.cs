@@ -210,5 +210,39 @@ namespace Tesis.Business
                 
             }
         }
+
+        public double GetOrderCost(CaseStudy caseStudy, OrderType orderType)
+        {
+            switch (orderType)
+            {
+                case OrderType.Fast:
+                    return caseStudy.PreparationCost;
+                case OrderType.Courrier:
+                    return caseStudy.CourierCharges;
+                case OrderType.FastCourier:
+                    return caseStudy.CourierCharges + caseStudy.PreparationCost;
+                default:
+                    return 0;
+
+            }
+        }
+
+        public int GetTimeOrder(InitialCharge initialCharge, OrderType orderType)
+        {
+            switch (orderType)
+            {
+                case OrderType.Normal:
+                    return initialCharge.PreparationTime + initialCharge.DeliveryTime + initialCharge.FillTime + 1;
+                case OrderType.Fast:
+                    return initialCharge.FillTime + initialCharge.DeliveryTime + 1;
+                case OrderType.Courrier:
+                    return initialCharge.PreparationTime + initialCharge.FillTime + 1;
+                case OrderType.FastCourier:
+                    return initialCharge.FillTime + 1;
+                default:
+                    return 0;
+
+            }
+        }
     }
 }

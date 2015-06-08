@@ -62,3 +62,8 @@ $('#animation-group').click(function () {
         "Integrantes"
     );
 });
+
+$(".order").click(function () {
+    var order = $(this).data('order');
+    $('#OrdinaryOrderCost').text($('#' + order + ' .OrdinaryOrderCost').val());
+});
