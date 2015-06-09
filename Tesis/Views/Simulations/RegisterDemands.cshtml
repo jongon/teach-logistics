@@ -1,6 +1,6 @@
 ﻿@model Tesis.ViewModels.DemandViewModel
 @{
-	ViewBag.Title = "Registrar Ventas";
+	ViewBag.Title = "Registrar Demandas";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -11,7 +11,7 @@
 				@Html.ActionLink("Índice", "Index")
 			</li>
 			<li class="active">
-				<strong>Registrar Ventas Semanales</strong>
+				<strong>Registrar Demandas Semanales</strong>
 			</li>
 		</ol>
 	</div>
@@ -54,7 +54,7 @@
 						@Html.EditorFor(model => model.ProductDemands)
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-10">
-								<button type="button" data-toggle="modal" data-target="#registerDemands" class="btn btn-primary">Registrar Ventas</button>
+								<button type="button" data-toggle="modal" data-target="#registerDemands" class="btn btn-primary">Registrar Demandas</button>
 								@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-info" })
 							</div>
 						</div>

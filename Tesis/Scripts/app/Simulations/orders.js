@@ -1,4 +1,12 @@
-﻿$(document).ready(function () {
+﻿MathJax.Hub.Config({
+    "HTML-CSS": { linebreaks: { automatic: true, width: "60% container" } },
+    SVG: { linebreaks: { automatic: true } },
+    menuSettings: {
+        context: "browser"
+    }
+});
+
+$(document).ready(function () {
 
     MathJax.Hub.Config({
         "HTML-CSS": { linebreaks: { automatic: true } },
