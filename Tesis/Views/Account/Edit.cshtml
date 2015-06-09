@@ -49,7 +49,7 @@
 						@Html.AntiForgeryToken()
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 						@Html.HiddenFor(model => model.Id)
-						if (User.IsInRole("Adinistrador"))
+						if (User.IsInRole("Administrador"))
 						{											
 							if (ViewBag.Roles.Contains("Estudiante"))
 							{

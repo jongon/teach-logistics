@@ -211,16 +211,16 @@ namespace Tesis.Business
             }
         }
 
-        public double GetOrderCost(CaseStudy caseStudy, OrderType orderType)
+        public double GetOrderCost(InitialCharge initialCharge, OrderType orderType)
         {
             switch (orderType)
             {
                 case OrderType.Fast:
-                    return caseStudy.PreparationCost;
+                    return initialCharge.CaseStudy.PreparationCost;
                 case OrderType.Courrier:
-                    return caseStudy.CourierCharges;
+                    return (initialCharge.CaseStudy.CourierCharges * initialCharge.Price);
                 case OrderType.FastCourier:
-                    return caseStudy.CourierCharges + caseStudy.PreparationCost;
+                    return (initialCharge.CaseStudy.CourierCharges * initialCharge.Price) + initialCharge.CaseStudy.PreparationCost;
                 default:
                     return 0;
 
@@ -232,13 +232,13 @@ namespace Tesis.Business
             switch (orderType)
             {
                 case OrderType.Normal:
-                    return initialCharge.PreparationTime + initialCharge.DeliveryTime + initialCharge.FillTime + 1;
+                    return initialCharge.PreparationTime + initialCharge.DeliveryTime + initialCharge.FillTime;
                 case OrderType.Fast:
-                    return initialCharge.FillTime + initialCharge.DeliveryTime + 1;
+                    return initialCharge.FillTime + initialCharge.DeliveryTime;
                 case OrderType.Courrier:
-                    return initialCharge.PreparationTime + initialCharge.FillTime + 1;
+                    return initialCharge.PreparationTime + initialCharge.FillTime;
                 case OrderType.FastCourier:
-                    return initialCharge.FillTime + 1;
+                    return initialCharge.FillTime;
                 default:
                     return 0;
 

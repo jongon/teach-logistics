@@ -1,5 +1,10 @@
 ﻿$(document).ready(function () {
 
+    MathJax.Hub.Config({
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+    });
+
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -66,4 +71,11 @@ $('#animation-group').click(function () {
 $(".order").click(function () {
     var order = $(this).data('order');
     $('#OrdinaryOrderCost').text($('#' + order + ' .OrdinaryOrderCost').val());
+    $('#CourierOrderCost').text($('#' + order + ' .CourierOrderCost').val());
+    $('#FastOrderCost').text($('#' + order + ' .FastOrderCost').val());
+    $('#FastCourierCost').text($('#' + order + ' .FastCourierCost').val());
+    $('#OrdinaryOrderTime').text($('#' + order + ' .OrdinaryOrderTime').val());
+    $('#CourierOrderTime').text($('#' + order + ' .CourierOrderTime').val());
+    $('#FastOrderTime').text($('#' + order + ' .FastOrderTime').val());
+    $('#FastCourierTime').text($('#' + order + ' .FastCourierTime').val());
 });

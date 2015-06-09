@@ -33,7 +33,7 @@ namespace Tesis.ViewModels
 
         [DisplayName("Duración")]
         [Required(ErrorMessage = "Duración del examen es requerido")]
-        [Range(0, 999, ErrorMessage = "Solo entero positivo de máx. 3 dígitos")]
+        [Range(1, 999, ErrorMessage = "Solo entero positivo de máx. 3 dígitos")]
         public int MinutesDuration { get; set; }
 
         [DisplayName("Preguntas")]

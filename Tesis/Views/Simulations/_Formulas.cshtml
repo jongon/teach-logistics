@@ -1,4 +1,5 @@
-﻿<div class="modal inmodal fade" data-animation="bounce" id="formulas" tabindex="-1" role="dialog" aria-hidden="true">
+﻿@model int
+<div class="modal inmodal fade" data-animation="bounce" id="formulas" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -12,32 +13,32 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h5 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.) TIEMPO DE ENTREGA TOTAL (Li ), (semanas/ciclo de pedido)</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1.) TIEMPO DE ENTREGA TOTAL (L<sub>i</sub> ), (semanas/ciclo de pedido)</a>
 								</h5>
 							</div>
-							<div id="collapseOne" class="panel-collapse collapse in">
+							<div id="collapseOne" class="panel-collapse collapse">
 								<div class="panel-body">
 									<p>
-										“L” por “lead time”, para el “i-ésimo” producto
+										"L" por “lead time”, para el “i-ésimo” producto
 										Es la suma de los distintos “tiempos muertos”.
 									</p>
 									<ul>
 										<li>
-											<b>Tiempo de preparación y transmisión al proveedor (L1.1i) (semanas/ciclo de pedido).</b><br />
+											<b>Tiempo de preparación y transmisión al proveedor (L<sub>1.1i</sub>) (semanas/ciclo de pedido).</b><br />
 											Tiempo que se requiere para preparar y transmitir una Orden de Compra (para cada artículo por separado).<br />
 											Podrá tomar los valores: <br />
 											1 semana – para procesamiento ordinario <br />
 											0 semana – para procesamiento “acelerado” (por el cual se incurre en un costo) <br />
 										</li>
 										<li>
-											<b>Tiempo de “surtir” el pedido (L1.2i) (semanas/ciclo de pedido).</b><br />
+											<b>Tiempo de “surtir” el pedido (L<sub>1.2i</sub>) (semanas/ciclo de pedido).</b><br />
 											Es el tiempo que requiere el proveedor para poder disponer del producto para su entrega.<br />
 											Podrá tomar los valores: <br />
 											1 semana – si el producto requiere de preparación contra pedido <br />
 											0 semana – si el producto se encuentra en existencia <br />
 										</li>
 										<li>
-											<b>Tiempo de transporte (L1.3i) (semanas/ciclo de pedido).</b>
+											<b>Tiempo de transporte (L<sub>1.3i</sub>) (semanas/ciclo de pedido).</b>
 											Es el tiempo que tarda el envío desde que sale del proveedor hasta que se recibe.<br />
 											Podrá tomar los valores: <br />
 											1 semana – para entrega ordinaria <br />
@@ -50,36 +51,208 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.) LOTE DE REPOSICIÓN MÍNIMO (DLi), (unidadesi/ciclo de pedido)</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2.) LOTE DE REPOSICIÓN MÍNIMO (D<sub>Li</sub>), (unidadesi/ciclo de pedido)</a>
 								</h4>
 							</div>
 							<div id="collapseTwo" class="panel-collapse collapse">
 								<div class="panel-body">
-									Demanda esperada durante el "tiempo muerto" o "lead time" (Li).
+									<p>Demanda esperada durante el “tiempo muerto” o “lead time” (L<sub>i</sub>).</p>
+									\({{\rm{D}}_{\rm{L}}}{\rm{ = }}{{\rm{D}}_{\rm{i}}}\,{\rm{(Demanda}}\,{\rm{en}}\,{\rm{unidades}}\,\,{\rm{de}}\,\,{\rm{i/semana) \times }}{{\rm{L}}_{\rm{i}}}{\rm{(Tiempo}}\,{\rm{de}}\,{\rm{entrega}}\,{\rm{total}}\,{\rm{en}}\,{\rm{semanas/ciclo}}\,{\rm{de}}\,{\rm{pedido)}}\)
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Collapsible Group Item #3</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.) CANTIDAD ECONÓMICA DE PEDIDO (EOQ<sub>i</sub>), (unidadesi/ciclo de pedido)</a>
 								</h4>
 							</div>
 							<div id="collapseThree" class="panel-collapse collapse">
 								<div class="panel-body">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+									<p>Por “Economic Order Quantity”; también “tamaño de lote económico”.</p>
+									\(EO{Q_i} = \sqrt {\frac{{2 \cdot {D_i} \cdot {K_i}}}{{h \cdot {C_i}}}} \,\,\,\,,\,para\,cada\,producto\,\,i\,\,(unidade{s_i}/ciclo\,\,de\,\,pedido)\)
+									<p>
+										Donde:
+									</p>
+									\({D_i} = Demanda:valor\,esperado\,\,o\,\,pronóstico\,\,de\,\,la\,\,demanda\,\,semanal\,\,(unidade{s_i}/semana)\)
+									\({K_i} = Costo\,\,de\,\,preparar/transmitir\,\,cada\,\,Orden\,\,de\,\,Compra\,\,para\,\,i\,(u.m./ciclo\,\,de\,\,pedido\,\,de\,\,i)\)
+									\(h = Costo\,\,semanal\,\,del\,\,inventario\,\,(({H_{anual}}\% /100)/52\,\,semanas)\)
+									\({C_i} = Costo\,\,o\,\,precio\,\,de\,\,cada\,\,unidad\,\,de\,\,producto\,\,i\,\,(u.m./unida{d_i})\)
 								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3.) CANTIDAD ECONÓMICA DE PEDIDO (EOQi), (unidadesi/ciclo de pedido)</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4.) LOTE DE REPOSICIÓN (“RECOMENDADO”) (Q<sub>i</sub>), (unidadesi/ciclo de pedido)</a>
 								</h4>
 							</div>
-							<div id="collapseThree" class="panel-collapse collapse">
+							<div id="collapseFour" class="panel-collapse collapse">
 								<div class="panel-body">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+									<p>
+										Corresponderá al mayor valor entre (EOQ)<sub>i</sub> y (DL)<sub>i</sub>
+									</p>
+									\({Q_i} = Max\,\,(EO{Q_i};\,\,\,{D_{Li}}),\,\,(unidade{s_i}/ciclo\,\,de\,\,pedido)\)
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">5.) COSTO (PROMEDIO TRIMESTRAL) DE MATERIAL (PRODUCTO) “i” (CPTP<sub>i</sub>), (u.m.<sub>i</sub>/trimestre)</a>
+								</h4>
+							</div>
+							<div id="collapseFive" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										La gestión se desarrollará a lo largo de @Model semanas de actividades, coincidiendo con doce semanas académicas. Esto constituye el equivalente de un trimestre de gestión de inventarios.
+										El Costo Promedio Trimestral de Material será igual a:
+									</p>
+									\[\begin{array}{l}Costo\,\,(promedio\,\,trimestral)\,\,de\,\,material\,\,(producto)\,\,i = \,\,{C_i} \cdot {D_i} \cdot @Model\,\,semanas/trimestre,\\(u.m{._i}/trimestre)\end{array}\]
+									<p>
+										Donde:
+									</p>
+									\[\begin{array}{l}Costo\,\,(promedio\,\,trimestral)\,\,de\,\,material\,\,(producto)\,\,i = \,\,{C_i} \cdot {D_i} \cdot @Model\,\,semanas/trimestre,\\(u.m{._i}/trimestre)\end{array}\]
+									\({D_i} = Demanda:valor\,esperado\,\,o\,\,pronóstico\,\,de\,\,la\,\,demanda\,\,semanal\,\,(unidade{s_i}/semana)\)
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">6.) COSTO (TRIMESTRAL) DE PEDIDO (DE MATERIAL O PRODUCTO “i”) (CTPP<sub>i</sub>), (u.m.<sub>i</sub>/trimestre)</a>
+								</h4>
+							</div>
+							<div id="collapseSix" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										Costo fijo de pedido (costo logístico importante en el que se incurre cada vez que se colocan órdenes de compra), acumulado al número de veces que se ordena material (producto “i”) en el trimestre de gestión de inventarios.
+									</p>
+									\(Costo\,\,(trimestral)\,\,de\,\,pedido\,\,(de\,\,material\,\,o\,\,producto\,\,i) = \left( {\frac{{{D_i} \cdot @Model\,sem./trim.}}{{{Q_i}}}} \right) \cdot {K_i},\,\,(u.m{._i}/trimestre)\)
+									<p>
+										Donde:
+									</p>
+									\({D_i} = Demanda:valor\,esperado\,\,o\,\,pronóstico\,\,de\,\,la\,\,demanda\,\,semanal\,\,(unid{._i}/semana)\)
+									\({Q_i} = Max\,\,(EO{Q_i};\,\,\,{D_{Li}}),\,\,(unidade{s_i}/ciclo\,\,de\,\,pedido)\)
+									\({K_i} = Costo\,\,de\,\,preparar/transmitir\,\,cada\,\,Orden\,\,de\,\,Compra\,\,para\,\,i\,(u.m./ciclo\,\,de\,\,pedido)\)
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">7.) COSTO (PROMEDIO TRIMESTRAL) DE MANTENER (INVENTARIO DE) MATERIAL (PRODUCTOi) (CPTMIP<sub>i</sub>), (u.m.<sub>i</sub>/trimestre)</a>
+								</h4>
+							</div>
+							<div id="collapseSeven" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										Costo variable proporcional a la cantidad de inventario mantenida (costo logístico importante relacionado con los “costos de disponibilidad” de inventario de producto “i”).
+									</p>
+									\(Costo\,\,(prom.\,\,trim.)\,\,de\,\,mantener\,\,inventario\,\,dei = \left[ {\left( {\frac{{{D_i} \cdot @Model\,\,sem./trim.}}{2}} \right) + I{S_i}} \right] \cdot \left( {\frac{H}{{100}} \cdot \frac{1}{{4\,\,trim.}}} \right) \cdot {C_i}\,\,,\,(u.m{._i}/trim.)\)
+									<p>
+										Donde
+									</p>
+									\({D_i} = Demanda:valor\,esperado\,\,o\,\,pronóstico\,\,de\,\,la\,\,demanda\,\,semanal\,\,(unid{._i}/semana)\)
+									\(I{S_i} = \,Inventario\,\,de\,\,seguridad\,\,mantenido\,\,para\,\,i\,\,(unid{._i})\)
+									\(H = \,Costo\,\,anual\,\,de\,\,mantener\,\,inventario\,\,de\,\,i\,\,como\,\,\% \,\,del\,\,precio\,\,del\,\,producto\,i\)
+									\({C_i} = Costo\,\,o\,\,precio\,\,de\,\,cada\,\,unidad\,\,de\,\,producto\,\,i\,\,(u.m./unida{d_i})\)
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">8.) COSTO (PROMEDIO TRIMESTRAL) TOTAL DE INVENTARIO DE “i” (CPTTIP<sub>i</sub>), (u.m.<sub>i</sub>/trimestre)</a>
+								</h4>
+							</div>
+							<div id="collapseEight" class="panel-collapse collapse">
+								<div class="panel-body">
+									El costo (promedio trimestral) total de inventario del producto “i” será igual a la suma de tres componentes:
+									<ul>
+										<li>
+											Costo o precio de adquisición del producto: costo unitario x cantidad
+										</li>
+										<li>
+											Costo de pedido (costo logístico “fijo”): presentado en el numeral 6.
+										</li>
+										<li>
+											Costo de mantener (costo logístico de “disponibilidad”): presentado en el numeral 7.
+										</li>
+									</ul>
+									@Html.Raw(@"\(Costo\,\,(promedio\,\,trim.)\,\,total\,de\,\,i = {C_i} \cdot {D_i} \cdot 12 + \left( {\frac{{{D_i} \cdot 12}}{{{Q_i}}}} \right) \cdot {K_i} + \left[ {\left( {\frac{{{D_i} \cdot 12}}{2}} \right) + I{S_i}} \right] \cdot \left( {\frac{H}{{100}} \cdot \frac{1}{4}} \right) \cdot {C_i}\,\,,\,\,(u.m{._i}/trim.)\)")
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">9.) INVENTARIO DE SEGURIDAD DE “i” (IS<sub>i</sub>), (unid.<sub>i</sub>)</a>
+								</h4>
+							</div>
+							<div id="collapseNine" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										Se fijará y calculará externamente a la aplicación, como el percentil de nivel de servicio adoptado, basado en demanda distribuida normalmente. Esto significa introducir un “dato inicial” en unid.i
+										Esto permitirá evitar incluir funciones estadísticas para su proceso interno en la aplicación.
+										El percentil de servicio inicial será de 98%, o bien, el valor esperado de la demanda semanal más dos desviaciones estándar, por lo cual el Inventario de Seguridad de “i” será igual a dos desviaciones estándar de “i”, en unid.i
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTen">10.) COEFICIENTE DE VARIACIÓN DE “i” (Cv<sub>i</sub>), (adimensional)</a>
+								</h4>
+							</div>
+							<div id="collapseTen" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										El coeficiente de variación es una medida de variabilidad de una variable aleatoria proveniente de la estadística. Es de gran utilidad en gestión de inventarios por cuanto proporciona una buena medida de la variabilidad de la demanda de un producto: los productos de baja variabilidad (Cv ≤0,2) se gestionan bien manejando el lote de reposición, en tanto que los productos de alta variabilidad se gestionan mejor ajustando el inventario de seguridad.
+										Por ser adimensional permite comparar entre sí las variabilidades de productos o de renglones que vengan en diferentes presentaciones o unidades de medición.
+									</p>
+									\(Coeficiente\,\,de\,\,Variación\,\,C{v_i} = \frac{{desviación\,\,estándar\,\,de\,\,la\,\,demanda\,\,{\sigma _i}}}{{valor\,\,esperado\,\,{\mu _i}\,\,o\,\,pronóstico\,\,de\,\,la\,\,demanda\,\,{D_{_i}}}}\)
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">11.) DURACIÓN DEL CICLO DE PEDIDO (RECOMENDADO) PARA “i”, (semanas/ciclo de pedido de “i”)</a>
+								</h4>
+							</div>
+							<div id="collapseEleven" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										Corresponde a la duración en inventario de las unidades recibidas en un lote de reposición, hasta su consumo. A mayor duración, menor cantidad de nuevas órdenes de compra, lo cual reduce los costos logísticos “fijos” de pedido acumulados, pero mayor inventario promedio en el periodo, aumentando los costos logísticos “de disponibilidad”.
+									</p>
+									\({T_{cicl{o_i}}} = \frac{{{Q_i}}}{{{D_i}}},\,\,(semanas/ciclo\,\,de\,\,pedido\,\,de\,\,i)\)
+									<p>Donde</p>
+									\({Q_i} = Max\,\,(EO{Q_i};\,\,\,{D_{Li}}),\,\,(unidade{s_i}/ciclo\,\,de\,\,pedido)\)
+									\({D_i} = Demanda:valor\,esperado\,\,o\,\,pronóstico\,\,de\,\,la\,\,demanda\,\,semanal\,\,(unid{._i}/semana)\)
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">12.) INVENTARIO PROMEDIO DE PRODUCTO“i” (del CICLO RECOMENDADO) (IPP<sub>i</sub>), (unid.<sub>i</sub>)</a>
+								</h4>
+							</div>
+							<div id="collapseTwelve" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										inventario promedio durante el transcurso de un ciclo (entre dos órdenes de compra consecutivas), es la suma de:
+									</p>
+									<ul>
+										<li>La mitad del lote de reposición</li>
+										<li>El inventario de seguridad</li>
+									</ul>
+									\(Inventario\,\,promedio\,\,de\,\,i = \frac{{{Q_i}}}{2} + I{S_i}\,\,,(unid{._i})\)
+									<p>Donde</p>
+									\({Q_i} = Max\,\,(EO{Q_i};\,\,\,{D_{Li}}),\,\,(unidade{s_i}/ciclo\,\,de\,\,pedido)\)
+									\(I{S_i} = \,Inventario\,\,de\,\,seguridad\,\,mantenido\,\,para\,\,i\,\,(unid{._i})\)
 								</div>
 							</div>
 						</div>

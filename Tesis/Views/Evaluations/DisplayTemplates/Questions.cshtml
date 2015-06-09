@@ -4,6 +4,11 @@
 	{
 		<dd>
 		@question.QuestionText <br />
+		@if (question.ImagePath != "")
+		{
+			<text>Imagen:</text><br />
+			<img src="@Url.Content(question.ImagePath)" alt="image" width="200" /><br />
+		}	
 		Puntaje: @question.Score<br />
 		@foreach (var option in question.Options)
 		{

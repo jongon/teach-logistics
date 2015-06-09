@@ -399,8 +399,8 @@ namespace Tesis.Controllers
             }
             catch (Exception e)
             {
-                Flash.Error("Error", e.Message);
-                return View("Evaluations");
+                Flash.Error("Error", "Ha ocurrido un error al intentar presentar la evaluación");
+                return RedirectToAction("Evaluations");
             }
         }
 
