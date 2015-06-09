@@ -82,7 +82,8 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Index()
         {
-            return View(await Db.Evaluations.ToListAsync());
+            List<Evaluation> evaluations = await Db.Evaluations.ToListAsync();
+            return View(evaluations);
         }
 
         // GET: Evaluations/Details/5
