@@ -110,6 +110,7 @@ namespace Tesis.Controllers
         {
             try
             {
+                ViewBag.Users = new MultiSelectList(new List<User>());  
                 if (ModelState.IsValid)
                 {
                     Group currentGroup = Db.Groups.Where(x => x.Id == group.Id).FirstOrDefault();
@@ -117,7 +118,7 @@ namespace Tesis.Controllers
                     {
                         user.Group = null;
                     }
-                    Db.SaveChanges();
+                    await Db.SaveChangesAsync();
                     if (!(group.Users.Count() == Db.Users.Where(x => (x.SectionId == group.SectionId && x.GroupId == null) && (group.Users.Contains(x.Id))).Count()))
                     {
                         Flash.Error("Error", "Ha ocurrido un error creando el grupo, revise que el usuario no tenga un grupo asignado");

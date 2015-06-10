@@ -198,6 +198,11 @@ namespace Tesis.Controllers
             }
             SimulationBL simulation = new SimulationBL();
             List<Balance> balances = group.Balances.Where(x => x.PeriodId == lastPeriod.Id).ToList<Balance>();
+            if (balances.Count() == 0)
+            {
+                Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
+                return RedirectToAction("Index", "Home");
+            }
             List<OrderViewModel> orders = balances.Select(x => new OrderViewModel {
                 Demand = x.Demand,
                 FinalStock = x.FinalStock,
