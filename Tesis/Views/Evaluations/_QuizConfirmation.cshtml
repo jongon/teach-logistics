@@ -12,12 +12,11 @@
 				</p>
 			</div>
 				<div class="modal-footer">
-				@using (Html.BeginForm("TakeQuizFirst", "Evaluations", FormMethod.Post, new { role = "form", id = "form" }))
-				{
-					<input type="hidden" value="" name="Id" id="takeQuiz"/>
-					<button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
-					<input type="submit" value="Presentar Quiz" class="btn btn-primary btn-sm" />
-				}				
+					<form method="post" role="form" id="form" action="@Url.Action("TakeQuizFirst", "Evaluations")">				
+						<input type="hidden" value="" name="Id" id="takeQuiz"/>
+						<button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+						<input type="submit" value="Presentar Quiz" class="btn btn-primary btn-sm" />
+					</form>			
 				</div>
 		</div>
 	</div>
