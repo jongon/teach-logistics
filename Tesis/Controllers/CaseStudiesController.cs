@@ -79,6 +79,14 @@ namespace Tesis.Controllers
                         {
                             throw new Exception("Ha ocurrido un error agregando los datos de un producto");
                         }
+                        if (caseStudyViewModel.SectionId != null)
+                        {
+                            Section section = Db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId && x.CaseStudy == null).FirstOrDefault();
+                            if (section != null)
+                                caseStudy.Sections.Add(section);
+                            else
+                                Flash.Warning("Advertencia", "No se ha podido asignar la sección seleccionada, ya está asignada a un caso de estudio");
+                        }
                         Db.CaseStudies.Add(caseStudy);
                         await Db.SaveChangesAsync();
                         Flash.Success("Ok", "El archivo Xml es correcto, se ha creado el caso de estudio");
@@ -117,8 +125,11 @@ namespace Tesis.Controllers
                         };
                         if (caseStudyViewModel.SectionId != null)
                         {
-                            Section section = Db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId).FirstOrDefault();
-                            caseStudy.Sections.Add(section);
+                            Section section = Db.Sections.Where(x => x.Id == caseStudyViewModel.SectionId && x.CaseStudy == null).FirstOrDefault();
+                            if (section != null)
+                                caseStudy.Sections.Add(section);
+                            else
+                                Flash.Warning("Advertencia", "No se ha podido asignar la sección");
                         }
                         Db.CaseStudies.Add(caseStudy);
                         await Db.SaveChangesAsync();

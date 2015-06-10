@@ -87,7 +87,7 @@ namespace Tesis.Business
                     Period = demand.Period,
                     Created = DateTime.Now,
                 };
-                group.Orders.Add(lastOrder);
+                //group.Orders.Add(lastOrder);
             }
             else
             {
