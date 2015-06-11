@@ -13,15 +13,15 @@ $.validator.setDefaults({
 
 //Definición de clase de carga Inicial
 function InitialCharge() {
-    this.productId = $('#ProductId').val();
-    this.demand = $('#Demand').val();
-    this.stdDev = $('#Stddev').val();
-    this.price = $('#Price').val();
-    this.securityStock = $('#SecurityStock').val();
-    this.initialStock = $('#InitialStock').val();
-    this.fillTime = $('#FillTimeOption').val();
-    this.deliveryTime = $('#DeliveryTimeOption').val();
-    this.prepatationTime = $('#PreparationTimeOption').val();
+    this.ProductId = $('#ProductId').val();
+    this.Demand = $('#Demand').val();
+    this.StdDev = $('#Stddev').val();
+    this.Price = $('#Price').val();
+    this.SecurityStock = $('#SecurityStock').val();
+    this.InitialStock = $('#InitialStock').val();
+    this.FillTime = $('#FillTimeOption').val();
+    this.DeliveryTime = $('#DeliveryTimeOption').val();
+    this.PreparationTime = $('#PreparationTimeOption').val();
 }
 
 var initialCharges = [];

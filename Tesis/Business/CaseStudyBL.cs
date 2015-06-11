@@ -49,29 +49,29 @@ namespace Tesis.Business
 
         public InitialCharge ChangeTimes(CaseStudyViewModel caseStudy, InitialCharge initialCharge)
         {
-            if (initialCharge.PreparationTime == 0)
+            if (initialCharge.PreparationTime == 1)
             {
                 initialCharge.PreparationTime = caseStudy.PreparationTime;
             }
-            else if (initialCharge.PreparationTime == 1)
+            else if (initialCharge.PreparationTime == 0)
             {
                 initialCharge.PreparationTime = caseStudy.AcceleratedPreparationTime;
             }
 
-            if (initialCharge.FillTime == 0)
+            if (initialCharge.FillTime == 1)
             {
                 initialCharge.FillTime = caseStudy.FillTime;
             }
-            else if (initialCharge.FillTime == 1)
+            else if (initialCharge.FillTime == 0)
             {
                 initialCharge.FillTime = caseStudy.ExistingFillTime;
             }
 
-            if (initialCharge.DeliveryTime == 0)
+            if (initialCharge.DeliveryTime == 1)
             {
                 initialCharge.DeliveryTime = caseStudy.DeliveryTime;
             }
-            else if (initialCharge.DeliveryTime == 1)
+            else if (initialCharge.DeliveryTime == 0)
             {
                 initialCharge.DeliveryTime = caseStudy.CourierDeliveryTime;
             }

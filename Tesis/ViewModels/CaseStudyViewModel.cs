@@ -167,8 +167,8 @@ namespace Tesis.ViewModels
             get
             {
                 return new SelectList(new Dictionary<string, string>() {
-                    { "0", "Proceso Ordinario"},
-                    { "1", "Proceso Acelerado"}
+                    { "1", "Proceso Ordinario"},
+                    { "0", "Proceso Acelerado"}
                 }, "Key", "Value");
             }
             set { }
@@ -179,8 +179,8 @@ namespace Tesis.ViewModels
             get
             {
                 return new SelectList(new Dictionary<string, string>() {
-                    { "0", "Con Elaboración"},
-                    { "1", "En Existencia"}
+                    { "1", "Con Elaboración"},
+                    { "0", "En Existencia"}
                 }, "Key", "Value");
             }
             set { }
@@ -191,8 +191,8 @@ namespace Tesis.ViewModels
             get
             {
                 return new SelectList(new Dictionary<string, string>() {
-                    { "0", "Entrega Ordinaria"},
-                    { "1", "Con Uso de Courier"}
+                    { "1", "Entrega Ordinaria"},
+                    { "0", "Con Uso de Courier"}
                 }, "Key", "Value");
             }
             set { }

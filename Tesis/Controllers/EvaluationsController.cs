@@ -158,6 +158,7 @@ namespace Tesis.Controllers
                         Name = evaluation.Name,
                         MinutesDuration = evaluation.MinutesDuration,
                         QuestionIds = evaluation.Questions.Select(x => x.Id).ToList(),
+                        LimitDate = evaluation.LimitDate
                     };
                     return View(evaluationViewModel);
                 }
@@ -184,20 +185,28 @@ namespace Tesis.Controllers
             try
             {
                 Evaluation evaluation = (Evaluation)validatedEvaluation;
-                if (evaluation.Sections.Count() <= 0)
+                if (ModelState.IsValid)
                 {
-                    evaluation.Name = evaluationViewModel.Name;
-                    evaluation.Questions.Clear();
-                    evaluation.Questions = await Db.Questions.Where(x => evaluationViewModel.QuestionIds.Contains(x.Id)).ToListAsync();
-                    await Db.SaveChangesAsync();
-                    Flash.Success("Ok", "La evaluación ha sido editada con exito");
-                    return RedirectToAction("Index");
+                    if (evaluation.Sections.Count() <= 0)
+                    {
+                        evaluation.Name = evaluationViewModel.Name;
+                        evaluation.LimitDate = evaluationViewModel.LimitDate;
+                        evaluation.Questions.Clear();
+                        evaluation.Questions = await Db.Questions.Where(x => evaluationViewModel.QuestionIds.Contains(x.Id)).ToListAsync();
+                        await Db.SaveChangesAsync();
+                        Flash.Success("Ok", "La evaluación ha sido editada con exito");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        Flash.Error("Error", "Esta evaluación no puede ser modificada porque se encuentra asignada");
+                    }
                 }
                 else
                 {
-                    Flash.Error("Error", "Esta evaluación no puede ser modificada porque se encuentra asignada");
-                    return View(evaluationViewModel);
+                    Flash.Error("Error", "Ha ocurrido un error editando la evaluación");
                 }
+                return View(evaluationViewModel);
             }
             catch (Exception e)
             {
@@ -398,7 +407,7 @@ namespace Tesis.Controllers
                     return RedirectToAction("Evaluations");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Flash.Error("Error", "Ha ocurrido un error al intentar presentar la evaluación");
                 return RedirectToAction("Evaluations");
