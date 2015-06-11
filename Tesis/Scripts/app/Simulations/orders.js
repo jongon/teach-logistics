@@ -87,3 +87,7 @@ $(".order").click(function () {
     $('#FastOrderTime').text($('#' + order + ' .FastOrderTime').val());
     $('#FastCourierTime').text($('#' + order + ' .FastCourierTime').val());
 });
+
+$("#demands").click(function () {
+    window.location.assign(demandsUrl);
+});

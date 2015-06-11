@@ -33,6 +33,7 @@
 					<button id="animation-case-study" class="btn btn-success dim" data-placement="top" data-toggle="modal" data-target="#information" data-content="Haz click aquí para ver información del caso de estudio."><i class="fa fa-graduation-cap fa-lg"></i> Caso de Estudio</button>
 					<button class="btn btn-primary dim" data-toggle="modal" data-target="#formulas"><i class="fa fa-calculator fa-lg"></i> Fórmulas</button>
 					<button class="btn btn-warning dim" data-toggle="modal" data-target="#instructions"><i class="fa fa-info-circle fa-lg"></i> Instrucciones</button>
+					<button id="demands" class="btn btn-default dim"><i class="fa fa-shopping-cart fa-lg"></i> Demandas</button>
 					<button class="btn btn-info pull-right dim" id="animation-group" data-placement="top" data-content="Haz click aquí para ver los integrantes del grupo."><i class="fa fa-group	fa-lg"></i> Grupo</button>
 				</div>
 			</div>		
@@ -191,6 +192,7 @@
 	<script>
 		var group = @Html.Raw(Json.Encode(Model.Members));
 		var periodNumber = @Model.WeekNumber;
+		var demandsUrl = "@Url.Action("Demands", new { Id = Model.Group.SectionId })";
 	</script>
 	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/plugins/toastr")
