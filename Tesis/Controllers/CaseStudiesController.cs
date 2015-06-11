@@ -189,6 +189,10 @@ namespace Tesis.Controllers
                 foreach (var section in sections)
                 {
                     section.CaseStudyId = null;
+                    if (section.IsActivedSimulation)
+                    {
+                        throw new Exception();
+                    }
                 }
                 Db.CaseStudies.Remove(caseStudy);
                 await Db.SaveChangesAsync();

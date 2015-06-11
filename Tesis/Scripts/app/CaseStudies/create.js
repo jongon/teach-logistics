@@ -19,9 +19,9 @@ function InitialCharge() {
     this.Price = $('#Price').val();
     this.SecurityStock = $('#SecurityStock').val();
     this.InitialStock = $('#InitialStock').val();
-    this.FillTime = $('#FillTimeOption').val();
-    this.DeliveryTime = $('#DeliveryTimeOption').val();
-    this.PreparationTime = $('#PreparationTimeOption').val();
+    this.FillTime = $("input:radio[name*= 'FillTimeOption']:checked").val();
+    this.DeliveryTime = $("input:radio[name*= 'DeliveryTimeOption']:checked").val();
+    this.PreparationTime = $("input:radio[name*= 'PreparationTimeOption']:checked").val();
 }
 
 var initialCharges = [];
