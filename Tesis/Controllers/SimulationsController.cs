@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Tesis.Business;
@@ -303,6 +304,24 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "Ha Ocurrido un error creando las ordenes");
                 return View("Index");
             }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> Demands(Guid? Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Section section = await Db.Sections.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            if (section == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Section = section;
+            List<Period> periods = await Db.Periods.Where(x => x.SectionId == Id && x.Section.IsActivedSimulation == true).OrderByDescending(t => t.Created).ToListAsync<Period>();
+            return View(periods);
         }
 
         [HttpGet]
