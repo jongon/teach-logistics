@@ -156,7 +156,7 @@ namespace Tesis.Business
             {
                 return initialCharge.FillTime + initialCharge.DeliveryTime;
             }
-            else if (orderType == OrderType.Courrier)
+            else if (orderType == OrderType.Courier)
             {
                 return initialCharge.PreparationTime + initialCharge.FillTime;
             }
@@ -201,7 +201,7 @@ namespace Tesis.Business
             {
                 case OrderType.Fast:
                     return caseStudy.PreparationCost;
-                case OrderType.Courrier:
+                case OrderType.Courier:
                     return caseStudy.CourierCharges;
                 case OrderType.FastCourier:
                     return caseStudy.CourierCharges + caseStudy.PreparationCost;
@@ -217,7 +217,7 @@ namespace Tesis.Business
             {
                 case OrderType.Fast:
                     return initialCharge.CaseStudy.PreparationCost;
-                case OrderType.Courrier:
+                case OrderType.Courier:
                     return (initialCharge.CaseStudy.CourierCharges * initialCharge.Price);
                 case OrderType.FastCourier:
                     return (initialCharge.CaseStudy.CourierCharges * initialCharge.Price) + initialCharge.CaseStudy.PreparationCost;
@@ -235,7 +235,7 @@ namespace Tesis.Business
                     return initialCharge.PreparationTime + initialCharge.DeliveryTime + initialCharge.FillTime;
                 case OrderType.Fast:
                     return initialCharge.FillTime + initialCharge.DeliveryTime;
-                case OrderType.Courrier:
+                case OrderType.Courier:
                     return initialCharge.PreparationTime + initialCharge.FillTime;
                 case OrderType.FastCourier:
                     return initialCharge.FillTime;

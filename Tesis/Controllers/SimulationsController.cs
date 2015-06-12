@@ -216,11 +216,11 @@ namespace Tesis.Controllers
                 ProductPrice = group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault().Price,
                 OrderCostTime = new OrderCostTime {
                     OrdinaryOrderCost = simulation.GetOrderCost(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Normal),
-                    CourierOrderCost = simulation.GetOrderCost(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Courrier),
+                    CourierOrderCost = simulation.GetOrderCost(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Courier),
                     FastCourierCost = simulation.GetOrderCost(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.FastCourier),
                     FastOrderCost = simulation.GetOrderCost(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Fast),
                     OrdinaryOrderTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Normal),
-                    CourierTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Courrier),
+                    CourierTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Courier),
                     FastOrderTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.Fast),
                     FastCourierTime = simulation.GetTimeOrder(group.Section.CaseStudy.InitialCharges.Where(t => t.ProductId == x.ProductId).FirstOrDefault(), OrderType.FastCourier),
                 },

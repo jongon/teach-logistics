@@ -5,7 +5,7 @@ namespace Tesis.Models
     {
         None,
         Normal,
-        Courrier,
+        Courier,
         Fast,
         FastCourier
     }

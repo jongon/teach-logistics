@@ -116,7 +116,7 @@
 									</dd>
 								</dl>
 							</div>
-							<div class="col-md-8 form-horizontal">
+							<div class="col-md-8 form-horizontal order-panel">
 								<div class="form-group">
 									@Html.LabelFor(modelItem => Model.Orders[i].Quantity, new { @class = "control-label col-sm-3" })
 									<div class="col-md-3">
@@ -140,10 +140,14 @@
 									</div>
 								</div>
 								<p>
-								Ordenes serán entregadas en el período: <span class="font-bold" id="delivery"></span>
-								<span id="weekDelivery" class="text-primary"><strong></strong></span>
+									Ordenes serán entregadas en el período: <span class="font-bold" id="delivery"></span>
+									<span id="weekDelivery" class="text-primary"><strong></strong></span>
+								</p>
+								<p>
+									Costo de Total del pedido: <span class="font-bold" id="total-cost"></span>
 								</p>
 								<div id="order_@i" class="costs" style="display:none">
+									<input class="Price" type="hidden" value="@Model.Orders[i].ProductPrice" />
 									<input class="OrdinaryOrderCost" type="hidden" value="@Model.Orders[i].OrderCostTime.OrdinaryOrderCost" />
 									<input class="CourierOrderCost" type="hidden" value="@Model.Orders[i].OrderCostTime.CourierOrderCost" />
 									<input class="FastOrderCost" type="hidden" value="@Model.Orders[i].OrderCostTime.FastOrderCost" />

@@ -115,7 +115,7 @@ namespace Tesis.ViewModels
                 return new SelectList(new Dictionary<OrderType, string>() {
                     { OrderType.Normal, "Pedido Ordinario" },
                     { OrderType.Fast, "Rápido" },
-                    { OrderType.Courrier, "Courier" },
+                    { OrderType.Courier, "Courier" },
                     { OrderType.FastCourier, "Compra Rápida + Uso de Courier" },
                 }, "Key", "Value");
             }
