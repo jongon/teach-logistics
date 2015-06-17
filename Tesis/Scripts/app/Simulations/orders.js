@@ -159,6 +159,7 @@ function calculateTimeAndCost(selected, quantity) {
         var courierOrderCost = $(selected).parents('.order-panel').first().children('.costs').children('.CourierOrderCost').val();
         var fastCourierCost = $(selected).parents('.order-panel').first().children('.costs').children('.FastCourierCost').val();
         var fastCourierTime = $(selected).parents('.order-panel').first().children('.costs').children('.FastCourierTime').val();
+        console.log(courierOrderCost);
         deliveryTime = Number(periodNumber) + Number(fastCourierTime);
         cost = ((parseFloat(courierOrderCost) + Number(price)) * Number(quantity)) + Number(fastCourierCost);
         $(delivery).text( deliveryTime );
