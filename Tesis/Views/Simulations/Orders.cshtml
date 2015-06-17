@@ -120,7 +120,7 @@
 								<div class="form-group">
 									@Html.LabelFor(modelItem => Model.Orders[i].Quantity, new { @class = "control-label col-sm-3" })
 									<div class="col-md-3">
-										@Html.EditorFor(modelItem => Model.Orders[i].Quantity, new { htmlAttributes = new { @placeholder = "Cantidad", @Value = "" } })
+										@Html.EditorFor(modelItem => Model.Orders[i].Quantity, new { htmlAttributes = new { @placeholder = "Cantidad", @Value = "", @class = "quantity-order" } })
 										@Html.ValidationMessageFor(modelItem => Model.Orders[i].Quantity, "", new { @class = "text-danger" })
 									</div>
 								</div>
@@ -140,11 +140,11 @@
 									</div>
 								</div>
 								<p>
-									Ordenes serán entregadas en el período: <span class="font-bold" id="delivery"></span>
+									Ordenes serán entregadas en el período: <span class="font-bold delivery"></span>
 									<span id="weekDelivery" class="text-primary"><strong></strong></span>
 								</p>
 								<p>
-									Costo de Total del pedido: <span class="font-bold" id="total-cost"></span>
+									Costo de Total del pedido: <span class="font-bold total-cost"></span>
 								</p>
 								<div id="order_@i" class="costs" style="display:none">
 									<input class="Price" type="hidden" value="@Model.Orders[i].ProductPrice" />

@@ -220,7 +220,7 @@ namespace Tesis.Business
                 case OrderType.Courier:
                     return (initialCharge.CaseStudy.CourierCharges * initialCharge.Price);
                 case OrderType.FastCourier:
-                    return (initialCharge.CaseStudy.CourierCharges * initialCharge.Price) + initialCharge.CaseStudy.PreparationCost;
+                    return initialCharge.CaseStudy.PreparationCost;
                 default:
                     return 0;
 
