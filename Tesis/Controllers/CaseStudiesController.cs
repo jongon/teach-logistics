@@ -238,12 +238,36 @@ namespace Tesis.Controllers
                     Flash.Error("Error", "No existe el caso de estudio");
                     return RedirectToAction("Index");
                 }
+                List<Section> activatedSections = caseStudy.Sections.Where(x => x.IsActivedSimulation == true).ToList();
                 caseStudy.Sections.Clear();
                 if (caseStudyModel.Sections != null)
                 {
                     List<Section> sections = Db.Sections.Where(x => caseStudyModel.Sections.Contains(x.Id)).ToList();
                     caseStudy.Sections = sections;
                 }
+                if (activatedSections.Count() > 0)
+                {
+                    var displayWarning = false;
+                    foreach (var activatedSection in activatedSections)
+                    {
+                        caseStudy.Sections.Add(activatedSection);
+                        if (caseStudyModel.Sections != null)
+                        {
+                            if (!caseStudyModel.Sections.Contains(activatedSection.Id))
+                            {
+                                displayWarning = true;
+                            }
+                        }
+                        else
+                        {
+                            displayWarning = true;
+                        }
+                    }
+                    if (displayWarning)
+                    {
+                        Flash.Warning("Advertencia", "No pueden ser desasignados los casos estudios que tengan simulaciones activas");
+                    }
+                } 
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "El caso de Estudio ha sido asignado a las sección(es) satisfactoriamente");
                 return RedirectToAction("Index");
