@@ -31,6 +31,9 @@ namespace Tesis.Models
         [DisplayName("Sección")]
         public virtual Section Section { get; set; }
 
+        [DisplayName("Activo en Simulación")]
+        public virtual bool IsInSimulation { get; set; }
+
         [DisplayName("Integrantes")]
         [Required]
         public virtual ICollection<User> Users { get; set; }

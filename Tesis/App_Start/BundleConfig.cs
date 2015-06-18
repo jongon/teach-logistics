@@ -418,6 +418,9 @@ namespace Tesis
             bundles.Add(new ScriptBundle("~/bundles/Simulations/orders").Include(
                 "~/Scripts/app/Simulations/orders.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Simulations/groups").Include(
+                "~/Scripts/app/Simulations/groups.js"));
+
             bundles.Add(new StyleBundle("~/app/Simulations").Include(
                 "~/Content/app/Simulations.css"));
 

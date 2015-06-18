@@ -27,22 +27,20 @@ namespace Tesis.Controllers
         {
             try
             {
+                if (Id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
                 Section section = await Db.Sections.Where(c => c.Id == Id).FirstOrDefaultAsync();
                 if (section == null)
                 {
-                    throw new Exception();
+                    return HttpNotFound();
                 }
                 section.IsActivedSimulation = true;
-                //if (section.Periods.Count() == 0)
-                //{
-                //    Period period = new Period
-                //    {
-                //        Created = DateTime.Now,
-                //        Id = Guid.NewGuid(),
-                //        IsLastPeriod = section.CaseStudy.Periods == 1 ? true : false,
-                //    };
-                //    section.Periods.Add(period);
-                //}
+                foreach (var group in section.Groups)
+                {
+                    group.IsInSimulation = true;
+                }
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "La Simulación ha sido activada con exito");
                 return RedirectToAction("Index");
@@ -198,12 +196,12 @@ namespace Tesis.Controllers
                 return RedirectToAction("Index", "Home");
             }
             SimulationBL simulation = new SimulationBL();
-            List<Balance> balances = group.Balances.Where(x => x.PeriodId == lastPeriod.Id).ToList<Balance>();
-            if (balances.Count() == 0)
+            if (group.IsInSimulation == false)
             {
                 Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
                 return RedirectToAction("Index", "Home");
             }
+            List<Balance> balances = group.Balances.Where(x => x.PeriodId == lastPeriod.Id).ToList<Balance>();
             List<OrderViewModel> orders = balances.Select(x => new OrderViewModel {
                 Demand = x.Demand,
                 FinalStock = x.FinalStock,
@@ -273,6 +271,12 @@ namespace Tesis.Controllers
                 Flash.Error("Error", "El Profesor aún no sumistra nuevas demandas");
                 return RedirectToAction("Index", "Home");
             }
+            
+            if (group.IsInSimulation == false)
+            {
+                Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
+                return RedirectToAction("Index", "Home");
+            }
             lastPeriod = group.Section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
             if (ModelState.IsValid)
             {
@@ -328,7 +332,18 @@ namespace Tesis.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Groups(Guid? Id)
         {
-            throw new NotImplementedException();
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Section section = await Db.Sections.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            if (section == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Section = section;
+            List<Group> groups = section.Groups.Where(x => x.IsInSimulation == true).ToList<Group>();
+            return View(groups);
         }
 
         [HttpGet]

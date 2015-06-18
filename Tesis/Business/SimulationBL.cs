@@ -10,7 +10,7 @@ namespace Tesis.Business
         public void Simulation(Section section)
         {
             CaseStudy caseStudy = section.CaseStudy;
-            List<Group> groups = section.Groups.ToList();
+            List<Group> groups = section.Groups.Where(x => x.IsInSimulation == true).ToList();
             Period lastPeriod = section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
             List<Demand> demands = lastPeriod.Demands.ToList();
 
@@ -232,13 +232,13 @@ namespace Tesis.Business
             switch (orderType)
             {
                 case OrderType.Normal:
-                    return initialCharge.PreparationTime + initialCharge.DeliveryTime + initialCharge.FillTime;
+                    return initialCharge.PreparationTime + initialCharge.DeliveryTime + initialCharge.FillTime + 1;
                 case OrderType.Fast:
-                    return initialCharge.FillTime + initialCharge.DeliveryTime;
+                    return initialCharge.FillTime + initialCharge.DeliveryTime + 1;
                 case OrderType.Courier:
-                    return initialCharge.PreparationTime + initialCharge.FillTime;
+                    return initialCharge.PreparationTime + initialCharge.FillTime + 1;
                 case OrderType.FastCourier:
-                    return initialCharge.FillTime;
+                    return initialCharge.FillTime + 1;
                 default:
                     return 0;
 

@@ -980,5 +980,4 @@
 /// <reference path="plugins/mathjax/extensions/TeX/unicode.js" />
 /// <reference path="plugins/mathjax/extensions/TeX/verb.js" />
 /// <reference path="plugins/toastr/toastr.min.js" />
-/// <reference path="angular-mocks.js" />
-/// <reference path="angular.min.js" />
+/// <reference path="app/simulations/groups.js" />
