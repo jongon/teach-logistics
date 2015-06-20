@@ -1,0 +1,26 @@
+﻿@model TeachLogistics.ViewModels.OptionQuizViewModel
+@foreach (var item in Model.Options)
+{
+	<div class="radio i-checks">
+		<label>
+			@Html.RadioButtonFor(model => model.SelectedAnswer, item.Value, new { disabled = "disabled" })
+			<i></i>
+			@if (Model.CorrectAnswer == Model.SelectedAnswer && Model.SelectedAnswer.ToString() == item.Value)
+			{
+				<span class="text-info"><strong>@item.Text</strong></span>
+			}
+			else if (Model.CorrectAnswer != Model.SelectedAnswer && Model.SelectedAnswer.ToString() == item.Value)
+			{
+				<span class="text-danger"><strong>@item.Text</strong></span>
+			}
+			else if (Model.CorrectAnswer.ToString() == item.Value)
+			{
+				<span class="text-info"><strong>@item.Text</strong></span>		
+			}			
+			else
+			{
+				@item.Text				
+			}												
+		</label>
+	</div>
+}

@@ -1,0 +1,69 @@
+﻿@model TeachLogistics.Models.CaseStudy
+<div class="modal inmodal fade" id="information" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+				<i class="fa fa-graduation-cap modal-icon"></i>
+				<h4 class="modal-title">Caso de Estudio</h4>
+			</div>
+			<div class="modal-body">
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="ibox float-e-margins">
+								<div class="ibox-title">
+									<h5>Caso de Estudio</h5>
+								</div>
+								<div class="ibox-content">
+									<dl class="dl-horizontal">
+										<dt>
+											@Html.DisplayNameFor(model => model.Name)
+										</dt>
+										<dd>
+											@Html.DisplayFor(model => model.Name)
+										</dd>
+										<dt>
+											@Html.DisplayNameFor(model => model.Periods)
+										</dt>
+										<dd>
+											@Html.DisplayFor(model => model.Periods)
+										</dd>
+										<dt>
+											@Html.DisplayNameFor(model => model.PurchaseOrderRecharge)
+										</dt>
+										<dd>
+											@Html.DisplayFor(model => model.PurchaseOrderRecharge)
+										</dd>
+										<dt>
+											@Html.DisplayNameFor(model => model.CourierCharges)
+										</dt>
+										<dd>
+											@Html.DisplayFor(model => model.CourierCharges)
+										</dd>
+										<dt>
+											@Html.DisplayNameFor(model => model.PreparationCost)
+										</dt>
+										<dd>
+											@Html.DisplayFor(model => model.PreparationCost)
+										</dd>
+										<dt>
+											@Html.DisplayNameFor(model => model.AnnualMaintenanceCost)
+										</dt>
+										<dd>
+											@Html.DisplayFor(model => model.AnnualMaintenanceCost)
+										</dd>
+									</dl>
+									@{ Html.RenderPartial("_InitialCharges", Model.InitialCharges); }
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>

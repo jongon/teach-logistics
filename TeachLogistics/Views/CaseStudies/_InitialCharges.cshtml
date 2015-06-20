@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TeachLogistics.Models.InitialCharge>
+<div class="ibox">
+	<div class="ibox-title">
+		Lista de Productos
+	</div>
+	<div class="ibox-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.Product.Name)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Product.Number)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Demand)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Stddev)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.PreparationTime)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.FillTime)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.DeliveryTime)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Price)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.SecurityStock)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.InitialStock)
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Product.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Product.Number)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Demand)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Stddev)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.PreparationTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.FillTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DeliveryTime)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Price)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.SecurityStock)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.InitialStock)
+					</td>
+				</tr>
+			}
+			</tbody>
+		</table>
+	</div>
+</div>

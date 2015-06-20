@@ -1,0 +1,10 @@
+﻿@model TeachLogistics.ViewModels.OptionQuizViewModel
+@foreach (var item in Model.Options)
+{
+	<div class="radio i-checks">
+		<label>
+			@Html.RadioButtonFor(model => model.SelectedAnswer, item.Value)
+			<i></i>@item.Text
+		</label>
+	</div>
+}

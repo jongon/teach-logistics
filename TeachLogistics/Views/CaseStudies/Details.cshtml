@@ -1,0 +1,104 @@
+﻿@model TeachLogistics.Models.CaseStudy
+@{
+	ViewBag.Title = "Detalles";
+}
+<style>
+	.dl-horizontal dd {
+		margin-left: 300px;
+	}
+
+	.dl-horizontal dt {
+		width: auto;
+	}
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Casos de Estudio</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Detalles</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Detalle de Caso de Estudio</h5>
+				</div>
+				<div class="ibox-content">
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.Sections)
+						</dt>
+						<dd>
+							@if (Model.Sections.Count() > 0)
+							{
+								foreach (var item in Model.Sections)
+								{
+									<span><strong>Semestre:</strong> @item.Semester.Description - </span>
+									<span><strong>Sección:</strong> @item.Number</span>
+									<hr>
+								}
+							}
+							else
+							{
+								<span>No hay secciones asociadas a este caso de estudio</span>
+							}
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Name)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Name)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Periods)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Periods)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.Created)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Created)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.PurchaseOrderRecharge)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.PurchaseOrderRecharge)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.CourierCharges)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.CourierCharges)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.PreparationCost)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.PreparationCost)
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.AnnualMaintenanceCost)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.AnnualMaintenanceCost)
+						</dd>
+					</dl>
+					@Html.Partial("_InitialCharges", Model.InitialCharges)
+					@Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-primary" })
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

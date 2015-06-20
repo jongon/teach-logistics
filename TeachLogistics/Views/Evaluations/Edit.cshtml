@@ -1,0 +1,80 @@
+@model TeachLogistics.ViewModels.EvaluationViewModel
+@{
+	ViewBag.Title = "Editar";	
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Evaluaciones</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Editar</strong>
+			</li>
+		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-primary" })
+		</div>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Editar Evaluación</h5>
+				</div>
+				<div class="ibox-content">
+					@using (Html.BeginForm("Edit", "Evaluations", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "form" }))
+					{
+						@Html.AntiForgeryToken()
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+						@Html.HiddenFor(model => model.Id)					
+						<div class="form-group">
+							@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Nombre" } })
+								@Html.ValidationMessageFor(model => model.Name)
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.LabelFor(model => model.MinutesDuration, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.EditorFor(model => model.MinutesDuration, new { htmlAttributes = new { @placeholder = "Nombre" } })
+								@Html.ValidationMessageFor(model => model.MinutesDuration)
+							</div>
+						</div>					
+						<div class="form-group">
+							@Html.LabelFor(model => model.LimitDate, new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.Kendo().DatePickerFor(model => model.LimitDate).Value(Model.LimitDate).Min(DateTime.Now).HtmlAttributes(new { @placeholder = "Fecha Límite" })
+							</div>
+							<div class="col-md-8 col-md-push-2">
+								@Html.ValidationMessageFor(model => model.LimitDate)
+							</div>
+						</div>
+						<hr />					
+						@Html.EditorFor(model => model.Questions)
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-10">
+								<input value="Editar" class="btn btn-primary" type="submit">
+								<a class="btn btn-info" href="/Evaluations">Cancelar</a>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	<script>
+		var questionIds = @Html.Raw(Json.Encode(Model.QuestionIds));
+	</script>
+	@Scripts.Render("~/bundles/Evaluations/edit")
+}

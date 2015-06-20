@@ -1,0 +1,108 @@
+﻿@using TeachLogistics.Models
+@model IEnumerable<TeachLogistics.Models.Period>
+@{
+	ViewBag.Title = "Historial de demandas";
+	Section section = ViewBag.Section;
+	var periodCount = Model.Count();
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Modelos de Gestión</h2>
+		<ol class="breadcrumb">
+			<li>
+				@if (User.IsInRole("Administrador"))
+				{				
+					@Html.ActionLink("Índice", "Index")
+				}				
+				else
+				{
+					@Html.ActionLink("Órdenes", "Orders");					
+				}				
+			</li>
+			<li class="active">
+				<strong>Historial de Demandas</strong>
+			</li>
+		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@if (User.IsInRole("Administrador"))
+			{
+				@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-primary" })
+			}
+			else
+			{
+				@Html.ActionLink("Volver a las ordenes", "Orders", null, new { @class = "btn btn-primary" })
+			}
+		</div>
+	</div>
+</div>
+@if (User.IsInRole("Administrador"))
+{
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-md-12">
+			<label>Caso de Estudio: </label>
+			<span>@(section.CaseStudy.Name)</span>
+		</div>
+		<div class="col-md-12">
+			<label>Semestre: </label>
+			<span>@(section.Semester.Description)</span>
+		</div>
+		<div class="col-md-12">
+			<label>Section: </label>
+			<span>@(section.Number)</span>
+		</div>
+	</div>
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			@foreach (var period in Model)
+		{
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Periodo N° @(periodCount--)</h5>
+				</div>
+				<div class="ibox-content">
+					<table id="simulations" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>
+									Producto
+								</th>
+								<th>
+									Demanda
+								</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>
+									Producto
+								</th>
+								<th>
+									Demanda
+								</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							@foreach (var demand in period.Demands)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => demand.Product.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => demand.Quantity)
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,103 @@
+﻿@model TeachLogistics.Models.Question
+
+@{
+	ViewBag.Title = "Eliminar";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Preguntas</h2>
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Índice", "Index")
+			</li>
+			<li class="active">
+				<strong>Eliminar</strong>
+			</li>
+		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@Html.ActionLink("Volver al índice", "Index", null, new { @class = "btn btn-primary" })
+		</div>
+	</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	@Html.Flash()
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Eliminar Pregunta</h5>
+				</div>
+				<div class="ibox-content">
+					<h4 class="text-danger">¿Está seguro que desea eliminar la pregunta?</h4>
+					<dl class="dl-horizontal">
+						<dt>
+							@Html.DisplayNameFor(model => model.QuestionText)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.QuestionText)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Score)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.Score)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.ImagePath)
+						</dt>
+
+						<dd>
+							@if (Model.ImagePath != "") {
+								<img src="@Url.Content(Model.ImagePath)" alt="image" width="200"/>
+							}							
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Evaluations)
+						</dt>
+						<dd>
+							@foreach (var item in Model.Evaluations)
+							{
+								<span><strong>Evaluación:</strong> @item.Name</span>
+								<hr>
+							}
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Options)
+						</dt>
+						<dd>
+							@foreach (var item in Model.Options)
+							{
+								if (item.IsCorrectOption)	{						
+									<span><strong>Opcion Correcta: </strong> @item.Option</span>
+								} else {				
+									<span><strong>Opcion Incorrecta: </strong>@item.Option</span>		
+							}																
+							<hr>
+							}
+						</dd>
+					</dl>
+
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="form-actions no-color">
+							<input type="submit" value="Eliminar" class="btn btn-primary" />
+							@Html.ActionLink("Volver al Índice", "Index", null, new { @class = "btn btn-white" })
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
