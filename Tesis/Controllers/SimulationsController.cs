@@ -348,13 +348,6 @@ namespace Tesis.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrador")]
-        public async Task<ActionResult> GroupDetail(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> Rankings(Guid? Id)
         {
             throw new NotImplementedException();
