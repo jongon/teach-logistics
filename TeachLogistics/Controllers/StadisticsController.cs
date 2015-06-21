@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     public class StadisticsController : BaseController
     {

@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.ViewModels
+namespace TeachLogistics.ViewModels
 {
     public class EvaluationViewModel
     {

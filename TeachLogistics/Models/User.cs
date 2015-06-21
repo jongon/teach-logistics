@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
 
     public partial class User : IdentityUser

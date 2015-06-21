@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     public class Balance
     {
@@ -66,7 +66,7 @@ namespace TeachLogisticsTest.Models
         [Required]
         public virtual Group Group { get; set; }
 
-        [DisplayName("Periodo")]
+        [DisplayName("Grupo")]
         [Required]
         public Guid GroupId { get; set; }
     }

@@ -3,10 +3,10 @@ using Microsoft.AspNet.Identity.Owin;
 using MvcFlash.Core;
 using System.Web;
 using System.Web.Mvc;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     [Authorize]
     public abstract class BaseController : Controller

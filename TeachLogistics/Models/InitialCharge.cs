@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     [DisplayName("Carga Inicial")]
     public partial class InitialCharge

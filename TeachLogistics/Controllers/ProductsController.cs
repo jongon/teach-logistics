@@ -7,10 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using TeachLogisticsTest.Models;
-using TeachLogisticsTest.ViewModels;
+using TeachLogistics.Models;
+using TeachLogistics.ViewModels;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     [Authorize(Roles = "Administrador")]
     public class ProductsController : BaseController

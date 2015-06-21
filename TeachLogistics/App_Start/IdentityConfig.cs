@@ -6,10 +6,10 @@ using Microsoft.Owin.Security;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest
+namespace TeachLogistics
 {
     
     public class EmailService : IIdentityMessageService

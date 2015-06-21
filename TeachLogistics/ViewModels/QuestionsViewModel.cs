@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
-namespace TeachLogisticsTest.ViewModels
+namespace TeachLogistics.ViewModels
 {
     public class QuestionViewModel
     {

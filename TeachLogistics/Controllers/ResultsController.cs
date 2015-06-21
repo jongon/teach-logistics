@@ -5,11 +5,11 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
-using TeachLogisticsTest.Models;
-using TeachLogisticsTest.ViewModels;
-using TeachLogisticsTest.Business;
+using TeachLogistics.Models;
+using TeachLogistics.ViewModels;
+using TeachLogistics.Business;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     [Authorize(Roles = "Administrador")]
     public class ResultsController : BaseController
@@ -30,7 +30,7 @@ namespace TeachLogisticsTest.Controllers
             }
             Section section = await Db.Sections.Where(x => x.Id == Id).FirstOrDefaultAsync();
 
-            List<GroupResultViewModel> groups = (List<GroupResultViewModel>)ResultBL.GetGroupResult(section);  
+            List<GroupResultViewModel> groups = (List<GroupResultViewModel>)ResultBL.GetGroupsResult(section);  
             return View("Index", groups);
         }
 

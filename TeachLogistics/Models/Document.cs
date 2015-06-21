@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     public class Document
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace TeachLogisticsTest.Business
+namespace TeachLogistics.Business
 {
     [XmlRoot("Caso_De_Estudio")]
     public class CaseStudyXml

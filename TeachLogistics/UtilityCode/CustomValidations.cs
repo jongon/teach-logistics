@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
-using TeachLogisticsTest.ViewModels;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
+using TeachLogistics.ViewModels;
 
-namespace TeachLogisticsTest.UtilityCode
+namespace TeachLogistics.UtilityCode
 {
     public class UniqueUser : ValidationAttribute 
     {

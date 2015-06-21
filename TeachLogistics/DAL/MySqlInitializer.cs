@@ -2,7 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
-namespace TeachLogisticsTest.DAL
+namespace TeachLogistics.DAL
 {
     public class MySqlInitializer : IDatabaseInitializer<ApplicationDbContext>
     {

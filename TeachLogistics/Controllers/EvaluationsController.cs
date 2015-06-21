@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using TeachLogisticsTest.Business;
-using TeachLogisticsTest.Models;
-using TeachLogisticsTest.ViewModels;
+using TeachLogistics.Business;
+using TeachLogistics.Models;
+using TeachLogistics.ViewModels;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     [Authorize]
     public class EvaluationsController : BaseController

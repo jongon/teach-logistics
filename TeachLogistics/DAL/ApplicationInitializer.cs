@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using TeachLogisticsTest.Business;
+using TeachLogistics.Business;
 
-namespace TeachLogisticsTest.DAL
+namespace TeachLogistics.DAL
 {
     public class ApplicationInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {

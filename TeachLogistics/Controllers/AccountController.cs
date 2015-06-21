@@ -10,11 +10,11 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
-using TeachLogisticsTest.ViewModels;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
+using TeachLogistics.ViewModels;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     [Authorize]
     public class AccountController : BaseController

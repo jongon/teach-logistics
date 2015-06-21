@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     [DisplayName("Evaluación")]
     public class Evaluation

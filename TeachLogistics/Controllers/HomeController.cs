@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace TeachLogisticsTest.Controllers
+namespace TeachLogistics.Controllers
 {
     [Authorize]
     public class HomeController : BaseController

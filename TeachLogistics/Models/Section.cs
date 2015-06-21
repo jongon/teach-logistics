@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     [DisplayName("Sección")]
     public partial class Section

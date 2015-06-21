@@ -17,13 +17,9 @@ namespace TeachLogisticsTest.Business.Tests
         [TestMethod()]
         public void GetGroupResultTest()
         {
-            Section section = Db.Sections.Where(x => x.Number == "1001").FirstOrDefault();
+            Group group = Db.Groups.FirstOrDefault();
             ResultBL resultBL = new ResultBL();
-            var groups = resultBL.GetGroupResult(section);
-            foreach (var group in groups)
-            {
-                
-            }
+            var groups = resultBL.GetGroupResults(group);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TeachLogisticsTest.Models;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.Business
+namespace TeachLogistics.Business
 {
     public class SimulationBL
     {

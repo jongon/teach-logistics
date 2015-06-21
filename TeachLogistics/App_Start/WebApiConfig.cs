@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace TeachLogisticsTest
+namespace TeachLogistics
 {
     public static class WebApiConfig
     {

@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.Migrations.History;
 
-namespace TeachLogisticsTest.DAL
+namespace TeachLogistics.DAL
 {
     public class MySqlHistoryContext : HistoryContext
     {

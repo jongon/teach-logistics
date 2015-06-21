@@ -1,8 +1,8 @@
 using System.Data.Entity.Migrations;
-using TeachLogisticsTest.Business;
-using TeachLogisticsTest.Models;
+using TeachLogistics.Business;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.DAL
+namespace TeachLogistics.DAL
 {
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>

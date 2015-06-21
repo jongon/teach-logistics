@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using TeachLogisticsTest.Models;
-using TeachLogisticsTest.ViewModels;
+using TeachLogistics.Models;
+using TeachLogistics.ViewModels;
 
-namespace TeachLogisticsTest.Business
+namespace TeachLogistics.Business
 {
     public class EvaluationBL
     {

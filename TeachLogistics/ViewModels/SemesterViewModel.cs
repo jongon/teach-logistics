@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TeachLogisticsTest.ViewModels
+namespace TeachLogistics.ViewModels
 {
     public class SemesterViewModel
     {

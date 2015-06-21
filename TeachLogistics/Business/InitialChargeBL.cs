@@ -1,4 +1,4 @@
-﻿namespace TeachLogisticsTest.Business
+﻿namespace TeachLogistics.Business
 {
     public class InitialChargeBL
     {

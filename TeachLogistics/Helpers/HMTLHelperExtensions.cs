@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace TeachLogisticsTest
+namespace TeachLogistics
 {
     public static class HMTLHelperExtensions
     {

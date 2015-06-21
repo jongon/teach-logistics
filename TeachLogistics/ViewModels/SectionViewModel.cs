@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using TeachLogisticsTest.DAL;
+using TeachLogistics.DAL;
 
-namespace TeachLogisticsTest.ViewModels
+namespace TeachLogistics.ViewModels
 {
     public class SectionViewModel
     {

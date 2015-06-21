@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.Business
+namespace TeachLogistics.Business
 {
     public class CaseStudyXmlBL
     {

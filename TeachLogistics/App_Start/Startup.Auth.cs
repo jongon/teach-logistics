@@ -4,10 +4,10 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
-using TeachLogisticsTest.DAL;
-using TeachLogisticsTest.Models;
+using TeachLogistics.DAL;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest
+namespace TeachLogistics
 {
     public partial class Startup
     {

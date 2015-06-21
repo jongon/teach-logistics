@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     public class Period
     {

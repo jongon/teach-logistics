@@ -1,5 +1,5 @@
 ﻿
-namespace TeachLogisticsTest.Models
+namespace TeachLogistics.Models
 {
     public enum OrderType
     {

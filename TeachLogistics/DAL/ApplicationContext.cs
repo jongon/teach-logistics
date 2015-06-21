@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using TeachLogisticsTest.Models;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.DAL
+namespace TeachLogistics.DAL
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {

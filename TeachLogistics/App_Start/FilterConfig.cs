@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace TeachLogisticsTest
+namespace TeachLogistics
 {
     public class FilterConfig
     {

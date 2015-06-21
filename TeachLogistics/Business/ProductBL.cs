@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TeachLogisticsTest.Models;
+using TeachLogistics.Models;
 
-namespace TeachLogisticsTest.Business
+namespace TeachLogistics.Business
 {
     public class ProductBL
     {
