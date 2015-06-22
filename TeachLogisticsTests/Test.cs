@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
-using TeachLogisticsTest.DAL;
+using TeachLogistics.DAL;
 
-namespace TeachLogisticsTests
+namespace TeachLogisticss
 {
     public class Test
     {

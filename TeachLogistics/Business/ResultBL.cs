@@ -18,7 +18,7 @@ namespace TeachLogistics.Business
                 GroupResultViewModel groupResult = new GroupResultViewModel {
                     GroupId = group.Id,
                     GroupName = group.Name,
-                    //GroupDetailedResult = GetGroupResults(group),
+                    GroupDetailedResult = GetGroupResults(group),
                 };
                 groupsResult.Add(groupResult);
             }
@@ -30,12 +30,12 @@ namespace TeachLogistics.Business
             var results = group.Balances
                 .OrderBy(x => x.Period.Created)
                 .GroupBy(x => x.Period)
-                .Select(t  => new GroupDetailedResultViewModel
+                .Select((t, index)  => new GroupDetailedResultViewModel
                 {
-                    PeriodNumber = 1,
-                    FinalStockCost = t.Key.Balances.Sum(x => x.FinalStockCost),
-                    UnsatisfiedDemandCost = t.Key.Balances.Sum(x => x.DissatisfiedCost),
-                    TotalOrderCost = t.Key.Balances.Sum(x => x.FinalStockCost) + t.Key.Balances.Sum(x => x.DissatisfiedCost)
+                    PeriodNumber = ++index,
+                    FinalStockCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost),
+                    UnsatisfiedDemandCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost),
+                    TotalOrderCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost) + t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost)
                 })
                 .ToList();
             return results;
