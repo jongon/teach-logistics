@@ -33,12 +33,32 @@ namespace TeachLogistics.Business
                 .Select((t, index)  => new GroupDetailedResultViewModel
                 {
                     PeriodNumber = ++index,
+                    PeriodId = t.Key.Id,
                     FinalStockCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost),
                     UnsatisfiedDemandCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost),
                     TotalOrderCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost) + t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost)
                 })
                 .ToList();
             return results;
+        }
+
+        public DetailedGroupResultViewModel GetDetailedGroupResult(Group group, Period period)
+        {
+            DetailedGroupResultViewModel result = new DetailedGroupResultViewModel();
+            var resultList = group.Balances
+                .Where(x => x.Period == period)
+                .Select(x => new ResultViewModel
+                {
+                    ProductName = x.Product.Name,
+                    ProductNumber = x.Product.Number.ToString(),
+                    FinalStockCost = x.FinalStockCost,
+                    UnsatisfiedDemandCost = x.DissatisfiedCost,
+                    OrderCost = x.OrderCost
+                })
+                .ToList();
+            result.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period) + 1;
+            result.Results = resultList;
+            return result;
         }
     }
 }

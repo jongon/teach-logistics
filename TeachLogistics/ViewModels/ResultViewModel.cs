@@ -22,6 +22,9 @@ namespace TeachLogistics.ViewModels
     public class GroupDetailedResultViewModel
     {
         [DisplayName("Periodo")]
+        public Guid PeriodId { get; set; }
+
+        [DisplayName("Periodo")]
         public int PeriodNumber { get; set; }
 
         [DisplayName("Costo Inventario Final")]
@@ -32,5 +35,32 @@ namespace TeachLogistics.ViewModels
 
         [DisplayName("Costo Total Ordenar")]
         public double TotalOrderCost { get; set; }
+    }
+
+    public class DetailedGroupResultViewModel
+    {
+        [DisplayName("Número de Periodo")]
+        public int PeriodNumber { get; set; }
+
+        [DisplayName("Resultados")]
+        public List<ResultViewModel> Results { get; set; }
+    }
+
+    public class ResultViewModel
+    {
+        [DisplayName("Número Producto")]
+        public string ProductNumber { get; set; }
+
+        [DisplayName("Nombre Producto")]
+        public string ProductName { get; set; }
+
+        [DisplayName("Costo Inventario Final")]
+        public double FinalStockCost { get; set; }
+
+        [DisplayName("Costo Demanda Insatisfecha")]
+        public double UnsatisfiedDemandCost { get; set; }
+
+        [DisplayName("Costo Ordenar")]
+        public double OrderCost { get; set; }
     }
 }

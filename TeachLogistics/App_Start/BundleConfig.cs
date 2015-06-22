@@ -424,6 +424,13 @@ namespace TeachLogistics
             bundles.Add(new StyleBundle("~/app/Simulations").Include(
                 "~/Content/app/Simulations.css"));
 
+            //Results
+            bundles.Add(new ScriptBundle("~/bundles/Results/index").Include(
+                "~/Scripts/app/Results/index.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Results/details").Include(
+                "~/Scripts/app/Results/details.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

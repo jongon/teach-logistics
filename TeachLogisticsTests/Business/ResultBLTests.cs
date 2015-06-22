@@ -33,6 +33,26 @@ namespace TeachLogistics.Business.Tests
             PrintGroupDetail(result);
         }
 
+        [TestMethod()]
+        public void GetGroupDetails()
+        {
+            Group group = Db.Groups.FirstOrDefault();
+            Period period = Db.Periods.OrderBy(x => x.Created).Where(x => x.SectionId == group.SectionId).FirstOrDefault();
+            ResultBL resultBL = new ResultBL();
+            DetailedGroupResultViewModel result = resultBL.GetDetailedGroupResult(group, period);
+            Console.WriteLine("Periodio:" + result.PeriodNumber);
+            Console.WriteLine("==========================================");
+            foreach (var item in result.Results)
+            {
+                Console.WriteLine("Nombre de Producto: " + item.ProductName);
+                Console.WriteLine("Número de Producto: " + item.ProductNumber);
+                Console.WriteLine("Costo de inventario Final: " + item.FinalStockCost);
+                Console.WriteLine("Costo de Demanda Insatisfecha: " + item.UnsatisfiedDemandCost);
+                Console.WriteLine("Costo de Orden: " + item.OrderCost);
+                Console.WriteLine("-------------------------------------");
+            }
+        }
+
         private void PrintGroupsDetails(List<GroupResultViewModel> groups) {
             foreach (var group in groups)
             {

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TeachLogistics.ViewModels.GroupResultViewModel>
 @{
 	ViewBag.Title = "Resultados";
-	var section = ViewBag.Section;	
+	var section = ViewBag.Section;
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -48,19 +48,19 @@
 							<div class="col-md-4">
 								<select id="groups" class="form-control">
 									@foreach (var group in Model)
-									{
-										<option id="@group.GroupId">@group.GroupName</option>
-									}
+																		{
+																			<option id="@group.GroupId">@group.GroupName</option>
+																																				}
 								</select>
 							</div>
 						</div>
 					</div>
 					@foreach (var group in Model)
-					{				
-						<div class="row ibox-content groups" id="@group.GroupId" style="display:none">
-							@{ Html.RenderPartial("_GroupResults", group.GroupDetailedResult, new ViewDataDictionary { {"GroupId", group.GroupId} }); }
-						</div>
-					}
+										{
+											<div class="row ibox-content groups" id="@group.GroupId" style="display:none">
+												@{ Html.RenderPartial("_GroupResults", group.GroupDetailedResult, new ViewDataDictionary { { "GroupId", group.GroupId } }); }
+											</div>
+																				}
 				</div>
 			</div>
 		</div>

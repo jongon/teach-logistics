@@ -325,7 +325,12 @@ namespace TeachLogistics.Controllers
             }
             ViewBag.Section = section;
             List<Period> periods = await Db.Periods.Where(x => x.SectionId == Id && x.Section.IsActivedSimulation == true).OrderByDescending(t => t.Created).ToListAsync<Period>();
-            return View(periods);
+            if (periods.Count() > 0)
+            {
+                return View(periods);
+            }
+            Flash.Error("Error", "No hay demandas suministradas aún");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

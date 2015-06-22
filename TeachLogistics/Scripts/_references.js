@@ -981,3 +981,4 @@
 /// <reference path="plugins/mathjax/extensions/TeX/verb.js" />
 /// <reference path="plugins/toastr/toastr.min.js" />
 /// <reference path="app/simulations/groups.js" />
+/// <reference path="app/results/index.js" />

@@ -7,13 +7,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
-		<h2>Grupos</h2>
+		<h2>Modelos de Gestión</h2>
 		<ol class="breadcrumb">
 			<li>
 				@Html.ActionLink("Índice", "Index")
 			</li>
 			<li class="active">
-				<strong>Grupos</strong>
+				<strong>Grupos en simulación</strong>
 			</li>
 		</ol>
 	</div>
@@ -49,9 +49,6 @@
 									@Html.DisplayNameFor(model => model.Name)
 								</th>
 								<th>
-									@Html.DisplayNameFor(model => model.Score)
-								</th>
-								<th>
 									@Html.DisplayNameFor(model => model.Position)
 								</th>
 								<th>
@@ -63,9 +60,6 @@
 							<tr>
 								<th>
 									@Html.DisplayNameFor(model => model.Name)
-								</th>
-								<th>
-									@Html.DisplayNameFor(model => model.Score)
 								</th>
 								<th>
 									@Html.DisplayNameFor(model => model.Position)
@@ -83,9 +77,6 @@
 										@Html.DisplayFor(modelItem => item.Name)
 									</td>
 									<td>
-										@Html.DisplayFor(modelItem => item.Score)
-									</td>
-									<td>
 										@Html.DisplayFor(modelItem => item.Position)
 									</td>
 									<td>
@@ -97,7 +88,7 @@
 											}">
 											Integrantes
 										</button>
-										@Html.ActionLink("Detalle", "GroupDetail", new { Id = item.Id }, new { @class = "btn btn-primary" })
+										@Html.ActionLink("Detalle", "GroupDetail", new { Id = item.Id }, new { @class = "btn btn-sm btn-primary" })
 									</td>
 								</tr>
 						}
