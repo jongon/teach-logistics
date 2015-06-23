@@ -3,7 +3,7 @@
 	ViewBag.Title = "Resultados Detallados";
 	var section = ViewBag.Section;
 	var periodNumber = ViewBag.PeriodNumber;
-	var group = ViewBag.Group;	
+	var group = ViewBag.Group;
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -11,7 +11,7 @@
 		<h2>Modelo de gestión</h2>
 		<ol class="breadcrumb">
 			<li>
-				@Html.ActionLink("Resultados", "Results", "Results", new { Id = section.Id, GroupId = ViewBag.GroupId })
+				@Html.ActionLink("Resultados", "GroupResults", "Results")
 			</li>
 			<li class="active">
 				<strong>Resultados Detallados</strong>
@@ -20,7 +20,7 @@
 	</div>
 	<div class="col-sm-8">
 		<div class="title-action">
-			@Html.ActionLink("Volver a resultados", "Results", "Results", new { Id = section.Id, GroupId = group.Id }, new { @class = "btn btn-primary" })
+			@Html.ActionLink("Volver a resultados", "GroupResults", "Results", null, new { @class = "btn btn-primary" })
 		</div>
 	</div>
 </div>

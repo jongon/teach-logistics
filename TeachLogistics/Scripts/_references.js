@@ -982,3 +982,5 @@
 /// <reference path="plugins/toastr/toastr.min.js" />
 /// <reference path="app/simulations/groups.js" />
 /// <reference path="app/results/index.js" />
+/// <reference path="app/results/details.js" />
+/// <reference path="app/results/indexstudents.js" />

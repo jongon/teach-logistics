@@ -16,6 +16,11 @@
 			</li>
 		</ol>
 	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@Html.ActionLink("Volver al índice", "Index", "Simulations", null, new { @class = "btn btn-primary" })
+		</div>
+	</div>
 </div>
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-md-12">
@@ -49,7 +54,7 @@
 								<select id="groups" class="form-control">
 									@foreach (var group in Model)
 									{
-										<option id="@group.GroupId">@group.GroupName</option>
+										<option value="@group.GroupId">@group.GroupName</option>
 									}
 								</select>
 							</div>
@@ -67,5 +72,8 @@
 	</div>
 </div>
 @section Scripts {
+	<script>
+		var GroupId = "@ViewBag.GroupId";
+	</script>
 	@Scripts.Render("~/bundles/Results/index")
 }

@@ -92,6 +92,10 @@ $("#demands").click(function () {
     window.location.assign(demandsUrl);
 });
 
+$("#results").click(function () {
+    window.location.assign(resultsUrl);
+});
+
 $('input:radio').on('ifChecked', function () {
     calculateTimeAndCost(this, null);
 });

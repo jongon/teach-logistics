@@ -62,7 +62,7 @@
 					<span class="nav-label">Casos de Estudios</span>
 				</a>
 			</li>
-			<li class="@Html.IsSelected(controller: "Simulations")">
+			<li class="@Html.IsSelected(controller: "Simulations") @Html.IsSelected(controller: "Results")">
 				<a href="@Url.Action("Index", "Simulations")">
 					<i class="fa fa-connectdevelop"></i>
 					<span class="nav-label">Modelo de Gestión</span>

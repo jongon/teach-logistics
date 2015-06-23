@@ -24,7 +24,7 @@ namespace TeachLogistics.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrador")]
-        public async Task<ActionResult> Results(Guid Id)
+        public async Task<ActionResult> Results(Guid Id, Guid? GroupId)
         {
             if (Id == null)
             {
@@ -39,6 +39,7 @@ namespace TeachLogistics.Controllers
             if (groups.Count() > 0)
             {
                 ViewBag.Section = section;
+                ViewBag.GroupId = GroupId;
                 return View("Index", groups);
             }
             Flash.Error("Error", "No existe grupos en la simulación");
@@ -50,15 +51,38 @@ namespace TeachLogistics.Controllers
         [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult> Results()
         {
-            throw new NotImplementedException();
+            Group group = await Db.Groups.Where(x => x.Users.Select(t => t.Id).Contains(CurrentUser.Id)).FirstOrDefaultAsync();
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            ResultBL resultBL = new ResultBL();
+            List<GroupDetailedResultViewModel> results = resultBL.GetGroupResults(group);
+            ViewBag.Section = group.Section;
+            return View("IndexStudents", results);
         }
 
         [HttpGet]
         [ActionName("GroupDetails")]
         [Authorize(Roles = "Estudiante")]
-        public async Task<ActionResult> Details()
+        public async Task<ActionResult> Details(Guid? PeriodId)
         {
-            throw new NotImplementedException();
+            if (PeriodId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = await Db.Groups.Where(x => x.Users.Select(t => t.Id).Contains(CurrentUser.Id)).FirstOrDefaultAsync();
+            Period period = await Db.Periods.Where(x => x.Id == PeriodId).FirstOrDefaultAsync();
+            if (group == null || period == null)
+            {
+                return HttpNotFound();
+            }
+            ResultBL resultBL = new ResultBL();
+            ViewBag.Section = period.Section;
+            ViewBag.Group = group;
+            ViewBag.PeriodNumber = group.Section.Periods.Where(x => x == period).ToList().IndexOf(period) + 1;
+            DetailedGroupResultViewModel detailedResult = resultBL.GetDetailedGroupResult(group, period);
+            return View("DetailsStudents", detailedResult);
         }
 
         [HttpGet]
@@ -74,9 +98,13 @@ namespace TeachLogistics.Controllers
             {
                 return HttpNotFound();
             }
+            Period period = await Db.Periods.Where(x => x.Id == PeriodId).FirstOrDefaultAsync();
             ResultBL resultBL = new ResultBL();
-
-            throw new NotImplementedException();
+            ViewBag.Section = period.Section;
+            ViewBag.Group = group;
+            ViewBag.PeriodNumber = group.Section.Periods.Where(x => x == period).ToList().IndexOf(period) + 1;
+            DetailedGroupResultViewModel detailedResult = resultBL.GetDetailedGroupResult(group, period);
+            return View(detailedResult);
         }
     }
 }

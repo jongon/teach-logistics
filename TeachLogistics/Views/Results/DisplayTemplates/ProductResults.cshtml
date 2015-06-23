@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TeachLogistics.ViewModels.ResultViewModel>
+<table id="details" class="table table-hover table-bordered">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.ProductName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ProductNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FinalStockCost)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.UnsatisfiedDemandCost)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.OrderCost)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var result in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => result.ProductName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => result.ProductNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => result.FinalStockCost)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => result.UnsatisfiedDemandCost)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => result.OrderCost)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

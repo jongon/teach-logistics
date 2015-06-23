@@ -428,6 +428,9 @@ namespace TeachLogistics
             bundles.Add(new ScriptBundle("~/bundles/Results/index").Include(
                 "~/Scripts/app/Results/index.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Results/indexStudents").Include(
+                "~/Scripts/app/Results/indexStudents.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/Results/details").Include(
                 "~/Scripts/app/Results/details.js"));
 

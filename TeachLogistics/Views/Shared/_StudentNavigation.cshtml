@@ -26,7 +26,7 @@
 					<span class="nav-label">Inicio</span>
 				</a>
 			</li>
-			<li class="@Html.IsSelected(controller: "Simulations")">
+			<li class="@Html.IsSelected(controller: "Simulations") @Html.IsSelected(controller: "Results")">
 				<a href="@Url.Action("Orders", "Simulations")">
 					<i class="fa fa-connectdevelop"></i>
 					<span class="nav-label">Modelo de Gestión</span>

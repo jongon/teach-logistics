@@ -1,14 +1,20 @@
 ﻿$(document).ready(function () {
-    selectTable();
+    selectTable(GroupId);
 });
 
 $("#groups").change(function () {
-    selectTable();
+    selectTable("");
 });
 
-function selectTable() {
+function selectTable(GroupId) {
     hideTable();
-    var groupId = $("#groups").children(':selected').attr('id');
+    if (GroupId == "") {
+        var groupId = $("#groups").children(':selected').val();
+    }
+    else {
+        var groupId = GroupId;
+        $('#groups').val(groupId);
+    }
     $("#" + groupId + ".groups").show();
 }
 
