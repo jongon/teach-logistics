@@ -34,7 +34,7 @@ namespace TeachLogistics.Business.Tests
         }
 
         [TestMethod()]
-        public void GetGroupDetails()
+        public void GetDetailedGroupResultTest()
         {
             Group group = Db.Groups.FirstOrDefault();
             Period period = Db.Periods.OrderBy(x => x.Created).Where(x => x.SectionId == group.SectionId).FirstOrDefault();
