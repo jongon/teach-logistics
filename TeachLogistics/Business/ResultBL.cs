@@ -36,7 +36,7 @@ namespace TeachLogistics.Business
                     PeriodId = t.Key.Id,
                     FinalStockCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost),
                     UnsatisfiedDemandCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost),
-                    TotalOrderCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost) + t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost)
+                    TotalOrderCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.OrderCost)
                 })
                 .ToList();
             return results;

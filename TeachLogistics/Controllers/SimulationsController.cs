@@ -97,7 +97,7 @@ namespace TeachLogistics.Controllers
                 CaseStudy caseStudy = await caseStudyQuery.FirstOrDefaultAsync();
                 DemandViewModel sellViewModel = new DemandViewModel
                 {
-                    ProductDemands = caseStudy.InitialCharges.Select(y => new ProductDemand { Product = y.Product }).ToList<ProductDemand>(),
+                    ProductDemands = caseStudy.InitialCharges.Select(y => new ProductDemand { Product = y.Product }).OrderBy(t => t.Product.Number).ToList<ProductDemand>(),
                     Section = section,
                     SectionId = section.Id,
                 };
@@ -225,7 +225,9 @@ namespace TeachLogistics.Controllers
                 Sells = x.Sells,
                 UnsatisfiedDemand = x.DissatisfiedDemand,
                 UnsatisfiedDemandCost = x.DissatisfiedCost
-            }).ToList();
+            })
+            .OrderBy(x => x.ProductNumber)
+            .ToList();
             //Lista de integrantes
             List<User> members = group.Users.Select(x => new User { Id = x.Id, Email = x.Email, FirstName = x.FirstName, LastName = x.LastName }).ToList();
             PeriodViewModel periodViewModel = new PeriodViewModel {

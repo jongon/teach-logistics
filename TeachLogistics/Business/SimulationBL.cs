@@ -93,7 +93,7 @@ namespace TeachLogistics.Business
             {
                 lastOrder = orders.Last();
             }
-            Balance lastBalance = group.Balances.OrderByDescending(x => x.Created).FirstOrDefault();
+            Balance lastBalance = group.Balances.OrderByDescending(x => x.Created).Where(x => x.ProductId == demand.ProductId).FirstOrDefault();
             Balance newBalance = CloneBalance(lastBalance, demand);
             newBalance = UpdateBalance(newBalance, demand, caseStudy, lastOrder);
             foreach (var order in orders)
@@ -131,7 +131,7 @@ namespace TeachLogistics.Business
         private Balance BalanceWithPendingOrders(Balance balance, Order order, Demand demand, CaseStudy caseStudy, List<Period> periods)
         {
             int periodLength = periods.Count(); //Número de períodos en el caso de Estudio
-            int indexOrderPeriod = periods.IndexOf(order.Period);
+            int indexOrderPeriod = periods.IndexOf(order.Period) + 1;
             Product product = demand.Product;
             OrderType orderType = order.OrderType;
             if (orderType != OrderType.None)
@@ -150,19 +150,19 @@ namespace TeachLogistics.Business
             InitialCharge initialCharge = caseStudy.InitialCharges.Where(x => x.Product == product).FirstOrDefault();
             if (orderType == OrderType.Normal)
             {
-                return initialCharge.FillTime + initialCharge.PreparationTime + initialCharge.DeliveryTime;
+                return initialCharge.FillTime + initialCharge.PreparationTime + initialCharge.DeliveryTime + 1;
             }
             else if (orderType == OrderType.Fast)
             {
-                return initialCharge.FillTime + initialCharge.DeliveryTime;
+                return initialCharge.FillTime + initialCharge.DeliveryTime + 1;
             }
             else if (orderType == OrderType.Courier)
             {
-                return initialCharge.PreparationTime + initialCharge.FillTime;
+                return initialCharge.PreparationTime + initialCharge.FillTime + 1;
             }
             else if (orderType == OrderType.FastCourier)
             {
-                return initialCharge.FillTime;
+                return initialCharge.FillTime + 1;
             }
             else
             {

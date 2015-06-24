@@ -125,7 +125,7 @@ namespace TeachLogistics.Controllers
                         return View(group);
                     }
                     currentGroup.Users = await Db.Users.Where(x => group.Users.Contains(x.Id)).ToListAsync();
-                    Db.Entry(currentGroup).State = EntityState.Modified;
+                    currentGroup.Name = group.Name;
                     await Db.SaveChangesAsync();
                     Flash.Success("Ok", "Grupo ha sido editado satisfactoriamente");
                     return RedirectToAction("Index");

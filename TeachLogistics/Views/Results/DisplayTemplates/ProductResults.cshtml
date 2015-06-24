@@ -3,10 +3,10 @@
 	<thead>
 		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.ProductName)
+				@Html.DisplayNameFor(model => model.ProductNumber)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.ProductNumber)
+				@Html.DisplayNameFor(model => model.ProductName)
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.FinalStockCost)
@@ -24,10 +24,10 @@
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => result.ProductName)
+					@Html.DisplayFor(modelItem => result.ProductNumber)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => result.ProductNumber)
+					@Html.DisplayFor(modelItem => result.ProductName)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => result.FinalStockCost)
