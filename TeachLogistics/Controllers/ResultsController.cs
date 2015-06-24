@@ -80,7 +80,7 @@ namespace TeachLogistics.Controllers
             ResultBL resultBL = new ResultBL();
             ViewBag.Section = period.Section;
             ViewBag.Group = group;
-            ViewBag.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period) + 1;
+            ViewBag.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period);
             DetailedGroupResultViewModel detailedResult = resultBL.GetDetailedGroupResult(group, period);
             return View("DetailsStudents", detailedResult);
         }
@@ -102,7 +102,7 @@ namespace TeachLogistics.Controllers
             ResultBL resultBL = new ResultBL();
             ViewBag.Section = period.Section;
             ViewBag.Group = group;
-            ViewBag.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period) + 1;
+            ViewBag.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period);
             DetailedGroupResultViewModel detailedResult = resultBL.GetDetailedGroupResult(group, period);
             return View(detailedResult);
         }

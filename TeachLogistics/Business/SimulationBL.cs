@@ -57,6 +57,8 @@ namespace TeachLogistics.Business
                 InitialStock = initialStock,
                 FinalStock = finalStock,
                 FinalStockCost = finalStock * productPrice,
+                FinalStockCostPast = 0,
+                DissatisfiedCostPast = 0,
                 DissatisfiedDemand = dissastifiedDemand,
                 DissatisfiedCost = dissastifiedDemand * productPrice,
                 OrderCost = orderCost,
@@ -182,6 +184,8 @@ namespace TeachLogistics.Business
             #region UpdateBalance
             balance.Demand = demand.Quantity;
             balance.DissatisfiedDemand = dissastifiedDemand;
+            balance.DissatisfiedCostPast = balance.DissatisfiedCost;
+            balance.FinalStockCostPast = balance.FinalStockCost;
             balance.DissatisfiedCost = dissastifiedDemand * initialChargeProduct.Price;
             balance.OrderCost = orderCost;
             balance.InitialStock = initialStock;

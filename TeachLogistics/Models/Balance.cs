@@ -16,6 +16,9 @@ namespace TeachLogistics.Models
         [Required]
         public int DissatisfiedCost { get; set; }
 
+        [DisplayName("Demanda Insatisfecha Pasado")]
+        public int DissatisfiedCostPast { get; set; }
+
         [DisplayName("Demanda Insatisfecha")]
         public int DissatisfiedDemand { get; set; }
 
@@ -25,6 +28,9 @@ namespace TeachLogistics.Models
 
         [DisplayName("Costo de Inventario Final")]
         public int FinalStockCost { get; set; }
+
+        [DisplayName("Costo de Inventario Final Pasado")]
+        public int FinalStockCostPast { get; set; }
 
         [DisplayName("Costo Por ordenar")]
         [Required]

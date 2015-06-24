@@ -30,15 +30,16 @@ namespace TeachLogistics.Business
             var results = group.Balances
                 .OrderBy(x => x.Period.Created)
                 .GroupBy(x => x.Period)
-                .Select((t, index)  => new GroupDetailedResultViewModel
+                .Select((t, index) => new GroupDetailedResultViewModel
                 {
-                    PeriodNumber = ++index,
+                    PeriodNumber = index++,
                     PeriodId = t.Key.Id,
-                    FinalStockCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCost),
-                    UnsatisfiedDemandCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCost),
+                    FinalStockCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.FinalStockCostPast),
+                    UnsatisfiedDemandCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.DissatisfiedCostPast),
                     TotalOrderCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.OrderCost)
                 })
                 .ToList();
+            results.RemoveAt(0);
             return results;
         }
 
@@ -51,12 +52,12 @@ namespace TeachLogistics.Business
                 {
                     ProductName = x.Product.Name,
                     ProductNumber = x.Product.Number.ToString(),
-                    FinalStockCost = x.FinalStockCost,
-                    UnsatisfiedDemandCost = x.DissatisfiedCost,
+                    FinalStockCost = x.FinalStockCostPast,
+                    UnsatisfiedDemandCost = x.DissatisfiedCostPast,
                     OrderCost = x.OrderCost
                 })
                 .ToList();
-            result.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period) + 1;
+            result.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period);
             result.Results = resultList;
             return result;
         }
