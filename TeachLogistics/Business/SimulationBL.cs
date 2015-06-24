@@ -95,12 +95,11 @@ namespace TeachLogistics.Business
             }
             Balance lastBalance = group.Balances.OrderByDescending(x => x.Created).Where(x => x.ProductId == demand.ProductId).FirstOrDefault();
             Balance newBalance = CloneBalance(lastBalance, demand);
-            newBalance = UpdateBalance(newBalance, demand, caseStudy, lastOrder);
             foreach (var order in orders)
             {
                 newBalance = BalanceWithPendingOrders(newBalance, order, demand, caseStudy, periods);
             }
-            newBalance.FinalStock += newBalance.ReceivedOrders;
+            newBalance = UpdateBalance(newBalance, demand, caseStudy, lastOrder);
             return newBalance;
         }
 
@@ -123,7 +122,7 @@ namespace TeachLogistics.Business
                 PeriodId = demand.PeriodId,
                 Product = demand.Product,
                 ProductId = demand.ProductId,
-                ReceivedOrders = lastBalance.ReceivedOrders,
+                ReceivedOrders = 0,
                 Sells = lastBalance.Sells,
             };
         }
@@ -173,12 +172,11 @@ namespace TeachLogistics.Business
         private Balance UpdateBalance(Balance balance, Demand demand, CaseStudy caseStudy, Order lastOrder)
         {
             InitialCharge initialChargeProduct = caseStudy.InitialCharges.Where(x => x.Product == demand.Product).FirstOrDefault();
-            int initialStock = balance.FinalStock;
+            int initialStock = balance.FinalStock + balance.ReceivedOrders;
             int demandNumber = demand.Quantity;
-            int finalStock = (demandNumber >= initialStock) ? 0 : (initialStock - demandNumber);
-            int sells = initialStock - finalStock;
-            int productPrice = caseStudy.InitialCharges.Where(x => x.Product == demand.Product).FirstOrDefault().Price;
-            int dissastifiedDemand = (initialStock >= demandNumber) ? 0 : (demandNumber - initialStock);
+            int sells = (initialStock - demandNumber) < 0 ? initialStock : demandNumber;
+            int finalStock = initialStock - sells;
+            int dissastifiedDemand = (finalStock  > 0) ? 0 : (demandNumber - initialStock);
             double orderCost = GetOrderCost(caseStudy, lastOrder);
 
             #region UpdateBalance
@@ -187,9 +185,9 @@ namespace TeachLogistics.Business
             balance.DissatisfiedCost = dissastifiedDemand * initialChargeProduct.Price;
             balance.OrderCost = orderCost;
             balance.InitialStock = initialStock;
-            balance.FinalStock = initialStock - sells;
-            balance.FinalStockCost = initialStock * initialChargeProduct.Price;
-            balance.ReceivedOrders = 0;
+            balance.FinalStock = finalStock;
+            balance.FinalStockCost = finalStock * initialChargeProduct.Price;
+            balance.Sells = sells;
             #endregion
             return balance;
         }
@@ -197,14 +195,17 @@ namespace TeachLogistics.Business
         private double GetOrderCost(CaseStudy caseStudy, Order order)
         {
             OrderType orderType = order.OrderType;
+            int productPrice = caseStudy.InitialCharges.Where(x => x.ProductId == order.ProductId).Select(x => x.Price).FirstOrDefault();
             switch (orderType)
             {
+                case OrderType.Normal:
+                    return productPrice * order.Quantity;
                 case OrderType.Fast:
-                    return caseStudy.PreparationCost;
+                    return caseStudy.PreparationCost + (productPrice * order.Quantity);
                 case OrderType.Courier:
-                    return caseStudy.CourierCharges;
+                    return ((double)(caseStudy.CourierCharges * productPrice) * order.Quantity) + (productPrice * order.Quantity);
                 case OrderType.FastCourier:
-                    return caseStudy.CourierCharges + caseStudy.PreparationCost;
+                    return ((double)(caseStudy.CourierCharges * productPrice) * order.Quantity) + caseStudy.PreparationCost + (productPrice * order.Quantity);
                 default:
                     return 0;
                 

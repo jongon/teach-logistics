@@ -303,12 +303,12 @@ namespace TeachLogistics.Controllers
                 }
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "Las Ordenes han sido realizadas exitosamente");
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 Flash.Error("Error", "Ha Ocurrido un error creando las ordenes");
-                return View("Index");
+                return View("Index", model);
             }
         }
 

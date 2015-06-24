@@ -87,7 +87,10 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach (var demand in period.Demands)
+							@{
+								var demands = period.Demands.OrderBy(x => x.Product.Number).ToList();							
+							}
+							@foreach (var demand in demands)
 							{
 								<tr>
 									<td>
