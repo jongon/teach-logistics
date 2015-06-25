@@ -39,7 +39,10 @@ namespace TeachLogistics.Business
                     TotalOrderCost = t.Key.Balances.Where(x => x.Group == group).Sum(x => x.OrderCost)
                 })
                 .ToList();
-            results.RemoveAt(0);
+            if (results.Count() > 0)
+            {
+                results.RemoveAt(0);
+            }
             return results;
         }
 
@@ -60,6 +63,19 @@ namespace TeachLogistics.Business
             result.PeriodNumber = group.Section.Periods.OrderBy(x => x.Created).ToList().IndexOf(period);
             result.Results = resultList;
             return result;
+        }
+
+        public List<GroupRankingViewModel> GetRanking(Section section)
+        {
+            List<Group> groups = section.Groups.ToList();
+            List<GroupRankingViewModel> groupsRanking = groups
+                .OrderByDescending(x => (x.Balances.Sum(c => c.DissatisfiedCostPast) + x.Balances.Sum(c => c.FinalStockCostPast) + x.Balances.Sum(c => c.OrderCost)))
+                .Select(x => new GroupRankingViewModel {
+                    GroupName = x.Name,
+                    Score = x.Balances.Sum(c => c.DissatisfiedCostPast) + x.Balances.Sum(c => c.FinalStockCostPast) + x.Balances.Sum(c => c.OrderCost),
+                })
+                .ToList();
+            return groupsRanking;
         }
     }
 }

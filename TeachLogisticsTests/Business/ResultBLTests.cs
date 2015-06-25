@@ -53,6 +53,20 @@ namespace TeachLogistics.Business.Tests
             }
         }
 
+        [TestMethod()]
+        public void GetRanking()
+        {
+            Section section = Db.Sections.Where(x => x.Number == "1001").FirstOrDefault();
+            ResultBL resultBL = new ResultBL();
+            List<GroupRankingViewModel> groups = resultBL.GetRanking(section);
+            foreach (var group in groups)
+            {
+                Console.WriteLine("==========================================");
+                Console.WriteLine("Nombre Grupo: " + group.GroupName);
+                Console.WriteLine("Puntaje Total: " + group.Score);
+            }
+        }
+
         private void PrintGroupsDetails(List<GroupResultViewModel> groups) {
             foreach (var group in groups)
             {

@@ -8,18 +8,24 @@
 	<div class="col-sm-4">
 		<h2>Modelo de gestión</h2>
 		<ol class="breadcrumb">
-			<li>
-				@Html.ActionLink("Índice", "Orders", "Simulations")
-			</li>
-			<li class="active">
-				<strong>Resultados</strong>
-			</li>
+			@if (ViewBag.IsReadyToOrder == true)
+			{			
+				<li>
+					@Html.ActionLink("Índice", "Orders", "Simulations")
+				</li>
+			}								
+				<li class="active">
+					<strong>Resultados</strong>
+				</li>
 		</ol>
 	</div>
 	<div class="col-sm-8">
-		<div class="title-action">
-			@Html.ActionLink("Volver al índice", "Orders", "Simulations", null, new { @class = "btn btn-primary" })
-		</div>
+		@if (ViewBag.IsReadyToOrder == true)
+		{		
+			<div class="title-action">
+				@Html.ActionLink("Volver al índice", "Orders", "Simulations", null, new { @class = "btn btn-primary" })
+			</div>
+		}
 	</div>
 </div>
 <div class="row wrapper border-bottom white-bg page-heading">

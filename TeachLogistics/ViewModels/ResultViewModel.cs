@@ -65,4 +65,13 @@ namespace TeachLogistics.ViewModels
         [DisplayName("Costo Ordenar")]
         public double OrderCost { get; set; }
     }
+
+    public class GroupRankingViewModel
+    {
+        [DisplayName("Grupo")]
+        public string GroupName { get; set; }
+
+        [DisplayName("Puntaje")]
+        public double Score { get; set; }
+    }
 }

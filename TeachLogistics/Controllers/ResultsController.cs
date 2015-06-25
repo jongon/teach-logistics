@@ -49,8 +49,9 @@ namespace TeachLogistics.Controllers
         [HttpGet]
         [ActionName("GroupResults")]
         [Authorize(Roles = "Estudiante")]
-        public async Task<ActionResult> Results()
+        public async Task<ActionResult> Results(bool IsReadyToOrder = true)
         {
+            ViewBag.IsReadyToOrder = IsReadyToOrder;
             Group group = await Db.Groups.Where(x => x.Users.Select(t => t.Id).Contains(CurrentUser.Id)).FirstOrDefaultAsync();
             if (group == null)
             {
@@ -106,5 +107,34 @@ namespace TeachLogistics.Controllers
             DetailedGroupResultViewModel detailedResult = resultBL.GetDetailedGroupResult(group, period);
             return View(detailedResult);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrador")]
+        public async Task<ActionResult> Rankings(Guid? SectionId)
+        {
+            if (SectionId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Section section = await Db.Sections.Where(x => x.Id == SectionId).FirstOrDefaultAsync();
+            if (section == null)
+            {
+                return HttpNotFound();
+            }
+            List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
+            return View(groups);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Estudiante")]
+        [ActionName("StudentRankings")]
+        public async Task<ActionResult> Rankings()
+        {
+            Group group = await Db.Groups.Where(x => x.Users.Contains(CurrentUser)).FirstOrDefaultAsync();
+            Section section = group.Section;
+            List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
+            return View(groups);
+        }
+
     }
 }

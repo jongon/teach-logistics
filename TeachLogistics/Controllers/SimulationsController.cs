@@ -187,13 +187,13 @@ namespace TeachLogistics.Controllers
             {
                 //Tira un error de que no puede llenar ordenes hasta que el profesor ingrese demanda.
                 Flash.Error("Error", "El Profesor aún no suministra nuevas demandas");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
             }
             else if (lastPeriod.Orders.Where(x => x.Group == group).Count() != 0)
             {
                 //Tira un error de que no puede llenar ordenes hasta que el profesor ingrese demanda.
                 Flash.Error("Error", "El Profesor aún no sumistra nuevas demandas");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
             }
             SimulationBL simulation = new SimulationBL();
             if (group.IsInSimulation == false)
@@ -351,13 +351,6 @@ namespace TeachLogistics.Controllers
             ViewBag.Section = section;
             List<Group> groups = section.Groups.Where(x => x.IsInSimulation == true).ToList<Group>();
             return View(groups);
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Administrador")]
-        public async Task<ActionResult> Rankings(Guid? Id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
