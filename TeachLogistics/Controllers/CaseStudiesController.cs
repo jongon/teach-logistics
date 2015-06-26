@@ -239,6 +239,7 @@ namespace TeachLogistics.Controllers
                     return RedirectToAction("Index");
                 }
                 List<Section> activatedSections = caseStudy.Sections.Where(x => x.IsActivedSimulation == true).ToList();
+                List<Section> finalizedSections = caseStudy.Sections.Where(x => x.IsActivedSimulation == false && x.Periods.Select(c => c.IsLastPeriod).Contains(true)).ToList();
                 caseStudy.Sections.Clear();
                 if (caseStudyModel.Sections != null)
                 {
@@ -267,7 +268,13 @@ namespace TeachLogistics.Controllers
                     {
                         Flash.Warning("Advertencia", "No pueden ser desasignados los casos estudios que tengan simulaciones activas");
                     }
-                } 
+                }
+
+                if (finalizedSections.Count() > 0)
+                {
+                    finalizedSections.SelectMany(x => x.Periods).ToList().ForEach(x => Db.Periods.Remove(x));
+                    Flash.Warning("Adventencia", "Simulaciones finalizadas han sido eliminadas");
+                }
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "El caso de Estudio ha sido asignado a las sección(es) satisfactoriamente");
                 return RedirectToAction("Index");

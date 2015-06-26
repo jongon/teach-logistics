@@ -36,6 +36,11 @@ namespace TeachLogistics.Controllers
                 {
                     return HttpNotFound();
                 }
+                if (section.IsActivedSimulation == false && section.Periods.Count() > 0)
+                {
+                    Flash.Error("No se puede re activar una simulación");
+                    return RedirectToAction("Index");
+                }
                 section.IsActivedSimulation = true;
                 foreach (var group in section.Groups)
                 {
@@ -64,6 +69,10 @@ namespace TeachLogistics.Controllers
                     throw new Exception();
                 }
                 section.IsActivedSimulation = false;
+                if (section.Periods.LastOrDefault() != null)
+                {
+                    section.Periods.LastOrDefault().IsLastPeriod = true;
+                }
                 await Db.SaveChangesAsync();
                 Flash.Success("Ok", "La Simulación ha sido finalizada");
                 return RedirectToAction("Index");
@@ -86,6 +95,12 @@ namespace TeachLogistics.Controllers
                 {
                     throw new Exception();
                 }
+
+                if (section.IsActivedSimulation == false && section.Periods.Count() > 0)
+                {
+                    Flash.Error("El Modelo de gestión ha finalizado");
+                    return RedirectToAction("Index");
+                } 
 
                 if (section.IsActivedSimulation == false)
                 {
@@ -122,12 +137,21 @@ namespace TeachLogistics.Controllers
                 {
                     return HttpNotFound();
                 }
+                if (section.IsActivedSimulation == false)
+                {
+                    Flash.Error("El Modelo de gestión ha finalizado");
+                    return RedirectToAction("Index");
+                } 
                 Period newPeriod = new Period
                 {
                     Created = DateTime.Now,
                     Id = Guid.NewGuid(),
                     IsLastPeriod = section.CaseStudy.Periods == section.Periods.Count() + 1 ? true : false,
                 };
+                if (newPeriod.IsLastPeriod)
+                {
+                    section.IsActivedSimulation = false;
+                }
                 section.Periods.Add(newPeriod);
                 Period period = section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
                 period.Demands = new List<Demand>();
@@ -176,6 +200,16 @@ namespace TeachLogistics.Controllers
                 Flash.Error("Error", "Lo Siento pero usted no pertenece a ningún grupo para empezar el modelo de gestión");
                 return RedirectToAction("Index", "Home");
             }
+            if (group.IsInSimulation == false)
+            {
+                Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
+                return RedirectToAction("Index", "Home");
+            }
+            if (!group.Section.IsActivedSimulation && group.Section.Periods.Select(x => x.IsLastPeriod).Contains(true))
+            {
+                Flash.Info("Información", "El modelo de gestión ha finalizado");
+                return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
+            }
             if (!group.Section.IsActivedSimulation)
             {
                 //Tira un error de que el model de gestión aún no ha empezado
@@ -196,11 +230,6 @@ namespace TeachLogistics.Controllers
                 return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
             }
             SimulationBL simulation = new SimulationBL();
-            if (group.IsInSimulation == false)
-            {
-                Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
-                return RedirectToAction("Index", "Home");
-            }
             List<Balance> balances = group.Balances.Where(x => x.PeriodId == lastPeriod.Id).ToList<Balance>();
             List<OrderViewModel> orders = balances.Select(x => new OrderViewModel {
                 Demand = x.Demand,
@@ -254,6 +283,16 @@ namespace TeachLogistics.Controllers
                 Flash.Error("Error", "Lo Siento pero usted no pertenece a ningún grupo para empezar el modelo de gestión");
                 return RedirectToAction("Index", "Home");
             }
+            if (group.IsInSimulation == false)
+            {
+                Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
+                return RedirectToAction("Index", "Home");
+            }
+            if (!group.Section.IsActivedSimulation && group.Section.Periods.Select(x => x.IsLastPeriod).Contains(true))
+            {
+                Flash.Info("Información", "El modelo de gestión ha finalizado");
+                return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
+            }
             if (!group.Section.IsActivedSimulation)
             {
                 //Tira un error de que el model de gestión aún no ha empezado
@@ -274,11 +313,6 @@ namespace TeachLogistics.Controllers
                 return RedirectToAction("Index", "Home");
             }
             
-            if (group.IsInSimulation == false)
-            {
-                Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
-                return RedirectToAction("Index", "Home");
-            }
             lastPeriod = group.Section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
             if (ModelState.IsValid)
             {
