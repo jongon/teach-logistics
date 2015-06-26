@@ -142,7 +142,12 @@ function calculateTimeAndCost(selected, quantity) {
     if (selectedValue === "Normal") {
         var ordinaryOrderCost = $(selected).parents('.order-panel').first().children('.costs').children('.OrdinaryOrderCost').val();
         var ordinaryOrderTime = $(selected).parents('.order-panel').first().children('.costs').children('.OrdinaryOrderTime').val();
-        $(delivery).text(Number(periodNumber) + Number(ordinaryOrderTime));
+        deliveryTime = Number(periodNumber) + Number(ordinaryOrderTime)
+        if (deliveryTime > totalPeriods) {
+            $(delivery).text(deliveryTime + " | Esta orden no llegará antes de la finalización del modelo");
+        }  else {
+            $(delivery).text(Number(periodNumber) + Number(ordinaryOrderTime));
+        }
         if (Number(ordinaryOrderCost) == 0)
             $(total_cost).text((Number(price)) * (Number)(quantity));
         else
@@ -150,14 +155,24 @@ function calculateTimeAndCost(selected, quantity) {
     } else if (selectedValue === "Fast") {
         var fastOrderCost = $(selected).parents('.order-panel').first().children('.costs').children('.FastOrderCost').val();
         var fastOrderTime = $(selected).parents('.order-panel').first().children('.costs').children('.FastOrderTime').val();
-        $(delivery).text( Number(periodNumber) + Number(fastOrderTime));
+        deliveryTime = Number(periodNumber) + Number(fastOrderTime);
+        if (deliveryTime > totalPeriods) {
+            $(delivery).text(deliveryTime + " | Esta orden no llegará antes de la finalización del modelo");
+        } else {
+            $(delivery).text(Number(periodNumber) + Number(fastOrderTime));
+        }
         $(total_cost).text( (Number(price) * Number(quantity)) + Number(fastOrderCost));
     } else if (selectedValue === "Courier") {
         var courierOrderCost = $(selected).parents('.order-panel').first().children('.costs').children('.CourierOrderCost').val();
         var courierOrderTime = $(selected).parents('.order-panel').first().children('.costs').children('.CourierOrderTime').val();
         deliveryTime = Number(periodNumber) + Number(courierOrderTime);
         cost = (parseFloat(courierOrderCost) + Number(price)) * Number(quantity);
-        $(delivery).text( deliveryTime );
+        if (deliveryTime > totalPeriods) {
+            $(delivery).text(deliveryTime + " | Esta orden no llegará antes de la finalización del modelo");
+        }
+        else {
+            $(delivery).text(deliveryTime);
+        }
         $(total_cost).text(parseFloat(cost).toFixed(2));
     } else if (selectedValue === "FastCourier") {
         var courierOrderCost = $(selected).parents('.order-panel').first().children('.costs').children('.CourierOrderCost').val();
@@ -166,7 +181,12 @@ function calculateTimeAndCost(selected, quantity) {
         console.log(courierOrderCost);
         deliveryTime = Number(periodNumber) + Number(fastCourierTime);
         cost = ((parseFloat(courierOrderCost) + Number(price)) * Number(quantity)) + Number(fastCourierCost);
-        $(delivery).text( deliveryTime );
+        if (deliveryTime > totalPeriods) {
+            $(delivery).text(deliveryTime + " | Esta orden no llegará antes de la finalización del modelo");
+        }
+        else {
+            $(delivery).text(deliveryTime);
+        }
         $(total_cost).text( parseFloat(cost).toFixed(2));
     }
 }

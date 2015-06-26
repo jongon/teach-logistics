@@ -196,6 +196,7 @@
 @section Scripts {
 	<script>
 		var group = @Html.Raw(Json.Encode(Model.Members));
+		var totalPeriods = @Model.CaseStudy.Periods;
 		var periodNumber = @Model.WeekNumber;
 		var demandsUrl = "@Url.Action("Demands", new { Id = Model.Group.SectionId })";
 		var resultsUrl = "@Url.Action("GroupResults", "Results")";
