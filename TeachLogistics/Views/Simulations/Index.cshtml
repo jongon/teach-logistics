@@ -82,18 +82,33 @@
 									<td>
 										@if (item.IsActivedSimulation)
 										{
-											@Html.ActionLink("Registrar Demandas", "RegisterDemands", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) <text>&nbsp;</text>
+											if (!item.Periods.Select(x => x.IsLastPeriod).Contains(true))
+											{																						
+												@Html.ActionLink("Registrar Demandas", "RegisterDemands", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) <text>&nbsp;</text>
+											}										
+											@Html.ActionLink("Demandas", "Demands", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) <text>&nbsp;</text>
+											@Html.ActionLink("Grupos", "Groups", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) <text>&nbsp;</text>
+											@Html.ActionLink("Resultados", "Results", "Results", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" }) <text>&nbsp;</text>
+											@Html.ActionLink("Rankings", "Rankings", "Results", new { SectionId = item.Id }, new { @class = "btn btn-default btn-sm" }) <text>&nbsp;</text>
+											if (!item.Periods.Select(x => x.IsLastPeriod).Contains(true))
+											{										
+												<text> | &nbsp; </text>
+												<button type="button" class="btn btn-danger btn-sm simulation" data-toggle="modal" data-target="#disableSimulation" data-section="@item.Id">Finalizar Simulación</button>
+											}										
+										}
+										else if (item.Periods.Count() == 0)
+										{
+											<button type="button" class="btn btn-success btn-sm simulation" data-toggle="modal" data-target="#enableSimulation" data-section="@item.Id">Activar Simulación</button>
+										}
+										else 
+										{
 											@Html.ActionLink("Demandas", "Demands", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) <text>&nbsp;</text>
 											@Html.ActionLink("Grupos", "Groups", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) <text>&nbsp;</text>
 											@Html.ActionLink("Resultados", "Results", "Results", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" }) <text>&nbsp;</text>
 											@Html.ActionLink("Rankings", "Rankings", "Results", new { SectionId = item.Id }, new { @class = "btn btn-default btn-sm" }) <text>&nbsp;</text>
 											<text> | &nbsp; </text>
-											<button type="button" class="btn btn-danger btn-sm simulation" data-toggle="modal" data-target="#disableSimulation" data-section="@item.Id">Finalizar Simulación</button>
-										}
-										else
-										{
-											<button type="button" class="btn btn-success btn-sm simulation" data-toggle="modal" data-target="#enableSimulation" data-section="@item.Id">Activar Simulación</button>
-										}
+											<span><strong>Finalizado</strong></span>
+										}										
 									</td>
 								</tr>
 							}
