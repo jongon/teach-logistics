@@ -15,13 +15,13 @@ namespace TeachLogistics
 
             //KendoUI
             bundles.Add(new ScriptBundle("~/bundles/kendo/kendoscripts").Include(
-                "~/Scripts/kendo/2015.1.429/kendo.all.min.js",
-                "~/Scripts/kendo/2015.1.429/kendo.aspnetmvc.min.js",
-                "~/Scripts/kendo/2015.1.429/cultures/kendo.culture.es-VE.min.js"));
+                "~/Scripts/kendo/2015.2.624/kendo.all.min.js",
+                "~/Scripts/kendo/2015.2.624/kendo.aspnetmvc.min.js",
+                "~/Scripts/kendo/2015.2.624/cultures/kendo.culture.es-VE.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/kendo/2015.1.429/kendostyles").Include(
-                "~/Content/kendo/2015.1.429/kendo.common-bootstrap.min.css",
-                "~/Content/kendo/2015.1.429/kendo.bootstrap.min.css"));
+            bundles.Add(new StyleBundle("~/Content/kendo/2015.2.624/kendostyles").Include(
+                "~/Content/kendo/2015.2.624/kendo.common-bootstrap.min.css",
+                "~/Content/kendo/2015.2.624/kendo.bootstrap.min.css"));
 
             //AngularJs
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
