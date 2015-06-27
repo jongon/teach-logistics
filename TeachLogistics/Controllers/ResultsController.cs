@@ -128,10 +128,10 @@ namespace TeachLogistics.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Estudiante")]
-        [ActionName("StudentRankings")]
-        public async Task<ActionResult> Rankings()
+        public ActionResult StudentRankings()
         {
-            Group group = await Db.Groups.Where(x => x.Users.Contains(CurrentUser)).FirstOrDefaultAsync();
+            Group group;
+            group = CurrentUser.Group;
             Section section = group.Section;
             List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
             ViewBag.Section = section.Number;

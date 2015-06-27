@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using TeachLogistics.Business;
 
 namespace TeachLogistics.Controllers
 {
@@ -13,7 +14,7 @@ namespace TeachLogistics.Controllers
             }
             else if (User.IsInRole("Estudiante"))
             {
-                return View();
+                return View("IndexStudent");
             }
             return HttpNotFound();
         }

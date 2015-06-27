@@ -2,6 +2,10 @@
 	ViewBag.Title = "Inicio";
 }
 @Html.Flash()
+@if (ViewBag.User.Group.IsInSimulation)
+{
+	Html.RenderAction("StudentRankings", "Results");
+}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="ibox">
@@ -14,17 +18,17 @@
 						<div class="jumbotron">
 							<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="123.989px" viewBox="0 0 140 163.989" enable-background="new 0 0 140 163.989" xml:space="preserve">
 							<g>
-								<polygon fill="#EA5264" points="29.716,30.508 69.356,8 110.285,30.937 69.356,55.845 	" />
-								<polygon fill="#20AF92" points="7.693,41.526 70,80.004 70,157.565 7.693,119.089 	" />
-								<polygon fill="#F7AC59" points="132.307,41.526 70,80.004 70,157.565 132.307,119.089 	" />
+							<polygon fill="#EA5264" points="29.716,30.508 69.356,8 110.285,30.937 69.356,55.845 	" />
+							<polygon fill="#20AF92" points="7.693,41.526 70,80.004 70,157.565 7.693,119.089 	" />
+							<polygon fill="#F7AC59" points="132.307,41.526 70,80.004 70,157.565 132.307,119.089 	" />
 							</g>
 							</svg>
 							<div class="inline title-app">
 								<span class="teach">Teach</span> <span class="logistics">Logistics</span>
 							</div>
 							<p>
-								Bienvenidos al módulo de administración de Teach Logistics, desde este módulo podrá configurar y manejar todos los usuarios, semestres, secciones,
-								casos de estudios, evaluaciones, entre otros mucho mas detalles que le ayudarán a la enseñanza de la materia cadena de suministros. Le recomendamos
+								Bienvenidos al módulo de estudiante de Teach Logistics, desde este módulo podrá interactuar con su grupo y la sección, presentar evaluaciones, descargar archivos y consultar estadisticas que
+								ayudarán al estudio de la materia cadena de suministros. Le recomendamos
 								recorrer cada uno de los menús para adquirir conocimiento del funcionamiento del sistema.
 							</p>
 						</div>
