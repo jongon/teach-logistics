@@ -11,14 +11,14 @@ namespace TeachLogistics.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            throw new NotImplementedException();
+            return View();
         }
 
 
         [Authorize(Roles="Estudiante")]
         public async Task<ActionResult> StudentStadistics()
         {
-            throw new NotImplementedException();
+            return View();
         }
     }
 }

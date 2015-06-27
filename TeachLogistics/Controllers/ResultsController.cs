@@ -122,6 +122,7 @@ namespace TeachLogistics.Controllers
                 return HttpNotFound();
             }
             List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
+            ViewBag.Section = section.Number;
             return View(groups);
         }
 
@@ -133,8 +134,8 @@ namespace TeachLogistics.Controllers
             Group group = await Db.Groups.Where(x => x.Users.Contains(CurrentUser)).FirstOrDefaultAsync();
             Section section = group.Section;
             List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
+            ViewBag.Section = section.Number;
             return View(groups);
         }
-
     }
 }

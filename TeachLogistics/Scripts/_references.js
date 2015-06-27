@@ -984,3 +984,4 @@
 /// <reference path="app/results/index.js" />
 /// <reference path="app/results/details.js" />
 /// <reference path="app/results/indexstudents.js" />
+/// <reference path="app/stadistics/index.js" />
