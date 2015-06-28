@@ -16,9 +16,10 @@ namespace TeachLogistics.Controllers
 
 
         [Authorize(Roles="Estudiante")]
+        [HttpGet]
         public async Task<ActionResult> StudentStadistics()
         {
-            return View();
+            return View("Index");
         }
     }
 }
