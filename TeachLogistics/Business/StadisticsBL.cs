@@ -30,7 +30,17 @@ namespace TeachLogistics.Business
         public List<PeriodResultViewModel> GetAverageTotalCost(Section section)
         {
             List<Group> groups = section.Groups.Where(x => x.IsInSimulation).ToList<Group>();
-            throw new NotImplementedException();
+            var results = groups.SelectMany(x => x.Balances)
+                .Where(x => x.Period != section.Periods.OrderBy(t => t.Created).ToList().FirstOrDefault())
+                .OrderBy(x => x.Period.Created)
+                .GroupBy(x => x.Period)
+                .Select((t, index) => new PeriodResultViewModel
+                {
+                    PeriodNumber = index++,
+                    Quantity = t.Key.Balances.Average(x => (x.OrderCost + x.DissatisfiedCostPast + x.FinalStockCostPast))
+                })
+                .ToList();
+            return results;
         }
 
         public List<PeriodResultViewModel> GetDemandCost(Group group)
@@ -53,7 +63,18 @@ namespace TeachLogistics.Business
 
         public List<PeriodResultViewModel> GetAverageDemandCost(Section section)
         {
-            throw new NotImplementedException();
+            List<Group> groups = section.Groups.Where(x => x.IsInSimulation).ToList<Group>();
+            var results = groups.SelectMany(x => x.Balances)
+                .Where(x => x.Period != section.Periods.OrderBy(t => t.Created).ToList().FirstOrDefault())
+                .OrderBy(x => x.Period.Created)
+                .GroupBy(x => x.Period)
+                .Select((t, index) => new PeriodResultViewModel
+                {
+                    PeriodNumber = index++,
+                    Quantity = t.Key.Balances.Average(x => x.DissatisfiedCostPast)
+                })
+                .ToList();
+            return results;
         }
 
         public List<PeriodResultViewModel> GetStockCost(Group group)
@@ -76,7 +97,18 @@ namespace TeachLogistics.Business
 
         public List<PeriodResultViewModel> GetAverageStockCost(Section section)
         {
-            throw new NotImplementedException();
+            List<Group> groups = section.Groups.Where(x => x.IsInSimulation).ToList<Group>();
+            var results = groups.SelectMany(x => x.Balances)
+                .Where(x => x.Period != section.Periods.OrderBy(t => t.Created).ToList().FirstOrDefault())
+                .OrderBy(x => x.Period.Created)
+                .GroupBy(x => x.Period)
+                .Select((t, index) => new PeriodResultViewModel
+                {
+                    PeriodNumber = index++,
+                    Quantity = t.Key.Balances.Average(x => x.FinalStockCostPast)
+                })
+                .ToList();
+            return results;
         }
 
         public List<PeriodResultViewModel> GetOrderCost(Group group)
@@ -99,7 +131,18 @@ namespace TeachLogistics.Business
 
         public List<PeriodResultViewModel> GetAverageOrderCost(Section section)
         {
-            throw new NotImplementedException();
+            List<Group> groups = section.Groups.Where(x => x.IsInSimulation).ToList<Group>();
+            var results = groups.SelectMany(x => x.Balances)
+                .Where(x => x.Period != section.Periods.OrderBy(t => t.Created).ToList().FirstOrDefault())
+                .OrderBy(x => x.Period.Created)
+                .GroupBy(x => x.Period)
+                .Select((t, index) => new PeriodResultViewModel
+                {
+                    PeriodNumber = index++,
+                    Quantity = t.Key.Balances.Average(x => x.OrderCost)
+                })
+                .ToList();
+            return results;
         }
     }
 }

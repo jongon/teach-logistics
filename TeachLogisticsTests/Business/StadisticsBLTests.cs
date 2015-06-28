@@ -10,8 +10,9 @@ using TeachLogisticss;
 using TeachLogistics.Models;
 using TeachLogistics.ViewModels;
 
-namespace TeachLogisticsTests.Business
+namespace TeachLogistics.Business.Tests
 {
+    [TestClass()]
     public class StadisticsBLTests : Test
     {
         [TestMethod()]
