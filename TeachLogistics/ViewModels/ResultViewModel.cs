@@ -68,6 +68,9 @@ namespace TeachLogistics.ViewModels
 
     public class GroupRankingViewModel
     {
+        [DisplayName("Id")]
+        public Guid Id { get; set; }
+        
         [DisplayName("Grupo")]
         public string GroupName { get; set; }
 
