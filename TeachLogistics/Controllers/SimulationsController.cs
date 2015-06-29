@@ -314,35 +314,43 @@ namespace TeachLogistics.Controllers
             }
             
             lastPeriod = group.Section.Periods.OrderByDescending(x => x.Created).FirstOrDefault();
-            if (ModelState.IsValid)
+            try
             {
-                foreach (var order in model.Orders)
+                if (ModelState.IsValid)
                 {
-                    if (!TryValidateModel(order))
+                    foreach (var order in model.Orders)
                     {
-                        Flash.Error("Error", "Ha ocurrido un error con las ordenes");
-                        return RedirectToAction("Orders");
+                        if (!TryValidateModel(order))
+                        {
+                            Flash.Error("Error", "Ha ocurrido un error con las ordenes");
+                            return RedirectToAction("Orders");
+                        }
+                        Product product = Db.Products.Where(x => x.Id == order.ProductId).FirstOrDefault();
+                        Order newOrder = new Order
+                        {
+                            Id = Guid.NewGuid(),
+                            Created = DateTime.Now,
+                            Group = group,
+                            OrderType = (order.OrderMethodOption == null  || order.Quantity == null) ? OrderType.None : (OrderType)order.OrderMethodOption,
+                            Product = product,
+                            Quantity = order.Quantity == null ? 0 : (int)order.Quantity, 
+                        };
+                        lastPeriod.Orders.Add(newOrder);
                     }
-                    Product product = Db.Products.Where(x => x.Id == order.ProductId).FirstOrDefault();
-                    Order newOrder = new Order
-                    {
-                        Id = Guid.NewGuid(),
-                        Created = DateTime.Now,
-                        Group = group,
-                        OrderType = (order.OrderMethodOption == null  || order.Quantity == null) ? OrderType.None : (OrderType)order.OrderMethodOption,
-                        Product = product,
-                        Quantity = order.Quantity == null ? 0 : (int)order.Quantity, 
-                    };
-                    lastPeriod.Orders.Add(newOrder);
+                    await Db.SaveChangesAsync();
+                    Flash.Success("Ok", "Las Ordenes han sido realizadas exitosamente");
+                    return RedirectToAction("Index", "Home");
                 }
-                await Db.SaveChangesAsync();
-                Flash.Success("Ok", "Las Ordenes han sido realizadas exitosamente");
-                return RedirectToAction("Index", "Home");
+                else
+                {
+                    Flash.Error("Error", "Ha Ocurrido un error creando las ordenes");
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
+            catch (Exception)
             {
                 Flash.Error("Error", "Ha Ocurrido un error creando las ordenes");
-                return View("Index", model);
+                return RedirectToAction("Index", "Home");
             }
         }
 

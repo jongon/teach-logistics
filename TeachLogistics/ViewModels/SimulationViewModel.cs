@@ -102,6 +102,8 @@ namespace TeachLogistics.ViewModels
         public Guid ProductId { get; set; }
         
         [DisplayName("Cantidad a Ordenar")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo números enteros permitidos")]
+        [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
         public int? Quantity { get; set; }
 
         [DisplayName("Costo Ordenar")]

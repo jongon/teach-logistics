@@ -31,8 +31,6 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     };
 
-    $('#form').validate().settings.ignore = "*";
-
     if (periodNumber == 1) {
         $('#instructions').modal('show');
     }
