@@ -36,7 +36,7 @@ namespace TeachLogistics.Business.Tests
         [TestMethod()]
         public void GetAverageTotalCostTest()
         {
-            Section section = Db.Sections.FirstOrDefault();
+            Section section = Db.Sections.Where(x => x.Number == "1001").FirstOrDefault();
             if (section == null)
             {
                 return;

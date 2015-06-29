@@ -37,7 +37,8 @@ namespace TeachLogistics.Business
                 .Select((t, index) => new PeriodResultViewModel
                 {
                     PeriodNumber = index++,
-                    Quantity = t.Key.Balances.Average(x => (x.OrderCost + x.DissatisfiedCostPast + x.FinalStockCostPast))
+                    Quantity = section.Groups.Where(x => x.IsInSimulation)
+                        .Average(x => x.Balances.Sum(z => z.DissatisfiedCostPast + z.OrderCost + z.FinalStockCostPast))         
                 })
                 .ToList();
             return results;
@@ -71,7 +72,8 @@ namespace TeachLogistics.Business
                 .Select((t, index) => new PeriodResultViewModel
                 {
                     PeriodNumber = index++,
-                    Quantity = t.Key.Balances.Average(x => x.DissatisfiedCostPast)
+                    Quantity = section.Groups.Where(x => x.IsInSimulation)
+                        .Average(x => x.Balances.Sum(z => z.DissatisfiedCostPast)) 
                 })
                 .ToList();
             return results;
@@ -105,7 +107,8 @@ namespace TeachLogistics.Business
                 .Select((t, index) => new PeriodResultViewModel
                 {
                     PeriodNumber = index++,
-                    Quantity = t.Key.Balances.Average(x => x.FinalStockCostPast)
+                    Quantity = section.Groups.Where(x => x.IsInSimulation)
+                        .Average(x => x.Balances.Sum(z => z.FinalStockCostPast))
                 })
                 .ToList();
             return results;
@@ -139,7 +142,8 @@ namespace TeachLogistics.Business
                 .Select((t, index) => new PeriodResultViewModel
                 {
                     PeriodNumber = index++,
-                    Quantity = t.Key.Balances.Average(x => x.OrderCost)
+                    Quantity = section.Groups.Where(x => x.IsInSimulation)
+                        .Average(x => x.Balances.Sum(z => z.OrderCost))
                 })
                 .ToList();
             return results;
