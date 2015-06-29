@@ -434,9 +434,12 @@ namespace TeachLogistics
             bundles.Add(new ScriptBundle("~/bundles/Results/details").Include(
                 "~/Scripts/app/Results/details.js"));
 
-            //Estidisticas
+            //Stadistics
             bundles.Add(new ScriptBundle("~/bundles/Stadistics/index").Include(
                 "~/Scripts/app/Stadistics/index.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Stadistics/studentStadistics").Include(
+                "~/Scripts/app/Stadistics/studentStadistics.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

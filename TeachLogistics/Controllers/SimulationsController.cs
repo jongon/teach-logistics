@@ -146,7 +146,7 @@ namespace TeachLogistics.Controllers
                 {
                     Created = DateTime.Now,
                     Id = Guid.NewGuid(),
-                    IsLastPeriod = section.CaseStudy.Periods == section.Periods.Count() + 1 ? true : false,
+                    IsLastPeriod = section.CaseStudy.Periods == section.Periods.Count() ? true : false,
                 };
                 if (newPeriod.IsLastPeriod)
                 {

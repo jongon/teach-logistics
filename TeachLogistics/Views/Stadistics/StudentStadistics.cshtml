@@ -1,0 +1,215 @@
+﻿@model TeachLogistics.ViewModels.StadisticsViewModel
+@{
+	ViewBag.Title = "Estadísticas";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-sm-4">
+		<h2>Estadísticas</h2>
+		<ol class="breadcrumb">
+			<li class="active">
+				<strong>Índice</strong>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo Total - Gráfico de Linea
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="CostTotalLine" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo Total - Gráfico de Barra
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="CostTotalBar" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo por Ordenar - Gráfico de Linea
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="OrderLine" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo por Ordenar - Gráfico de Barra
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="OrderBar" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo por Inventario - Gráfico de Linea
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="StockLine" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo por Inventario - Gráfico de Barra
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="StockBar" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo por Demanda Insatisfecha - Gráfico de Linea
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="DemandLine" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>
+						Costo por Demanda Insatisfecha - Gráfico de Barra
+					</h5>
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div>
+						<canvas id="DemandBar" height="140"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section scripts {
+	@Scripts.Render("~/plugins/chartJs")
+	<script>
+		var totalCostData = [];
+		var totalStockData = [];
+		var totalDemandData = [];
+		var totalOrderData = [];
+
+		var averageCostData = [];
+		var averageStockData = [];
+		var averageDemandData = [];
+		var averageOrderData = [];
+		var periodNumber = @ViewBag.PeriodNumber;
+		var periods = [];
+		for (var i = 1; i <= periodNumber; i++) {
+			periods.push("Período " + i);
+		}
+
+		@foreach (var cost in Model.TotalCost)
+		{
+			<text>		
+				totalCostData.push(@cost.Quantity);
+			</text>
+		}
+		@foreach (var cost in Model.DemandCost)
+		{
+			<text>
+				totalDemandData.push(@cost.Quantity);
+			</text>
+		}
+		@foreach (var cost in Model.StockCost)
+		{
+			<text>
+				totalStockData.push(@cost.Quantity);
+			</text>
+		}
+		@foreach (var cost in Model.OrderCost)
+		{
+			<text>
+				totalOrderData.push(@cost.Quantity);
+			</text>
+		}
+
+		@* Los Promedios *@
+		@foreach (var cost in Model.AverageTotalCost)
+		{
+			<text>		
+				averageCostData.push(@cost.Quantity);
+			</text>
+		}
+		@foreach (var cost in Model.AverageDemandCost)
+		{
+			<text>
+				averageDemandData.push(@cost.Quantity);
+			</text>
+		}
+		@foreach (var cost in Model.AverageStockCost)
+		{
+			<text>
+				averageStockData.push(@cost.Quantity);
+			</text>
+		}
+		@foreach (var cost in Model.AverageOrderCost)
+		{
+			<text>
+				averageOrderData.push(@cost.Quantity);
+			</text>
+		}
+	</script>
+	@Scripts.Render("~/bundles/Stadistics/studentStadistics")
+}
