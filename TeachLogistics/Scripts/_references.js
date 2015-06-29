@@ -987,3 +987,6 @@
 /// <reference path="kendo/2015.2.624/cultures/kendo.culture.zu-za.min.js" />
 /// <reference path="kendo/2015.2.624/cultures/kendo.culture.zu.min.js" />
 /// <reference path="app/stadistics/studentstadistics.js" />
+/// <reference path="plugins/chartjslegend/demo.js" />
+/// <reference path="plugins/chartjslegend/legend.js" />
+/// <reference path="plugins/chartjslegend/legend.legacy.js" />

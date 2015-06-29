@@ -26,6 +26,7 @@
 					<div>
 						<canvas id="CostTotalLine" height="140"></canvas>
 					</div>
+					<div id="CostTotalLineLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -41,6 +42,7 @@
 					<div>
 						<canvas id="CostTotalBar" height="140"></canvas>
 					</div>
+					<div id="CostTotalBarLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -58,6 +60,7 @@
 					<div>
 						<canvas id="OrderLine" height="140"></canvas>
 					</div>
+					<div id="OrderLineLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -73,6 +76,7 @@
 					<div>
 						<canvas id="OrderBar" height="140"></canvas>
 					</div>
+					<div id="OrderBarLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -90,6 +94,7 @@
 					<div>
 						<canvas id="StockLine" height="140"></canvas>
 					</div>
+					<div id="StockLineLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -105,6 +110,7 @@
 					<div>
 						<canvas id="StockBar" height="140"></canvas>
 					</div>
+					<div id="StockBarLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -122,6 +128,7 @@
 					<div>
 						<canvas id="DemandLine" height="140"></canvas>
 					</div>
+					<div id="DemandLineLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -137,6 +144,7 @@
 					<div>
 						<canvas id="DemandBar" height="140"></canvas>
 					</div>
+					<div id="DemandBarLegend"></div>
 				</div>
 			</div>
 		</div>
@@ -144,6 +152,7 @@
 </div>
 @section scripts {
 	@Scripts.Render("~/plugins/chartJs")
+	@Scripts.Render("~/plugins/chartJsLegend")
 	<script>
 		var totalCostData = [];
 		var totalStockData = [];

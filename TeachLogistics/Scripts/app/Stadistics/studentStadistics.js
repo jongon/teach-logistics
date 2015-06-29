@@ -44,6 +44,7 @@
 
     var ctx = document.getElementById("CostTotalLine").getContext("2d");
     var myNewChart = new Chart(ctx).Line(totalCostLineData, totalCostLineOptions);
+    legend(document.getElementById("CostTotalLineLegend"), totalCostLineData);
 
     //Costo Total Con Promedio de Fondo - Gráfico Barra
     var totalCostBarData = {
@@ -82,6 +83,7 @@
 
     var ctx = document.getElementById("CostTotalBar").getContext("2d");
     var myNewChart = new Chart(ctx).Bar(totalCostBarData, totalCostBarOptions);
+    legend(document.getElementById("CostTotalBarLegend"), totalCostLineData);
 
     ////Costo Inventario Total con promedio de fondo - Gráfico Linea
     var totalStockLineData = {
@@ -128,6 +130,7 @@
 
     var ctx = document.getElementById("StockLine").getContext("2d");
     var myNewChart = new Chart(ctx).Line(totalStockLineData, totalStockLineOptions);
+    legend(document.getElementById("StockLineLegend"), totalCostLineData);
 
     ////Costo Inventario Total Con Promedio de Fondo - Gráfico barra
     var totalStockBarData = {
@@ -166,6 +169,7 @@
 
     var ctx = document.getElementById("StockBar").getContext("2d");
     var myNewChart = new Chart(ctx).Bar(totalStockBarData, totalStockBarOptions);
+    legend(document.getElementById("StockBarLegend"), totalCostLineData);
 
     //Demanda insatisfecha Total con promedio de fondo - Gráfico Linea
     var totalDemandLineData = {
@@ -212,6 +216,7 @@
 
     var ctx = document.getElementById("DemandLine").getContext("2d");
     var myNewChart = new Chart(ctx).Line(totalDemandLineData, totalDemandLineOptions);
+    legend(document.getElementById("DemandLineLegend"), totalCostLineData);
 
     //Demanda insatisfecha Total con promedio de fondo - Gráfico barra
     var totalDemandBarData = {
@@ -250,6 +255,7 @@
 
     var ctx = document.getElementById("DemandBar").getContext("2d");
     var myNewChart = new Chart(ctx).Bar(totalDemandBarData, totalDemandBarOptions);
+    legend(document.getElementById("DemandBarLegend"), totalCostLineData);
 
     //Costo por ordenar Total con promedio de fondo - Gráfico Linea
     var totalOrderLineData = {
@@ -296,6 +302,7 @@
 
     var ctx = document.getElementById("OrderLine").getContext("2d");
     var myNewChart = new Chart(ctx).Line(totalOrderLineData, totalOrderLineOptions);
+    legend(document.getElementById("OrderLineLegend"), totalCostLineData);
 
     //Costo por ordenar Total con promedio de fondo - Gráfico barra
     var totalOrderBarData = {
@@ -334,4 +341,5 @@
 
     var ctx = document.getElementById("OrderBar").getContext("2d");
     var myNewChart = new Chart(ctx).Bar(totalOrderBarData, totalOrderBarOptions);
+    legend(document.getElementById("OrderBarLegend"), totalCostLineData);
 });

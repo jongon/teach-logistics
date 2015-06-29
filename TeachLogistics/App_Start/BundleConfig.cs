@@ -152,6 +152,10 @@ namespace TeachLogistics
             bundles.Add(new ScriptBundle("~/plugins/chartJs").Include(
                       "~/Scripts/plugins/chartjs/Chart.min.js"));
 
+            // ChartJs Legend
+            bundles.Add(new ScriptBundle("~/plugins/chartJsLegend").Include(
+                       "~/Scripts/plugins/chartJsLegend/legend.js"));
+
             // iCheck css styles
             bundles.Add(new StyleBundle("~/Content/plugins/iCheck/iCheckStyles").Include(
                       "~/Content/plugins/iCheck/custom.css"));
