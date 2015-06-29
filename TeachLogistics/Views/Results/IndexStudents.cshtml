@@ -78,16 +78,16 @@
 								{
 									<tr>
 										<td>
-											@Html.DisplayFor(modelItem => result.PeriodNumber)
+											@result.PeriodNumber
 										</td>
 										<td>
-											@Html.DisplayFor(modelItem => result.FinalStockCost)
+											@result.FinalStockCost.ToString("0.00")
 										</td>
 										<td>
-											@Html.DisplayFor(modelItem => result.UnsatisfiedDemandCost)
+											@result.UnsatisfiedDemandCost.ToString("0.00")
 										</td>
 										<td>
-											@Html.DisplayFor(modelItem => result.TotalOrderCost)
+											@result.TotalOrderCost.ToString("0.00")
 										</td>
 										<td>
 											@Html.ActionLink("Detalles", "GroupDetails", new { PeriodId = result.PeriodId }, new { @class = "btn btn-success btn-sm" })

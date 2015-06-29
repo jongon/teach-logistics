@@ -172,25 +172,25 @@
 		@foreach (var cost in Model.TotalCost)
 		{
 			<text>		
-				totalCostData.push(@cost.Quantity);
+				totalCostData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 		@foreach (var cost in Model.DemandCost)
 		{
 			<text>
-				totalDemandData.push(@cost.Quantity);
+				totalDemandData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 		@foreach (var cost in Model.StockCost)
 		{
 			<text>
-				totalStockData.push(@cost.Quantity);
+				totalStockData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 		@foreach (var cost in Model.OrderCost)
 		{
 			<text>
-				totalOrderData.push(@cost.Quantity);
+				totalOrderData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 
@@ -198,25 +198,25 @@
 		@foreach (var cost in Model.AverageTotalCost)
 		{
 			<text>		
-				averageCostData.push(@cost.Quantity);
+				averageCostData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 		@foreach (var cost in Model.AverageDemandCost)
 		{
 			<text>
-				averageDemandData.push(@cost.Quantity);
+				averageDemandData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 		@foreach (var cost in Model.AverageStockCost)
 		{
 			<text>
-				averageStockData.push(@cost.Quantity);
+				averageStockData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 		@foreach (var cost in Model.AverageOrderCost)
 		{
 			<text>
-				averageOrderData.push(@cost.Quantity);
+				averageOrderData.push("@cost.Quantity.ToString("0.00")");
 			</text>
 		}
 	</script>

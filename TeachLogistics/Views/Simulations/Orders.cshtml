@@ -65,7 +65,7 @@
 										@Html.DisplayNameFor(modelItem => Model.Orders[i].ProductPrice)
 									</dt>
 									<dd>
-										@Html.DisplayFor(modelItem => Model.Orders[i].ProductPrice)
+										@Model.Orders[i].ProductPrice.ToString("0.00")
 									</dd>
 									<dt>
 										@Html.DisplayNameFor(modelItem => Model.Orders[i].ReceivedOrders)
@@ -101,7 +101,7 @@
 										@Html.DisplayNameFor(modelItem => Model.Orders[i].FinalStockCost)
 									</dt>
 									<dd>
-										@Html.DisplayFor(modelItem => Model.Orders[i].FinalStockCost)
+										@Model.Orders[i].FinalStockCost.ToString("0.00")
 									</dd>
 									<dt>
 										@Html.DisplayNameFor(modelItem => Model.Orders[i].UnsatisfiedDemand)
@@ -113,7 +113,7 @@
 										@Html.DisplayNameFor(modelItem => Model.Orders[i].UnsatisfiedDemandCost)
 									</dt>
 									<dd>
-										@Html.DisplayFor(modelItem => Model.Orders[i].UnsatisfiedDemandCost)
+										@Model.Orders[i].UnsatisfiedDemandCost.ToString("0.00")
 									</dd>
 								</dl>
 							</div>

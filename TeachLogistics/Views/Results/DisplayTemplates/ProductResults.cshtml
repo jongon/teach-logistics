@@ -30,13 +30,13 @@
 					@Html.DisplayFor(modelItem => result.ProductName)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => result.FinalStockCost)
+					@result.FinalStockCost.ToString("0.00")
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => result.UnsatisfiedDemandCost)
+					@result.UnsatisfiedDemandCost.ToString("0.00")
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => result.OrderCost)
+					@result.OrderCost.ToString("0.00")
 				</td>
 			</tr>
 		}
