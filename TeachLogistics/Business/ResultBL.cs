@@ -69,7 +69,7 @@ namespace TeachLogistics.Business
         {
             List<Group> groups = section.Groups.Where(x => x.IsInSimulation == true).ToList();
             List<GroupRankingViewModel> groupsRanking = groups
-                .OrderByDescending(x => (x.Balances.Sum(c => c.DissatisfiedCostPast) + x.Balances.Sum(c => c.FinalStockCostPast) + x.Balances.Sum(c => c.OrderCost)))
+                .OrderBy(x => (x.Balances.Sum(c => c.DissatisfiedCostPast) + x.Balances.Sum(c => c.FinalStockCostPast) + x.Balances.Sum(c => c.OrderCost)))
                 .Select(x => new GroupRankingViewModel {
                     Id = x.Id,
                     GroupName = x.Name,
