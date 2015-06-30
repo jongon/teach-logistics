@@ -74,7 +74,8 @@ namespace TeachLogistics.Business
                 {
                     PeriodNumber = index++,
                     Quantity = section.Groups.Where(x => x.IsInSimulation)
-                        .Average(x => x.Balances.Where(w => w.Period == t.Key).Sum(z => z.DissatisfiedCostPast)) 
+                        .Average(x => x.Balances.Where(w => w.Period == t.Key)
+                            .Sum(z => z.DissatisfiedCostPast)) 
                 })
                 .ToList();
             return results;
@@ -109,7 +110,8 @@ namespace TeachLogistics.Business
                 {
                     PeriodNumber = index++,
                     Quantity = section.Groups.Where(x => x.IsInSimulation)
-                        .Average(x => x.Balances.Where(w => w.Period == t.Key).Sum(z => z.FinalStockCostPast))
+                        .Average(x => x.Balances.Where(w => w.Period == t.Key)
+                            .Sum(z => z.FinalStockCostPast))
                 })
                 .ToList();
             return results;
@@ -144,7 +146,8 @@ namespace TeachLogistics.Business
                 {
                     PeriodNumber = index++,
                     Quantity = section.Groups.Where(x => x.IsInSimulation)
-                        .Average(x => x.Balances.Where(w => w.Period == t.Key).Sum(z => z.FinalStockCostPast))
+                        .Average(x => x.Balances.Where(w => w.Period == t.Key)
+                            .Sum(z => z.OrderCost))
                 })
                 .ToList();
             return results;
