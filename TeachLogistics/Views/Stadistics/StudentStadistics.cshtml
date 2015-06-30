@@ -179,52 +179,52 @@
 		@foreach (var cost in Model.TotalCost)
 		{
 			<text>
-		totalCostData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			totalCostData.push(@cost.Quantity);
+			</text>
 		}
 		@foreach (var cost in Model.DemandCost)
 		{
 			<text>
-		totalDemandData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			totalDemandData.push(@cost.Quantity);
+			</text>
 		}
 		@foreach (var cost in Model.StockCost)
 		{
 			<text>
-		totalStockData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			totalStockData.push(@cost.Quantity);
+			</text>
 		}
 		@foreach (var cost in Model.OrderCost)
 		{
 			<text>
-		totalOrderData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			totalOrderData.push(@cost.Quantity);
+			</text>
 		}
 
 		@* Los Promedios *@
 		@foreach (var cost in Model.AverageTotalCost)
 		{
 			<text>
-		averageCostData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			 averageCostData.push(@cost.Quantity);
+			</text>
 		}
 		@foreach (var cost in Model.AverageDemandCost)
 		{
 			<text>
-		averageDemandData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			averageDemandData.push(@cost.Quantity);
+			</text>
 		}
 		@foreach (var cost in Model.AverageStockCost)
 		{
 			<text>
-		averageStockData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			averageStockData.push(@cost.Quantity);
+			</text>
 		}
 		@foreach (var cost in Model.AverageOrderCost)
 		{
 			<text>
-		averageOrderData.push("@cost.Quantity.ToString("0.00")");
-		</text>
+			averageOrderData.push(@cost.Quantity);
+			</text>
 		}
 	</script>
 	@Scripts.Render("~/bundles/Stadistics/studentStadistics")
