@@ -990,3 +990,4 @@
 /// <reference path="plugins/chartjslegend/demo.js" />
 /// <reference path="plugins/chartjslegend/legend.js" />
 /// <reference path="plugins/chartjslegend/legend.legacy.js" />
+/// <reference path="plugins/isotope/isotope.pkgd.min.js" />

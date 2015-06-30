@@ -1,6 +1,10 @@
 ﻿using MvcFlash.Core.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Net;
+using System.Linq;
 using System.Web.Mvc;
 using TeachLogistics.Business;
 using TeachLogistics.Models;
@@ -44,6 +48,21 @@ namespace TeachLogistics.Controllers
             stadisticsViewModel.AverageStockCost = stadistics.GetAverageStockCost(section);
             stadisticsViewModel.Groups = results.GetRanking(section);
             return View(stadisticsViewModel);
+        }
+
+        [Authorize(Roles = "Estudiante")]
+        [HttpGet]
+        public ActionResult Groups()
+        {
+            List<Group> groups = CurrentUser.Section.Groups.Where(x => x.IsInSimulation).OrderBy(x => x.Name).ToList();
+            return View(groups);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> GroupStadistics(Guid? GroupId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

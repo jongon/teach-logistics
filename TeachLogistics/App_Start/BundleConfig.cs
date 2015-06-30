@@ -323,6 +323,10 @@ namespace TeachLogistics
             bundles.Add(new StyleBundle("~/plugins/toastrStyles").Include(
                     "~/Content/plugins/toastr/toastr.min.css"));
 
+            //isotope
+            bundles.Add(new ScriptBundle("~/plugins/isotope").Include(
+                    "~/Scripts/plugins/isotope/isotope.pkgd.min.js"));
+
             //Application Scripts
 
             //Account

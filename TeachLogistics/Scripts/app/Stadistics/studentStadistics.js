@@ -1,4 +1,23 @@
-﻿$(function () {
+﻿// external js: isotope.pkgd.js
+
+$(document).ready(function () {
+    // init Isotope
+    var $container = $('.isotope').isotope({
+        itemSelector: '.element-item',
+        resizable: true,
+    });
+
+    // bind filter button click
+    $('#filters').on('click', 'button', function () {
+        var filterValue = $(this).attr('data-filter');
+        // use filterFn if matches value
+        $container.isotope({ filter: filterValue });
+    });
+
+    $("#filters .is-checked").trigger('click');
+});
+
+$(function () {
     //Costo Total Con Promedio de Fondo - Gráfico Linea
     var totalCostLineData = {
         labels: periods,

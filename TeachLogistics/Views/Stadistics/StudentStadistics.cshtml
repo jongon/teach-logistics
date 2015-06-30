@@ -12,9 +12,20 @@
 		</ol>
 	</div>
 </div>
+<div class="row wrapper border-bottom white-bg page-heading-group">
+	<div id="filters" class="btn-toolbar text-center" role="group">
+		<button class="btn btn-sm btn-success button" data-filter="*">Mostrar Todos</button>
+		<button class="btn btn-sm btn-success button is-checked" data-filter=".totalCost">Costo Total</button>
+		<button class="btn btn-sm btn-success button" data-filter=".stock">Costo Inventario</button>
+		<button class="btn btn-sm btn-success button" data-filter=".demand">Costo Demanda Insatisfecha</button>
+		<button class="btn btn-sm btn-success button" data-filter=".order">Costo Ordenar</button>
+		|
+		@Html.ActionLink("Ver Otros Grupos", "Groups", "Stadistics", null, new { @class = "btn btn-sm btn-primary" })
+	</div>
+</div>
 <div class="wrapper wrapper-content animated fadeInRight">
-	<div class="row">
-		<div class="col-md-6">
+	<div class="row isotope">
+		<div class="col-md-6 element-item totalCost">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -30,7 +41,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 element-item totalCost">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -46,9 +57,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 element-item order">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -64,9 +73,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 element-item order">
 			<div class="ibox float-e-margins">
-				<div class="ibox-title">
+				<div class=" ibox-title">
 					<h5>
 						Costo por Ordenar - Gráfico de Barra
 					</h5>
@@ -80,9 +89,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 element-item stock">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -98,7 +105,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 element-item stock">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -114,9 +121,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 element-item demand">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -132,7 +137,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 element-item demand">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>
@@ -151,6 +156,7 @@
 	</div>
 </div>
 @section scripts {
+	@Scripts.Render("~/plugins/isotope")
 	@Scripts.Render("~/plugins/chartJs")
 	@Scripts.Render("~/plugins/chartJsLegend")
 	<script>
@@ -171,53 +177,53 @@
 
 		@foreach (var cost in Model.TotalCost)
 		{
-			<text>		
-				totalCostData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+			<text>
+		totalCostData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 		@foreach (var cost in Model.DemandCost)
 		{
 			<text>
-				totalDemandData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+		totalDemandData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 		@foreach (var cost in Model.StockCost)
 		{
 			<text>
-				totalStockData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+		totalStockData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 		@foreach (var cost in Model.OrderCost)
 		{
 			<text>
-				totalOrderData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+		totalOrderData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 
 		@* Los Promedios *@
 		@foreach (var cost in Model.AverageTotalCost)
 		{
-			<text>		
-				averageCostData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+			<text>
+		averageCostData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 		@foreach (var cost in Model.AverageDemandCost)
 		{
 			<text>
-				averageDemandData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+		averageDemandData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 		@foreach (var cost in Model.AverageStockCost)
 		{
 			<text>
-				averageStockData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+		averageStockData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 		@foreach (var cost in Model.AverageOrderCost)
 		{
 			<text>
-				averageOrderData.push("@cost.Quantity.ToString("0.00")");
-			</text>
+		averageOrderData.push("@cost.Quantity.ToString("0.00")");
+		</text>
 		}
 	</script>
 	@Scripts.Render("~/bundles/Stadistics/studentStadistics")
