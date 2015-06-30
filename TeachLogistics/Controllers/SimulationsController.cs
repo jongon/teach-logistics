@@ -200,6 +200,12 @@ namespace TeachLogistics.Controllers
                 Flash.Error("Error", "Lo Siento pero usted no pertenece a ningún grupo para empezar el modelo de gestión");
                 return RedirectToAction("Index", "Home");
             }
+            if (!group.Section.IsActivedSimulation)
+            {
+                //Tira un error de que el model de gestión aún no ha empezado
+                Flash.Error("Error", "El Modelo de gestión aún no ha empezado");
+                return RedirectToAction("Index", "Home");
+            }
             if (group.IsInSimulation == false)
             {
                 Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
@@ -209,12 +215,6 @@ namespace TeachLogistics.Controllers
             {
                 Flash.Info("Información", "El modelo de gestión ha finalizado");
                 return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
-            }
-            if (!group.Section.IsActivedSimulation)
-            {
-                //Tira un error de que el model de gestión aún no ha empezado
-                Flash.Error("Error", "El Modelo de gestión aún no ha empezado");
-                return RedirectToAction("Index", "Home");
             }
             Period lastPeriod = group.Section.Periods.Where(t => t.Demands.Count() > 0).OrderByDescending(x => x.Created).FirstOrDefault();
             if (lastPeriod == null)
@@ -283,6 +283,12 @@ namespace TeachLogistics.Controllers
                 Flash.Error("Error", "Lo Siento pero usted no pertenece a ningún grupo para empezar el modelo de gestión");
                 return RedirectToAction("Index", "Home");
             }
+            if (!group.Section.IsActivedSimulation)
+            {
+                //Tira un error de que el model de gestión aún no ha empezado
+                Flash.Error("Error", "El Modelo de gestión aún no ha empezado");
+                return RedirectToAction("Index", "Home");
+            }
             if (group.IsInSimulation == false)
             {
                 Flash.Error("Error", "Este Modelo de gestión ya ha iniciado no puede incluirse");
@@ -292,12 +298,6 @@ namespace TeachLogistics.Controllers
             {
                 Flash.Info("Información", "El modelo de gestión ha finalizado");
                 return RedirectToAction("GroupResults", "Results", new { IsReadyToOrder = false });
-            }
-            if (!group.Section.IsActivedSimulation)
-            {
-                //Tira un error de que el model de gestión aún no ha empezado
-                Flash.Error("Error", "El Modelo de gestión aún no ha empezado");
-                return RedirectToAction("Index", "Home");
             }
             Period lastPeriod = group.Section.Periods.Where(t => t.Demands.Count() > 0).OrderByDescending(x => x.Created).FirstOrDefault();
             if (lastPeriod == null)

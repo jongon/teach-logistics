@@ -272,6 +272,7 @@ namespace TeachLogistics.Controllers
 
                 if (finalizedSections.Count() > 0)
                 {
+                    finalizedSections.ForEach(x => x.Groups.ToList().ForEach(t => Db.Groups.Where(z => z.Id == t.Id).FirstOrDefault().IsInSimulation = false));
                     finalizedSections.SelectMany(x => x.Periods).ToList().ForEach(x => Db.Periods.Remove(x));
                     Flash.Warning("Adventencia", "Simulaciones finalizadas han sido eliminadas");
                 }

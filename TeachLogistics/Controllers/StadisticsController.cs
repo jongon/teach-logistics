@@ -27,13 +27,22 @@ namespace TeachLogistics.Controllers
         [HttpGet]
         public ActionResult StudentStadistics()
         {
+            Section section = CurrentUser.Section;
+            if (section.CaseStudy == null)
+            {
+                Flash.Error("Error", "No existe un modelo de gestión asignado para esta sección");
+                return RedirectToAction("Index", "Home");
+            }
             Group group = CurrentUser.Group;
             if (group == null || group.IsInSimulation == false)
             {
                 Flash.Error("Error", "No pertenece a ningún grupo para poder visualizar estadisticas");
                 return RedirectToAction("Index", "Home");
             }
-            Section section = CurrentUser.Section;
+            if (section.Periods.Count() == 0)
+            {
+                Flash.Warning("Adventencia", "No hay datos para mostrar");
+            }
             StadisticsBL stadistics = new StadisticsBL();
             ResultBL results = new ResultBL();
             ViewBag.PeriodNumber = section.CaseStudy.Periods;
@@ -58,11 +67,11 @@ namespace TeachLogistics.Controllers
             return View(groups);
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<ActionResult> GroupStadistics(Guid? GroupId)
-        {
-            throw new NotImplementedException();
-        }
+        //[Authorize]
+        //[HttpGet]
+        //public async Task<ActionResult> GroupStadistics(Guid? GroupId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
