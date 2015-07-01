@@ -991,3 +991,5 @@
 /// <reference path="plugins/chartjslegend/legend.js" />
 /// <reference path="plugins/chartjslegend/legend.legacy.js" />
 /// <reference path="plugins/isotope/isotope.pkgd.min.js" />
+/// <reference path="app/stadistics/groups.js" />
+/// <reference path="app/stadistics/groupstadistics.js" />

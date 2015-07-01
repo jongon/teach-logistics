@@ -60,18 +60,19 @@ namespace TeachLogistics.Controllers
         }
 
         [Authorize(Roles = "Estudiante")]
+        [ActionName("GroupsStudents")]
         [HttpGet]
         public async Task<ActionResult> Groups()
         {
             List<GroupStadistics> groups = await Db.Groups
-                .Where(x => x.Section == CurrentUser.Section && x.IsInSimulation)
+                .Where(x => x.Section.Id == CurrentUser.Section.Id && x.IsInSimulation && x.Id != CurrentUser.GroupId)
                 .Select(x => new GroupStadistics
                 {
                     GroupId = x.Id,
                     GroupName = x.Name
                 })
                 .ToListAsync();
-            return View(groups);
+            return View("Groups", groups);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -88,7 +89,7 @@ namespace TeachLogistics.Controllers
                 return HttpNotFound();
             }
             List<GroupStadistics> groups = await Db.Groups
-                .Where(x => x.Section == section && x.IsInSimulation)
+                .Where(x => x.Section.Id == section.Id && x.IsInSimulation)
                 .Select(x => new GroupStadistics
                 {
                     GroupId = x.Id,

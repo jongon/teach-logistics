@@ -6,8 +6,17 @@
 	<div class="col-sm-4">
 		<h2>Estadísticas</h2>
 		<ol class="breadcrumb">
+			@if (User.IsInRole("Estudiante"))
+			{			
+				<li>
+					@Html.ActionLink("Índice", "StudentStadistics")
+				</li>
+				<li>
+					@Html.ActionLink("Grupos", "GroupsStudents")
+				</li>
+			}			
 			<li class="active">
-				<strong>Índice</strong>
+				<strong>Estadisticas de grupo</strong>
 			</li>
 		</ol>
 	</div>
@@ -19,8 +28,6 @@
 		<button class="btn btn-sm btn-success button" data-filter=".stock">Costo Inventario</button>
 		<button class="btn btn-sm btn-success button" data-filter=".demand">Costo Demanda Insatisfecha</button>
 		<button class="btn btn-sm btn-success button" data-filter=".order">Costo Ordenar</button>
-		|
-		@Html.ActionLink("Ver Otros Grupos", "GroupsStudents", "Stadistics", null, new { @class = "btn btn-sm btn-primary" })
 	</div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -227,5 +234,5 @@
 			</text>
 		}
 	</script>
-	@Scripts.Render("~/bundles/Stadistics/studentStadistics")
+	@Scripts.Render("~/bundles/Stadistics/groupStadistics")
 }
