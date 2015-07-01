@@ -993,3 +993,4 @@
 /// <reference path="plugins/isotope/isotope.pkgd.min.js" />
 /// <reference path="app/stadistics/groups.js" />
 /// <reference path="app/stadistics/groupstadistics.js" />
+/// <reference path="app/stadistics/sections.js" />

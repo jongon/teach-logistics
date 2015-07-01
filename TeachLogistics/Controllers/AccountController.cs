@@ -158,6 +158,11 @@ namespace TeachLogistics.Controllers
                 try
                 {
                     var user = UserManager.FindById(userViewModel.Id);
+                    if (user.Group != null && user.SectionId != userViewModel.SectionId)
+                    {
+                        Flash.Error("Error", "No se puede cambiar la sección porque el usuario tiene un grupo asignado, eliminelo del grupo para cambiar su sección");
+                        return RedirectToAction("Index");
+                    }
                     user.UserName = userViewModel.Email;
                     user.Email = userViewModel.Email;
                     user.FirstName = userViewModel.FirstName;

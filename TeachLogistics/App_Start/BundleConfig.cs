@@ -455,6 +455,9 @@ namespace TeachLogistics
             bundles.Add(new ScriptBundle("~/bundles/Stadistics/groups").Include(
                 "~/Scripts/app/Stadistics/groups.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Stadistics/sections").Include(
+                "~/Scripts/app/Stadistics/sections.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

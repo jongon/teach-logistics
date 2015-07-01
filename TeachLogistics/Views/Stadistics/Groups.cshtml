@@ -13,11 +13,27 @@
 				{
 					@Html.ActionLink("Índice", "StudentStadistics")				
 				}
+				else if (User.IsInRole("Administrador"))
+				{
+						@Html.ActionLink("Índice", "Sections")											
+				}			
 			</li>
 			<li class="active">
 				<strong>Grupos</strong>
 			</li>
 		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@if (User.IsInRole("Estudiante"))
+			{
+				@Html.ActionLink("Volver al índice", "StudentStadistics", null, new { @class = "btn btn-primary" })
+			}
+			else
+			{
+				@Html.ActionLink("Volver al índice", "Sections", null, new { @class = "btn btn-primary" })	
+			}					
+		</div>
 	</div>
 </div>
 

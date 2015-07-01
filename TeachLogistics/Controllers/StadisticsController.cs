@@ -34,9 +34,14 @@ namespace TeachLogistics.Controllers
                 return RedirectToAction("Index", "Home");
             }
             Group group = CurrentUser.Group;
-            if (group == null || group.IsInSimulation == false)
+            if (group == null)
             {
                 Flash.Error("Error", "No pertenece a ningún grupo para poder visualizar estadisticas");
+                return RedirectToAction("Index", "Home");
+            }
+            if (group.IsInSimulation == false)
+            {
+                Flash.Error("Error", "No participa en el modelo de gestión para poder visualizar estadisticas");
                 return RedirectToAction("Index", "Home");
             }
             if (section.Periods.Count() == 0)
@@ -105,6 +110,8 @@ namespace TeachLogistics.Controllers
         {
             List<SectionStadistics> sections = await Db.Sections
                 .Where(x => x.IsActivedSimulation || x.Periods.Select(t => t.IsLastPeriod).Contains(true))
+                .OrderBy(x => x.Semester.Description)
+                .OrderBy(x => x.Number)
                 .Select(x => new SectionStadistics {
                     SectionId = x.Id,
                     Section = x.Number,
@@ -127,6 +134,8 @@ namespace TeachLogistics.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.GroupName = group.Name;
+            ViewBag.SectionId = group.SectionId;
             Section section = group.Section;
             StadisticsBL stadistics = new StadisticsBL();
             ResultBL results = new ResultBL();

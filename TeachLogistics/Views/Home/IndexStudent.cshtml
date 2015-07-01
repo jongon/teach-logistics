@@ -2,7 +2,7 @@
 	ViewBag.Title = "Inicio";
 }
 @Html.Flash()
-@if (ViewBag.User.Group.IsInSimulation)
+@if (ViewBag.User.Group != null && ViewBag.User.Group.IsInSimulation)
 {
 	Html.RenderAction("StudentRankings", "Results");
 }

@@ -14,11 +14,32 @@
 				<li>
 					@Html.ActionLink("Grupos", "GroupsStudents")
 				</li>
-			}			
+			}	
+			else if (User.IsInRole("Administrador"))
+			{
+				<li>
+					@Html.ActionLink("Índice", "Sections")
+				</li>
+				<li>
+					@Html.ActionLink("Grupos", "Groups")
+				</li>
+			}	
 			<li class="active">
-				<strong>Estadisticas de grupo</strong>
+				<strong>Estadisticas de @ViewBag.GroupName</strong>
 			</li>
 		</ol>
+	</div>
+	<div class="col-sm-8">
+		<div class="title-action">
+			@if (User.IsInRole("Estudiante"))
+			{
+				@Html.ActionLink("Volver a grupos", "GroupsStudents", null, new { @class = "btn btn-primary" })
+			}
+			else if (User.IsInRole("Administrador"))
+			{
+				@Html.ActionLink("Volver a grupos", "Groups", new { SectionId = ViewBag.SectionId }, new { @class = "btn btn-primary" })	
+			}					
+		</div>
 	</div>
 </div>
 <div class="row wrapper border-bottom white-bg page-heading-group">
