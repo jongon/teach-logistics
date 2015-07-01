@@ -61,17 +61,86 @@ namespace TeachLogistics.Controllers
 
         [Authorize(Roles = "Estudiante")]
         [HttpGet]
-        public ActionResult Groups()
+        public async Task<ActionResult> Groups()
         {
-            List<Group> groups = CurrentUser.Section.Groups.Where(x => x.IsInSimulation).OrderBy(x => x.Name).ToList();
+            List<GroupStadistics> groups = await Db.Groups
+                .Where(x => x.Section == CurrentUser.Section && x.IsInSimulation)
+                .Select(x => new GroupStadistics
+                {
+                    GroupId = x.Id,
+                    GroupName = x.Name
+                })
+                .ToListAsync();
             return View(groups);
         }
 
-        //[Authorize]
-        //[HttpGet]
-        //public async Task<ActionResult> GroupStadistics(Guid? GroupId)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
+        public async Task<ActionResult> Groups(Guid SectionId)
+        {
+            if (SectionId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Section section = await Db.Sections.Where(x => x.Id == SectionId).FirstOrDefaultAsync();
+            if (section == null)
+            {
+                return HttpNotFound();
+            }
+            List<GroupStadistics> groups = await Db.Groups
+                .Where(x => x.Section == section && x.IsInSimulation)
+                .Select(x => new GroupStadistics
+                {
+                    GroupId = x.Id,
+                    GroupName = x.Name
+                })
+                .ToListAsync();
+            return View(groups);
+        }
+             
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
+        public async Task<ActionResult> Sections()
+        {
+            List<SectionStadistics> sections = await Db.Sections
+                .Where(x => x.IsActivedSimulation || x.Periods.Select(t => t.IsLastPeriod).Contains(true))
+                .Select(x => new SectionStadistics {
+                    SectionId = x.Id,
+                    Section = x.Number,
+                    Semester = x.Semester.Description
+                })
+                .ToListAsync();
+            return View(sections);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> GroupStadistics(Guid? GroupId)
+        {
+            if (GroupId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = await Db.Groups.Where(x => x.Id == GroupId).FirstOrDefaultAsync();
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            Section section = group.Section;
+            StadisticsBL stadistics = new StadisticsBL();
+            ResultBL results = new ResultBL();
+            ViewBag.PeriodNumber = section.CaseStudy.Periods;
+            StadisticsViewModel stadisticsViewModel = new StadisticsViewModel();
+            stadisticsViewModel.TotalCost = stadistics.GetTotalCost(group);
+            stadisticsViewModel.DemandCost = stadistics.GetDemandCost(group);
+            stadisticsViewModel.OrderCost = stadistics.GetOrderCost(group);
+            stadisticsViewModel.StockCost = stadistics.GetStockCost(group);
+            stadisticsViewModel.AverageTotalCost = stadistics.GetAverageTotalCost(section);
+            stadisticsViewModel.AverageDemandCost = stadistics.GetAverageDemandCost(section);
+            stadisticsViewModel.AverageOrderCost = stadistics.GetAverageOrderCost(section);
+            stadisticsViewModel.AverageStockCost = stadistics.GetAverageStockCost(section);
+            stadisticsViewModel.Groups = results.GetRanking(section);
+            return View(stadisticsViewModel);
+        }
     }
 }
