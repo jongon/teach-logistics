@@ -2,7 +2,7 @@
 @{
 	ViewBag.Title = "Rankings";
 	var section = ViewBag.Section;
-	var presentTrophy = false;	
+	var presentTrophy = ViewBag.PresentTrophy;
 }
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-4">
@@ -60,12 +60,12 @@
 						{
 							<tr>
 								<td>
-									@if (presentTrophy)
+									@if (presentTrophy && i == 1)
 									{									
 									<div class="forum-icon">
-										<i class="fa fa-shield"></i>
-									</div>
-									}									
+										<i class="fa fa-trophy"></i>
+									</div>	
+									}							
 									<a href="#" class="forum-item-title">@(i++ )- @group.GroupName</a>
 								</td>
 								<td>

@@ -123,6 +123,14 @@ namespace TeachLogistics.Controllers
             }
             List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
             ViewBag.Section = section.Number;
+            if (section.Periods.Select(x => x.IsLastPeriod).Contains(true))
+            {
+                ViewBag.PresentTrophy = true;
+            }
+            else
+            {
+                ViewBag.PresentTrophy = false;
+            }
             return View(groups);
         }
 
@@ -135,6 +143,14 @@ namespace TeachLogistics.Controllers
             Section section = group.Section;
             List<GroupRankingViewModel> groups = ResultBL.GetRanking(section);
             ViewBag.Section = section.Number;
+            if (section.Periods.Select(x => x.IsLastPeriod).Contains(true))
+            {
+                ViewBag.PresentTrophy = true;
+            }
+            else
+            {
+                ViewBag.PresentTrophy = false;
+            }
             return View(groups);
         }
     }
