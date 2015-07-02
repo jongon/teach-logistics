@@ -191,6 +191,7 @@ namespace TeachLogistics.Controllers
                     {
                         evaluation.Name = evaluationViewModel.Name;
                         evaluation.LimitDate = evaluationViewModel.LimitDate;
+                        evaluation.MinutesDuration = evaluationViewModel.MinutesDuration;
                         evaluation.Questions.Clear();
                         evaluation.Questions = await Db.Questions.Where(x => evaluationViewModel.QuestionIds.Contains(x.Id)).ToListAsync();
                         await Db.SaveChangesAsync();
