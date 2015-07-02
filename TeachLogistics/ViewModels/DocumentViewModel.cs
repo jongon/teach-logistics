@@ -12,6 +12,7 @@ namespace TeachLogistics.ViewModels
 
         [DataType(DataType.Upload)]
         [Required(ErrorMessage = "El documento es requerido")]
+        [DisplayName("Documento")]
         public HttpPostedFileBase Document { get; set; }
 
         public string DocumentPath { get; set; }
