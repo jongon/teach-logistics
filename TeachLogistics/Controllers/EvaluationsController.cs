@@ -357,6 +357,9 @@ namespace TeachLogistics.Controllers
             if (evaluationBL.UserCanBeEvaluated(evaluation, CurrentUser.Id))
             {
                 DateTime dateTime = evaluation.EvaluationUsers.Where(x => x.UserId == CurrentUser.Id).FirstOrDefault().TakenDate;
+                dateTime = dateTime.ToUniversalTime();
+                TimeZoneInfo estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Venezuela Standard Time");
+                dateTime = TimeZoneInfo.ConvertTimeFromUtc(dateTime, estTimeZone);
                 await Db.SaveChangesAsync();
                 return View("TakeQuiz", evaluationBL.GetQuiz(evaluation, dateTime));
             }
