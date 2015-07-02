@@ -31,6 +31,7 @@ namespace TeachLogistics.ViewModels
 
         [DisplayName("Cantidad")]
         [Required(ErrorMessage = "La Cantidad de productos es requerida")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Solo número entero positivo permitido")]
         [Range(0, 9999, ErrorMessage = "Solo entero positivo de máx. 4 dígitos")]
         public int Quantity { get; set; }
     }
