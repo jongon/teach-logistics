@@ -6,7 +6,7 @@
 });
 
 $("#countdown")
-.countdown(dateTime, function (event) {
+.countdown(systemDate, function (event) {
     $(this).text(
         event.strftime('%H:%M:%S')
     )

@@ -73,7 +73,9 @@
 @section Scripts {
 	<script>
 		var isFinished = false;
-		var dateTime = "@Model.EndTime.ToString("MM/dd/yyyy HH:mm:ss")";
+		var initialDateTime = new Date("@ViewBag.InitialDateTime.ToString("yyyy-MM-dd hh:mm:ss")");
+		var finalDateTime = new Date("@Model.EndTime.ToString("yyyy-MM-dd hh:mm:ss")");
+		var systemDate = new Date(new Date().getTime() + (finalDateTime.getTime() - initialDateTime.getTime()));
 	</script>
 	@Scripts.Render("~/plugins/iCheck")
 	@Scripts.Render("~/plugins/jqueryCountdown")

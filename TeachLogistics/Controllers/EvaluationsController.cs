@@ -361,6 +361,9 @@ namespace TeachLogistics.Controllers
                 dateTime = dateTime.ToUniversalTime();
                 TimeZoneInfo estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Venezuela Standard Time");
                 dateTime = TimeZoneInfo.ConvertTimeFromUtc(dateTime, estTimeZone);
+                ViewBag.InitialDateTime = DateTime.UtcNow;
+                TimeZoneInfo estTimeZone2 = TimeZoneInfo.FindSystemTimeZoneById("Venezuela Standard Time");
+                ViewBag.InitialDateTime = TimeZoneInfo.ConvertTimeFromUtc(ViewBag.InitialDateTime, estTimeZone2);
                 await Db.SaveChangesAsync();
                 return View("TakeQuiz", evaluationBL.GetQuiz(evaluation, dateTime));
             }
