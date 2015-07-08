@@ -1,0 +1,853 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="5f00cf7d-be95-420b-9cad-ab17a836de79" name="CaseStudiesController_DeleteConfirmed" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="3b387586-bce6-4609-b9a5-63c605d1b1f8" name="CaseStudiesController_DeleteConfirmed" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="1834cfa6-d0e7-43b9-a632-e31c6ec3fd16" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="e6876b3c-a284-49f0-ae83-8843258a8012" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="50f231db-2974-4e53-a509-094d3c172f36" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="bd84c088-b5bb-4bfc-be96-d3461d4ae660" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="b7363935-7b25-4414-9b11-031bf62bee9e" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2824d65a-d545-4e9b-b478-78cc4d324560" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="34490e5a-92c4-4e46-8313-055b895ea6e1" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="5f700b5c-95d8-4e72-bcbd-445cf8c6c6bd" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="99e1d3f3-a162-42e3-9a0f-223eaa3f1a65" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="433612c5-f7ee-4457-9a0a-8cab28bb89b5" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2a5a1d7c-97ec-4236-b8a8-abaab416d10d" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e85737c2-2b8e-4ba2-b56a-08cd34d75a64" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6d5c2a12-638a-465e-b7ae-7b099e174d20" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="870603e9-29df-4c9b-9013-619739228918" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="901ac953-caf2-4532-8cde-01cab7aff13c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2449c6a8-e0c5-404f-9fd2-0e3c6bac262c" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="632bcbd3-78b1-4795-bf26-802a1c247667" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="44ca61c7-3760-4119-bfd6-aa0300bd93f4" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4271824c-cb4c-4a95-bc6d-29f2473150c0" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d16363db-9844-4455-89cd-76d83f7218b7" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="aedbd7d0-fd03-46bc-be32-9c0dfa3019e2" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="c1c8096c-8a9f-4cf1-bb8f-6ae6c059547b" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4687d195-d747-41b3-bf3b-0f5073e702e2" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="895b01b5-9a3e-4e17-b291-39dfa8641896" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="4fed97e8-011e-465a-ad21-166f0cb9a74f" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="326882bb-994c-4fb4-8652-578c7ce025d1" LastKnownName="OperandOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="50f231db-2974-4e53-a509-094d3c172f36" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="8cf33023-eb42-4a71-b4ad-3546608c4cc7" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="3dc44ac4-88b0-44cd-86b5-b518ddab9a06" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="bd84c088-b5bb-4bfc-be96-d3461d4ae660" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="f716ddc2-84cc-46ea-8648-dc2f90b9c3a6" name="CombinedFragment1" interactionOperator="Alt" customInteractionOperator="Try">
+            <coveredLifelines>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="bc0d362f-3d69-4fba-85d9-2913969308ee" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                  <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+                  <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+                  <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+                  <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+                </coveredLifelines>
+                <fragments>
+                  <combinedFragment Id="8d34df7a-2da0-4ec5-8f0f-89ec5ecce0c5" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="If">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="e0daab10-9cb9-4216-acc4-49d5525ffc12" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="9d59e799-56a2-46d0-b132-8e4453e9d211" guardText="if (caseStudy == null)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="433612c5-f7ee-4457-9a0a-8cab28bb89b5" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="e85737c2-2b8e-4ba2-b56a-08cd34d75a64" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                  <combinedFragment Id="f1a32fa9-6ee7-4faf-8597-4054da54103a" name="CombinedFragment2" interactionOperator="Loop" customInteractionOperator="Loop">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="257fcb85-87bb-419a-a48b-3c9dd8bfa19f" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                        </coveredLifelines>
+                        <fragments>
+                          <combinedFragment Id="993aeff0-c700-4a04-afa1-ae9ccc6d6f5b" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="If">
+                            <coveredLifelines>
+                              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                            </coveredLifelines>
+                            <operands>
+                              <interactionOperand Id="537be616-9154-4abb-9ffe-1c60bd7a5812" name="InteractionOperand1">
+                                <coveredLifelines>
+                                  <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                                </coveredLifelines>
+                                <guard>
+                                  <interactionConstraint Id="58224522-af8d-45db-aeda-0562eee30dc5" guardText="if (section.IsActivedSimulation)" />
+                                </guard>
+                                <operandOccurrenceSpecifications>
+                                  <operandOccurrenceSpecificationMoniker Id="44ca61c7-3760-4119-bfd6-aa0300bd93f4" LastKnownName="OperandOccurrenceSpecification" />
+                                  <operandOccurrenceSpecificationMoniker Id="d16363db-9844-4455-89cd-76d83f7218b7" LastKnownName="OperandOccurrenceSpecification" />
+                                </operandOccurrenceSpecifications>
+                              </interactionOperand>
+                            </operands>
+                          </combinedFragment>
+                        </fragments>
+                        <guard>
+                          <interactionConstraint Id="a38b9d86-f32a-42ee-a1a1-2e3ab9c39049" guardText="foreach (sections)">
+                            <maxInt>
+                              <literalString Id="20586e5e-8c49-4e05-972d-175a53a94f2b" name="LiteralString1" />
+                            </maxInt>
+                            <minInt>
+                              <literalString Id="3bf23a5a-ccc3-4741-bd25-b5bbcc43ea61" name="LiteralString2" />
+                            </minInt>
+                          </interactionConstraint>
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="632bcbd3-78b1-4795-bf26-802a1c247667" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="aedbd7d0-fd03-46bc-be32-9c0dfa3019e2" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                </fragments>
+                <guard>
+                  <interactionConstraint Id="2007650b-f2d0-40c5-9039-7221a2167f5c" guardText="try" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="b7363935-7b25-4414-9b11-031bf62bee9e" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="895b01b5-9a3e-4e17-b291-39dfa8641896" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="af3dac4d-87eb-4710-843c-bc763163022d" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="7f4dfc63-c3f9-4513-b04b-6c115309ecd2" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="3f3d904f-6031-463a-80dd-a7777e7b269b" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="4e8c6e88-9e5f-48ac-a4cb-d29b00d15bc1" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="89cb9276-6fda-41b8-bd82-1da8a86014c0" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="85ce9e7b-2ad5-481c-9b9a-3d21b06cfeaf" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="1199ca0c-bb97-42b0-a936-a01573bd7cad" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="895c0860-7f3f-4db3-bb4d-5a94e333bae3" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+              <interactionOperand Id="da0feab7-76f2-4714-8cd2-559c04a94374" name="InteractionOperand2">
+                <coveredLifelines>
+                  <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+                  <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+                  <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+                  <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+                  <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="65ce10cb-1abf-4e69-88b3-e18a6ce59ca6" guardText="catch (Exception)" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="4fed97e8-011e-465a-ad21-166f0cb9a74f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="326882bb-994c-4fb4-8652-578c7ce025d1" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="aaa1acb6-3c45-4066-98e9-2944502a0820" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="5f8e941d-0181-4fc0-8ced-5608f37047c0" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2642ca68-7704-4a64-9534-2eb790f474b0" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2a051978-25ec-4ca9-8ae4-fad9559a3e84" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="8b332f0d-8baa-40ad-a329-c2332107fb93" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2516a2a3-4142-4566-8412-1806943ada17" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="28450a35-0c99-4b1c-a2bf-db03e5bacec6" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="399da9b5-fd28-4476-935a-136056baf6d4" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="1199ca0c-bb97-42b0-a936-a01573bd7cad" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="3f3d904f-6031-463a-80dd-a7777e7b269b" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="af3dac4d-87eb-4710-843c-bc763163022d" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="89cb9276-6fda-41b8-bd82-1da8a86014c0" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="b7363935-7b25-4414-9b11-031bf62bee9e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="852a2481-7fa0-482e-8d96-af446b95d83c" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="1172ce15-d2ac-4f1b-bae8-2e7a32574c9c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="8b7b5b98-5550-4080-b3df-7132246375b1" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="bf7a04cd-fe54-40b6-b17a-0d59351ae1d4" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="37e004f5-1b27-4b04-97b2-72526cffc65c" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="8b7b5b98-5550-4080-b3df-7132246375b1" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6d084a31-80f1-47cb-b3d0-81c7cdc69bad" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bf7a04cd-fe54-40b6-b17a-0d59351ae1d4" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2824d65a-d545-4e9b-b478-78cc4d324560" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="37e004f5-1b27-4b04-97b2-72526cffc65c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="34490e5a-92c4-4e46-8313-055b895ea6e1" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="1172ce15-d2ac-4f1b-bae8-2e7a32574c9c" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="81b9d07d-cf8f-4768-8872-a438938a17dc" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="3f34c638-d24a-4ac5-b2a8-dfe80157fed5" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="45648ad8-633a-49f9-aa9e-14af47dbe393" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="b99d961c-b55d-4a97-bd69-0be329623bfc" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="0f5e7907-da0a-4930-8e52-f965939f6b61" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="117042e4-40ad-4029-a646-a10dad351bb7" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="b99d961c-b55d-4a97-bd69-0be329623bfc" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="93ed31ea-a0a5-4106-9ded-ff3045113ecb" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5f700b5c-95d8-4e72-bcbd-445cf8c6c6bd" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0f5e7907-da0a-4930-8e52-f965939f6b61" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="99e1d3f3-a162-42e3-9a0f-223eaa3f1a65" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="117042e4-40ad-4029-a646-a10dad351bb7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="45648ad8-633a-49f9-aa9e-14af47dbe393" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="5305ba75-39fe-4aba-bd7f-d3fa2ea6bf23" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="433612c5-f7ee-4457-9a0a-8cab28bb89b5" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2a5a1d7c-97ec-4236-b8a8-abaab416d10d" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="ed0a7166-4b6d-4af4-894c-18f3401c474b" name="LostFoundTarget" />
+          <operandOccurrenceSpecification Id="e85737c2-2b8e-4ba2-b56a-08cd34d75a64" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="67a32b06-02c2-4578-8728-ca4c0754bab7" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="55812369-854b-4d9a-85b3-e6ab82c47dd3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="2e8a6cc5-160a-4aa2-b27a-fd7b366467a0" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="c8be50e0-7ff9-41fa-ab78-6e0d458ea013" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0737f682-abe1-4bf2-ac0e-545c31f67c7e" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="2e8a6cc5-160a-4aa2-b27a-fd7b366467a0" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="54a3225e-6226-4ecf-9cd1-7a384ba87c55" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6d5c2a12-638a-465e-b7ae-7b099e174d20" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c8be50e0-7ff9-41fa-ab78-6e0d458ea013" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0737f682-abe1-4bf2-ac0e-545c31f67c7e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="870603e9-29df-4c9b-9013-619739228918" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="55812369-854b-4d9a-85b3-e6ab82c47dd3" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="c1c25670-047b-4dd9-b481-b643e4737a2c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="ffcdf77e-5eeb-4e86-8b47-bbc19f335c55" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="1943f45f-57ab-472c-b4db-26c2b26a63ec" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="63fa3046-cbfb-4df5-b7f5-ca6e2ac6a3a6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="13278b07-7c84-4c54-b6bb-fd63a8078c50" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b91c2d1d-c941-432c-9b1b-63cd1846b148" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="63fa3046-cbfb-4df5-b7f5-ca6e2ac6a3a6" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="b67b3cd6-4429-4291-a601-55e5bc013e50" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="13278b07-7c84-4c54-b6bb-fd63a8078c50" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="901ac953-caf2-4532-8cde-01cab7aff13c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b91c2d1d-c941-432c-9b1b-63cd1846b148" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2449c6a8-e0c5-404f-9fd2-0e3c6bac262c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="1943f45f-57ab-472c-b4db-26c2b26a63ec" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6cdd2661-16b3-47d1-ba47-e630a8dbfff5" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="632bcbd3-78b1-4795-bf26-802a1c247667" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="44ca61c7-3760-4119-bfd6-aa0300bd93f4" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <lostFoundTarget Id="8bab21e5-e4b7-49c2-b015-ff61652bb45f" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="4271824c-cb4c-4a95-bc6d-29f2473150c0" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d16363db-9844-4455-89cd-76d83f7218b7" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="aedbd7d0-fd03-46bc-be32-9c0dfa3019e2" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="4f07aef5-9efa-4366-98a1-646e3be97163" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="551b95f0-3e48-4036-b6e2-81d54c90adcf" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="a654ef0a-4047-4d3d-b813-edee8670f125" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="6cc98638-c111-4643-8ce3-eb124b67db48" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="ff01c461-1750-41c1-b8ec-9afffd169348" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="a654ef0a-4047-4d3d-b813-edee8670f125" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="8b58e7e1-037a-4000-ab95-2a96a417c899" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6cc98638-c111-4643-8ce3-eb124b67db48" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c1c8096c-8a9f-4cf1-bb8f-6ae6c059547b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ff01c461-1750-41c1-b8ec-9afffd169348" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4687d195-d747-41b3-bf3b-0f5073e702e2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="551b95f0-3e48-4036-b6e2-81d54c90adcf" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="49f62591-1465-4aa4-a18a-f1d8d3a302d2" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="895c0860-7f3f-4db3-bb4d-5a94e333bae3" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="85ce9e7b-2ad5-481c-9b9a-3d21b06cfeaf" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="895b01b5-9a3e-4e17-b291-39dfa8641896" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="7f4dfc63-c3f9-4513-b04b-6c115309ecd2" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="4e8c6e88-9e5f-48ac-a4cb-d29b00d15bc1" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="8b332f0d-8baa-40ad-a329-c2332107fb93" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2642ca68-7704-4a64-9534-2eb790f474b0" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="aaa1acb6-3c45-4066-98e9-2944502a0820" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="28450a35-0c99-4b1c-a2bf-db03e5bacec6" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="4fed97e8-011e-465a-ad21-166f0cb9a74f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="5f8e941d-0181-4fc0-8ced-5608f37047c0" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" LastKnownName="source : DbSet&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2a051978-25ec-4ca9-8ae4-fad9559a3e84" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" LastKnownName="source : IQueryable&lt;CaseStudy&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2516a2a3-4142-4566-8412-1806943ada17" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" LastKnownName="source : DbSet&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="326882bb-994c-4fb4-8652-578c7ce025d1" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="399da9b5-fd28-4476-935a-136056baf6d4" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="091d3b39-bc5d-4758-8807-1d2508db051d" LastKnownName="source : IQueryable&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="e6876b3c-a284-49f0-ae83-8843258a8012" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e63cc66a-b2fd-488e-ba0d-d74a56f4330a" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="a6383b21-7051-4246-a683-c1fac63b0dd1" LastKnownName="this : CaseStudiesController" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="a6383b21-7051-4246-a683-c1fac63b0dd1" name="this : CaseStudiesController" isActor="false" lifelineDisplayName="this : CaseStudiesController" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController ObjectInstance=&quot;Object instance 2&quot;)" referencedType="TeachLogistics‎.Controllers‎.CaseStudiesController">
+            <referencesInternal>
+              <reference Id="b5e8dac8-b015-472e-8773-926f01d3d036" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Controllers)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController)&quot;)" tag="DGQL" />
+              <reference Id="03d7129f-72ee-43ac-b734-dc2aad6ad9b3" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="50f231db-2974-4e53-a509-094d3c172f36" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="e6876b3c-a284-49f0-ae83-8843258a8012" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="a5830b01-3711-4b71-b15b-5b3283b6e00e" name="source : DbSet&lt;CaseStudy&gt;" isActor="false" lifelineDisplayName="source : DbSet&lt;CaseStudy&gt;" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController Member=(Name=DeleteConfirmed OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Guid)]) Statement=[1,1,1,1,1,1,2,1,1,1,1] ObjectInstance=&quot;Object instance 4&quot;)" referencedType="System‎.Data‎.Entity‎.DbSet‎&lt;CaseStudy‎&gt;">
+            <referencesInternal>
+              <reference Id="98c35bcb-5dd9-4e46-86ec-2e69b37511bb" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Entity)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="86875c3a-5e43-44d6-b132-a0fe78910a71" handle="(Assembly=&quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="af3dac4d-87eb-4710-843c-bc763163022d" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="8b7b5b98-5550-4080-b3df-7132246375b1" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="1172ce15-d2ac-4f1b-bae8-2e7a32574c9c" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="a654ef0a-4047-4d3d-b813-edee8670f125" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="551b95f0-3e48-4036-b6e2-81d54c90adcf" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="7f4dfc63-c3f9-4513-b04b-6c115309ecd2" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="aaa1acb6-3c45-4066-98e9-2944502a0820" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="5f8e941d-0181-4fc0-8ced-5608f37047c0" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="74d6c62e-b095-4345-8fec-46ba0ef1f7ec" name="source : IQueryable&lt;CaseStudy&gt;" isActor="false" lifelineDisplayName="source : IQueryable&lt;CaseStudy&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=Queryable Member=(Name=Where GenericParameterCount=1 OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)])),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq.Expressions Type=(Name=Expression GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=(Name=Func GenericParameterCount=2 GenericArguments=[(ParameterIdentifier=0),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Boolean)]))]))]) ObjectInstance=&quot;Object instance 9&quot;)" referencedType="System‎.Linq‎.IQueryable‎&lt;CaseStudy‎&gt;">
+            <referencesInternal>
+              <reference Id="06747112-beab-4fcc-b626-1bdf8f1d64e3" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Linq)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="953615b8-a65e-4edc-b506-6742cdc9ee39" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="3f3d904f-6031-463a-80dd-a7777e7b269b" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="b99d961c-b55d-4a97-bd69-0be329623bfc" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="45648ad8-633a-49f9-aa9e-14af47dbe393" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="4e8c6e88-9e5f-48ac-a4cb-d29b00d15bc1" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2642ca68-7704-4a64-9534-2eb790f474b0" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2a051978-25ec-4ca9-8ae4-fad9559a3e84" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="8fe0496c-f83d-46cf-bf4a-dccdb66f8327" name="source : DbSet&lt;Section&gt;" isActor="false" lifelineDisplayName="source : DbSet&lt;Section&gt;" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController Member=(Name=DeleteConfirmed OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Guid)]) Statement=[1,1,1,1,3,1,2,1,1,1,1] ObjectInstance=&quot;Object instance 14&quot;)" referencedType="System‎.Data‎.Entity‎.DbSet‎&lt;Section‎&gt;">
+            <referencesInternal>
+              <reference Id="a6fc82c9-844f-4d85-8757-1f69a8e374d3" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Entity)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="ba219c59-2461-4716-b3ce-b8f862dd3c83" handle="(Assembly=&quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="89cb9276-6fda-41b8-bd82-1da8a86014c0" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="2e8a6cc5-160a-4aa2-b27a-fd7b366467a0" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="55812369-854b-4d9a-85b3-e6ab82c47dd3" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="85ce9e7b-2ad5-481c-9b9a-3d21b06cfeaf" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="8b332f0d-8baa-40ad-a329-c2332107fb93" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2516a2a3-4142-4566-8412-1806943ada17" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="091d3b39-bc5d-4758-8807-1d2508db051d" name="source : IQueryable&lt;Section&gt;" isActor="false" lifelineDisplayName="source : IQueryable&lt;Section&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=Queryable Member=(Name=Where GenericParameterCount=1 OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)])),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq.Expressions Type=(Name=Expression GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=(Name=Func GenericParameterCount=2 GenericArguments=[(ParameterIdentifier=0),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Boolean)]))]))]) ObjectInstance=&quot;Object instance 19&quot;)" referencedType="System‎.Linq‎.IQueryable‎&lt;Section‎&gt;">
+            <referencesInternal>
+              <reference Id="d56d6431-10bb-4e06-a9da-1cf77622524b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Linq)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="99f866b4-f682-4998-a4e6-edd2f6b705f2" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="1199ca0c-bb97-42b0-a936-a01573bd7cad" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="63fa3046-cbfb-4df5-b7f5-ca6e2ac6a3a6" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="1943f45f-57ab-472c-b4db-26c2b26a63ec" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="895c0860-7f3f-4db3-bb4d-5a94e333bae3" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="28450a35-0c99-4b1c-a2bf-db03e5bacec6" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="399da9b5-fd28-4476-935a-136056baf6d4" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="eb7c4cd4-d070-4908-a078-80570a5e7c57" name="DeleteConfirmed" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="3ee6954b-b735-4ef5-bfc5-fbb119456ecf" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Controllers)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController Member=(Name=DeleteConfirmed OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&amp;quot; Namespace=System Type=Guid)]))&quot;)" tag="DGQL" />
+              <reference Id="fa089ecd-ada8-452f-98c9-d52472ceb235" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=CaseStudiesController Member=(Name=DeleteConfirmed OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Guid)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="3dc44ac4-88b0-44cd-86b5-b518ddab9a06" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="bd84c088-b5bb-4bfc-be96-d3461d4ae660" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e43f67ed-923f-417f-985c-9873ff21f145" name="Where‎&lt;CaseStudy‎&gt;" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Where (x.Id == id)">
+            <referencesInternal>
+              <reference Id="7a612a38-11c2-470e-9ae7-843e881188bf" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Linq)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=Queryable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=Queryable Member=(Name=Where GenericParameterCount=1 OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)])),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq.Expressions Type=(Name=Expression GenericParameterCount=1 GenericArguments=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&amp;quot; Namespace=System Type=(Name=Func GenericParameterCount=2 GenericArguments=[(ParameterIdentifier=0),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&amp;quot; Namespace=System Type=Boolean)]))]))]))&quot;)" tag="DGQL" />
+              <reference Id="4ef2331f-f182-4dbb-bbef-9dfdfcfe1629" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=Queryable Member=(Name=Where GenericParameterCount=1 OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)])),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq.Expressions Type=(Name=Expression GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=(Name=Func GenericParameterCount=2 GenericArguments=[(ParameterIdentifier=0),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Boolean)]))]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2824d65a-d545-4e9b-b478-78cc4d324560" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="bf7a04cd-fe54-40b6-b17a-0d59351ae1d4" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="d94691cd-e9aa-4b21-9993-20d9763e5571" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="37e004f5-1b27-4b04-97b2-72526cffc65c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="34490e5a-92c4-4e46-8313-055b895ea6e1" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="27776ca8-ab86-4298-a1a7-28c4106d9aff" name="FirstOrDefaultAsync‎&lt;CaseStudy‎&gt;" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Db.CaseStudies.Where(x =&gt; x.Id == id).FirstOrDefaultAsync()">
+            <referencesInternal>
+              <reference Id="0e8d2324-395c-490f-b224-2320a71effa6" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Entity)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=QueryableExtensions)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=QueryableExtensions Member=(Name=FirstOrDefaultAsync GenericParameterCount=1 OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)]))]))&quot;)" tag="DGQL" />
+              <reference Id="4cef46e5-b2fc-4131-ab9d-e35267c6a46f" handle="(Assembly=&quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&quot; Namespace=System.Data.Entity Type=QueryableExtensions Member=(Name=FirstOrDefaultAsync GenericParameterCount=1 OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="5f700b5c-95d8-4e72-bcbd-445cf8c6c6bd" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="0f5e7907-da0a-4930-8e52-f965939f6b61" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="d43cb34e-cdc6-492a-bc48-83557c85b82e" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="117042e4-40ad-4029-a646-a10dad351bb7" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="99e1d3f3-a162-42e3-9a0f-223eaa3f1a65" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="b0f7f3e5-0da7-477a-9b17-717e864561c3" name="Return" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="return HttpNotFound()">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2a5a1d7c-97ec-4236-b8a8-abaab416d10d" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="ed0a7166-4b6d-4af4-894c-18f3401c474b" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="c0aeec2c-81e1-42ba-8144-0f939b4a4442" name="Where‎&lt;Section‎&gt;" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Where (x.CaseStudyId == id)">
+            <referencesInternal>
+              <reference Id="007c196d-434a-448f-b529-23d2cecbb52e" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Linq)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=Queryable)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=Queryable Member=(Name=Where GenericParameterCount=1 OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)])),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq.Expressions Type=(Name=Expression GenericParameterCount=1 GenericArguments=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&amp;quot; Namespace=System Type=(Name=Func GenericParameterCount=2 GenericArguments=[(ParameterIdentifier=0),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&amp;quot; Namespace=System Type=Boolean)]))]))]))&quot;)" tag="DGQL" />
+              <reference Id="e72a3f06-8be9-4bd2-bf04-491279e91a02" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=Queryable Member=(Name=Where GenericParameterCount=1 OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)])),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq.Expressions Type=(Name=Expression GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=(Name=Func GenericParameterCount=2 GenericArguments=[(ParameterIdentifier=0),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/mscorlib.dll&quot; Namespace=System Type=Boolean)]))]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6d5c2a12-638a-465e-b7ae-7b099e174d20" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="c8be50e0-7ff9-41fa-ab78-6e0d458ea013" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="00d15d3f-ac79-4b8b-b27b-f908cbb35238" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0737f682-abe1-4bf2-ac0e-545c31f67c7e" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="870603e9-29df-4c9b-9013-619739228918" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="8ed7af48-0bd1-401a-b35c-d07efe7e0454" name="ToListAsync‎&lt;Section‎&gt;" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Db.Sections.Where(x =&gt; x.CaseStudyId == id).ToListAsync()">
+            <referencesInternal>
+              <reference Id="3b4bdc75-c805-4715-bb3e-929fd019eecb" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Entity)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=QueryableExtensions)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=QueryableExtensions Member=(Name=ToListAsync GenericParameterCount=1 OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)]))]))&quot;)" tag="DGQL" />
+              <reference Id="8cad857d-eae9-41a0-9195-32d924b07942" handle="(Assembly=&quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&quot; Namespace=System.Data.Entity Type=QueryableExtensions Member=(Name=ToListAsync GenericParameterCount=1 OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Linq Type=(Name=IQueryable GenericParameterCount=1 GenericArguments=[(ParameterIdentifier=0)]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="901ac953-caf2-4532-8cde-01cab7aff13c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="13278b07-7c84-4c54-b6bb-fd63a8078c50" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="f0b7b1ca-d85b-456b-a637-e39ded38731b" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b91c2d1d-c941-432c-9b1b-63cd1846b148" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="2449c6a8-e0c5-404f-9fd2-0e3c6bac262c" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="0d979204-4a27-4c51-b865-5acd4607ebc5" name="Throw" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="throw new Exception()">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4271824c-cb4c-4a95-bc6d-29f2473150c0" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="8bab21e5-e4b7-49c2-b015-ff61652bb45f" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="589767ac-397d-4f35-baa2-f08758c22940" name="Remove" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="Db.CaseStudies.Remove(caseStudy)">
+            <referencesInternal>
+              <reference Id="a0ab18fc-6a48-4a05-932d-f33bb3d24237" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Entity)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1) Member=(Name=Remove OverloadingParameters=[(Assembly=&amp;quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&amp;quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1) ParameterIdentifier=0)]))&quot;)" tag="DGQL" />
+              <reference Id="9afacf3f-e778-4208-88ba-326527075e08" handle="(Assembly=&quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1) Member=(Name=Remove OverloadingParameters=[(Assembly=&quot;$(VsSolutionUri)/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll&quot; Namespace=System.Data.Entity Type=(Name=DbSet GenericParameterCount=1) ParameterIdentifier=0)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="c1c8096c-8a9f-4cf1-bb8f-6ae6c059547b" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="6cc98638-c111-4643-8ce3-eb124b67db48" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="6f6c6d6b-1328-4718-b2db-303ed63cfd83" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="ff01c461-1750-41c1-b8ec-9afffd169348" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4687d195-d747-41b3-bf3b-0f5073e702e2" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="8cf33023-eb42-4a71-b4ad-3546608c4cc7" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e63cc66a-b2fd-488e-ba0d-d74a56f4330a" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6d084a31-80f1-47cb-b3d0-81c7cdc69bad" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="81b9d07d-cf8f-4768-8872-a438938a17dc" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="93ed31ea-a0a5-4106-9ded-ff3045113ecb" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="5305ba75-39fe-4aba-bd7f-d3fa2ea6bf23" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="54a3225e-6226-4ecf-9cd1-7a384ba87c55" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="c1c25670-047b-4dd9-b481-b643e4737a2c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="b67b3cd6-4429-4291-a601-55e5bc013e50" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6cdd2661-16b3-47d1-ba47-e630a8dbfff5" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="8b58e7e1-037a-4000-ab95-2a96a417c899" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="49f62591-1465-4aa4-a18a-f1d8d3a302d2" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

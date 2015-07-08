@@ -102,6 +102,7 @@ namespace TeachLogistics.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             if (id == null)

@@ -22,6 +22,20 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="Business.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Business.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Business.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Controller.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Controller.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Controller.classdiagram</DependentUpon>
+    </Content>
     <Content Include="ModelDefinition\Package10_2244.uml">
       <SubType>Content</SubType>
     </Content>
@@ -31,46 +45,249 @@
     <Content Include="ModelDefinition\Package12_2244.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package1_1111.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package1_2244.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package2_1111.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package2_2244.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package3_1111.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package3_2244.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package4_1111.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package4_2244.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package5_1111.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package5_2244.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package6_1111.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package6_2244.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package7_1111.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package7_2244.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package8_1111.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package8_2244.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package9_1111.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package9_2244.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1111.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1128.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_2244.uml">
       <SubType>Content</SubType>
     </Content>
-    <Folder Include="ModelDefinition\" />
-    <Content Include="Class.classdiagram">
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Delete.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Class.classdiagram.layout">
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Delete.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Class.classdiagram</DependentUpon>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Delete.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_DeleteConfirmation.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_DeleteConfirmation.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_DeleteConfirmation.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Details.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Details.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Details.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Edit_Get.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Edit_Get.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Edit_Get.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Edit_Post.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Edit_Post.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Edit_Post.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_GetUsersBySection.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_GetUsersBySection.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_GetUsersBySection.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Index.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Index.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Index.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Login_Get.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Login_Post.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Login_Post.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Login_Post.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Register_Get.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Register_Get.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Register_Get.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Register_Post.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Account\AccountController_Register_Post.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Account\AccountController_Register_Post.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_AssignSection_Post.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_AssignSection__Get.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_AssignSection__Get.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_AssignSection__Get.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Create_Get.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Create_Get.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Create_Get.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Create_Post.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Delete.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Delete.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Delete.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_DeleteConfirmed.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_DeleteConfirmed.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_DeleteConfirmed.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Details.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Details.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Details.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Index.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Index.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\CaseStudies\CaseStudiesController_Index.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Create_Get.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Create_Get.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Documents\DocumentsController_Create_Get.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Create_Post.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Create_Post.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Documents\DocumentsController_Create_Post.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Delete.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Delete.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Documents\DocumentsController_Delete.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_DeleteConfirmed.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_DeleteConfirmed.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Documents\DocumentsController_DeleteConfirmed.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Index.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_Index.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Documents\DocumentsController_Index.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_IndexStudents.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="SequenceDiagrams\Controllers\Documents\DocumentsController_IndexStudents.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>SequenceDiagrams\Controllers\Documents\DocumentsController_IndexStudents.sequencediagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="Models.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Models.classdiagram</DependentUpon>
     </Content>
     <Content Include="ModelDefinition\Diagrams.uml">
       <SubType>Content</SubType>
     </Content>
+    <Folder Include="SequenceDiagrams" />
+    <Folder Include="SequenceDiagrams\Business\" />
+    <Folder Include="SequenceDiagrams\Controllers\" />
+    <Folder Include="SequenceDiagrams\Controllers\Account\" />
+    <Folder Include="SequenceDiagrams\Controllers\CaseStudies\" />
+    <Folder Include="SequenceDiagrams\Controllers\Documents\" />
+    <Folder Include="SequenceDiagrams\Models\" />
   </ItemGroup>
 </Project>
