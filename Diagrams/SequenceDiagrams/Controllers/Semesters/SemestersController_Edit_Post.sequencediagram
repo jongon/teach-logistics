@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="7489c5a3-5daa-4470-85f1-c36c03768b6f" name="SemestersController_Edit" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="fe9d706a-27ba-4376-b0b3-f39b7048bd58" name="SemestersController_Edit" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="3da4ff4f-589d-4ac9-8e8b-f360366b151d" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="21390047-f10b-46c2-8a1c-f4c196d66143" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="6eed6a2e-0f94-4345-9b30-ce7147c29844" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="160f4293-3be4-459d-8f4d-069b9f27ef75" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="95aabac1-442d-43aa-8457-f0a81e5a73c1" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="95a0b597-56ab-4e20-a9f4-e0f4a1337d6a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="85d1cb99-c98f-4a41-8986-abfee563b8aa" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d157ad96-1272-47f8-8fdf-1198a32fa193" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e9409075-f8fb-4a06-98b8-13f4b94a6bf1" LastKnownName="OperandOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="6eed6a2e-0f94-4345-9b30-ce7147c29844" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2d629279-29e1-4bea-8da4-fdb472a99e30" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="0002caf6-3cda-4f4a-ba54-3b084da2b555" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="160f4293-3be4-459d-8f4d-069b9f27ef75" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="2fca52ea-c2a2-4374-82e6-297687820634" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="2c3df49a-72db-4e3a-8a97-a69b73f178b4" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+                  <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+                  <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="de3ab71c-fde7-45f5-9bd6-4054adf5f5cb" guardText="if (ModelState.IsValid)" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="95aabac1-442d-43aa-8457-f0a81e5a73c1" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="e9409075-f8fb-4a06-98b8-13f4b94a6bf1" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="38731f25-c9b1-483a-a615-17802af0a7ae" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="e40357f3-ecf3-4214-a447-7bdaeb13a19f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="9c4819ab-1649-4560-9c35-d4b73a56732e" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="2329226b-076c-4f7d-afc5-ed321ca6a06d" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="9c4819ab-1649-4560-9c35-d4b73a56732e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="38731f25-c9b1-483a-a615-17802af0a7ae" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="95aabac1-442d-43aa-8457-f0a81e5a73c1" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="c0607cd7-8378-4307-a860-c08822a8cfd2" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="06195c2f-ad5e-4aea-825f-d658bbd4dcd0" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="7211a60e-b72b-4c4c-b162-fbca71932bfa" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="d8845543-b323-49b0-b22e-9f08f46860a0" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="7cdfbb41-2790-46b5-b3b8-6216f8c6b9ac" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0e3e5afd-6107-443a-947a-d961782baa54" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="eea0f61d-c14a-4fc6-b8cc-ada0738d47e2" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="7211a60e-b72b-4c4c-b162-fbca71932bfa" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="7b2a05cf-1c42-4d8e-8c8e-4d4a83133a8a" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="95a0b597-56ab-4e20-a9f4-e0f4a1337d6a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d8845543-b323-49b0-b22e-9f08f46860a0" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="8669d97f-50fa-4ead-9a18-3723f18fe201" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="ff84ff29-35fc-4c3e-8d04-2a4bab494397" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="14fb9b4b-ae87-4a68-880b-f2762aadeaf6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="303e3e2b-c2c7-4b0e-8b6b-4aae77acdc3a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e645da53-ffd0-4c7d-b5e8-ce3b0c30694c" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="14fb9b4b-ae87-4a68-880b-f2762aadeaf6" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a4dc8717-1457-4290-979d-97f9ebd81d39" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="303e3e2b-c2c7-4b0e-8b6b-4aae77acdc3a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7cdfbb41-2790-46b5-b3b8-6216f8c6b9ac" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e645da53-ffd0-4c7d-b5e8-ce3b0c30694c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0e3e5afd-6107-443a-947a-d961782baa54" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="ff84ff29-35fc-4c3e-8d04-2a4bab494397" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fe4ecd40-dd4c-43dd-a80c-966e90c52bb2" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="85d1cb99-c98f-4a41-8986-abfee563b8aa" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="eea0f61d-c14a-4fc6-b8cc-ada0738d47e2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="06195c2f-ad5e-4aea-825f-d658bbd4dcd0" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="bb093cc4-79b9-476d-a027-205cc3a5b59e" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d157ad96-1272-47f8-8fdf-1198a32fa193" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="49c2af3f-d0d5-4609-95d5-37557c73d3f8" name="LostFoundTarget" />
+          <operandOccurrenceSpecification Id="e9409075-f8fb-4a06-98b8-13f4b94a6bf1" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e40357f3-ecf3-4214-a447-7bdaeb13a19f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" LastKnownName="semesterDomain : Semester" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2329226b-076c-4f7d-afc5-ed321ca6a06d" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" LastKnownName="Sections : HashSet&lt;Section&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="21390047-f10b-46c2-8a1c-f4c196d66143" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="bd894ed9-5311-4853-9d5e-05c41252a4ff" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="c51dafba-0e30-45d1-b193-a55ba043a213" LastKnownName="this : SemestersController" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="c51dafba-0e30-45d1-b193-a55ba043a213" name="this : SemestersController" isActor="false" lifelineDisplayName="this : SemestersController" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=SemestersController ObjectInstance=&quot;Object instance 2&quot;)" referencedType="TeachLogistics‎.Controllers‎.SemestersController">
+            <referencesInternal>
+              <reference Id="02b0730e-e1e7-47d4-a65d-8712a1ae2714" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Controllers)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Controllers Type=SemestersController)&quot;)" tag="DGQL" />
+              <reference Id="ccf4d4d1-fe01-42d3-aa66-d27fdc825dc8" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=SemestersController)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="6eed6a2e-0f94-4345-9b30-ce7147c29844" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="21390047-f10b-46c2-8a1c-f4c196d66143" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="6cc5a309-066c-4074-9b2c-1ad8d442b7e7" name="semesterDomain : Semester" isActor="false" lifelineDisplayName="semesterDomain : Semester" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Semester ObjectInstance=&quot;Object instance 5&quot;)" referencedType="TeachLogistics‎.Models‎.Semester">
+            <referencesInternal>
+              <reference Id="be0918ad-bfab-4b2f-88ee-950985f980f7" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Semester)&quot;)" tag="DGQL" />
+              <reference Id="0313cd62-e308-4855-b1cc-0ea5b515844e" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Semester)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="38731f25-c9b1-483a-a615-17802af0a7ae" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="7211a60e-b72b-4c4c-b162-fbca71932bfa" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="06195c2f-ad5e-4aea-825f-d658bbd4dcd0" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e40357f3-ecf3-4214-a447-7bdaeb13a19f" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="f62e0ab6-dfe6-4e5c-9d38-8f57d8a71d36" name="Sections : HashSet&lt;Section&gt;" isActor="false" lifelineDisplayName="Sections : HashSet&lt;Section&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Collections.Generic Type=(Name=HashSet GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Section)]) ObjectInstance=&quot;Object instance 7&quot;)" referencedType="System‎.Collections‎.Generic‎.HashSet‎&lt;Section‎&gt;">
+            <referencesInternal>
+              <reference Id="ae9cdd84-bab1-4ead-8804-e0f6e7d8408b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=HashSet GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="66894c4e-4738-4037-98f1-82ccfa0a12ae" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Collections.Generic Type=(Name=HashSet GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="9c4819ab-1649-4560-9c35-d4b73a56732e" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="14fb9b4b-ae87-4a68-880b-f2762aadeaf6" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="ff84ff29-35fc-4c3e-8d04-2a4bab494397" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2329226b-076c-4f7d-afc5-ed321ca6a06d" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="96d894b6-2f43-4a43-88b9-1a8b617be20a" name="Edit" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="d7264738-e955-424c-a8c3-bf60f8db247d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Controllers)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Controllers Type=SemestersController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Controllers Type=SemestersController Member=(Name=Edit OverloadingParameters=[(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.ViewModels Type=SemesterViewModel)]))&quot;)" tag="DGQL" />
+              <reference Id="adb6b3a1-7adb-4d66-8a34-6f394c1be155" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Controllers Type=SemestersController Member=(Name=Edit OverloadingParameters=[(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.ViewModels Type=SemesterViewModel)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="0002caf6-3cda-4f4a-ba54-3b084da2b555" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="160f4293-3be4-459d-8f4d-069b9f27ef75" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="ec0f0034-d795-4c08-a1f1-5bb05a6a287c" name="Create Semester" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new Semester { Id = semester.Id, Description = semester.Description }">
+            <referencesInternal>
+              <reference Id="cab9e161-9e10-4320-b9bf-4cc47b966ad0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Semester)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Semester Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="23680ee9-5047-4fb9-9176-c039aac354cb" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Semester Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="95a0b597-56ab-4e20-a9f4-e0f4a1337d6a" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="d8845543-b323-49b0-b22e-9f08f46860a0" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="b653676c-61e9-40ef-b55f-4391fa73e2ef" name="Create HashSet‎&lt;Section‎&gt;" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new HashSet&lt;Section&gt;()">
+            <referencesInternal>
+              <reference Id="6bd654e7-4e06-47c7-a4c2-92002093da92" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=HashSet GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=HashSet GenericParameterCount=1) Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="f54cc965-a23a-4c35-b8e5-6a9f6bfd3a9a" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5.2/System.Core.dll&quot; Namespace=System.Collections.Generic Type=(Name=HashSet GenericParameterCount=1) Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="7cdfbb41-2790-46b5-b3b8-6216f8c6b9ac" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="303e3e2b-c2c7-4b0e-8b6b-4aae77acdc3a" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="cea6dee6-a0b9-4448-a880-8848bb0d1ed4" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e645da53-ffd0-4c7d-b5e8-ce3b0c30694c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="0e3e5afd-6107-443a-947a-d961782baa54" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="5535f2f2-e3ad-4cae-987a-52d30aa04b84" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="eea0f61d-c14a-4fc6-b8cc-ada0738d47e2" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="85d1cb99-c98f-4a41-8986-abfee563b8aa" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e7a4a6fc-1edd-4d75-b3a0-33fd9aa4833e" name="Return" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false" signatureText="return RedirectToAction(&quot;Index&quot;)">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="d157ad96-1272-47f8-8fdf-1198a32fa193" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="49c2af3f-d0d5-4609-95d5-37557c73d3f8" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2d629279-29e1-4bea-8da4-fdb472a99e30" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="bd894ed9-5311-4853-9d5e-05c41252a4ff" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="7b2a05cf-1c42-4d8e-8c8e-4d4a83133a8a" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="bb093cc4-79b9-476d-a027-205cc3a5b59e" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a4dc8717-1457-4290-979d-97f9ebd81d39" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fe4ecd40-dd4c-43dd-a80c-966e90c52bb2" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

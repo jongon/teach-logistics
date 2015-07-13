@@ -994,3 +994,5 @@
 /// <reference path="app/stadistics/groups.js" />
 /// <reference path="app/stadistics/groupstadistics.js" />
 /// <reference path="app/stadistics/sections.js" />
+/// <reference path="angular-mocks.js" />
+/// <reference path="angular.min.js" />
