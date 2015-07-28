@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="82b38e88-c803-4971-999e-a562791c6078" name="SimulationBL_CloneBalance" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="f1523820-93d8-424a-b6ea-ee94d9420350" name="SimulationBL_CloneBalance" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="2d88aafb-db9f-41f7-b5d6-f976f3552fda" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" LastKnownName="this : SimulationBL" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="99fe8405-b65a-4c9a-9085-3549ef5978a9" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="d3b2bdf7-ae74-481d-9a77-308ac9982833" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="db91569b-26ee-4b80-a91c-410aadeef61d" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="cc20c180-6aaa-4313-b9ce-a9367ba8ba0f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="66206617-6bb6-412f-a024-4ba2e991242e" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="d3b2bdf7-ae74-481d-9a77-308ac9982833" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="483c3a73-c084-4cfb-9f58-a888e3b70dd4" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" LastKnownName="this : SimulationBL" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="bd6690f8-f69c-4586-900d-9ab37589d7b2" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="db91569b-26ee-4b80-a91c-410aadeef61d" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" LastKnownName="this : SimulationBL" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="32a72189-8548-4b4c-b3c0-e87c5ad961ab" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="92eb9a07-af78-44f8-b56d-16c108ccc28b" LastKnownName="Balance : Balance" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="4f9f2696-aa19-4f11-b949-470cd5348455" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="d70ffa6c-f06c-46f9-afb8-2e877575ce03" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="9e1e7037-cb88-40f6-be02-c5820246c18c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0ef47e1c-4ef2-4c10-9be3-0c11a9616612" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="d70ffa6c-f06c-46f9-afb8-2e877575ce03" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="4b65510c-27c3-4a32-aa2d-f410fdfc6a43" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="92eb9a07-af78-44f8-b56d-16c108ccc28b" LastKnownName="Balance : Balance" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="cc20c180-6aaa-4313-b9ce-a9367ba8ba0f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" LastKnownName="this : SimulationBL" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9e1e7037-cb88-40f6-be02-c5820246c18c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="92eb9a07-af78-44f8-b56d-16c108ccc28b" LastKnownName="Balance : Balance" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0ef47e1c-4ef2-4c10-9be3-0c11a9616612" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="92eb9a07-af78-44f8-b56d-16c108ccc28b" LastKnownName="Balance : Balance" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="66206617-6bb6-412f-a024-4ba2e991242e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" LastKnownName="this : SimulationBL" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="4f9f2696-aa19-4f11-b949-470cd5348455" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="383a60a4-3eca-4d37-8312-36ac95fb9a33" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="92eb9a07-af78-44f8-b56d-16c108ccc28b" LastKnownName="Balance : Balance" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="99fe8405-b65a-4c9a-9085-3549ef5978a9" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="42cca619-5f33-4732-8d8f-27a8446b4413" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" LastKnownName="this : SimulationBL" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="57e33f31-dec4-4cce-ba8f-6f0150e6cd79" name="this : SimulationBL" isActor="false" lifelineDisplayName="this : SimulationBL" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Business Type=SimulationBL ObjectInstance=&quot;Object instance 3&quot;)" referencedType="TeachLogistics‎.Business‎.SimulationBL">
+            <referencesInternal>
+              <reference Id="e7a7159f-e2ec-4148-a39e-7ad3a7049b51" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Business)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Business Type=SimulationBL)&quot;)" tag="DGQL" />
+              <reference Id="12862979-e97a-4a6d-921c-0be0fb1cbf27" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Business Type=SimulationBL)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="d3b2bdf7-ae74-481d-9a77-308ac9982833" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="99fe8405-b65a-4c9a-9085-3549ef5978a9" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="92eb9a07-af78-44f8-b56d-16c108ccc28b" name="Balance : Balance" isActor="false" lifelineDisplayName="Balance : Balance" referencedInstance="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Balance ObjectInstance=&quot;Object instance 4&quot;)" referencedType="TeachLogistics‎.Models‎.Balance">
+            <referencesInternal>
+              <reference Id="c7f74648-75c5-426c-b044-1845a7a45b34" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Balance)&quot;)" tag="DGQL" />
+              <reference Id="5fd6c4b2-90ba-46fc-9862-2f2f25da8c70" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Balance)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="d70ffa6c-f06c-46f9-afb8-2e877575ce03" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="4f9f2696-aa19-4f11-b949-470cd5348455" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="60fe026c-ba33-44a1-8bad-cb79d59b25c1" name="CloneBalance" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="6b5c5473-6b5d-44b3-bb20-784d49e976ed" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Business)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Business Type=SimulationBL)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Business Type=SimulationBL Member=(Name=CloneBalance OverloadingParameters=[(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Balance),(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Demand)]))&quot;)" tag="DGQL" />
+              <reference Id="43083a98-5f00-4ee9-9d5c-f781a916859c" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Business Type=SimulationBL Member=(Name=CloneBalance OverloadingParameters=[(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Balance),(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Demand)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="bd6690f8-f69c-4586-900d-9ab37589d7b2" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="db91569b-26ee-4b80-a91c-410aadeef61d" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="ca538f80-ebaa-4f98-8dd5-49df43294364" name="Create Balance" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new Balance...">
+            <referencesInternal>
+              <reference Id="e45cab76-2cbf-4eca-8cb0-f667f413d1f0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=TeachLogistics.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Balance)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&amp;quot; Namespace=TeachLogistics.Models Type=Balance Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="b7e164a4-5c2a-45b5-a76b-cfe8fdb5a3f8" handle="(Assembly=&quot;$(d439f74f-7718-4018-90b9-2ab7cc2c4ece.OutputPathUri)&quot; Namespace=TeachLogistics.Models Type=Balance Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="cc20c180-6aaa-4313-b9ce-a9367ba8ba0f" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="9e1e7037-cb88-40f6-be02-c5820246c18c" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="b4190068-48dd-40ea-b3cd-1e341ef454fd" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0ef47e1c-4ef2-4c10-9be3-0c11a9616612" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="66206617-6bb6-412f-a024-4ba2e991242e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="483c3a73-c084-4cfb-9f58-a888e3b70dd4" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="42cca619-5f33-4732-8d8f-27a8446b4413" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="4b65510c-27c3-4a32-aa2d-f410fdfc6a43" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="383a60a4-3eca-4d37-8312-36ac95fb9a33" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>
