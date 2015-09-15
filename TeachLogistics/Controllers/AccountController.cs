@@ -41,7 +41,6 @@ namespace TeachLogistics.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-
         public ActionResult Index()
         {
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
