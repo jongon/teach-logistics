@@ -1,65 +1,76 @@
 ﻿<!DOCTYPE html>
 <html data-ng-app="TeachLogistics" lang="es">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - TeachLogistics</title>
-	@Styles.Render("~/fonts")
-	@Styles.Render("~/Content/kendo/2015.2.624/kendostyles")
-	@Styles.Render("~/bundles/bootstrapStyles")
-	@Styles.Render("~/Content/font-awesome")
-	@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-	@*<!-- Add local styles, mostly for plugins css file -->*@
-	@if (IsSectionDefined("Styles"))
-	{
-		@RenderSection("Styles", required: false)
-	}
-	@Styles.Render("~/Content/css")
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TeachLogistics</title>
+    @Styles.Render("~/fonts")
+    @Styles.Render("~/Content/kendo/2015.2.624/kendostyles")
+    @Styles.Render("~/bundles/bootstrapStyles")
+    @Styles.Render("~/Content/font-awesome")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @*<!-- Add local styles, mostly for plugins css file -->*@
+    @if (IsSectionDefined("Styles"))
+    {
+        @RenderSection("Styles", required: false)
+    }
+    @Styles.Render("~/Content/css")
 
-	@Scripts.Render("~/bundles/modernizr")
-	@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-44985863-8', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
 </head>
 <body>
-	@*Skin configuration box*@
-	@*@Html.Partial("_SkinConfig")*@
-	@*<!-- Wrapper-->*@
-	@*<!-- PageClass give you ability to specify custom style for specific view based on action -->*@
-	<div id="wrapper" class="@Html.PageClass()">
-		@*<!-- Navigation -->*@
-		@if (User.IsInRole("Administrador")) {
-			@Html.Partial("_AdminNavigation")
-		}
-		else if (User.IsInRole("Estudiante"))
-		{
-			@Html.Partial("_StudentNavigation")					
-		}		
-		@*<!-- Page wraper -->*@
-		<div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
-			@*<!-- Top Navbar -->*@
-			@Html.Partial("_TopNavbar")
-			@*<!-- Main view  -->*@
-			@RenderBody()
-			@*<!-- Footer -->*@
-			@Html.Partial("_Footer")
-		</div>
-		@*<!-- End page wrapper-->*@
-	</div>
-	@*<!-- End wrapper-->*@
-	@*<!-- Section for main scripts render -->*@
-	@Scripts.Render("~/bundles/kendo/kendoscripts")
-	@Scripts.Render("~/bundles/bootstrap")
-	@Scripts.Render("~/plugins/metisMenu")
-	@Scripts.Render("~/plugins/slimScroll")
-	@Scripts.Render("~/bundles/inspinia")
-	@Scripts.Render("~/plugins/pace")
-	@Scripts.Render("~/plugins/dataTables")
-	@Scripts.Render("~/bundles/jqueryval")
-	@*<!-- Skin config script - only for demo purpose-->*@
-	@*@Scripts.Render("~/bundles/skinConfig")*@
-	<!-- Handler for local scripts -->
-	@RenderSection("scripts", required: false)
-	<script>
-		kendo.culture("es-VE");
-	</script>
+    @*Skin configuration box*@
+    @*@Html.Partial("_SkinConfig")*@
+    @*<!-- Wrapper-->*@
+    @*<!-- PageClass give you ability to specify custom style for specific view based on action -->*@
+    <div id="wrapper" class="@Html.PageClass()">
+        @*<!-- Navigation -->*@
+        @if (User.IsInRole("Administrador")) {
+            @Html.Partial("_AdminNavigation")
+        }
+        else if (User.IsInRole("Estudiante"))
+        {
+            @Html.Partial("_StudentNavigation")					
+        }		
+        @*<!-- Page wraper -->*@
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+            @*<!-- Top Navbar -->*@
+            @Html.Partial("_TopNavbar")
+            @*<!-- Main view  -->*@
+            @RenderBody()
+            @*<!-- Footer -->*@
+            @Html.Partial("_Footer")
+        </div>
+        @*<!-- End page wrapper-->*@
+    </div>
+    @*<!-- End wrapper-->*@
+    @*<!-- Section for main scripts render -->*@
+    @Scripts.Render("~/bundles/kendo/kendoscripts")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/metisMenu")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+    @Scripts.Render("~/plugins/pace")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<!-- Skin config script - only for demo purpose-->*@
+    @*@Scripts.Render("~/bundles/skinConfig")*@
+    <!-- Handler for local scripts -->
+    @RenderSection("scripts", required: false)
+    <script>
+        kendo.culture("es-VE");
+    </script>
 </body>
 </html>
