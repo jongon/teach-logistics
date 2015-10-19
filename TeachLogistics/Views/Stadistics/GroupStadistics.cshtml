@@ -21,7 +21,7 @@
 					@Html.ActionLink("Índice", "Sections")
 				</li>
 				<li>
-					@Html.ActionLink("Grupos", "Groups")
+					@Html.ActionLink("Grupos", "Groups", new { SectionId = ViewBag.SectionId })
 				</li>
 			}	
 			<li class="active">
