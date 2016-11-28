@@ -1,15 +1,15 @@
 /**
- * CLDR JavaScript Library v0.4.1
+ * CLDR JavaScript Library v0.4.7
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2015-02-25T13:51Z
+ * Date: 2016-11-08T00:37Z
  */
 /*!
- * CLDR JavaScript Library v0.4.1 2015-02-25T13:51Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.4.7 2016-11-08T00:37Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -42,7 +42,7 @@
 var EventEmitter;
 /* jshint ignore:start */
 EventEmitter = (function () {
-	
+
 
 	/**
 	 * Class for managing events.
